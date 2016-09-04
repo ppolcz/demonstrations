@@ -1,6 +1,5 @@
 
-Mindenekelőtt futtassátok le Matlab-ban a következő parancsokat:
+Mindenekelőtt navigálj a Matlab-ban a `demonstrations` mappába, majd futtasd: 
 ```matlab
-cd .../demonstrations
 startup
 ```
