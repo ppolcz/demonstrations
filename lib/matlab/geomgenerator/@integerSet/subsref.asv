@@ -1,0 +1,5 @@
+function [x] = subsref(s,a)
+index
+if (a.type = '()')
+    index = a.
+x = s(index);

@@ -1,0 +1,7 @@
+function s = delete(s,x)
+snew  = inte
+for i =1:length(s)
+    if (s.elements(i) == x)
+        s.elements = s.elements([1:i-1 i+1:end]);
+    end
+end

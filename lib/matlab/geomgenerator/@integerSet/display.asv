@@ -1,0 +1,3 @@
+function s = display(s,x)
+s.nElements = s.nElements+1;
+s.elements(end+1) = x;
