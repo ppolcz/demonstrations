@@ -185,6 +185,20 @@ hold on
 plot(x, y, 'or')
 axis equal 
 
+%%
+
+syms x y z t real
+r = [x;y];
+
+E = r / norm(r)^(3)
+
+divE = trace(jacobian(E));
+divE_fh = matlabFunction(divE, 'vars', {x,y});
+
+[xx,yy] = meshgrid(linspace(-1,1,31));
+divE_num = divE_fh(xx,yy)
+surf(xx,yy,divE_num)
+
 %% end of the scope
 pcz_dispFunctionEnd(TMP_QVgVGfoCXYiYXzPhvVPX);
 clear TMP_QVgVGfoCXYiYXzPhvVPX
