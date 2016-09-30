@@ -46,7 +46,7 @@ g3_ = g3_fh(tt,dummy_num);
 
 g1_small = g1_fh(tt_small,dummy_num_small);
 g2_small = g2_fh(tt_small,dummy_num_small);
-g3_small = g3_fh(tt_small,dummy_num_small);
+% g3_small = g3_fh(tt_small,dummy_num_small);
 
 if ip.visualize
     if dim == 2
@@ -54,12 +54,12 @@ if ip.visualize
 
         if ip.norms
             dG = diff(gamma, t);
-            n1 = matlabFunction(-dG(2), 'vars', {t , dummy});
-            n2 = matlabFunction(dG(1), 'vars', {t , dummy});
+            n1 = matlabFunction(-dG(2) + dummy, 'vars', {t , dummy});
+            n2 = matlabFunction(dG(1) + dummy, 'vars', {t , dummy});
 
             nn1 = n1(tt_small,dummy_num_small);
             nn2 = n2(tt_small,dummy_num_small);
-            r = sqrt(nn1.^2 + nn2.^2);
+%             r = sqrt(nn1.^2 + nn2.^2);
 %             nn1 = nn1./r;
 %             nn2 = nn2./r;
             quiver(g1_small, g2_small, nn1, nn2);
