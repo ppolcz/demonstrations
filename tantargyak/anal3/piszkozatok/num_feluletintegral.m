@@ -17,18 +17,49 @@ pcz_cmd_fname('fname');
 persist = pcz_persist(fname);
 %persist.backup();
 
-%%
+%% 2. het HF1 
 
-syms r u v x y z real
+syms R u v x y z real
+r = [x;y;z];
 
 C = [
-    r*cos(v)*cos(u)
-    r*cos(v)*sin(u)
-    r*sin(v)
+    R*cos(v)*cos(u)
+    R*cos(v)*sin(u)
+    R*sin(v)
     ];
 
-J = jacobian(C,[r;u;v])
+J = jacobian(C,[R;u;v])
 simplify(det(J))
+
+C = [
+    R*sin(v)*cos(u)
+    R*sin(v)*sin(u)
+    R*cos(v)
+    ];
+
+J = jacobian(C,[R;u;v])
+simplify(det(J))
+
+assume([R > 0, in(R, 'real')])
+assume([0 <= v < pi, in(v, 'real')])
+dS_vec = simplify(vekanal_cross(diff(C,u), diff(C,v)))
+dS = simplify(norm(dS_vec))
+
+fprintf('%s = %s %s \n= %s %s\n', '\mathrm{d}\vec{S}', ...
+    pcz_latex(R*sin(v)), ...
+    pcz_latex(simplify(dS_vec / R / sin(v))), ...
+    pcz_latex(R*sin(v)), ...
+    pcz_latex(r))
+
+F = [y;x;z];
+
+Integrand = simplify(subs(F,r,C)' * dS_vec);
+pretty(Integrand)
+
+expand(Integrand)
+
+Integrand_u = int(Integrand, u, 0, pi)
+Integrand_uv = int(Integrand_u, v, 0, pi/2)
 
 %% 
 
