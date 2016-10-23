@@ -23,8 +23,9 @@ persist = pcz_persist(fname);
 syms x y z real
 syms e1 e2 e3 real
 
-assume(e1 ~= 0 & e2 ~= 0 & e3 ~= 0 & ...
+assume(e1 > 0 & e2 > 0 & e3 > 0 & ...
     e1^2*e2^2 + 2*e1^2*e3^2 + e2^2*e3^2 + 8*e1^2*e2^2*e3^2 <= 4*e1*e2^2*e3^2 + 4*e1^2*e2^2*e3 + 2*e1*e2*e3^2 + 2*e1^2*e2*e3 & ...
+    -4*e1^2*e2^2*e3^2 + 2*e1^2*e2^2*e3 - (e1^2*e2^2)/2 + e1^2*e2*e3 - e1^2*e3^2 + 2*e1*e2^2*e3^2 + e1*e2*e3^2 - (e2^2*e3^2)/2 > 0 & ...
     in(e1,'real') & in(e2,'real') & in(e3,'real') & in(x,'real') & in(y,'real') & in(z,'real') ...
     )
 
@@ -34,9 +35,9 @@ eq = solve([
     1/( (x+1)^2 + y^2 + z^2) - e3
     ], [x y z]);
 
-eq.x
-eq.y
-eq.z
+x_sol = eq.x; disp('x='), pretty(x_sol)
+y_sol = eq.y; disp('y='), pretty(y_sol)
+z_sol = eq.z; disp('z='), pretty(z_sol)
 
 % ans =
 %  (e1 - e3)/(4*e1*e3)
