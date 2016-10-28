@@ -171,8 +171,6 @@ t2 = 1;
 
 % r = [x;y;z] helyére behelyettesítjük g deriváltját
 Integrand = subs(F,r,g)' * diff(g, t);
-
-disp 'Integralando fuggveny tehat'
 pretty(Integrand)
 
 disp 'Szimmbolikus integralassal:'
@@ -187,4 +185,4 @@ disp(Integral)
 disp 'Polinomkozeliteses numerikus eljarassal:'
 Integrand_fh = matlabFunction(Integrand);
 Integral = integral(Integrand_fh, t1, t2);
-disp(Integral)
+disp(Integra

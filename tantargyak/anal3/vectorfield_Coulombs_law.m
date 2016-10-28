@@ -17,7 +17,7 @@ pcz_cmd_fname('fname');
 persist = pcz_persist(fname);
 %persist.backup();
 
-%%
+%% Pozitív és negatív ponttöltések töltések elektromos tere (normalizálva)
 
 % Coulomb's constant
 ke = 8.99e9;
@@ -60,7 +60,7 @@ axis equal tight
 title 'Normalized vector field between some electric point charge' interpreter latex
 legend([h1 h2], {'negative','positive'},'Position',[0.85,0.8,0.1,0.1])
 
-%% 
+%% Ponttöltések elektromos tere véletlenszerű pontokban (normalizálva)
 
 % Coulomb's constant
 ke = 8.99e9;
@@ -100,7 +100,7 @@ axis equal tight
 title 'Normalized vector field between some electric point charge' interpreter latex
 legend([h1 h2], {'negative','positive'},'Position',[0.85,0.8,0.1,0.1])
 
-%%
+%% Anod és katód elektromos tere (ponttöltésekkel közelítve)
 
 % Coulomb's constant
 ke = 8.99e9;
@@ -185,7 +185,7 @@ hold on
 plot(x, y, 'or')
 axis equal 
 
-%%
+%% Próba: divergenciája az r/|r|^3 fuggvenynek
 
 syms x y z t real
 r = [x;y];

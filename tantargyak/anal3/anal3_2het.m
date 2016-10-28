@@ -6,17 +6,6 @@
 %  Created on 2016.09.30. Friday, 12:57:31
 %
 
-global SCOPE_DEPTH
-SCOPE_DEPTH = 0;
-
-%% beginning of the scope
-TMP_IbSWJNMuIiKbocfQKqXb = pcz_dispFunctionName;
-
-% fname: full path of the actual file
-pcz_cmd_fname('fname');
-persist = pcz_persist(fname);
-%persist.backup();
-
 %% 2. het HF1 
 
 syms R u v x y z real
@@ -140,8 +129,3 @@ pretty(Integrand)
 Integrand_u = int(Integrand, u, 0, 2*pi)
 Integrand_uv = int(Integrand_u, v, 0, pi)
 
-
-
-%% end of the scope
-pcz_dispFunctionEnd(TMP_IbSWJNMuIiKbocfQKqXb);
-clear TMP_IbSWJNMuIiKbocfQKqXb
