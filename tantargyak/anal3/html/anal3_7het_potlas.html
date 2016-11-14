@@ -1,0 +1,530 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>anal3_7het_potlas</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-14"><meta name="DC.source" content="anal3_7het_potlas.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><pre>file:   anal3_7het_potlas.m
+author: Polcz P&eacute;ter &lt;ppolcz@gmail.com&gt;</pre><pre>Created on 2016.11.14. Monday, 11:57:37</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Documentation</a></li><li><a href="#2">Vektoranalizis - divergencia (divergence)</a></li><li><a href="#3">Vektoranalizis - rotacio (curl)</a></li><li><a href="#4">Vektoranalizis - gradiens (gradient)</a></li><li><a href="#5">Vektoranalizis - Jacobi matrix (jacobian)</a></li><li><a href="#6">Vektoranalizis - Laplace operator (laplacian), Hesse matrix (hessian)</a></li><li><a href="#7">Vektoranalizis - Potencialfuggvenyek kiszamitasa</a></li></ul></div><h2>Documentation<a name="1"></a></h2><pre class="codeinput">web(fullfile(docroot, <span class="string">'symbolic/vector-analysis.html'</span>))
+</pre><h2>Vektoranalizis - divergencia (divergence)<a name="2"></a></h2><pre class="codeinput">clc
+fprintf <span class="string">'\n[1] Vektoranalizis - divergencia (divergence)\n\n\n'</span>
+
+x = sym(<span class="string">'x'</span>,[5,1], <span class="string">'real'</span>)
+
+F = round(rand(5)) * x + (sin(round(rand(5)*0.6) * x))
+
+fprintf <span class="string">'`divergence(F,x)` = \n'</span>
+disp(divergence(F,x))
+
+fprintf <span class="string">'a `curl` csak 3 dimenzios fuggvenyekre mukodik: \ncurl(F(1:3),x(1:3)) = \n'</span>
+disp(curl(F(1:3),x(1:3)))
+</pre><pre class="codeoutput">
+[1] Vektoranalizis - divergencia (divergence)
+
+
+ 
+x =
+ 
+ x1
+ x2
+ x3
+ x4
+ x5
+ 
+ 
+F =
+ 
+ x1 + x3 + x5 + sin(x4)
+                     x4
+           x2 + x3 + x5
+      x1 + x3 + x4 + x5
+                     x3
+ 
+`divergence(F,x)` = 
+3
+ 
+a `curl` csak 3 dimenzios fuggvenyekre mukodik: 
+curl(F(1:3),x(1:3)) = 
+ 1
+ 1
+ 0
+ 
+</pre><h2>Vektoranalizis - rotacio (curl)<a name="3"></a></h2><pre class="codeinput">clc
+fprintf <span class="string">'\n[2] Vektoranalizis - rotacio (curl)\n\n\n'</span>
+
+syms <span class="string">x</span> <span class="string">y</span> <span class="string">z</span> <span class="string">real</span>
+F = [
+    sin(x)*cos(y) + z^2
+    exp(z)*x
+    x*y / (x^2 + 1)
+    ];
+
+disp <span class="string">'curl(F) = '</span>
+disp(curl(F))
+
+disp <span class="string">'pretty(curl(F)) = '</span>
+pretty(curl(F))
+
+disp <span class="string">'curl(F,[z;x;y]) = '</span>
+disp(curl(F,[z;x;y]))
+</pre><pre class="codeoutput">
+[2] Vektoranalizis - rotacio (curl)
+
+
+curl(F) = 
+                    x/(x^2 + 1) - x*exp(z)
+ 2*z - y/(x^2 + 1) + (2*x^2*y)/(x^2 + 1)^2
+                    exp(z) + sin(x)*sin(y)
+ 
+pretty(curl(F)) = 
+/        x                 \
+|     ------ - x exp(z)    |
+|      2                   |
+|     x  + 1               |
+|                          |
+|                     2    |
+|          y       2 x  y  |
+| 2 z - ------ + --------- |
+|        2         2     2 |
+|       x  + 1   (x  + 1)  |
+|                          |
+\  exp(z) + sin(x) sin(y)  /
+
+curl(F,[z;x;y]) = 
+ y/(x^2 + 1) - (2*x^2*y)/(x^2 + 1)^2
+                      -sin(x)*sin(y)
+            x*exp(z) - cos(x)*cos(y)
+ 
+</pre><h2>Vektoranalizis - gradiens (gradient)<a name="4"></a></h2><pre class="codeinput">clc
+fprintf <span class="string">'\n[3] Vektoranalizis - gradiens (gradient)\n\n\n'</span>
+
+syms <span class="string">x1</span> <span class="string">x2</span> <span class="string">x3</span> <span class="string">x4</span> <span class="string">x5</span> <span class="string">real</span>
+x = [x1;x2;x3;x4;x5];
+
+f = x' * round(rand(5)) * x;
+disp <span class="string">'f = x'' * round(rand(5)) * x = '</span>
+disp(f)
+
+f = expand(f);
+disp <span class="string">'expand(f) = '</span>
+disp(f)
+
+disp <span class="string">'gradient(f) = '</span>
+disp(gradient(f))
+
+disp <span class="string">'gradient(f,x) = '</span>
+disp(gradient(f,x))
+
+disp <span class="string">'gradient(f,[x1;x5;x2]) = '</span>
+disp(gradient(f,[x1;x5;x2]))
+</pre><pre class="codeoutput">
+[3] Vektoranalizis - gradiens (gradient)
+
+
+f = x' * round(rand(5)) * x = 
+x3*(x1 + x2 + x3 + x5) + x2*(x2 + x3) + x4*(x2 + x3) + x5*(x1 + x4) + x1*(x1 + x2 + x5)
+ 
+expand(f) = 
+x1*x2 + x1*x3 + 2*x2*x3 + 2*x1*x5 + x2*x4 + x3*x4 + x3*x5 + x4*x5 + x1^2 + x2^2 + x3^2
+ 
+gradient(f) = 
+      2*x1 + x2 + x3 + 2*x5
+      x1 + 2*x2 + 2*x3 + x4
+ x1 + 2*x2 + 2*x3 + x4 + x5
+               x2 + x3 + x5
+             2*x1 + x3 + x4
+ 
+gradient(f,x) = 
+      2*x1 + x2 + x3 + 2*x5
+      x1 + 2*x2 + 2*x3 + x4
+ x1 + 2*x2 + 2*x3 + x4 + x5
+               x2 + x3 + x5
+             2*x1 + x3 + x4
+ 
+gradient(f,[x1;x5;x2]) = 
+ 2*x1 + x2 + x3 + 2*x5
+        2*x1 + x3 + x4
+ x1 + 2*x2 + 2*x3 + x4
+ 
+</pre><h2>Vektoranalizis - Jacobi matrix (jacobian)<a name="5"></a></h2><pre class="codeinput">clc
+fprintf <span class="string">'\n[4] Vektoranalizis - Jacobi matrix (jacobian)\n\n\n'</span>
+
+syms <span class="string">x1</span> <span class="string">x2</span> <span class="string">x3</span> <span class="string">x4</span> <span class="string">x5</span> <span class="string">u</span> <span class="string">v</span> <span class="string">w</span> <span class="string">real</span>
+x = [x1;x2;x3;x4;x5];
+
+F = [
+    x2^2 + sin(x1)*x4
+    x3 + cos(x2) + u*x1
+    exp(x2)*sin(x1)
+    ];
+disp <span class="string">'F(x1,x2,x3,x4;u) = '</span>
+pretty(F)
+
+disp <span class="string">'jacobian(F) = '</span>
+disp(jacobian(F))
+
+fprintf <span class="string">'E szerint tortenik a gradiens szamolas, ha nem adjuk meg explicite mi szerint szamolja a gradienst: '</span>
+fprintf <span class="string">'`symvar(F)` = '</span>
+disp(symvar(F))
+
+fprintf <span class="string">'Tehat `jacobian(F)` == `jacobian(F,symvar(F))`\n\n'</span>
+
+disp <span class="string">'jacobian(F,x) = '</span>
+disp(jacobian(F,x))
+
+disp <span class="string">'jacobian(F,[x;u;v;w]) = '</span>
+disp(jacobian(F,[x;u;v;w]))
+</pre><pre class="codeoutput">
+[4] Vektoranalizis - Jacobi matrix (jacobian)
+
+
+F(x1,x2,x3,x4;u) = 
+/     2               \
+|   x2  + x4 sin(x1)  |
+|                     |
+| x3 + cos(x2) + u x1 |
+|                     |
+\   exp(x2) sin(x1)   /
+
+jacobian(F) = 
+[  0,      x4*cos(x1),            2*x2, 0, sin(x1)]
+[ x1,               u,        -sin(x2), 1,       0]
+[  0, exp(x2)*cos(x1), exp(x2)*sin(x1), 0,       0]
+ 
+E szerint tortenik a gradiens szamolas, ha nem adjuk meg explicite mi szerint szamolja a gradienst: `symvar(F)` = [ u, x1, x2, x3, x4]
+ 
+Tehat `jacobian(F)` == `jacobian(F,symvar(F))`
+
+jacobian(F,x) = 
+[      x4*cos(x1),            2*x2, 0, sin(x1), 0]
+[               u,        -sin(x2), 1,       0, 0]
+[ exp(x2)*cos(x1), exp(x2)*sin(x1), 0,       0, 0]
+ 
+jacobian(F,[x;u;v;w]) = 
+[      x4*cos(x1),            2*x2, 0, sin(x1), 0,  0, 0, 0]
+[               u,        -sin(x2), 1,       0, 0, x1, 0, 0]
+[ exp(x2)*cos(x1), exp(x2)*sin(x1), 0,       0, 0,  0, 0, 0]
+ 
+</pre><h2>Vektoranalizis - Laplace operator (laplacian), Hesse matrix (hessian)<a name="6"></a></h2><pre class="codeinput">clc
+fprintf <span class="string">'\n[5] Vektoranalizis - Laplace operator (laplacian), Hesse matrix (hessian)\n\n\n'</span>
+
+syms <span class="string">x</span> <span class="string">y</span> <span class="string">z</span> <span class="string">real</span>
+r = [x;y;z];
+
+f = simplify([sin(x) exp(z)] * round(rand(2,3)*0.7) * r + sin(x)^2);
+disp <span class="string">'f = simplify([sin(x) exp(z)] * round(rand(2,3)*0.7) * r + sin(x)^2) = '</span>
+disp(f)
+
+disp <span class="string">'pretty(f) = '</span>
+pretty(f)
+
+Lf = laplacian(f,r);
+disp <span class="string">'Lf = laplacian(f) = '</span>
+disp(Lf)
+
+Lf = simplify(Lf);
+disp <span class="string">'simplify(Lf) = '</span>
+disp(Lf)
+
+ddf = simplify(hessian(f,r));
+disp <span class="string">'ddf = simplify(hessian(f)) = '</span>
+disp(ddf)
+</pre><pre class="codeoutput">
+[5] Vektoranalizis - Laplace operator (laplacian), Hesse matrix (hessian)
+
+
+f = simplify([sin(x) exp(z)] * round(rand(2,3)*0.7) * r + sin(x)^2) = 
+sin(x)^2 + z*sin(x) + x*exp(z)
+ 
+pretty(f) = 
+      2
+sin(x)  + z sin(x) + x exp(z)
+
+Lf = laplacian(f) = 
+2*cos(x)^2 - 2*sin(x)^2 + x*exp(z) - z*sin(x)
+ 
+simplify(Lf) = 
+x*exp(z) - 4*sin(x)^2 - z*sin(x) + 2
+ 
+ddf = simplify(hessian(f)) = 
+[ 2 - z*sin(x) - 4*sin(x)^2, 0, cos(x) + exp(z)]
+[                         0, 0,               0]
+[           cos(x) + exp(z), 0,        x*exp(z)]
+ 
+</pre><h2>Vektoranalizis - Potencialfuggvenyek kiszamitasa<a name="7"></a></h2><pre class="codeinput">clc
+fprintf <span class="string">'\n[6] Vektoranalizis - Potencialfuggvenyek kiszamitasa\n\n\n'</span>
+
+syms <span class="string">x</span> <span class="string">y</span> <span class="string">z</span> <span class="string">real</span>
+r = [x;y;z];
+
+F = [
+    y*z + 1 + y + cos(z)*sin(x)
+    x*z + x
+    x*y + sin(z)*cos(x)
+    ];
+
+disp <span class="string">'F(x,y,z) = '</span>
+disp(F)
+
+disp <span class="string">'potential(F,r) [ha letezik potencialfuggveny] = '</span>
+disp(potential(F,r))
+
+
+F = [
+    z
+    0
+    0
+    ];
+
+fprintf <span class="string">'F(x,y,z) = '</span>
+disp(F')
+
+disp <span class="string">'potential(F,r) [ha letezik potencialfuggveny] = '</span>
+disp(potential(F,r))
+</pre><pre class="codeoutput">
+[6] Vektoranalizis - Potencialfuggvenyek kiszamitasa
+
+
+F(x,y,z) = 
+ y + cos(z)*sin(x) + y*z + 1
+                     x + x*z
+         cos(x)*sin(z) + x*y
+ 
+potential(F,r) [ha letezik potencialfuggveny] = 
+x - cos(x)*cos(z) + x*y + x*y*z
+ 
+F(x,y,z) = [ z, 0, 0]
+ 
+potential(F,r) [ha letezik potencialfuggveny] = 
+NaN
+ 
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+%
+%  file:   anal3_7het_potlas.m
+%  author: Polcz Péter <ppolcz@gmail.com>
+%
+%  Created on 2016.11.14. Monday, 11:57:37
+%
+
+%% Documentation
+web(fullfile(docroot, 'symbolic/vector-analysis.html'))
+
+%% Vektoranalizis - divergencia (divergence)
+
+clc
+fprintf '\n[1] Vektoranalizis - divergencia (divergence)\n\n\n'
+
+x = sym('x',[5,1], 'real')
+
+F = round(rand(5)) * x + (sin(round(rand(5)*0.6) * x))
+
+fprintf '`divergence(F,x)` = \n'
+disp(divergence(F,x))
+
+fprintf 'a `curl` csak 3 dimenzios fuggvenyekre mukodik: \ncurl(F(1:3),x(1:3)) = \n'
+disp(curl(F(1:3),x(1:3)))
+
+%% Vektoranalizis - rotacio (curl)
+
+clc
+fprintf '\n[2] Vektoranalizis - rotacio (curl)\n\n\n'
+
+syms x y z real
+F = [
+    sin(x)*cos(y) + z^2
+    exp(z)*x
+    x*y / (x^2 + 1)
+    ];
+
+disp 'curl(F) = '
+disp(curl(F))
+
+disp 'pretty(curl(F)) = '
+pretty(curl(F))
+
+disp 'curl(F,[z;x;y]) = '
+disp(curl(F,[z;x;y]))
+
+%% Vektoranalizis - gradiens (gradient)
+
+clc
+fprintf '\n[3] Vektoranalizis - gradiens (gradient)\n\n\n'
+
+syms x1 x2 x3 x4 x5 real
+x = [x1;x2;x3;x4;x5];
+
+f = x' * round(rand(5)) * x;
+disp 'f = x'' * round(rand(5)) * x = '
+disp(f)
+
+f = expand(f);
+disp 'expand(f) = '
+disp(f)
+
+disp 'gradient(f) = '
+disp(gradient(f))
+
+disp 'gradient(f,x) = '
+disp(gradient(f,x))
+
+disp 'gradient(f,[x1;x5;x2]) = '
+disp(gradient(f,[x1;x5;x2]))
+
+%% Vektoranalizis - Jacobi matrix (jacobian)
+
+clc
+fprintf '\n[4] Vektoranalizis - Jacobi matrix (jacobian)\n\n\n'
+
+syms x1 x2 x3 x4 x5 u v w real
+x = [x1;x2;x3;x4;x5];
+
+F = [
+    x2^2 + sin(x1)*x4
+    x3 + cos(x2) + u*x1
+    exp(x2)*sin(x1)
+    ];
+disp 'F(x1,x2,x3,x4;u) = '
+pretty(F)
+
+disp 'jacobian(F) = '
+disp(jacobian(F))
+
+fprintf 'E szerint tortenik a gradiens szamolas, ha nem adjuk meg explicite mi szerint szamolja a gradienst: '
+fprintf '`symvar(F)` = '
+disp(symvar(F))
+
+fprintf 'Tehat `jacobian(F)` == `jacobian(F,symvar(F))`\n\n'
+
+disp 'jacobian(F,x) = '
+disp(jacobian(F,x))
+
+disp 'jacobian(F,[x;u;v;w]) = '
+disp(jacobian(F,[x;u;v;w]))
+
+%% Vektoranalizis - Laplace operator (laplacian), Hesse matrix (hessian)
+
+clc
+fprintf '\n[5] Vektoranalizis - Laplace operator (laplacian), Hesse matrix (hessian)\n\n\n'
+
+syms x y z real
+r = [x;y;z];
+
+f = simplify([sin(x) exp(z)] * round(rand(2,3)*0.7) * r + sin(x)^2);
+disp 'f = simplify([sin(x) exp(z)] * round(rand(2,3)*0.7) * r + sin(x)^2) = '
+disp(f)
+
+disp 'pretty(f) = '
+pretty(f)
+
+Lf = laplacian(f,r);
+disp 'Lf = laplacian(f) = '
+disp(Lf)
+
+Lf = simplify(Lf);
+disp 'simplify(Lf) = '
+disp(Lf)
+
+ddf = simplify(hessian(f,r));
+disp 'ddf = simplify(hessian(f)) = '
+disp(ddf)
+
+%% Vektoranalizis - Potencialfuggvenyek kiszamitasa
+
+clc
+fprintf '\n[6] Vektoranalizis - Potencialfuggvenyek kiszamitasa\n\n\n'
+
+syms x y z real
+r = [x;y;z];
+
+F = [
+    y*z + 1 + y + cos(z)*sin(x)
+    x*z + x
+    x*y + sin(z)*cos(x)
+    ];
+
+disp 'F(x,y,z) = '
+disp(F)
+
+disp 'potential(F,r) [ha letezik potencialfuggveny] = '
+disp(potential(F,r))
+
+
+F = [
+    z
+    0
+    0
+    ];
+
+fprintf 'F(x,y,z) = '
+disp(F')
+
+disp 'potential(F,r) [ha letezik potencialfuggveny] = '
+disp(potential(F,r))
+
+
+##### SOURCE END #####
+--></body></html>

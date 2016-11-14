@@ -1,0 +1,498 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>anal3_1het</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-14"><meta name="DC.source" content="anal3_1het.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><pre>file:   anal3_1het.m
+author: Polcz P&eacute;ter &lt;ppolcz@gmail.com&gt;</pre><pre>Created on 2016.09.14. Wednesday, 16:35:09</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Seg&eacute;df&uuml;ggv&eacute;nyek l&eacute;trehoz&aacute;sa</a></li><li><a href="#2">divergencia demo</a></li><li><a href="#3">2. &eacute;s 3. feladat</a></li><li><a href="#4">4. feladat</a></li><li><a href="#5">5. feladat</a></li><li><a href="#6">6. feladat</a></li></ul></div><h2>Seg&eacute;df&uuml;ggv&eacute;nyek l&eacute;trehoz&aacute;sa<a name="1"></a></h2><p>A vektoranal&iacute;zishez kapcsol&oacute;d&oacute; seg&eacute;df&uuml;ggv&eacute;nyek: vekanal_... megtal&aacute;lhat&oacute; a demonstr&aacute;ci&oacute;k repository-ban, a lib/matlab mapp&aacute;ban: https://github.com/ppolcz/demonstrations/tree/master/lib/matlab</p><p>Ut&oacute;lag r&aacute;d&ouml;bbentem, hogy teljesen f&ouml;l&ouml;sleges ezeket l&eacute;trehozni, ink&aacute;bb haszn&aacute;lkuk a be&eacute;p&iacute;tett `curl`, `divergence`, `gradient`, `jacobian`, `hessian`, `laplacian`, stb... f&uuml;ggv&eacute;nyeket</p><p><a href="https://www.mathworks.com/help/symbolic/vector-analysis-1.html">MathWorks - Vector Analysis</a></p><pre class="codeinput">web(fullfile(docroot, <span class="string">'symbolic/vector-analysis.html'</span>))
+
+div = @vekanal_div;
+rot = @vekanal_rot;
+cross = @vekanal_cross;
+</pre><h2>divergencia demo<a name="2"></a></h2><pre class="codeinput">syms <span class="string">x</span> <span class="string">y</span> <span class="string">z</span> <span class="string">real</span>
+r = [x;y];
+
+F = [
+    x^2*y
+    y*x
+    ];
+
+F = [
+    sin(x)
+    cos(y)
+    ];
+
+divF = div(F);
+
+[xx,yy] = ndgrid(linspace(-4,4,30));
+rr = {xx,yy};
+
+divF_num = vekanal_subsmesh(divF, r, rr);
+[F1,F2] = vekanal_subsmeshn(F, r, rr);
+
+figure, hold <span class="string">on</span>, axis <span class="string">tight</span>
+quiver3(xx,yy,divF_num,F1,F2,F2*0,1.5),
+surf(xx,yy,divF_num,<span class="string">'facealpha'</span>, 0.5),
+shading <span class="string">interp</span>
+colorbar
+title(sprintf(<span class="string">'$F = %s, ~~ \\nabla F = %s$'</span>, latex(F'), latex(divF)), <span class="string">'interpreter'</span>, <span class="string">'latex'</span>)
+</pre><img vspace="5" hspace="5" src="anal3_1het_01.png" alt=""> <h2>2. &eacute;s 3. feladat<a name="3"></a></h2><pre class="codeinput">syms <span class="string">x</span> <span class="string">y</span> <span class="string">z</span> <span class="string">real</span>
+r = [x;y;z];
+
+<span class="comment">% 2. feladat f&uuml;ggv&eacute;nye</span>
+F = [
+    y/z
+    z/x
+    x/y
+    ];
+
+<span class="comment">% 3. feladat f&uuml;ggv&eacute;nye</span>
+F = [
+    x^2*y
+    y*z
+    x*y*z^2
+    ];
+
+div(F)
+rot(F)
+
+n = 20;
+[xx,yy,zz] = ndgrid(linspace(-1,1,n));
+rr = {xx,yy,zz};
+
+[F1,F2,F3] = vekanal_subsmeshn(F, r, rr);
+
+figure,
+quiver3(xx,yy,zz,F1,F2,F3), axis <span class="string">equal</span> <span class="string">tight</span>
+</pre><pre class="codeoutput"> 
+ans =
+ 
+z + 2*x*y + 2*x*y*z
+ 
+ 
+ans =
+ 
+ x*z^2 - y
+    -y*z^2
+      -x^2
+ 
+</pre><img vspace="5" hspace="5" src="anal3_1het_02.png" alt=""> <h2>4. feladat<a name="4"></a></h2><pre class="codeinput"><span class="comment">% El&#337;sz&ouml;r deklar&aacute;ljuk a szimb&oacute;likus objektumokat</span>
+syms <span class="string">x</span> <span class="string">y</span> <span class="string">z</span>
+r = [x;y;z];
+
+f = sym(<span class="string">'f(x,y,z)'</span>);
+g = sym(<span class="string">'g(x,y,z)'</span>);
+
+F = [
+    sym(<span class="string">'F1(x,y,z)'</span>)
+    sym(<span class="string">'F2(x,y,z)'</span>)
+    sym(<span class="string">'F3(x,y,z)'</span>)
+    ];
+
+G = [
+    sym(<span class="string">'G1(x,y,z)'</span>)
+    sym(<span class="string">'G2(x,y,z)'</span>)
+    sym(<span class="string">'G3(x,y,z)'</span>)
+    ];
+
+<span class="comment">% Felt&eacute;telezz&uuml;k, hogy minden szimb&oacute;likus objektum val&oacute;s (nem komplex)</span>
+assume([F,G,f,g,r],<span class="string">'real'</span>)
+
+<span class="comment">% Gradiens, divergencia, rot&aacute;ci&oacute;, vektori&aacute;lis szorzat m&#369;veletek</span>
+grad = @(f) jacobian(f,r);
+trans = @(F) reshape(F,[1 3]);
+
+<span class="comment">% V&eacute;g&uuml;l a szab&aacute;lyok ellen&#337;rz&eacute;se, null&aacute;t kell kapjunk minden esetben</span>
+simplify(grad(f*g) - (f*grad(g) + g*grad(f)))
+simplify(div(f*F) - (grad(f)*F + f*div(F)))
+simplify(rot(f*F) - (cross(grad(f),F) + f*rot(F)))
+simplify(div(cross(F,G)) - (trans(G)*rot(F) - trans(F)*rot(G)))
+
+<span class="comment">% 5. szabaly (nincs a feladatok kozott)</span>
+simplify(grad(trans(F)*G) - trans(F)*grad(G) - trans(G)*grad(F))
+</pre><pre class="codeoutput"> 
+ans =
+ 
+[ 0, 0, 0]
+ 
+ 
+ans =
+ 
+0
+ 
+ 
+ans =
+ 
+ 0
+ 0
+ 0
+ 
+ 
+ans =
+ 
+0
+ 
+ 
+ans =
+ 
+[ 0, 0, 0]
+ 
+</pre><h2>5. feladat<a name="5"></a></h2><pre class="codeinput">syms <span class="string">t</span> <span class="string">x</span> <span class="string">y</span> <span class="string">a</span> <span class="string">b</span> <span class="string">real</span>
+r = [x;y];
+
+<span class="comment">% Az ellipszis &aacute;tm&eacute;r&#337;i</span>
+<span class="comment">% a = 2;</span>
+<span class="comment">% b = 1;</span>
+
+<span class="comment">% F(x,y) = F(r) k&eacute;tdimenzi&oacute;s vektormez&#337;</span>
+F = [
+    x^2
+    y^2
+    ];
+
+<span class="comment">% g, mint gamma param&eacute;teres megad&aacute;s&uacute; f&uuml;ggv&eacute;ny</span>
+g = [
+    a*cos(t)
+    b*sin(t)
+    ];
+
+<span class="comment">% Integr&aacute;l&aacute;si tartom&aacute;ny:</span>
+t1 = 0;
+t2 = pi/2;
+
+<span class="comment">% r = [x;y] hely&eacute;re behelyettes&iacute;tj&uuml;k g deriv&aacute;ltj&aacute;t</span>
+Integrand = subs(F,r,g)' * diff(g, t);
+pretty(Integrand)
+
+<span class="comment">% symbolikus integralassal:</span>
+Integral = int(Integrand, t);
+I = subs(Integral,t,t2) - subs(Integral,t,t1);
+
+disp <span class="string">'Az integral erteke:'</span>
+pretty(I)
+</pre><pre class="codeoutput"> 3              2    3       2
+b  cos(t) sin(t)  - a  cos(t)  sin(t)
+
+Az integral erteke:
+ 3    3
+b    a
+-- - --
+ 3    3
+
+</pre><h2>6. feladat<a name="6"></a></h2><pre class="codeinput">syms <span class="string">t</span> <span class="string">x</span> <span class="string">y</span> <span class="string">z</span> <span class="string">real</span>
+r = [x;y;z];
+
+<span class="comment">% F(x,y) = F(r) h&aacute;romdimenzi&oacute;s vektormez&#337;</span>
+F = [
+    3*x^2*y^2*z
+    2*x^3*y*z
+    x^3*y^2
+    ];
+
+<span class="comment">% g, mint gamma param&eacute;teres megad&aacute;s&uacute; f&uuml;ggv&eacute;ny</span>
+g = t * [1;2;3];
+
+<span class="comment">% Integr&aacute;l&aacute;si tartom&aacute;ny:</span>
+t1 = 0;
+t2 = 1;
+
+<span class="comment">% r = [x;y;z] hely&eacute;re behelyettes&iacute;tj&uuml;k g deriv&aacute;ltj&aacute;t</span>
+Integrand = subs(F,r,g)' * diff(g, t);
+
+disp <span class="string">'Integralando fuggveny tehat'</span>
+pretty(Integrand)
+
+disp <span class="string">'Szimmbolikus integralassal:'</span>
+disp <span class="string">'Hat&aacute;rozatlan:'</span>
+Integral = int(Integrand, t);
+pretty(Integral)
+
+disp <span class="string">'Hat&aacute;rozott:'</span>
+Integral = int(Integrand, t, t1, t2);
+disp(Integral)
+
+disp <span class="string">'Polinomkozeliteses numerikus eljarassal:'</span>
+Integrand_fh = matlabFunction(Integrand);
+Integral = integral(Integrand_fh, t1, t2);
+disp(Integral)
+</pre><pre class="codeoutput">Integralando fuggveny tehat
+    5
+72 t
+
+Szimmbolikus integralassal:
+Hat&aacute;rozatlan:
+    6
+12 t
+
+Hat&aacute;rozott:
+12
+ 
+Polinomkozeliteses numerikus eljarassal:
+    12
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+%  file:   anal3_1het.m
+%  author: Polcz Péter <ppolcz@gmail.com>
+%
+%  Created on 2016.09.14. Wednesday, 16:35:09
+%
+%% Segédfüggvények létrehozása
+% A vektoranalízishez kapcsolódó segédfüggvények: vekanal_...
+% megtalálható a demonstrációk repository-ban, a lib/matlab mappában:
+% https://github.com/ppolcz/demonstrations/tree/master/lib/matlab
+% 
+% Utólag rádöbbentem, hogy teljesen fölösleges ezeket létrehozni,
+% inkább használkuk a beépített `curl`, `divergence`, `gradient`,
+% `jacobian`, `hessian`, `laplacian`, stb... függvényeket
+% 
+% <https://www.mathworks.com/help/symbolic/vector-analysis-1.html
+% MathWorks - Vector Analysis>
+web(fullfile(docroot, 'symbolic/vector-analysis.html'))
+
+div = @vekanal_div;
+rot = @vekanal_rot;
+cross = @vekanal_cross;
+
+%% divergencia demo
+
+syms x y z real
+r = [x;y];
+
+F = [
+    x^2*y
+    y*x
+    ];
+
+F = [
+    sin(x)
+    cos(y)
+    ];
+
+divF = div(F);
+
+[xx,yy] = ndgrid(linspace(-4,4,30));
+rr = {xx,yy};
+
+divF_num = vekanal_subsmesh(divF, r, rr);
+[F1,F2] = vekanal_subsmeshn(F, r, rr);
+
+figure, hold on, axis tight
+quiver3(xx,yy,divF_num,F1,F2,F2*0,1.5),
+surf(xx,yy,divF_num,'facealpha', 0.5),
+shading interp
+colorbar
+title(sprintf('$F = %s, ~~ \\nabla F = %s$', latex(F'), latex(divF)), 'interpreter', 'latex')
+
+
+%% 2. és 3. feladat
+
+syms x y z real
+r = [x;y;z];
+
+% 2. feladat függvénye
+F = [
+    y/z
+    z/x
+    x/y
+    ];
+
+% 3. feladat függvénye
+F = [
+    x^2*y
+    y*z
+    x*y*z^2
+    ];
+
+div(F)
+rot(F)
+
+n = 20;
+[xx,yy,zz] = ndgrid(linspace(-1,1,n));
+rr = {xx,yy,zz};
+
+[F1,F2,F3] = vekanal_subsmeshn(F, r, rr);
+
+figure,
+quiver3(xx,yy,zz,F1,F2,F3), axis equal tight
+
+
+
+%% 4. feladat
+
+% Először deklaráljuk a szimbólikus objektumokat
+syms x y z
+r = [x;y;z];
+
+f = sym('f(x,y,z)');
+g = sym('g(x,y,z)');
+
+F = [
+    sym('F1(x,y,z)')
+    sym('F2(x,y,z)')
+    sym('F3(x,y,z)')
+    ];
+
+G = [
+    sym('G1(x,y,z)')
+    sym('G2(x,y,z)')
+    sym('G3(x,y,z)')
+    ];
+
+% Feltételezzük, hogy minden szimbólikus objektum valós (nem komplex)
+assume([F,G,f,g,r],'real')
+
+% Gradiens, divergencia, rotáció, vektoriális szorzat műveletek
+grad = @(f) jacobian(f,r);
+trans = @(F) reshape(F,[1 3]);
+
+% Végül a szabályok ellenőrzése, nullát kell kapjunk minden esetben
+simplify(grad(f*g) - (f*grad(g) + g*grad(f)))
+simplify(div(f*F) - (grad(f)*F + f*div(F)))
+simplify(rot(f*F) - (cross(grad(f),F) + f*rot(F)))
+simplify(div(cross(F,G)) - (trans(G)*rot(F) - trans(F)*rot(G)))
+
+% 5. szabaly (nincs a feladatok kozott)
+simplify(grad(trans(F)*G) - trans(F)*grad(G) - trans(G)*grad(F))
+
+%% 5. feladat
+
+syms t x y a b real
+r = [x;y];
+
+% Az ellipszis átmérői
+% a = 2;
+% b = 1;
+
+% F(x,y) = F(r) kétdimenziós vektormező
+F = [
+    x^2
+    y^2
+    ];
+
+% g, mint gamma paraméteres megadású függvény
+g = [
+    a*cos(t)
+    b*sin(t)
+    ];
+
+% Integrálási tartomány:
+t1 = 0;
+t2 = pi/2;
+
+% r = [x;y] helyére behelyettesítjük g deriváltját
+Integrand = subs(F,r,g)' * diff(g, t);
+pretty(Integrand)
+
+% symbolikus integralassal:
+Integral = int(Integrand, t);
+I = subs(Integral,t,t2) - subs(Integral,t,t1);
+
+disp 'Az integral erteke:'
+pretty(I)
+
+%% 6. feladat
+
+syms t x y z real
+r = [x;y;z];
+
+% F(x,y) = F(r) háromdimenziós vektormező
+F = [
+    3*x^2*y^2*z
+    2*x^3*y*z
+    x^3*y^2
+    ];
+
+% g, mint gamma paraméteres megadású függvény
+g = t * [1;2;3];
+
+% Integrálási tartomány:
+t1 = 0;
+t2 = 1;
+
+% r = [x;y;z] helyére behelyettesítjük g deriváltját
+Integrand = subs(F,r,g)' * diff(g, t);
+
+disp 'Integralando fuggveny tehat'
+pretty(Integrand)
+
+disp 'Szimmbolikus integralassal:'
+disp 'Határozatlan:'
+Integral = int(Integrand, t);
+pretty(Integral)
+
+disp 'Határozott:'
+Integral = int(Integrand, t, t1, t2);
+disp(Integral)
+
+disp 'Polinomkozeliteses numerikus eljarassal:'
+Integrand_fh = matlabFunction(Integrand);
+Integral = integral(Integrand_fh, t1, t2);
+disp(Integral)
+
+##### SOURCE END #####
+--></body></html>

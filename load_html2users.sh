@@ -1,5 +1,5 @@
 
-FILES_DIR=../users_webpage/files/scripts
+FILES_DIR=$(dirname $0)/../users_webpage/files/scripts
 
 
 find | egrep "/html$" | while read folder

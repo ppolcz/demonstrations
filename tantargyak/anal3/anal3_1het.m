@@ -8,6 +8,14 @@
 % A vektoranalízishez kapcsolódó segédfüggvények: vekanal_...
 % megtalálható a demonstrációk repository-ban, a lib/matlab mappában:
 % https://github.com/ppolcz/demonstrations/tree/master/lib/matlab
+% 
+% Utólag rádöbbentem, hogy teljesen fölösleges ezeket létrehozni,
+% inkább használkuk a beépített `curl`, `divergence`, `gradient`,
+% `jacobian`, `hessian`, `laplacian`, stb... függvényeket
+% 
+% <https://www.mathworks.com/help/symbolic/vector-analysis-1.html
+% MathWorks - Vector Analysis>
+web(fullfile(docroot, 'symbolic/vector-analysis.html'))
 
 div = @vekanal_div;
 rot = @vekanal_rot;
