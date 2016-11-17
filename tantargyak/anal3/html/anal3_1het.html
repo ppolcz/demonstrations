@@ -85,7 +85,7 @@ F = [
     cos(y)
     ];
 
-divF = div(F);
+divF = divergence(F,r);
 
 [xx,yy] = ndgrid(linspace(-4,4,30));
 rr = {xx,yy};
@@ -116,8 +116,8 @@ F = [
     x*y*z^2
     ];
 
-div(F)
-rot(F)
+divergence(F,r)
+curl(F,r)
 
 n = 20;
 [xx,yy,zz] = ndgrid(linspace(-1,1,n));
@@ -200,7 +200,7 @@ ans =
  
 [ 0, 0, 0]
  
-</pre><h2>5. feladat<a name="5"></a></h2><pre class="codeinput">syms <span class="string">t</span> <span class="string">x</span> <span class="string">y</span> <span class="string">a</span> <span class="string">b</span> <span class="string">real</span>
+</pre><h2>5. feladat<a name="5"></a></h2><p>Integr&aacute;ljuk az <img src="anal3_1het_eq06821165643231428067.png" alt="$F(x,y) = \left( x^2, \-y^2 \right)$"> vektormez&#337;t a <img src="anal3_1het_eq08796078824778739634.png" alt="$\Gamma$"> negyed-ellipszis ment&eacute;n. Az ellipszis orig&oacute; k&ouml;z&eacute;ppont&uacute;, tengelyeinek hossza <img src="anal3_1het_eq10486036843295161194.png" alt="$2a$"> &eacute;s <img src="anal3_1het_eq17887648403019164601.png" alt="$2b$">. Kezd&#337;pont <img src="anal3_1het_eq04206169307293076993.png" alt="$A(a,0)$">, v&eacute;gpont <img src="anal3_1het_eq17289789443914481629.png" alt="$B(0,b)$"></p><pre class="codeinput">syms <span class="string">t</span> <span class="string">x</span> <span class="string">y</span> <span class="string">a</span> <span class="string">b</span> <span class="string">real</span>
 r = [x;y];
 
 <span class="comment">% Az ellipszis &aacute;tm&eacute;r&#337;i</span>
@@ -333,7 +333,7 @@ F = [
     cos(y)
     ];
 
-divF = div(F);
+divF = divergence(F,r);
 
 [xx,yy] = ndgrid(linspace(-4,4,30));
 rr = {xx,yy};
@@ -368,8 +368,8 @@ F = [
     x*y*z^2
     ];
 
-div(F)
-rot(F)
+divergence(F,r)
+curl(F,r)
 
 n = 20;
 [xx,yy,zz] = ndgrid(linspace(-1,1,n));
@@ -420,6 +420,10 @@ simplify(div(cross(F,G)) - (trans(G)*rot(F) - trans(F)*rot(G)))
 simplify(grad(trans(F)*G) - trans(F)*grad(G) - trans(G)*grad(F))
 
 %% 5. feladat
+% Integráljuk az $F(x,y) = \left( x^2, \-y^2 \right)$ vektormezőt a
+% $\Gamma$ negyed-ellipszis mentén. Az ellipszis origó középpontú,
+% tengelyeinek hossza $2a$ és $2b$. Kezdőpont $A(a,0)$, végpont
+% $B(0,b)$
 
 syms t x y a b real
 r = [x;y];

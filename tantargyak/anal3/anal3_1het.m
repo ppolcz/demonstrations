@@ -36,7 +36,7 @@ F = [
     cos(y)
     ];
 
-divF = div(F);
+divF = divergence(F,r);
 
 [xx,yy] = ndgrid(linspace(-4,4,30));
 rr = {xx,yy};
@@ -71,8 +71,8 @@ F = [
     x*y*z^2
     ];
 
-div(F)
-rot(F)
+divergence(F,r)
+curl(F,r)
 
 n = 20;
 [xx,yy,zz] = ndgrid(linspace(-1,1,n));
@@ -123,6 +123,10 @@ simplify(div(cross(F,G)) - (trans(G)*rot(F) - trans(F)*rot(G)))
 simplify(grad(trans(F)*G) - trans(F)*grad(G) - trans(G)*grad(F))
 
 %% 5. feladat
+% Integráljuk az $F(x,y) = \left( x^2, \-y^2 \right)$ vektormezőt a
+% $\Gamma$ negyed-ellipszis mentén. Az ellipszis origó középpontú,
+% tengelyeinek hossza $2a$ és $2b$. Kezdőpont $A(a,0)$, végpont
+% $B(0,b)$
 
 syms t x y a b real
 r = [x;y];
