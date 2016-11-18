@@ -185,8 +185,8 @@ theta = interp1(tt,xx(:,1),linspace(tt(1),tt(end),T*10));
 coordx = sin(theta);
 coordy = -cos(theta);
 
-if false 
-    %%
+Szimulaciot_is_akarok = false;
+if Szimulaciot_is_akarok 
     figure(1);
     for i = 1:numel(theta)
         tic
@@ -254,34 +254,70 @@ plot(t,F), hold on
 plot(t,f_fh(t,0),'linewidth',2)
 plot(t(2:end), diff(F)/Ts)
 
-%% Numerikus integralas - integral -al
+%% Numerikus határozott integrálás adott intervallumon (|integral| függvénnyel)
 
 syms x y real
 
+disp 'f(x) = '
 f = x^2 + sin(x)^2;
+disp(f)
+
 f_fh = matlabFunction(f);
 
-I = integral(f_fh, 2, 3)
+disp 'Az integrál értéke: '
+I = integral(f_fh, 2, 3);
+disp(I)
 
-%%
-F = int(f,x)
-II = double(subs(F,x,3) - subs(F,x,2))
+disp 'Számítsuk ki szimbolikusan is. Primitív függvény: `int(f,x)` = F(x) = '
+F = int(f,x);
+disp(F)
 
-%% integral2
+disp 'F(3) - F(2) = '
+II = double(subs(F,x,3) - subs(F,x,2));
+disp(II)
+
+disp 'Szimbolikusan még egyszerűbben: `int(f,x,2,3) = `'
+III = int(f,x,2,3);
+fprintf('%s = %g\n\n', char(III), double(III))
+
+%% Szimbolikus számok kezelése
+% Egy szimbolikusan megadott számértéket vagy kifejezést a char(...)
+% -el lehet string-é alakítani és double(...)-el lehet kiszámolni a
+% lebegőpontos értékét (ha nincs benne szimbolikus változó)
+clc
+
+fprintf 'Szimbólikus szám: '
+szam = subs(sym(sqrt(5) + sin(x)^2),x,2) + sym(0.6) + subs(sym(tan(x)),x,2);
+disp(szam)
+
+fprintf('Mint string: `char(szam)` = ''%s'', mint lebegőpontos szám: `double(szam)` = %g\n\n', ...
+    char(szam), double(szam))
+
+fprintf 'Szimbólikus szám: '
+szam = x^2 + 1;
+disp(szam)
+
+fprintf('Mint string: `char(szam)` = ''%s'', mint lebegőpontos szám: `double(szam)` = ERROR\n\n', ...
+    char(szam))
+
+%% Numerikus kettős integrálás normál tartományon (|integral2| függvénnyel)
+% Integráljuk az $f(x,y) = x^2 + y^2 + sin(x)^2$ függvényt.
+% 
+% Az integrálási tartomány az egységkörlap, vagyis $x \in [-1, 1]$,
+% $y$ szerint pedig $y \in [-\sqrt{1-x^2},\sqrt{1-x^2}]$
 
 syms x y real
 
 f = x^2 + y^2 + sin(x)^2;
 f_fh = matlabFunction(f);
 
+disp 'A kettős integrál értéke: '
 I = integral2(f_fh, -1, 1, @(x) -sqrt(1-x.^2), @(x) sqrt(1-x.^2))
 
-
-%%
+%% Szimbolikus (határozott vagy határozatlan) integrálás csak az egyik valtozó szerint
+% Számítsuk ki: $F(y) = \int\limits_a^3 x^2 + y^2 + sin(x)^2 \mathrm{d}x$-et
 
 syms x y real
 f = x^2 + y^2 + sin(x)^2;
 
 F = int(f,x,2,3)
-
-%%
