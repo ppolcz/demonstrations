@@ -59,7 +59,7 @@ pdem = createpde(numberOfPDE);
 
 % Create a geometry entity and append to the pde model
 L = 1;
-nHoles = 1;
+nHoles = 2;
 R = L/(2+2*nHoles+(nHoles-1));
 xyRect = [-L/2 -L/2; L/2 -L/2; L/2 L/2; -L/2 L/2];
 

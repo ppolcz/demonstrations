@@ -1,0 +1,272 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>pde_heat_transfer_2D_v1</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-07"><meta name="DC.source" content="pde_heat_transfer_2D_v1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><pre>file:   pde_heat_transfer_2D_v1.m
+author: Polcz P&eacute;ter &lt;ppolcz@gmail.com&gt;</pre><pre>Created on 2016.12.07. Wednesday, 13:38:48</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Inhomogeneous Heat Equation on a Square Domain</a></li><li><a href="#2">Geommetry</a></li><li><a href="#3">Problem Definition</a></li><li><a href="#4">Apply Boundary Conditions% Copyright 1994-2014 The MathWorks, Inc.</a></li><li><a href="#5">Generate Mesh</a></li><li><a href="#6">Generate Initial Conditions</a></li><li><a href="#7">Generate Time Discretization</a></li><li><a href="#8">Find FEM Solution</a></li><li><a href="#9">Plot FEM Solution</a></li></ul></div><h2>Inhomogeneous Heat Equation on a Square Domain<a name="1"></a></h2><p>This example shows how to solve the heat equation with a source term using the <tt>parabolic</tt> function in the Partial Differential Equation Toolbox&#8482;.</p><p>The basic heat equation with a unit source term is</p><p><img src="pde_heat_transfer_2D_v1_eq02302367967137982257.png" alt="$$\frac{\partial u}{\partial t} - \Delta u = 1$$"></p><p>This is solved on a square domain with a discontinuous initial condition and zero Dirichlet boundary conditions.</p><h2>Geommetry<a name="2"></a></h2><pre class="codeinput"><span class="comment">% Create a PDE Model with a single dependent variable</span>
+numberOfPDE = 1;
+pdem = createpde(numberOfPDE);
+
+<span class="comment">% Create a geometry entity and append to the pde model</span>
+L = 2;
+nHoles = 2;
+R = L/(2+2*nHoles+(nHoles-1));
+xyRect = [-L/2 -L/2; L/2 -L/2; L/2 L/2; -L/2 L/2];
+
+holes = zeros(nHoles*nHoles,3);
+holeCounter =1;
+x = -L/2 + 2*R;
+<span class="keyword">for</span> i = 1:nHoles
+    y = -L/2 + 2*R;
+    <span class="keyword">for</span> j = 1:nHoles
+        holes(holeCounter,:) = [x y R];
+        holeCounter = holeCounter + 1;
+        y = y + 3*R;
+    <span class="keyword">end</span>
+    x = x+3*R;
+<span class="keyword">end</span>
+pdeGeom = [geomDataFromPolygon(xyRect) geomDataOfCircularHoles(holes)];
+geometryFromEdges(pdem,pdeGeom);
+
+<span class="comment">% Plot the geometry and display the edge labels for use in the</span>
+<span class="comment">% boundary condition definition.</span>
+figure;
+pdegplot(pdem, <span class="string">'edgeLabels'</span>, <span class="string">'on'</span>);
+axis <span class="string">equal</span>
+title <span class="string">'Geometry With Edge Labels Displayed'</span>;
+</pre><img vspace="5" hspace="5" src="pde_heat_transfer_2D_v1_01.png" alt=""> <h2>Problem Definition<a name="3"></a></h2><pre class="codeinput">c = 1;
+a = 0;
+f = 1;
+d = 1;
+</pre><h2>Apply Boundary Conditions% Copyright 1994-2014 The MathWorks, Inc.<a name="4"></a></h2><pre class="codeinput"><span class="comment">% Solution is zero at all four outer edges of the square</span>
+applyBoundaryCondition(pdem,<span class="string">'Edge'</span>,(1:20), <span class="string">'u'</span>, 0);
+</pre><h2>Generate Mesh<a name="5"></a></h2><pre class="codeinput">msh = generateMesh(pdem,<span class="string">'Hmax'</span>,0.04);
+figure;
+pdemesh(pdem);
+axis <span class="string">equal</span>
+</pre><img vspace="5" hspace="5" src="pde_heat_transfer_2D_v1_02.png" alt=""> <h2>Generate Initial Conditions<a name="6"></a></h2><p>The discontinuous initial value is 1 inside a circle of radius 0.4 and zero outside.</p><pre class="codeinput">[p,~,t] = meshToPet(msh);
+u0 = zeros(size(p,2),1);
+u0 = ones(size(p,2),1);
+<span class="comment">% ix = find(sqrt(p(1,:).^2+p(2,:).^2)&lt;0.4);</span>
+<span class="comment">% u0(ix) = ones(size(ix));</span>
+</pre><h2>Generate Time Discretization<a name="7"></a></h2><p>We want the solution at 20 points in time between 0 and 0.1.</p><pre class="codeinput">nframes = 200;
+tlist = linspace(0,0.1,nframes);
+</pre><h2>Find FEM Solution<a name="8"></a></h2><pre class="codeinput">u1 = parabolic(u0,tlist,pdem,c,a,f,d);
+</pre><pre class="codeoutput">89 successful steps
+0 failed attempts
+180 function evaluations
+1 partial derivatives
+21 LU decompositions
+179 solutions of linear systems
+</pre><h2>Plot FEM Solution<a name="9"></a></h2><p>To speed up the plotting, we interpolate to a rectangular grid.</p><pre class="codeinput">figure(<span class="string">'Position'</span>, [168 562 982 386], <span class="string">'Color'</span>, <span class="string">'white'</span>)
+colormap(hot);
+x = linspace(-1,1,301);
+y = x;
+[~,tn,a2,a3] = tri2grid(p,t,u0,x,y);
+umax = max(max(u1));
+umin = min(min(u1));
+<span class="keyword">for</span> j = 1:nframes,
+    u = tri2grid(p,t,u1(:,j),tn,a2,a3);
+
+    subplot(121);
+    surf(x,y,u);
+    view([0,-90])
+    caxis([umin umax]);
+    axis([-1 1 -1 1 0 2]);
+    shading <span class="string">interp</span>;
+
+    subplot(122);
+    surf(x,y,u);
+    view([10,60])
+    caxis([umin umax]);
+    axis([-1 1 -1 1 0 2]);
+    shading <span class="string">interp</span>;
+
+    Mv(j) = getframe;
+<span class="keyword">end</span>
+movie(Mv);
+</pre><img vspace="5" hspace="5" src="pde_heat_transfer_2D_v1_03.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% 
+%  
+%  file:   pde_heat_transfer_2D_v1.m
+%  author: Polcz Péter <ppolcz@gmail.com> 
+%  
+%  Created on 2016.12.07. Wednesday, 13:38:48
+%
+%% Inhomogeneous Heat Equation on a Square Domain
+% This example shows how to solve the heat equation with a source term
+% using the |parabolic| function in the Partial Differential Equation
+% Toolbox(TM).
+%
+% The basic heat equation with a unit source term is
+%
+% $$\frac{\partial u}{\partial t} - \Delta u = 1$$
+%
+% This is solved on a square domain with a discontinuous initial condition and zero
+% Dirichlet boundary conditions.
+
+%% Geommetry
+
+% Create a PDE Model with a single dependent variable
+numberOfPDE = 1;
+pdem = createpde(numberOfPDE);
+
+% Create a geometry entity and append to the pde model
+L = 2;
+nHoles = 2;
+R = L/(2+2*nHoles+(nHoles-1));
+xyRect = [-L/2 -L/2; L/2 -L/2; L/2 L/2; -L/2 L/2];
+
+holes = zeros(nHoles*nHoles,3);
+holeCounter =1;
+x = -L/2 + 2*R;
+for i = 1:nHoles
+    y = -L/2 + 2*R;
+    for j = 1:nHoles
+        holes(holeCounter,:) = [x y R];
+        holeCounter = holeCounter + 1;
+        y = y + 3*R;
+    end
+    x = x+3*R;
+end
+pdeGeom = [geomDataFromPolygon(xyRect) geomDataOfCircularHoles(holes)];
+geometryFromEdges(pdem,pdeGeom);
+
+% Plot the geometry and display the edge labels for use in the
+% boundary condition definition.
+figure;
+pdegplot(pdem, 'edgeLabels', 'on');
+axis equal
+title 'Geometry With Edge Labels Displayed';
+
+%% Problem Definition
+c = 1;
+a = 0;
+f = 1;
+d = 1;
+
+%% Apply Boundary Conditions% Copyright 1994-2014 The MathWorks, Inc.
+
+% Solution is zero at all four outer edges of the square
+applyBoundaryCondition(pdem,'Edge',(1:20), 'u', 0);
+
+%% Generate Mesh
+msh = generateMesh(pdem,'Hmax',0.04);
+figure;
+pdemesh(pdem);
+axis equal
+
+%% Generate Initial Conditions
+% The discontinuous initial value is 1 inside a circle of radius 0.4 and
+% zero outside.
+[p,~,t] = meshToPet(msh);
+u0 = zeros(size(p,2),1);
+u0 = ones(size(p,2),1);
+% ix = find(sqrt(p(1,:).^2+p(2,:).^2)<0.4);
+% u0(ix) = ones(size(ix));
+
+%% Generate Time Discretization
+% We want the solution at 20 points in time between 0 and 0.1.
+nframes = 200;
+tlist = linspace(0,0.1,nframes);
+
+%% Find FEM Solution
+u1 = parabolic(u0,tlist,pdem,c,a,f,d);
+
+%% Plot FEM Solution
+% To speed up the plotting, we interpolate to a rectangular grid.
+figure('Position', [168 562 982 386], 'Color', 'white')
+colormap(hot);
+x = linspace(-1,1,301);
+y = x;
+[~,tn,a2,a3] = tri2grid(p,t,u0,x,y);
+umax = max(max(u1));
+umin = min(min(u1));
+for j = 1:nframes,
+    u = tri2grid(p,t,u1(:,j),tn,a2,a3);
+    
+    subplot(121);
+    surf(x,y,u);
+    view([0,-90])
+    caxis([umin umax]);
+    axis([-1 1 -1 1 0 2]);
+    shading interp;
+
+    subplot(122);
+    surf(x,y,u);
+    view([10,60])
+    caxis([umin umax]);
+    axis([-1 1 -1 1 0 2]);
+    shading interp;
+
+    Mv(j) = getframe;
+end
+movie(Mv);
+
+##### SOURCE END #####
+--></body></html>
