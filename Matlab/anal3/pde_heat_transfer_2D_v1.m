@@ -11,23 +11,19 @@ pcz_cmd_fname('fname');
 persist = pcz_persist(fname);
 %persist.backup();
 
-%% Inhomogeneous Heat Equation on a Square Domain
-% This example shows how to solve the heat equation with a source term
-% using the |parabolic| function in the Partial Differential Equation
-% Toolbox(TM).
+%% Heat Equation on a Square Plate
+% The basic heat equation is
 %
-% The basic heat equation with a unit source term is
+% $$\frac{\partial u}{\partial t} = k \Delta u$$
 %
-% $$\frac{\partial u}{\partial t} - \Delta u = 1$$
-%
-% This is solved on a square domain with a discontinuous initial condition and zero
-% Dirichlet boundary conditions.
 
 %% Geommetry 0
 
 L = 1;
 xyRect = [-L -L ; L -L ; L L ; -L L];
 pdeGeom0 = geomDataFromPolygon(xyRect);
+
+figure, pdegplot(pdeGeom0, 'edgeLabels', 'on'), axis equal
 
 %% Geommetry 1
 
@@ -54,6 +50,8 @@ pdeGeom1 = [...
     geomDataFromPolygon([-0.7 -0.7 ; -0.7 -0.3 ; -0.3 -0.3]) ...
     geomDataOfCircularHoles(holes([2,3],:)) ...
     ];
+
+figure, pdegplot(pdeGeom1, 'edgeLabels', 'on'), axis equal
 
 %% Geommetry 2
 
@@ -102,6 +100,7 @@ pdeGeom2 = [...
     geomDataOfCircularHoles(holes([2,4],:)) ...
     ];
 
+figure, pdegplot(pdeGeom2, 'edgeLabels', 'on'), axis equal
 
 %% Geommetry 3 - EGO
 
@@ -164,29 +163,25 @@ pdeGeom3 = [...
     geomDataOfCircularHoles([0 0 0.25]) ...
     ];
 
+figure, pdegplot(pdeGeom3, 'edgeLabels', 'on'), axis equal
+
 %% PDE model
 % Create a PDE Model with a single dependent variable
 numberOfPDE = 1;
 pdem = createpde(numberOfPDE);
 
-pdeGeom = pdeGeom0;
-
+pdeGeom = pdeGeom1;
 geometryFromEdges(pdem,pdeGeom);
 
-% Plot the geometry and display the edge labels for use in the
-% boundary condition definition.
-figure;
-pdegplot(pdem, 'edgeLabels', 'on');
-axis equal
-title 'Geometry With Edge Labels Displayed';
-
 %% Problem Definition
-c = 1;
+k = 0.025;
+
+c = k;
 a = 0;
 f = 0;
-d = 40;
+d = 1;
 
-%% Apply Boundary Conditions% Copyright 1994-2014 The MathWorks, Inc.
+%% Apply Boundary Conditions
 
 % Solution is zero at all four outer edges of the square
 applyBoundaryCondition(pdem,'Edge',1:size(pdeGeom,2), 'u', 0);
@@ -199,7 +194,7 @@ axis equal
 
 %% Initial Conditions
 [p,~,t] = meshToPet(msh);
-if 0
+if 1
     u0 = ones(size(p,2),1);
 else
     u0 = zeros(size(p,2),1);
@@ -224,7 +219,7 @@ y = x;
 umax = max(max(u1));
 umin = min(min(u1));
 
-for j = 1:nframes,
+for j = 21 % 1:nframes,
     u = tri2grid(p,t,u1(:,j),tn,a2,a3);
 
     figure(fig)
@@ -245,12 +240,17 @@ for j = 1:nframes,
 
     pause(0.05)
 
+    if j == 20
+        drawnow
+        persist.savefig(fig, 'heat_diffusion_poster.png');
+        pause(0.5)
+    end
+    
     % Felvétel
     % frames(j) = getframe(fig);
 end
 
-% v = VideoWriter(persist.simple('fig','heat_diffusion.avi'));
-%
+% v = VideoWriter(persist.timefl('fig','heat_diffusion.avi'));
 % open(v)
 % writeVideo(v,frames)
 % close(v)
