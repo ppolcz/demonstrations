@@ -170,7 +170,7 @@ figure, pdegplot(pdeGeom3, 'edgeLabels', 'on'), axis equal
 numberOfPDE = 1;
 pdem = createpde(numberOfPDE);
 
-pdeGeom = pdeGeom1;
+pdeGeom = pdeGeom2;
 geometryFromEdges(pdem,pdeGeom);
 
 %% Problem Definition
@@ -219,7 +219,7 @@ y = x;
 umax = max(max(u1));
 umin = min(min(u1));
 
-for j = 21 % 1:nframes,
+for j = 1:nframes,
     u = tri2grid(p,t,u1(:,j),tn,a2,a3);
 
     figure(fig)
