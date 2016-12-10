@@ -244,6 +244,7 @@ for j = 1:nframes,
     if j == 20
         drawnow
         persist.savefig(fig, 'heat_diffusion_poster.png');
+        snapnow
         pause(0.5)
     end
     
