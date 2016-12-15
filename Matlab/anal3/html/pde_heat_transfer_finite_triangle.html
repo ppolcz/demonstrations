@@ -1,0 +1,309 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>pde_heat_transfer_finite_triangle</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-15"><meta name="DC.source" content="pde_heat_transfer_finite_triangle.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">H&#337;vezet&eacute;s egyenlete v&eacute;ges r&uacute;dban k&uuml;l&ouml;nb&ouml;z&#337; peremfelt&eacute;telek mellett</a></li><li><a href="#3">A <tt>pdepe</tt> solver</a></li><li><a href="#8">Numerikus megold&aacute;s <tt>pdepe</tt> seg&iacute;ts&eacute;g&eacute;vel</a></li><li><a href="#9">Vizualiz&aacute;ci&oacute;</a></li></ul></div><h2>H&#337;vezet&eacute;s egyenlete v&eacute;ges r&uacute;dban k&uuml;l&ouml;nb&ouml;z&#337; peremfelt&eacute;telek mellett<a name="1"></a></h2><pre>file:   pde_heat_transfer_finite_triangle.m
+author: Polcz P&eacute;ter &lt;ppolcz@gmail.com&gt;</pre><pre>Created on 2016.12.15. Thursday, 13:11:44</pre><pre class="codeinput"><span class="comment">% fname: full path of the actual file</span>
+pcz_cmd_fname(<span class="string">'fname'</span>); stack = dbstack;
+<span class="keyword">if</span> ~ismember(<span class="string">'publish'</span>, {stack.name}), persist = pcz_persist(fname); <span class="keyword">end</span>
+<span class="comment">%persist.backup();</span>
+</pre><p>H&#337;vezet&eacute;s egyenlete: <img src="pde_heat_transfer_finite_triangle_eq08947602741745777694.png" alt="$u'_t = k u''_{xx}$">, ahol <img src="pde_heat_transfer_finite_triangle_eq08886293382271054462.png" alt="$k=1$">.</p><p>Kezdeti felt&eacute;telek:</p><p><img src="pde_heat_transfer_finite_triangle_eq18163358398576811382.png" alt="$$u(x,0) = \left\{\begin{array}{lc} x &amp; x \in&#xA;\left[0,\frac{1}{2}\right) \\[10pt] 1-x &amp; x \in&#xA;\left[\frac{1}{2},1\right] \end{array}\right.$$"></p><p>Peremfelt&eacute;telek:</p><p><img src="pde_heat_transfer_finite_triangle_eq14879017194557950933.png" alt="$$u(0,t) = u(1,t) = 1$$"></p><h2>A <tt>pdepe</tt> solver<a name="3"></a></h2><p>A <tt>pdepe</tt> solver ilyen t&iacute;pus&uacute; k&eacute;tv&aacute;ltoz&oacute;s PDE-ket tud megoldani:</p><p><img src="pde_heat_transfer_finite_triangle_eq06381263307276912244.png" alt="$$ \left\{&#xA;\begin{array}{l}&#xA;    c(x,t,u,u'_x) u'_t = x^{-m} \Big(x^m f(x,t,u,u'_x)\Big)'_x +&#xA;    s(x,t,u,u'_x) \\[5pt]&#xA;    {\rm i.c.}~~ u(x,t_0) = u_0(x) \\[5pt]&#xA;    {\rm b.c.}~~ p_1(x_1,t,u(x_1,t)) + q(x_1,t) f(x_1,t,u(x_1,t),u'_x(x_1,t)) = 0, \quad \forall t &gt; t_0  \\[5pt]&#xA;    {\rm b.c.}~~ p_2(x_2,t,u(x_2,t)) + q(x_2,t) f(x_2,t,u(x_2,t),u'_x(x_2,t)) = 0, \quad \forall t &gt; t_0&#xA;\end{array}&#xA;\right.$$"></p><p>Az <img src="pde_heat_transfer_finite_triangle_eq11319871188381094158.png" alt="$m$"> &eacute;rt&eacute;ke csak 0,1,2, lehet.</p><p>A <tt>pdepe</tt> els&#337; param&eacute;tere az <img src="pde_heat_transfer_finite_triangle_eq11319871188381094158.png" alt="$m$"> &eacute;rt&eacute;ke (eset&uuml;nkben 0), a m&aacute;sodik param&eacute;tere a <img src="pde_heat_transfer_finite_triangle_eq08422257486649890878.png" alt="$c$">, <img src="pde_heat_transfer_finite_triangle_eq18096895394918367257.png" alt="$f$">, <img src="pde_heat_transfer_finite_triangle_eq17157792396909321071.png" alt="$s$"> f&uuml;ggv&eacute;nyeket &iacute;rja le, a harmadik param&eacute;tere az <img src="pde_heat_transfer_finite_triangle_eq15736739905458178320.png" alt="$u_0$">, a negyedik pedig a <img src="pde_heat_transfer_finite_triangle_eq13137298398265577444.png" alt="$p_1$">, <img src="pde_heat_transfer_finite_triangle_eq12582843921799894791.png" alt="$q_1$">, <img src="pde_heat_transfer_finite_triangle_eq03052410687656979467.png" alt="$p_2$">, <img src="pde_heat_transfer_finite_triangle_eq01209108814844238026.png" alt="$q_2$"> f&uuml;ggv&eacute;nyeket &iacute;rjak le. A k&ouml;vetkez&#337; k&eacute;t param&eacute;ter az <img src="pde_heat_transfer_finite_triangle_eq12428413953531653171.png" alt="$x$"> &eacute;s a <img src="pde_heat_transfer_finite_triangle_eq12656067504604335951.png" alt="$t$"> diszkr&eacute;t pontjait defini&aacute;lj&aacute;k.</p><p>A h&#337;vezet&eacute;s egyenlet egy&uuml;tthat&oacute;i egy&uuml;tthat&oacute;i:</p><p><img src="pde_heat_transfer_finite_triangle_eq10047857252380316372.png" alt="$$c(x,t,u,u'_x) = 1 ~,~~ f(x,t,u,u'_x) = k u'_x ~,~~ s(x,t,u,u'_x) = 0$$"></p><pre class="codeinput">k = 1;
+
+<span class="comment">% The equation of the problem.</span>
+pde = @(x,t,u,DuDx) deal( 1 , k*DuDx , 0);
+</pre><p>Az el&#337;z&#337; sor kiss&eacute; m&eacute;lyv&iacute;znek t&#369;nhet a kezd&#337; Matlab felhaszn&aacute;l&oacute;knak. A <tt>pde</tt> egy olyan anon&iacute;m f&uuml;ggv&eacute;ny kell hogy legyen, aminek n&eacute;gy argumentuma van: <img src="pde_heat_transfer_finite_triangle_eq17174304938819623131.png" alt="$(x,t,u,u'_x)$">, &eacute;s h&aacute;rom visszat&eacute;r&eacute;si &eacute;rt&eacute;ke: <img src="pde_heat_transfer_finite_triangle_eq08422257486649890878.png" alt="$c$">, <img src="pde_heat_transfer_finite_triangle_eq18096895394918367257.png" alt="$f$">, <img src="pde_heat_transfer_finite_triangle_eq17157792396909321071.png" alt="$s$">. A <tt>deal</tt> f&uuml;ggv&eacute;ny oldja meg azt, hogy egy inline deklar&aacute;lt anon&iacute;m f&uuml;ggv&eacute;nynek t&ouml;bb (eset&uuml;nkben h&aacute;rom) visszat&eacute;r&eacute;si &eacute;rt&eacute;ke legyen. Ezzel ekvivalens m&oacute;don l&eacute;tre is hozhattam volna egy k&uuml;l&ouml;n file-ban egy f&uuml;ggv&eacute;nyt:</p><pre class="language-matlab"><span class="keyword">function</span> [c,f,s] = pde_fun(x,t,u,DuDx)
+    c = 1;
+    f = k*DuDx;
+    s = 0;
+<span class="keyword">end</span>
+</pre><p>A scriptben pedig: <tt>pde = @pde_fun</tt>. Ezt szerettem volna elker&uuml;lni.</p><pre class="codeinput"><span class="comment">% Initial condition:</span>
+ic = @(x) triangularPulse(0,1,x);
+</pre><p>A peremfelt&eacute;teleket a k&ouml;vetkez&#337; alakban kell megadni:</p><p><img src="pde_heat_transfer_finite_triangle_eq04273781266586303199.png" alt="$$p(x,t,u) + q(x,t) f(x,t,u,u'_x) = 0, \quad \forall t &gt; t_0, $$"></p><p>ahol <img src="pde_heat_transfer_finite_triangle_eq16014170927773232092.png" alt="$x = x_1$"> (baloldali perem), vagy <img src="pde_heat_transfer_finite_triangle_eq15023965320013543568.png" alt="$x = x_2$"> (jobboldali perem).</p><p>Az itt szerepl&#337; <img src="pde_heat_transfer_finite_triangle_eq15901010700879653002.png" alt="$f(x,t,u,u'_x)$">-t m&aacute;r a PDE egyenlet&eacute;nek megad&aacute;sa sor&aacute;n meghat&aacute;roztuk: <img src="pde_heat_transfer_finite_triangle_eq15515199758655352729.png" alt="$f(x,t,u,u'_x) = k u'_x$">.</p><p>C&eacute;l: <img src="pde_heat_transfer_finite_triangle_eq15200672983621178570.png" alt="$u(x_1,t) = u_1$"> &eacute;s <img src="pde_heat_transfer_finite_triangle_eq13174053097764451141.png" alt="$u(x_2,t) = u_2$">, ahol <img src="pde_heat_transfer_finite_triangle_eq02884648629668582088.png" alt="$u_1 = u_2 = 0$">, ez&eacute;rt</p><p><img src="pde_heat_transfer_finite_triangle_eq08063338971970317067.png" alt="$$ \left\{&#xA;\begin{array}{ll}&#xA;    p_1(x_1,t,u(x_1,t)) = u(x_1,t) - u_1, &amp; q_1(x_1,t) = 0 \\[10pt]&#xA;    p_2(x_2,t,u(x_2,t)) = u(x_2,t) - u_2, &amp; q_1(x_1,t) = 0&#xA;\end{array} \qquad \forall t &gt; t_0&#xA;\right. $$"></p><pre class="codeinput">u1 = 0;
+u2 = 0;
+
+<span class="comment">% Boundary conditions</span>
+bc = @(x1,u_x1,x2,u_x2,t) deal( u_x1 - u1, 0, u_x2 - u2, 0 );
+</pre><p>A <tt>bc</tt> egy olyan anon&iacute;m f&uuml;ggv&eacute;ny kell legyen, ami &ouml;t argumentumot v&aacute;r: <img src="pde_heat_transfer_finite_triangle_eq07786907231484351183.png" alt="$(x_1, u(x_1,t), x_2, u(x_2,t), t)$"> &eacute;s n&eacute;gy visszat&eacute;r&eacute;si &eacute;rt&eacute;ke van. Az els&#337; kett&#337; a baloldali peremfelt&eacute;telre vonatkoz&oacute; <img src="pde_heat_transfer_finite_triangle_eq09941021013676836398.png" alt="$p$"> &eacute;s <img src="pde_heat_transfer_finite_triangle_eq15226540192103580117.png" alt="$q$"> f&uuml;ggv&eacute;nyek, a m&aacute;sodik kett&#337; pedig a jobboldalra vonatkoz&oacute; peremfelt&eacute;tel <img src="pde_heat_transfer_finite_triangle_eq09941021013676836398.png" alt="$p$"> &eacute;s <img src="pde_heat_transfer_finite_triangle_eq15226540192103580117.png" alt="$q$"> f&uuml;ggv&eacute;nyei.</p><p>Lehet pr&oacute;b&aacute;lkozni k&uuml;l&ouml;nb&ouml;z&#337; peremfelt&eacute;telekkel is:</p><pre class="codeinput"><span class="comment">% Izol&aacute;lt rendszer (a v&eacute;geken nincs h&ouml;vesztes&eacute;g)</span>
+bc = @(x1,u_x1,x2,u_x2,t) deal( 0, 1, 0, 1 );
+
+<span class="comment">% Mindk&eacute;t v&eacute;g&eacute;t meleg&iacute;tj&uuml;k</span>
+<span class="comment">% bc = @(x1,u_x1,x2,u_x2,t) deal( u_x1 - 0.1, 0, u_x2 - 0.9, 0 );</span>
+
+<span class="comment">% Mindk&eacute;t v&eacute;g&eacute;t meleg&iacute;tj&uuml;k (de a meleg&iacute;t&eacute;s exponenci&aacute;lisan lecseng)</span>
+<span class="comment">% bc = @(x1,u_x1,x2,u_x2,t) deal( u_x1 - exp(-10*t), 0, u_x2 - exp(-10*t), 0 );</span>
+</pre><h2>Numerikus megold&aacute;s <tt>pdepe</tt> seg&iacute;ts&eacute;g&eacute;vel<a name="8"></a></h2><pre class="codeinput">m = 0;
+x = linspace(0,1,101);
+t = linspace(0,0.1,101);
+
+sol = pdepe(m,pde,ic,bc,x,t);
+</pre><h2>Vizualiz&aacute;ci&oacute;<a name="9"></a></h2><pre class="codeinput"><span class="comment">% Ha net&aacute;n t&ouml;bb megold&aacute;sa lenne (ezzel m&eacute;g nem volt baj), akkor az</span>
+<span class="comment">% els&#337; legyen az amit kiplottolunk.</span>
+u = sol(:,:,1);
+
+fig = figure(<span class="string">'Position'</span>, [165 540 1066 380], <span class="string">'Color'</span>, <span class="string">'white'</span>);
+subplot(121),
+surf(x,t,u), light, shading <span class="string">interp</span>
+xlabel(<span class="string">'Distance x'</span>)
+ylabel(<span class="string">'Time t'</span>)
+
+clear <span class="string">frames</span>
+subplot(122),
+<span class="keyword">for</span> i = 1:numel(t)
+   plot(x, u(i,:));
+   title(sprintf(<span class="string">'time = %0.3f, $\\int u(x,t) = %0.5f$'</span>, t(i), trapz(x, u(i,:))), <span class="string">'Interpreter'</span>, <span class="string">'latex'</span>),
+   axis([0, 1, 0, 1])
+   pause(0.1),
+
+   <span class="keyword">if</span> i == 10
+       persist.pub_vid_poster(<span class="string">'hovez_veges_haromszog'</span>)
+   <span class="keyword">end</span>
+
+   frames(i) = getframe(fig);
+<span class="keyword">end</span>
+
+persist.pub_vid_write(frames)
+</pre><img vspace="5" hspace="5" src="pde_heat_transfer_finite_triangle_01.png" alt=""> <pre class="codeoutput">[0;39mavconv version 11.8-6:11.8-1~deb8u1, Copyright (c) 2000-2016 the Libav developers
+[0m[0;39m  built on Oct  1 2016 07:16:29 with gcc 4.9.2 (Debian 4.9.2-10)
+[0m[0;39mInput #0, avi, from '/home/ppolcz/Repositories/Bitbucket/control-systems/users_webpage/files/scripts/pde_heat_transfer_finite_triangle_16_12_15_Time141716_runID2304/hovez_veges_haromszog.avi':
+[0m[0;39m  Duration: [0m[0;39m00:00:03.36[0m[0;39m, start: [0m[0;39m0.000000[0m[0;39m, bitrate: [0m[0;39m7209 kb/s[0m[0;39m
+[0m[0;39m    Stream #0.0[0m[0;39m: Video: mjpeg, yuvj420p, 1072x383 [PAR 1:1 DAR 1072:383][0m[0;39m, 30 fps[0m[0;39m, 30 tbn[0m[0;39m
+[0m[0;33m[scale @ 0x150d7e0] The &lt;w&gt;:&lt;h&gt;:flags=&lt;flags&gt; option syntax is deprecated. Use either &lt;w&gt;:&lt;h&gt;:&lt;flags&gt; or w=&lt;w&gt;:h=&lt;h&gt;:flags=&lt;flags&gt;.
+[0m[0;39m[libvpx @ 0x150c7a0] v1.3.0
+[0m[0;39mOutput #0, webm, to '/home/ppolcz/Repositories/Bitbucket/control-systems/users_webpage/files/scripts/pde_heat_transfer_finite_triangle_16_12_15_Time141716_runID2304/hovez_veges_haromszog.webm':
+[0m[0;39m  Metadata:
+[0m[0;39m    encoder         : Lavf56.1.0
+[0m[0;39m    Stream #0.0[0m[0;39m: Video: libvpx, yuv420p, 1298x464 [PAR 248704:248567 DAR 1072:383], q=-1--1, 200 kb/s[0m[0;39m, 1k tbn[0m[0;39m, 30 tbc[0m[0;39m
+[0m[0;39m    Metadata:
+[0m[0;39m      encoder         : Lavc56.1.0 libvpx
+[0m[0;39mStream mapping:
+[0m[0;39m  Stream #0:0 -&gt; #0:0[0m[0;39m (mjpeg (native) -&gt; vp8 (libvpx))[0m[0;39m
+[0m[0;39mPress ctrl-c to stop encoding
+[0m[0;39mframe=   50 fps=  0 q=0.0 size=      60kB time=1.63 bitrate= 303.1kbits/s    [0m[0;39mframe=   92 fps= 85 q=0.0 size=      84kB time=3.03 bitrate= 227.1kbits/s    [0m[0;39mframe=  101 fps= 85 q=0.0 Lsize=      92kB time=3.33 bitrate= 224.9kbits/s    [0m[0;39m
+[0m[0;39mvideo:90kB audio:0kB other streams:0kB global headers:0kB muxing overhead: [0m[0;39m1.279654%[0m[0;39m
+[0mans =
+     0
+</pre><img vspace="5" hspace="5" src="pde_heat_transfer_finite_triangle_02.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Hővezetés egyenlete véges rúdban különböző peremfeltételek mellett
+%  
+%  file:   pde_heat_transfer_finite_triangle.m
+%  author: Polcz Péter <ppolcz@gmail.com> 
+%  
+%  Created on 2016.12.15. Thursday, 13:11:44
+%
+
+% fname: full path of the actual file
+pcz_cmd_fname('fname'); stack = dbstack;
+if ~ismember('publish', {stack.name}), persist = pcz_persist(fname); end
+%persist.backup();
+
+%%
+% Hővezetés egyenlete: $u'_t = k u''_{xx}$, ahol $k=1$.
+% 
+% Kezdeti feltételek: 
+% 
+% $$u(x,0) = \left\{\begin{array}{lc} x & x \in
+% \left[0,\frac{1}{2}\right) \\[10pt] 1-x & x \in
+% \left[\frac{1}{2},1\right] \end{array}\right.$$
+% 
+% Peremfeltételek: 
+% 
+% $$u(0,t) = u(1,t) = 1$$
+
+%%% A |pdepe| solver
+% A |pdepe| solver ilyen típusú kétváltozós PDE-ket tud megoldani:
+% 
+% $$ \left\{
+% \begin{array}{l}
+%     c(x,t,u,u'_x) u'_t = x^{-m} \Big(x^m f(x,t,u,u'_x)\Big)'_x +
+%     s(x,t,u,u'_x) \\[5pt]
+%     {\rm i.c.}~~ u(x,t_0) = u_0(x) \\[5pt]
+%     {\rm b.c.}~~ p_1(x_1,t,u(x_1,t)) + q(x_1,t) f(x_1,t,u(x_1,t),u'_x(x_1,t)) = 0, \quad \forall t > t_0  \\[5pt]
+%     {\rm b.c.}~~ p_2(x_2,t,u(x_2,t)) + q(x_2,t) f(x_2,t,u(x_2,t),u'_x(x_2,t)) = 0, \quad \forall t > t_0 
+% \end{array}
+% \right.$$
+% 
+% Az $m$ értéke csak 0,1,2, lehet.
+% 
+% A |pdepe| első paramétere az $m$ értéke (esetünkben 0), a második
+% paramétere a $c$, $f$, $s$ függvényeket írja le, a harmadik
+% paramétere az $u_0$, a negyedik pedig a $p_1$, $q_1$, $p_2$, $q_2$
+% függvényeket írjak le. A következő két paraméter az $x$ és a $t$
+% diszkrét pontjait definiálják.
+% 
+% A hővezetés egyenlet együtthatói együtthatói:
+% 
+% $$c(x,t,u,u'_x) = 1 ~,~~ f(x,t,u,u'_x) = k u'_x ~,~~ s(x,t,u,u'_x) = 0$$
+
+k = 1;
+
+% The equation of the problem.
+pde = @(x,t,u,DuDx) deal( 1 , k*DuDx , 0);
+
+%%%
+% Az előző sor kissé mélyvíznek tűnhet a kezdő Matlab felhasználóknak.
+% A |pde| egy olyan anoním függvény kell hogy legyen, aminek négy
+% argumentuma van: $(x,t,u,u'_x)$, és három visszatérési értéke: $c$,
+% $f$, $s$. A |deal| függvény oldja meg azt, hogy egy inline deklarált
+% anoním függvénynek több (esetünkben három) visszatérési értéke
+% legyen. Ezzel ekvivalens módon létre is hozhattam volna egy külön
+% file-ban egy függvényt:
+% 
+%   function [c,f,s] = pde_fun(x,t,u,DuDx)
+%       c = 1;
+%       f = k*DuDx;
+%       s = 0;
+%   end
+%   
+% A scriptben pedig: |pde = @pde_fun|. Ezt szerettem volna elkerülni.
+
+% Initial condition:
+ic = @(x) triangularPulse(0,1,x);
+
+%%% 
+% A peremfeltételeket a következő alakban kell megadni:
+% 
+% $$p(x,t,u) + q(x,t) f(x,t,u,u'_x) = 0, \quad \forall t > t_0, $$
+% 
+% ahol $x = x_1$ (baloldali perem), vagy $x = x_2$ (jobboldali perem).
+% 
+% Az itt szereplő $f(x,t,u,u'_x)$-t már a PDE egyenletének megadása
+% során meghatároztuk: $f(x,t,u,u'_x) = k u'_x$.
+% 
+% Cél: $u(x_1,t) = u_1$ és $u(x_2,t) = u_2$, ahol $u_1 = u_2 = 0$, ezért 
+% 
+% $$ \left\{
+% \begin{array}{ll}
+%     p_1(x_1,t,u(x_1,t)) = u(x_1,t) - u_1, & q_1(x_1,t) = 0 \\[10pt]
+%     p_2(x_2,t,u(x_2,t)) = u(x_2,t) - u_2, & q_1(x_1,t) = 0
+% \end{array} \qquad \forall t > t_0
+% \right. $$
+
+u1 = 0;
+u2 = 0;
+
+% Boundary conditions
+bc = @(x1,u_x1,x2,u_x2,t) deal( u_x1 - u1, 0, u_x2 - u2, 0 );
+
+%%%
+% A |bc| egy olyan anoním függvény kell legyen, ami öt argumentumot
+% vár: $(x_1, u(x_1,t), x_2, u(x_2,t), t)$ és négy visszatérési értéke
+% van. Az első kettő a baloldali peremfeltételre vonatkozó $p$ és $q$
+% függvények, a második kettő pedig a jobboldalra vonatkozó
+% peremfeltétel $p$ és $q$ függvényei.
+
+%%%
+% Lehet próbálkozni különböző peremfeltételekkel is:
+
+% Izolált rendszer (a végeken nincs höveszteség)
+bc = @(x1,u_x1,x2,u_x2,t) deal( 0, 1, 0, 1 );
+
+% Mindkét végét melegítjük
+% bc = @(x1,u_x1,x2,u_x2,t) deal( u_x1 - 0.1, 0, u_x2 - 0.9, 0 );
+
+% Mindkét végét melegítjük (de a melegítés exponenciálisan lecseng)
+% bc = @(x1,u_x1,x2,u_x2,t) deal( u_x1 - exp(-10*t), 0, u_x2 - exp(-10*t), 0 );
+
+%%% Numerikus megoldás |pdepe| segítségével
+
+m = 0;
+x = linspace(0,1,101);
+t = linspace(0,0.1,101);
+
+sol = pdepe(m,pde,ic,bc,x,t);
+
+%%% Vizualizáció
+
+% Ha netán több megoldása lenne (ezzel még nem volt baj), akkor az
+% első legyen az amit kiplottolunk.
+u = sol(:,:,1);
+
+fig = figure('Position', [165 540 1066 380], 'Color', 'white');
+subplot(121),
+surf(x,t,u), light, shading interp
+xlabel('Distance x')
+ylabel('Time t')
+
+clear frames
+subplot(122),
+for i = 1:numel(t)
+   plot(x, u(i,:));
+   title(sprintf('time = %0.3f, $\\int u(x,t) = %0.5f$', t(i), trapz(x, u(i,:))), 'Interpreter', 'latex'),
+   axis([0, 1, 0, 1])
+   pause(0.1),
+   
+   if i == 10
+       persist.pub_vid_poster('hovez_veges_haromszog')
+   end
+   
+   frames(i) = getframe(fig);
+end
+
+persist.pub_vid_write(frames)
+
+##### SOURCE END #####
+--></body></html>

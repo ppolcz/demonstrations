@@ -13,6 +13,11 @@ persist = pcz_persist(fname);
 %persist.backup();
 
 %% Hővezetés egyenlete adott kezdeti feltétel mellett
+% Hővezetés egyenlete: $u'_t = k u''_{xx}$, ahol $k=1$.
+% 
+% Kezdeti feltételek: 
+% $$u(x,0) = \left\{\begin{array}{lc} 0 & x < 0 \\
+% e^{-x} & x \ge 0 \end{array}\right.$$
 
 k = 1;
 pde = @(x,t,u,DuDx) deal( 1 , k*DuDx , 0);
@@ -46,7 +51,7 @@ xlabel('Distance x')
 ylabel('Time t')
 
 clear frames
-for i = 10 % 1:numel(t)
+for i = 1:numel(t)
     subplot(222),
 
     u_ref = 0.5 * exp(k*t(i)-x) .* ...
@@ -62,29 +67,27 @@ for i = 10 % 1:numel(t)
     L.FontSize = 8;
 
     subplot(224),
-    plot(x,(u_ref - u(i,:)))
-    L = legend('negyzetes hiba');
+    plot(x,u_ref-u(i,:))
+    L = legend('hiba');
     L.Location = 'southeast';
     xlim([-5 5])
-
     pause(0.1);
-    % Felvétel
-    % frames(i) = getframe(fig);
+
+    if i == 10,
+        persist.pub_vid_poster('hovez_vegtelen_exp')
+    end
+    
+    frames(i) = getframe(fig);
 end
 
-
-% v = VideoWriter(persist.simple('fig','heat_diffusion_1D_v2.avi'));
-% open(v)
-% writeVideo(v,frames)
-% close(v)
-% persist.savefig('heat_diffusion_1D_v3_poster.png')
+persist.pub_vid_write(frames)
 
 %% Hővezetés egyenlete más kezdeti feltétel mellett
-%   u'_t = k u''_{xx} ~,~~ 
-%   u(x,0) = \left\{\begin{aligned} 
-%       &0 &&, \text{ ha } x < 0 \\ 
-%       &e^{-x} &&, \text{ ha } x \ge 0 
-%   \end{aligned} \right.
+% Hővezetés egyenlete: $u'_t = k u''_{xx}$, ahol $k=1$.
+% 
+% Kezdeti feltételek: 
+% $$u(x,0) = \left\{\begin{array}{lc} 0 & x < 0 \\
+% e^{-x} & x \ge 0 \end{array}\right.$$
 
 sigma = 1;
 k = 1;
@@ -127,7 +130,73 @@ for i = 30 %1:numel(t)
    title(sprintf('time = %0.2f, $\\int u(x,t) = %g$', t(i), trapz(x, u(i,:))), 'Interpreter', 'latex'),
    axis([-x_lim, x_lim, 0, 1])
    pause(0.1),
+
+    if i == 10,
+        persist.pub_vid_poster('hovez_vegtelen_exp')
+    end    
+    frames(i) = getframe(fig);
 end
+persist.pub_vid_write(frames)
+
+%% Hővezetés egyenlete más kezdeti feltétel mellett
+%   u'_t = k u''_{xx} ~,~~ 
+%   u(x,0) = \left\{\begin{aligned} 
+%       &0 &&, \text{ ha } x < 0 \\ 
+%       &e^{-x} &&, \text{ ha } x \ge 0 
+%   \end{aligned} \right.
+
+sigma = 1;
+k = 1;
+
+%%%
+% $$c = 1 ~,~~ f = k u'_x ~,~~ s = 0$$
+pde = @(x,t,u,DuDx) deal( 1 , k*DuDx , 0);
+
+%%%
+% Initial condition:
+% $u(x,t_0) = u_0(x)$
+ic3 = @(x) triangularPulse(0,1,x);
+
+x = linspace(0,1,100);
+plot(x,ic3(x))
+
+%%%
+%
+bc = @(xl,ul,xr,ur,t) deal( ul, 0, ur , 0 );
+
+m = 0;
+x = linspace(0,1,100);
+t = linspace(0,0.1,101);
+
+sol = pdepe(m,pde,ic3,bc,x,t);
+% Extract the first solution component as u.
+u = sol(:,:,1);
+
+fig = figure('Position', [165 540 1066 380], 'Color', 'white');
+
+% A surface plot is often a good way to study a solution.
+subplot(121),
+surf(x,t,u), light, shading interp
+xlabel('Distance x')
+ylabel('Time t')
+% zlim([0,10])
+
+clear frames
+subplot(122),
+for i = 1:numel(t)
+   plot(x, u(i,:));
+   title(sprintf('time = %0.3f, $\\int u(x,t) = %0.5f$', t(i), trapz(x, u(i,:))), 'Interpreter', 'latex'),
+   axis([0, 1, 0, 1])
+   pause(0.1),
+   
+   if i == 10
+       persist.pub_vid_poster('hovez_veges_haromszog')
+   end
+   
+   frames(i) = getframe(fig);
+end
+
+persist.pub_vid_write(frames)
 
 %%
 
