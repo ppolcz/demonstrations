@@ -90,11 +90,15 @@ title('$\Omega$ tartomany felosztasa', 'Interpreter', 'latex');
 % 
 
 % [1]
-applyBoundaryCondition(pdem,'Edge',([2 4]), 'g', 0);
-applyBoundaryCondition(pdem,'Edge',([1 3]), 'u', 0);
+% applyBoundaryCondition(pdem,'Edge',([2 4]), 'g', 0);
+% applyBoundaryCondition(pdem,'Edge',([1 3]), 'u', 0);
 
 % [2]
 % applyBoundaryCondition(pdem,'Edge',1:4, 'u', 0);
+
+% [3]
+applyBoundaryCondition(pdem,'Edge',1:4, 'g', 0);
+
 
 %% Kezdeti feltételek
 % Az eredeti scriptben a következő kezdeti feltételek voltak megadva:
@@ -115,13 +119,17 @@ applyBoundaryCondition(pdem,'Edge',([1 3]), 'u', 0);
 % <http://www.math.psu.edu/yzheng/m597k/m597kLVI13.pdf Vibrating
 % membrane in a circular domain>
 % 
-s = 4;
+s = 9;
 [p,~,t] = meshToPet(msh);
 x = p(1,:)';
 y = p(2,:)';
 
-% Általam definiált kezdeti feltétel
+% [1] Általam definiált kezdeti feltétel
 u0 = 3*exp(- s^2*(x.^2 + y.^2));
+ut0 = x*0;
+
+% [2] Általam definiált kezdeti feltétel egy kicsit eltolva
+u0 = 3*exp(- s^2*((x-0.17).^2 + (y-0.23).^2));
 ut0 = x*0;
 
 % Eredeti kezdeti feltétel 
@@ -140,14 +148,14 @@ title('$u''_t(x,y,0)$ kezdeti feltetel','Interpreter','latex')
 
 % Idő diszkretizálása
 T = 5;
-n = 201;
+n = T*40+1;
 tlist = linspace(0,T,n);
 
 uu = hyperbolic(u0,ut0,tlist,pdem,c,a,f,d);
 
 %% Animáció
 % 
-figure
+figure, clear M
 umax = max(max(uu));
 umin = min(min(uu));
 for i = 1:n
