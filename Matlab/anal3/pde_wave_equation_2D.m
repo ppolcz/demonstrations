@@ -62,6 +62,38 @@ pdeGeom = geomDataFromPolygon([-1 -1 ; -1 1 ; 1 1 ; 1 -1]);
 % [Omega2]
 % pdeGeom = geomDataOfCircularHoles([0,0,1]);
 
+% [Omega3]
+pdeGeom = [ ...
+    geomDataFromPolygon([-1 -1 ; -1 1 ; 1 1 ; 1 -1]) ...
+    geomDataFromPolygon([
+   -0.2516    0.4010
+    0.7742    0.4010
+    0.7742   -0.6068
+    0.8129   -0.6068
+    0.8194    0.4365
+   -0.2581    0.4435]) ...
+%     geomDataFromPolygon([
+%    -0.8741    0.8728
+%    -0.8741   -0.7141
+%     0.9068   -0.7213
+%     0.9134    0.8800
+%     0.0818    0.8800
+%     0.0818    0.6203
+%     0.7693    0.6203
+%     0.7759   -0.6564
+%    -0.7955   -0.6564
+%    -0.7955    0.7646
+%    -0.0164    0.7574
+%    -0.0426    0.8800])
+%     geomDataFromPolygon([-1 -1 ; -1 1 ; 1 1 ; 1 -1] * 0.9) ...
+%     geomDataFromPolygon([-1 -1 ; -1 1 ; 1 1 ; 1 -1] * 0.8) ...
+%     geomDataFromPolygon([
+%    -0.9080   -0.0321
+%     0.1855   -0.9107
+%    -0.4914   -0.9536
+%    -0.9666   -0.7607 ]) ...
+   ];
+
 geometryFromEdges(pdem,pdeGeom);
 
 figure('Position', [668 596 1012 377]); subplot(121)
@@ -75,7 +107,7 @@ title('$\Omega$ tartomany, amelyen megoldom az egyenletet', 'Interpreter', 'late
 % szabályozni. A |Hmax| gyakorlatilag a háromszögek átmérőjének
 % nagyságát szabályozza (megközelítőleg ekkorák lesznek a
 % háromszögek.)
-msh = generateMesh(pdem,'Hmax',0.1);
+msh = generateMesh(pdem,'Hmax',0.05);
 subplot(122), pdemesh(pdem); axis equal
 title('$\Omega$ tartomany felosztasa', 'Interpreter', 'latex');
 
@@ -97,7 +129,7 @@ title('$\Omega$ tartomany felosztasa', 'Interpreter', 'latex');
 % applyBoundaryCondition(pdem,'Edge',1:4, 'u', 0);
 
 % [3]
-applyBoundaryCondition(pdem,'Edge',1:4, 'g', 0);
+% applyBoundaryCondition(pdem,'Edge',1:4, 'g', 0);
 
 
 %% Kezdeti feltételek
@@ -119,7 +151,7 @@ applyBoundaryCondition(pdem,'Edge',1:4, 'g', 0);
 % <http://www.math.psu.edu/yzheng/m597k/m597kLVI13.pdf Vibrating
 % membrane in a circular domain>
 % 
-s = 9;
+s = 16;
 [p,~,t] = meshToPet(msh);
 x = p(1,:)';
 y = p(2,:)';
@@ -147,8 +179,9 @@ title('$u''_t(x,y,0)$ kezdeti feltetel','Interpreter','latex')
 %% Egyenlet megoldása
 
 % Idő diszkretizálása
-T = 5;
+T = 1.5;
 n = T*40+1;
+n = 401;
 tlist = linspace(0,T,n);
 
 uu = hyperbolic(u0,ut0,tlist,pdem,c,a,f,d);
@@ -164,10 +197,10 @@ for i = 1:n
     caxis([umin umax]);
     
     if i == 10
-        persist.pub_vid_poster('membran_rezgomozgas')
+%         persist.pub_vid_poster('membran_rezgomozgas')
     end
     M(i) = getframe;
 end
-persist.pub_vid_write(M)
+% persist.pub_vid_write(M)
 
 if ismember('publish', {stack.name}), return; end
