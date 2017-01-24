@@ -7,6 +7,22 @@ function [ret] = pcz_info(bool, varargin)
 %  Created on 2017.01.06. Friday, 13:56:14
 %
 
+global SCOPE_DEPTH
+
+[ST,I] = dbstack;
+    
+depth = SCOPE_DEPTH;
+
+for i = 2:depth
+    fprintf('│   ')
+end
+
+if numel(ST) > I
+    fprintf('│   ')
+end
+    
+%%
+
 k = [0 0 0];
 g = [0 0.7 0];
 r = [1 0 0];
@@ -26,7 +42,7 @@ if islogical(bool)
         cprintf(k, '] ')
     end
 
-    cprintf('black', varargin{:})
+    cprintf(k, varargin{:})
 
 elseif ischar(bool)
     cprintf(k, '[ ')
