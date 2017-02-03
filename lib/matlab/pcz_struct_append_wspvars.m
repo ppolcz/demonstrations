@@ -7,20 +7,24 @@ function [str] = pcz_struct_append_wspvars(str,varargin)
 %  Created on 2017.02.01. Wednesday, 20:14:21
 %
 % Examples:
-%  str = pcz_struct_append_wspvars()
-%  str = pcz_struct_append_wspvars(str)
-%  str = pcz_struct_append_wspvars('rewrite',false)
+%  str = pcz_struct_append_wspvars;
+%  str = pcz_struct_append_wspvars(str);
+%  str = pcz_struct_append_wspvars('rewrite',false);
+
+opts.exclude = {
+    'TMP_*'
+    };
+opts = parsepropval(opts, varargin{:});
 
 vars = evalin('caller', 'who');
 
-strname = inputname(1);
-
-if nargin == 0
-    if ~isstruct(str)
-        varargin = [str varargin];
-    end
+if nargin == 0 || ~isstruct(str)
     str = struct;
     strname = '';
+    
+    if nargin > 0 ; varargin = [str varargin]; end
+else
+    strname = inputname(1);
 end
 
 for i = 1:numel(vars)
