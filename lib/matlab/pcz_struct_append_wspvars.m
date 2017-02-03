@@ -11,10 +11,10 @@ function [str] = pcz_struct_append_wspvars(str,varargin)
 %  str = pcz_struct_append_wspvars(str);
 %  str = pcz_struct_append_wspvars('rewrite',false);
 
-opts.exclude = {
+props.exclude = {
     'TMP_*'
     };
-opts = parsepropval(opts, varargin{:});
+props = parsepropval(props, varargin{:});
 
 vars = evalin('caller', 'who');
 
