@@ -33,7 +33,7 @@ for i = 1:nr
         o.var = round(o.var,o.round);
     end        
 
-    str = pcz_num2str(o.var,o.format, o.del1, o.del2, o.pref, o.beginning, o.ending);
+    str = pcz_num2str_fixed(o.var,o.format, o.del1, o.del2, o.pref, o.beginning, o.ending);
     
     if nargout > 0
         ret{i} = str;
