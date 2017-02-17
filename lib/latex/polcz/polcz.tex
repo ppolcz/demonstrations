@@ -1,8 +1,35 @@
+% !TEX TS-program = lualatex
 \documentclass[12pt]{article}
 
-\usepackage[ownhref]{polcz}
+\usepackage{luacode}
+\begin{luacode}
+function paren_array(k,l,m,n)
+  for i = k,m do
+    for j = l,n do
+      tex.sprint("("..i..","..j..")  ")
+    end
+    tex.print("")  -- force a line break
+  end
+end
+
+function subscript_array(ind,k,l,m,n)
+  for i=k,m do
+    for j=l,n do
+      tex.sprint(ind.."_{"..i..j.."}")
+      if j<n then
+        tex.sprint ( "&" )    -- cell separator (ampersand)
+      else
+        tex.sprint( "\\\\" )  -- end of row (two backslashes)
+      end
+    end
+  end
+end
+\end{luacode}
+
+\usepackage[ownhref,ccsgyak,thmhu]{polcz}
 \usepackage{amsmath}
 \usepackage{xcolor}
+\usepackage{lipsum}
 
 \usepackage[
     hyperfootnotes = false,
@@ -14,7 +41,104 @@
     pagebackref = false
     ]{hyperref}
 
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\providecommand{\pfor}[2]{\left[ \foreach \n in {#1}{\n \middle|} #2 \right]}
+
+\makeatletter
+\DeclareDocumentCommand\Features{ s m O{0} O{0} m m }{%
+  \global\let\MatrixBody\@empty
+  \def\TMPvarname{#2}
+  \foreach \entry/\index in {#5/100} {%
+    \ifnum \index < 100
+        \expandafter\g@addto@macro\expandafter\MatrixBody
+        \expandafter{%
+            \expandafter\TMPvarname\entry &
+        }%
+    \else
+        \expandafter\g@addto@macro\expandafter\MatrixBody
+        \expandafter{%
+            \expandafter\TMPvarname\entry
+        }%
+    \fi
+  }%
+    \begin{bmatrix}%
+        \MatrixBody
+    \end{bmatrix}%
+}
+\makeatother
+
 \begin{document}
+    Loop: \\
+    \foreach \x/\index in {4,5,4,2/0} {
+        \x - \index
+        \ifnum \index > 0
+            -- kutya
+        \fi
+        \\
+    }
+
+    $
+    \bmatrix
+        a & b
+    \endbmatrix
+    $
+
+    $\Features{a}{1,2,3}{}$
+
+    \begin{equation}
+        \begin{bmatrix}
+            a & c
+        \end{bmatrix}
+        \begin{bmatrix}[c|c]
+            a & c
+        \end{bmatrix}
+        ~~~~~~~~~~~~~
+        \left[\mqty{\xmat*{a}{2}{2}} ~\middle|~ \mqty{\xmat*{a}{2}{2}} \right]
+    \end{equation}
+
+    \newcount\i
+    \newcount\j
+
+    \newcount\i
+    \newcount\j
+    \i = 2
+    \loop
+    \j = 2
+    \advance \i by 1
+    {
+        \loop
+        \advance \j by 1
+        (\the\i,\the\j)
+        \ifnum \j < 6 \repeat
+    }
+    \ifnum \i < 5
+        \global\matrixtoks = \expandafter{\the\matrixtoks \\ }
+        \repeat
+
+    \i=0
+    \loop
+        % increment dummy counter
+        \advance\i by 1
+
+        % \j=0
+        % \loop
+
+        %     (\the\i,\the\j)
+
+        %     \ifnum\j<6
+        % \repeat
+
+        % repeat the loop provided the counter is within specified bound
+        \ifnum\i<5
+    \repeat
+
+
     \begin{equation}
         \qty<1> \dqty{\frac{a}{b},b}
         \qty(a)[b]{c}
@@ -22,6 +146,8 @@
     \begin{equation}
         \lbrack \lvert
     \end{equation}
+
+    $\foreach \n in {1,3}{\n,}$
 
     \langol[label]{Kutyagumi}
 
@@ -31,11 +157,31 @@
     % \begin{pczLearnEnvironment}\alpha{}(required argument)<re>
     % \end{pczLearnEnvironment}
 
-    \begin{pcolorbox}{Title}[arguments]
+    \begin{pcolorbox}{Title (Cayley-Hamilton)}[arguments]
         asdasds
-    \pcbsub{Title}[arguments]
-
+    \pcbsub{Subtitle}[arguments]
+    PMAT - szabalyosan, loop-okkal:
+    $\bmqty{\xmat*{a}{3}{3}}$
+    $\bmqty{\pmat*{a}{3}{3}}$,
+    $\bmqty{\pmat*{a}[2]{8}[4]{7}}$
     \end{pcolorbox}
+
+    \begin{pcolorbox}{Title}[arguments]\matlab
+        asdasds
+    \pcbsub{Subtitle}[arguments]\matlab
+    \end{pcolorbox}
+
+    \begin{pcolorbox}[notitle]{}[asd][blue][blue!10][blue!20]
+        \lipsum[1]
+    \end{pcolorbox}
+
+    \begin{pcbexample}
+        \lipsum[2]
+    \end{pcbexample}
+
+    \begin{cTheorem}[Cayley-Hamilton][arguments]
+
+    \end{cTheorem}
 
     \Hiba*{123}
     \color{black}
@@ -54,5 +200,41 @@
 \refangol[label]{Kutyaurulek}
 
 \listoftodosangol
+
+\tcbset{enhanced}
+\begin{tcolorbox}[breakable,title=My breakable box]
+  \lipsum[1-6]
+\end{tcolorbox}
+
+
+
+\Normal\n
+\section{LuaCode}
+\newcommand{\luapmat}[4]{%
+  $\directlua{ paren_array(\luatexluaescapestring{#1},\luatexluaescapestring{#2},\luatexluaescapestring{#3},\luatexluaescapestring{#4}) }$
+}
+
+
+\newcommand*{\mycommand}{%
+  \directlua{for i = 1, 10 do tex.sprint(i .. "\luatexluaescapestring{\hskip1cm}") end}
+}
+
+\mycommand
+
+%% call the first function
+\directlua{ paren_array(3,4,6,6) }
+
+\bigskip
+%% call the second function from within a LaTeX "array" environment
+$
+A = \left[ \begin{array}{*{5}{c}}
+       \directlua{ subscript_array("a",2,3,5,5 ) }
+    \end{array} \right]
+$
+
+$
+\luapmat{2}{3}{4}{4}
+$
+
 
 \end{document}
