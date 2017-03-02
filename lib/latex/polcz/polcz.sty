@@ -307,6 +307,7 @@
 \ifx\thm 1
 
     \providecommand\lemmaTitle{Lemma}
+    \providecommand\remarkTitle{Remark}
     \providecommand\propositionTitle{Állítás}
     \providecommand\applicationTitle{Alkalmazás}
     \providecommand\exampleTitle{Példa}
@@ -316,6 +317,7 @@
 \else\ifx\thm 2
 
     \providecommand\lemmaTitle{Lemma}
+    \providecommand\remarkTitle{Remark}
     \providecommand\propositionTitle{Proposition}
     \providecommand\applicationTitle{Application}
     \providecommand\exampleTitle{Example}
@@ -333,7 +335,7 @@
     {s o}
     {%
         \refstepcounter{pczexample}%
-        \bigskip\noindent\textbf{{\exampleTitle} \thepczexample.} \IfNoValueF{#2}{(#2) }%
+        \bigbreak\noindent\textbf{{\exampleTitle} \thepczexample.} \IfNoValueF{#2}{(#2) }%
     }
     {
         \hfill$\triangleleft$
@@ -356,7 +358,7 @@
     {s o}
     {%
         \refstepcounter{pcztheorem}%
-        \bigskip\noindent\textbf{{\theoremTitle} \thepcztheorem.} \IfNoValueF{#2}{(#2) }%
+        \bigbreak\noindent\textbf{{\theoremTitle} \thepcztheorem.} \IfNoValueF{#2}{(#2) }%
     }
     {
         \hfill$\triangleleft$
@@ -377,7 +379,17 @@
     {s o}
     {
         \refstepcounter{pczapplication}
-        \bigskip\noindent\textbf{{\applicationTitle} \thepczapplication}\IfNoValueF{#2}{ (#2)}\textbf{. }
+        \bigbreak\noindent\textbf{{\applicationTitle} \thepczapplication}\IfNoValueF{#2}{ (#2)}\textbf{. }
+    }
+    {
+        \hfill$\triangleleft$
+    }
+
+    \DeclareDocumentEnvironment{remark}
+    {s o}
+    {
+        \refstepcounter{pczapplication}
+        \bigbreak\noindent\textit{{\remarkTitle} \thepczapplication}\IfNoValueF{#2}{ (#2)}\textbf{. }
     }
     {
         \hfill$\triangleleft$
@@ -388,7 +400,7 @@
     {s o}
     {
         \refstepcounter{pczlemma}
-        \bigskip\noindent\textbf{{\lemmaTitle} \thepczlemma}\IfNoValueF{#2}{ (#2)}\textbf{. }
+        \bigbreak\noindent\textbf{{\lemmaTitle} \thepczlemma}\IfNoValueF{#2}{ (#2)}\textbf{. }
     }
     {
         \hfill$\triangleleft$
@@ -399,7 +411,7 @@
     {s o}
     {
         \refstepcounter{pczproposition}
-        \bigskip\noindent\textbf{{\propositionTitle} \thepczproposition}\IfNoValueF{#2}{ (#2)}\textbf{. }
+        \bigbreak\noindent\textbf{{\propositionTitle} \thepczproposition}\IfNoValueF{#2}{ (#2)}\textbf{. }
     }
     {
         \hfill$\triangleleft$\newline
@@ -420,7 +432,7 @@
     \DeclareDocumentEnvironment{proof}
     {s o}
     {
-        \bigskip\noindent\textit{{\proofTitle}}\IfNoValueF{#2}{ (#2)}\textit{. }
+        \bigbreak\noindent\textit{{\proofTitle}}\IfNoValueF{#2}{ (#2)}\textit{. }
     }
     {
         \hfill$\square$
