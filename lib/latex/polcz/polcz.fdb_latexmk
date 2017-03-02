@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1487265680 "polcz.tex" "polcz.pdf" "polcz" 1487265682
+["pdflatex"] 1488465027 "polcz.tex" "polcz.pdf" "polcz" 1488465028
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -164,12 +164,12 @@
   "/usr/share/texlive/texmf-dist/tex/luatex/luatexbase/mcb.lua" 1368398313 9471 33967fdd8d1a4ddde6c30c6aa497ca9e ""
   "/usr/share/texlive/texmf-dist/tex/luatex/luatexbase/modutils.lua" 1368398313 4422 65d17d518cef47d7f1a00d8f211f0add ""
   "/var/lib/texmf/web2c/luatex/lualatex.fmt" 1462614768 4346183 fc8b4fa31b4497eac313be6270d4150f ""
-  "polcz.aux" 1487265681 742 2d71bba269d72738df028e6afc30e9f2 ""
-  "polcz.out" 1487265681 42 be6ad664b2ce68461f44f0d01865aee1 ""
-  "polcz.sty" 1487265408 12542 c743dc583be8cf7a0e095d514679cc0e ""
-  "polcz.tex" 1487265680 4899 b744209d3a70ce6a2c56f807e2496747 ""
+  "polcz.aux" 1488465028 742 2d71bba269d72738df028e6afc30e9f2 ""
+  "polcz.out" 1488465028 42 be6ad664b2ce68461f44f0d01865aee1 ""
+  "polcz.sty" 1488465005 14514 11f5aef7f7093963681965607c10272d ""
+  "polcz.tex" 1488465019 4933 1b3b21675a45d7dec83ee55e73ffab33 ""
   (generated)
-  "polcz.log"
-  "polcz.aux"
   "polcz.pdf"
+  "polcz.aux"
+  "polcz.log"
   "polcz.out"
