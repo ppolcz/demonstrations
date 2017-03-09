@@ -9,7 +9,7 @@
 global SCOPE_DEPTH
 SCOPE_DEPTH = 0;
 
-%% beginning of the scope
+%%
 TMP_QVgVGfoCXYiYXzPhvVPX = pcz_dispFunctionName;
 
 try c = evalin('caller','persist'); catch; c = []; end
@@ -136,8 +136,8 @@ A = [
     ];
 
 C = [ 1 0 0 ]
-On = obsv(A,C)
-unobsv = null(On)
+O3 = obsv(A,C)
+unobsv = null(O3)
 x0 = rand(3,1)
 
 figure, hold on
@@ -145,6 +145,7 @@ for i = 1:10
     [t,x] = ode45(@(t,x) A*x, [0, 10], x0 + unobsv*rand(size(unobsv,2),1));
     plot(t,rand*0.02 +(C*x')')
 end
-%% end of the scope
+
+%% 
 pcz_dispFunctionEnd(TMP_QVgVGfoCXYiYXzPhvVPX);
 clear TMP_QVgVGfoCXYiYXzPhvVPX

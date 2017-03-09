@@ -335,7 +335,7 @@
     {s o}
     {%
         \refstepcounter{pczexample}%
-        \bigbreak\noindent\textbf{{\exampleTitle} \thepczexample.} \IfNoValueF{#2}{(#2) }%
+        \bigbreak\noindent\textbf{{\exampleTitle} \thepczexample.}\IfNoValueF{#2}{ (#2)}%
     }
     {
         \hfill$\triangleleft$
@@ -344,10 +344,10 @@
     \DeclareDocumentEnvironment{cExample}
     {s o O{}}
     {%
-        \refstepcounter{pczexample}%
+        \smallbreak\noindent\refstepcounter{pczexample}%
         \IfBooleanTF{#1}
-        {\begin{pcbexample}*{{\exampleTitle} \thepczexample. \IfNoValueF{#2}{\normalfont(#2)}}[#3]}
-        {\begin{pcbexample}\textbf{{\exampleTitle} \thepczexample.} \IfNoValueF{#2}{(#2) }}%
+        {\begin{pcbexample}*{{\exampleTitle} \thepczexample.\IfNoValueF{#2}{ \normalfont(#2)}}[#3]}
+        {\begin{pcbexample}\textbf{{\exampleTitle} \thepczexample.}\IfNoValueF{#2}{ (#2) }}%
     }
     {
         \end{pcbexample}%
@@ -358,7 +358,7 @@
     {s o}
     {%
         \refstepcounter{pcztheorem}%
-        \bigbreak\noindent\textbf{{\theoremTitle} \thepcztheorem.} \IfNoValueF{#2}{(#2) }%
+        \bigbreak\noindent\textbf{{\theoremTitle} \thepcztheorem.}\IfNoValueF{#2}{ (#2) }%
     }
     {
         \hfill$\triangleleft$
@@ -367,8 +367,8 @@
     \DeclareDocumentEnvironment{cTheorem}
     {s o}
     {%
-        \refstepcounter{pcztheorem}%
-        \begin{pcolorbox}{{\theoremTitle} \thepcztheorem. \IfNoValueF{#2}{\normalfont (#2)}}%
+        \smallbreak\noindent\refstepcounter{pcztheorem}%
+        \begin{pcolorbox}{{\theoremTitle} \thepcztheorem.\IfNoValueF{#2}{ \normalfont (#2)}}%
     }{%
         \end{pcolorbox}%
     }
@@ -379,7 +379,7 @@
     {s o}
     {
         \refstepcounter{pczapplication}
-        \bigbreak\noindent\textbf{{\applicationTitle} \thepczapplication}\IfNoValueF{#2}{ (#2)}\textbf{. }
+        \bigbreak\noindent\textbf{{\applicationTitle} \thepczapplication.}\IfNoValueF{#2}{ (#2)}
     }
     {
         \hfill$\triangleleft$
@@ -389,7 +389,7 @@
     {s o}
     {
         \refstepcounter{pczapplication}
-        \bigbreak\noindent\textit{{\remarkTitle} \thepczapplication}\IfNoValueF{#2}{ (#2)}\textbf{. }
+        \bigbreak\noindent\textit{{\remarkTitle} \thepczapplication.}\IfNoValueF{#2}{ (#2)}
     }
     {
         \hfill$\triangleleft$
@@ -400,7 +400,7 @@
     {s o}
     {
         \refstepcounter{pczlemma}
-        \bigbreak\noindent\textbf{{\lemmaTitle} \thepczlemma}\IfNoValueF{#2}{ (#2)}\textbf{. }
+        \bigbreak\noindent\textbf{{\lemmaTitle} \thepczlemma.}\IfNoValueF{#2}{ (#2)}
     }
     {
         \hfill$\triangleleft$
@@ -411,7 +411,7 @@
     {s o}
     {
         \refstepcounter{pczproposition}
-        \bigbreak\noindent\textbf{{\propositionTitle} \thepczproposition}\IfNoValueF{#2}{ (#2)}\textbf{. }
+        \bigbreak\noindent\textbf{{\propositionTitle} \thepczproposition.}\IfNoValueF{#2}{ (#2)}
     }
     {
         \hfill$\triangleleft$\newline
@@ -420,10 +420,10 @@
     \DeclareDocumentEnvironment{cProposition}
     {s o}
     {%
-        \refstepcounter{pczproposition}%
-        \IfBooleanTF{#1}
-        {\begin{pcolorbox}{{\propositionTitle} \thepczproposition. \IfNoValueF{#2}{\normalfont(#2) }}}
-        {\begin{pcolorbox}[notitle]\textbf{{\propositionTitle} \thepczproposition. }\IfNoValueF{#2}{(#2) }}
+        \smallbreak\noindent\refstepcounter{pczproposition}%
+        \IfBooleanTF{#1}%
+        {\begin{pcolorbox}{{\propositionTitle} \thepczproposition.\IfNoValueF{#2}{ \normalfont(#2)}}}%
+        {\begin{pcolorbox}[notitle]\textbf{{\propositionTitle} \thepczproposition.}\IfNoValueF{#2}{ (#2)}}%
         %
     }{%
         \end{pcolorbox}%
@@ -431,8 +431,8 @@
 
     \DeclareDocumentEnvironment{proof}
     {s o}
-    {
-        \bigbreak\noindent\textit{{\proofTitle}}\IfNoValueF{#2}{ (#2)}\textit{. }
+    {%
+        \noindent\textit{{\proofTitle}}\IfNoValueF{#2}{(#2)}\textit{.}%
     }
     {
         \hfill$\square$
