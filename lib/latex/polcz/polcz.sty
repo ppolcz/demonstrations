@@ -222,6 +222,56 @@
     \end{tcolorbox}%
 }
 
+\DeclareDocumentEnvironment{pcbox}
+{ s o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\matlab}
+{%
+    \IfBooleanTF{#8}{
+        \begin{tcolorbox}[
+        oversize,
+        enhanced,
+        breakable,
+        colback=cMatlabBaseColor,
+        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
+        boxsep=0pt,
+        toptitle=4pt,
+        bottomtitle=4pt,
+        fonttitle=\bfseries,
+        coltitle=black,
+        colbacktitle=cMatlabBaseColor!90!black,
+        subtitle style={
+            boxrule=0.4pt,
+            colback=cMatlabBaseColor!90!black},
+        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3}\matlab,
+        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
+        \IfNoValueF{#1}{#1}
+        ]%
+    }{
+        \begin{tcolorbox}[
+        oversize,
+        enhanced,
+        breakable,
+        colframe=#4!50, colback=#5,
+        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
+        boxsep=0pt,
+        toptitle=4pt,
+        bottomtitle=4pt,
+        fonttitle=\bfseries,
+        coltitle=black,
+        colbacktitle=#6,
+        subtitle style={
+            boxrule=0.4pt,
+            colback=#6},
+        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3},
+        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
+        \IfNoValueF{#1}{#1}
+        ]%
+    }%
+}{%
+    \end{tcolorbox}%
+}
+
 
 \DeclareDocumentCommand{\pcbsub}{ s g O{} O{cImportantBaseColor} t\matlab}
 {%
