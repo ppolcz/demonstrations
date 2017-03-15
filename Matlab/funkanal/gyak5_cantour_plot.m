@@ -30,9 +30,7 @@ end
 celldisp(lims)
 
 figure, hold on
-P = plot(2,1,'.'); 
-Color = P.Color;
-delete(P)
+Color = [ 0 , 0.447 , 0.741 ];
 for i = 1:n-1
     for j = 1:size(lims{i},2)
         plot(lims{i}(:,j)/3^i,[i;i],'-', 'Color', Color, 'LineWidth', 1);
