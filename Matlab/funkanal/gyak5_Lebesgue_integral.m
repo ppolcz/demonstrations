@@ -21,8 +21,8 @@ persist.backup();
 
 xspan = [0,5];
 
-resolution = 5000;
-w_size = 121 * resolution / 1000;
+resolution = 500;
+w_size = 121 * resolution / 500;
 w = hann(w_size);
 w = w / sum(w);
 f = conv(abs(randn(1,resolution+2*w_size)), w,'same') * 20;
@@ -30,10 +30,11 @@ f = f(w_size+1:resolution+w_size);
 f = f - min(f) + rand;
 x = linspace(xspan(1),xspan(2),resolution);
 
+plot(x,f)
 %%
 
 figure
-for n = 2:12
+for n = 2:6
     step_tiks = linspace(0,n,2^n+1)';
     step = step_tiks(:,ones(1,resolution));
     
@@ -70,7 +71,9 @@ for n = 2:12
     ptitle(sprintf('$n = %g$, $%s s ~%s m = %g$, $%s f ~%s m = %g$', ...
         n, '\\int', '{\\rm d}', trapz(x,s), '\\int', '{\\rm d}', trapz(x,f)))
     snapnow
-    % waitforbuttonpress
+    ptikz
+%     waitforbuttonpress
+    figure,
 end
 
 %%
