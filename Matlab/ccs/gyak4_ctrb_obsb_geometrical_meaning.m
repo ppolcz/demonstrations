@@ -42,7 +42,7 @@ plot([x_from(1) x_to(1)], [x_from(2) x_to(2)], '--')
 
 for i = 1:10
     x_init = x0 + unobsv*randn(size(unobsv,2)) * 3;
-    [t,x] = ode45(@(t,x) A*x, [0, 10], x_init, 1);
+    [t,x] = ode45(@(t,x) A*x, [0, 10], x_init);
     
     subplot(121)
     Pl = plot(t,rand*0.02 +(C*x')');

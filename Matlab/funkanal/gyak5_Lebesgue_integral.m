@@ -71,9 +71,9 @@ for n = 2:6
     ptitle(sprintf('$n = %g$, $%s s ~%s m = %g$, $%s f ~%s m = %g$', ...
         n, '\\int', '{\\rm d}', trapz(x,s), '\\int', '{\\rm d}', trapz(x,f)))
     snapnow
-    ptikz
-%     waitforbuttonpress
-    figure,
+%     ptikz
+    waitforbuttonpress
+%     figure,
 end
 
 %%
