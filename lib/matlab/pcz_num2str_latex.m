@@ -11,7 +11,7 @@ o.format = '%g';
 o.del1 = ' & ';
 o.del2 = ' \\\\ ';
 o.pref = '';
-o.beginning = '\\bmqty{ ';
+o.beginning = '\\pmqty{ ';
 o.ending = ' }';
 o.round = 4;
 
