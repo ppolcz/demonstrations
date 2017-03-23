@@ -49,6 +49,26 @@ f = @(t,x) [
 plot(tt,xx(:,1))
 
 %%
+
+syms t x(t) k l Q d0 m
+L = m*diff(x,1)/2 - k*(l-x)^2/2 - ke*Q/(d0-l+x)
+EL_equation = simplify(functionalDerivative(L,x))
+
+pretty(EL_equation)
+
+%%
+
+syms t x dx k l Q d0 m
+L = m*dx/2 - k*(l-x)^2/2 - ke*Q/(d0-l+x)
+
+diff_Lx = simplify(diff(L,x))
+diff_Ldx = simplify(diff(L,dx))
+
+EL_equation = diff_Ldx - diff_Lx;
+pretty(EL_equation)
+
+
+%%
 % End of the script.
 pcz_dispFunctionEnd(TMP_QVgVGfoCXYiYXzPhvVPX);
 clear TMP_QVgVGfoCXYiYXzPhvVPX
