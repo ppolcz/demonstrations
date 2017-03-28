@@ -1,23 +1,10 @@
-%% CCS 1. Matlab gyakorlat
+%% CCS 1. Matlab gyakorlat - levezetések
 %
-%  file:   gyak7_matlabgyak1_levezetesek.m
+%  file:   gyak8_matlabgyak1_levezetesek.m
 %  author: Peter Polcz <ppolcz@gmail.com>
 %
 %  Created on 2017.03.27. Monday, 10:35:39
 %
-%%
-
-% Automatically generated stuff
-global SCOPE_DEPTH
-SCOPE_DEPTH = 0;
-
-TMP_QVgVGfoCXYiYXzPhvVPX = pcz_dispFunctionName;
-
-try c = evalin('caller','persist'); catch; c = []; end
-persist = pcz_persist(mfilename('fullpath'), c); clear c;
-persist.backup();
-%clear persist
-
 %% Inverz inga modell (1)
 
 % model parameters
@@ -111,7 +98,7 @@ f_ode = matlabFunction(subs(f_sym,[M m g F l b],[1 1 10 0 1 10]), 'vars', {t X})
 subplot(122)
 [t,x] = ode45(f_ode, [0,10], [0 0 1 0]');
 plot(t,x)
-gyak7_simulate_pendulum_0(t,x)
+gyak8_simulate_pendulum_0(t,x)
 
 %% Linearized model around 0
 
@@ -121,6 +108,13 @@ J_sym = simplify(jacobian(f_sym, X));
 A_sym = subs(J_sym, X, OP);
 B_sym = subs(g_sym, X, OP);
 
+M = 1;
+m = 1;
+g = 10;
+F = 0;
+l = 1;
+b = 0;
+
 A = double(subs(A_sym));
 B = double(subs(B_sym));
 
@@ -128,7 +122,7 @@ K = lqr(A,B,eye(4),1);
 A_LQR = A - B*K;
 
 [t,x] = ode45(@(t,x) A_LQR*x, [0,10], [0 0 0.5 0]);
-gyak7_simulate_pendulum_0(t,x)
+gyak8_simulate_pendulum_0(t,x)
 
 %% Linearized model around Pi
 
@@ -142,7 +136,7 @@ A = double(subs(A_sym));
 B = double(subs(B_sym));
 
 [t,x] = ode45(@(t,x) A*x, [0,10], [0 0 0.5 0]);
-gyak7_simulate_pendulum_Pi(t,x)
+gyak8_simulate_pendulum_Pi(t,x)
 
 %%
 
@@ -163,7 +157,7 @@ lsim(sys_tf(2), u, tu)
 u_fh = @(t) interp1(tu,u,t);
 [t,x] = ode45(@(t,x) A*x + B*u_fh(t), [0,20], [0 0 0.5 0]);
 x(:,3) = x(:,3) + pi;
-gyak7_simulate_pendulum(t,x)
+gyak8_simulate_pendulum_0(t,x)
 
 %% Plot inverted pendulum
 
@@ -184,8 +178,3 @@ axis([-1.5 2 -0.5 l])
 
 fig = gcf;
 fig.Children.Visible = 'Off';
-
-%%
-% End of the script.
-pcz_dispFunctionEnd(TMP_QVgVGfoCXYiYXzPhvVPX);
-clear TMP_QVgVGfoCXYiYXzPhvVPX
