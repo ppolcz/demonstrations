@@ -20,11 +20,15 @@ persist.backup();
 
 %%
 
-T = [ 0 , 2 , -1 ; 0 , -1 , 1 ; 1 , 0 , -1 ];
-D = diag([-1 -2 -3]);
-A = T\D*T
-B = [ 0 ; 1 ; 0 ]
-C = [ 1 , 0 , 0 ]
+T = [ 1 2 0 ; -1 0 1 ; 0 -1 0 ];
+
+A_ = diag([-1 -2 -3]);
+A = T\A_*T;
+
+B = [ 1 ; 1 ; 1 ];
+C = [ 0 0 2 ];
+
+clc
 
 %% 1. feladat
 % Give the matrices of the transformed model $(\bar A, \bar B, \bar C)$
@@ -44,15 +48,19 @@ eigvecs = inv(T)
 
 %% 4. feladat
 % Is this state-space model $(A,B,C)$ minimal?
-C3 = ctrb(A,B)
-rank(C3)
+
+Cn = ctrb(A,B)
+On = obsv(A,C)
+
+rank_Cn = rank(Cn)
+rank_On = rank(On)
 
 %% 5. feladat
 % Give the controllable subspace of $(A,B,C)$.
-Csub_orthogonal = orth(C3)
+Csub_orthogonal = orth(Cn);
 
-[~,jb] = rref(C3);
-Csub_linearly_indep_cols = C3(:,jb)
+[~,jb] = rref(Cn);
+Csub_linearly_indep_cols = Cn(:,jb)
 
 
 %% 6. feladat
@@ -64,14 +72,14 @@ sys = minreal(tf(ss(A,B,C,0)))
 [b,a] = tfdata(sys,'v');
 
 syms s t
-H(s) = poly2sym(b,s) / poly2sym(a,s)
+H(s) = poly2sym(b,s) / poly2sym(a,s);
 h(t) = ilaplace(H(s))
 
 %% 8. feladat
 % Determine a jointly controllable and observable state space representation for this system.
-Ac = [-a(2:end) ; 1 0 ]
-Bc = [1 ; 0]
-Cc = b
+Ac = [-a(2:end) ; 1 0 ];
+Bc = [1 ; 0];
+Cc = b;
 
 %% 9. feladat
 % Calculate the output $y(t)$ of the system if the initial
@@ -83,7 +91,7 @@ y(t) = C_*expm(A_*t) * x0 + h(t)
 
 %% 10. feladat
 % Give the DC gain of the system.
-DC_gain_computed_by_dcgain = dcgain(sys)
+DC_gain_computed_by_dcgain = dcgain(sys);
 DC_gain_computed_symbolically = H(0)
 
 %% 11. feladat
