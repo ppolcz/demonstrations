@@ -104,7 +104,11 @@ DC_gain_computed_symbolically = H(0)
 x1_this_can_be_expressed = rank([ Csub_orthogonal [1;1;1] ])
 x2_this_cannot_be_expressed = rank([ Csub_orthogonal [1;1;2] ])
 
+%%
 
+syms s real
+s*eye(3) - A
+simplify(adjoint(s*eye(3) - A))
 
 %%
 % End of the script.
