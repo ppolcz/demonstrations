@@ -151,6 +151,50 @@ A_ = T*A/T
 B_ = T*B
 C_ = C/T
 
+%% Linearized model around the unstable equilibrium point
+
+% model parameters
+M = 0.5;
+m = 0.2;
+l = 1;
+g = 9.8;
+b = 0;
+
+A = [
+    0                     1                             0  0
+    0      -(4*b)/(4*M + m)            -(3*g*m)/(4*M + m)  0
+    0                     0                             0  1
+    0   (3*b)/(l*(4*M + m))   (3*g*(M + m))/(l*(4*M + m))  0
+    ];
+
+B = [
+    0
+    4/(m+4*M)
+    0
+    -3/(m+4*M)/l
+    ];
+
+C = [
+    1 0 0 0
+    0 0 1 0
+    ];
+
+D = [ 
+    0 
+    0 
+    ];
+
+%% 12. PID - determine the transfer function of the system
+
+s = tf('s');
+sys = ss(A,B,C,D);
+H = tf(sys)
+
+He = feedback(series(H, -9-1/s-s), 1, 1, 2)
+[y,t] = impulse(He,10);
+figure(1), plot(t,y)
+gyak8_simulate_pendulum_0(t,y)
+
 %% Nonlinear model - parameters (A)
 % No friction
 
