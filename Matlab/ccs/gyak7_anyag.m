@@ -330,6 +330,21 @@ nyquist(H), hold on
 t = 0:0.1:2*pi;
 plot(sin(t),cos(t), 'r--')
 
+%% PID tervezes
+
+s = tf('s');
+G = 1 / (s - 1);
+
+Kp = 1;
+Kd = 0;
+Ki = 0.25;
+
+PID = Kp*(1 + Kd*s + Ki/s);
+
+Ge = feedback(series(PID,G),1)
+[p,z] = pzmap(Ge)
+impulse(Ge,8*pi)
+
 %%
 % End of the script.
 pcz_dispFunctionEnd(TMP_IbSWJNMuIiKbocfQKqXb);
