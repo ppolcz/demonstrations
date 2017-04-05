@@ -1,4 +1,4 @@
-function gyak7_simulate_pendulum_0(t,x,u)
+function gyak8_simulate_pendulum_0(t,x,u)
 %% 
 %
 %  file:   gyak7_simulate_pendulum_0.m
@@ -45,47 +45,52 @@ set(fig,'Position', [ 174 63 1229 407 ], 'Color', [1 1 1])
 
 if nargin == 2
     subplot(221), hold off;
-    plot(t, plot_1_data), hold on
+    plot(t, plot_1_data), setxlim
     title('Chart''s position and velocity'), grid on;
     
     subplot(222), hold off;
-    plot(t, plot_2_data), hold on
+    plot(t, plot_2_data), setxlim
     title('Angle and angular velocity'), grid on;
 elseif nargin == 3
     subplot(231), hold off;
-    plot(t, plot_1_data), hold on
+    plot(t, plot_1_data), setxlim
     title('Chart''s position and velocity'), grid on;
     
     subplot(232), hold off;
-    plot(t, plot_2_data), hold on
+    plot(t, plot_2_data), setxlim
     title('Angle and angular velocity'), grid on;
 
     subplot(233), hold off;
-    plot(t, u(t)), hold on
+    if isa(u,'function_handle')
+        plot(t,u(t))
+    else
+        plot(t,u)
+    end, setxlim
     title('Input'), grid on;
 end
     
 pause(0.1)
 subplot(2,2,[3 4]), hold off
-kk = 1;
-plot([r_init(kk)-cl/2, r_init(kk)-cl/2, r_init(kk)+cl/2, r_init(kk)+cl/2, r_init(kk)-cl/2], [-cw/2, cw/2, cw/2, -cw/2, -cw/2])
-hold on;
-plot([r_init(kk); x1(kk)],[0; y1(kk)],'b-'),
-plot(x1(kk), y1(kk), 'o')
-axis([-13 13 -2 2]), grid on;
-hold off;
+plot_pendulum(1);
 pause(0.5)
 
 tic;
 for kk = 1:length(t_rs)
-    plot([r_init(kk)-cl/2, r_init(kk)-cl/2, r_init(kk)+cl/2, r_init(kk)+cl/2, r_init(kk)-cl/2], [-cw/2, cw/2, cw/2, -cw/2, -cw/2])
-    hold on;
-    plot([r_init(kk); x1(kk)],[0; y1(kk)],'b-'),
-    plot(x1(kk), y1(kk), 'o')
-    axis([-13 13 -2 2]), grid on;
-    hold off;
+    plot_pendulum(kk)
     pause(Ts - toc)
     tic
 end
 
+    function plot_pendulum(kk)
+        plot([r_init(kk)-cl/2, r_init(kk)-cl/2, r_init(kk)+cl/2, r_init(kk)+cl/2, r_init(kk)-cl/2], [-cw/2, cw/2, cw/2, -cw/2, -cw/2])
+        hold on;
+        plot([r_init(kk); x1(kk)],[0; y1(kk)],'b-'),
+        plot(x1(kk), y1(kk), 'o')
+        axis([-13 13 -2 2]), grid on;
+        hold off;
+    end
+
+    function setxlim
+        xlim(t([1,end]))
+    end
 end
