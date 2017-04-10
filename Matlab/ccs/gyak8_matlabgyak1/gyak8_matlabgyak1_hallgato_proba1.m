@@ -37,89 +37,45 @@ D = [ 0 ; 0 ];
 
 %% 1. determine the transfer function of the system
 
-sys = ss(A,B,C,D);
-H = tf(sys);
-
-H_r = H(1);
-H_phi = H(2);
-
 %% 2. determine the impulse response of the system
-
-[y,t] = impulse(H, 10);
-
-% You can use the following function to simulate the behaviour of the
-% inverted pendulum:
-gyak8_simulate_pendulum_Pi(t,y)
 
 %% 3. determine the step response and the DC gain of the system
 
-step(sys)
-step(H_phi,10)
-dcgain(H_phi)
-
 %%
-
-[y,t] = step(sys,10);
-gyak8_simulate_pendulum_Pi(t,y)
 
 %% 4. determine the poles of the system
 % Is the system stable, exponentially stable or unstable?
-
-help pzmap
 
 %% 5. determine the Bode plot of the transfer function
 % Plot only for the transfer function from F to omega.
 % The frequency unit set to be in Hz.
 % Determine the own (or resonance) frequency (f_r) of the system.
 
-bopts = bodeoptions;
-bopts.FreqScale = 'linear';
-bopts.FreqUnits = 'Hz';
-bodeplot(H_phi, bopts)
-
-[pgain, wr] = getPeakGain(H_phi);
-fr = wr / (2*pi);
-
 %% 6. Nyquist plot
-
-help nyquist
 
 %% 7. (a) Simulation using lsim - resonance frequency
 
-T = 10;
-t = 0:0.1:T;
-u = sin(wr*t);
-
-[y,t] = lsim(H,u,t);
-
-gyak8_simulate_pendulum_Pi(t,y,u);
-
-% After a while we shall notice, that the system's motion is quite
-% unusual, why?
-
 %% 7. (b) Simulation using lsim - high frequency, large amplitude
-
-T = 20;
-t = 0:0.1:T;
-u = 20000990000000*sin(2*pi*5*t);
-
-[y,t] = lsim(H,u,t);
-
-gyak8_simulate_pendulum_Pi(t,y,u);
 
 %% 8. Simulation using ode45
 
-x0 = [0 0 pi/6 0]';
-
-help ode45
-
-% [t,x] = ???
-% gyak8_simulate_pendulum_Pi(t,x)
 
 %% 9. Controllability
 
 
+
 %% 10. Observability
+
+C = [ 0 0 1 0 ];
+
+O = obsv(A,C);
+
+Ker = null(O)
+Im = orth(O)
+
+T = [Im Ker];
+
+T\A*T
 
 
 %% Nonlinear model - parameters (A)

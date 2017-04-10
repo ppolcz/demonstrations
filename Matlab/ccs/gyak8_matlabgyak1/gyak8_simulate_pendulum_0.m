@@ -41,7 +41,7 @@ x1 = r_init + l*sin(phi_rs);
 y1 = l*cos(phi_rs);
 
 fig = figure(19);
-set(fig,'Position', [ 174 63 1229 407 ], 'Color', [1 1 1])
+set(fig,'Position', [ 257 905 1020 407 ], 'Color', [1 1 1])
 
 if nargin == 2
     subplot(221), hold off;
