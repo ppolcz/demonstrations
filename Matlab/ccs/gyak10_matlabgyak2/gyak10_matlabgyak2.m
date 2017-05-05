@@ -81,3 +81,9 @@ t = simx.Time;
 x = simx.Data;
 u = simu.Data;
 gyak8_simulate_pendulum_0(t,x,u)
+
+%%
+
+t = simout.Time;
+x = simout.Data;
+gyak8_simulate_pendulum_0(t,x)
