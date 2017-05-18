@@ -67,33 +67,6 @@ C = [
 
 D = [ 0 ; 0 ];
 
-K = place(A,B,-4:-1);
-pcz_num2str(K)
-
-K = lqr(A,B,eye(4),1);
-pcz_num2str(K)
-
-L = place(A',C',-4:0.1:-3.7)'
-pcz_num2str(L)
-
-%% Transfer function of the closed loop system
-
-Ac = [ A-B*K B*K ; zeros(4,4) A-L*C ];
-Bc = [ B ; zeros(4,1) ];
-Cc = [ 1 0 0 0 -1 0 0 0 ];
-Dc = 0;
-
-cls = ss(Ac,Bc,Cc,Dc);
-Ge = minreal(tf(cls))
-pzmap(Ge)
-
-Gi = pidtune(Ge,'I')
-
-G_all = minreal(Ge*Gi / (1 + Ge*Gi));
-
-step(G_all)
-
-
 %% 
 
 t = simx.Time;
@@ -105,22 +78,4 @@ gyak8_simulate_pendulum_0(t,x,u)
 
 t = simx.Time;
 x = simx.Data;
-gyak8_simulate_pendulum_0(t,x)
-
-
-%% 
-
-T = 100;
-N = 100;
-t = linspace(0,T,N);
-r = zeros(size(t));
-r(30:70) = 1;
-
-simr = [ t' r' ];
-
-
-%%
-
-t = simout.Time;
-x = simout.Data;
 gyak8_simulate_pendulum_0(t,x)
