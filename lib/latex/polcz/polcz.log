@@ -1,4 +1,4 @@
-This is LuaTeX, Version beta-0.79.1 (TeX Live 2015/dev/Debian) (rev 4971)  (format=lualatex 2016.5.7)  2 MAR 2017 15:30
+This is LuaTeX, Version beta-0.79.1 (TeX Live 2015/dev/Debian) (rev 4971)  (format=lualatex 2017.3.26)  1 JUN 2017 13:53
  restricted \write18 enabled.
 **polcz.tex
 (./polcz.tex
@@ -1602,102 +1602,109 @@ Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '3.21'
 . t\matlab ' on line 223.
 .................................................
 .................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'pcbox' with sig. ' s o g O{} O{cImportantBaseColor}
+. O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor}
+. t\matlab ' on line 273.
+.................................................
+.................................................
 . LaTeX info: "xparse/define-command"
 . 
 . Defining command \pcbsub with sig. ' s g O{} O{cImportantBaseColor} t\matlab
-. ' on line 235.
+. ' on line 285.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'pcbexample' with sig. 's G{} O{}' on line 246.
+. Defining environment 'pcbexample' with sig. 's G{} O{}' on line 296.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Hiba with sig. 's t\it t\n O{red} g' on line 268.
+. Defining command \Hiba with sig. 's t\it t\n O{red} g' on line 318.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Atir with sig. 's t\it t\n O{blue} g' on line 284.
+. Defining command \Atir with sig. 's t\it t\n O{blue} g' on line 334.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Normal with sig. 's t\it t\n O{black} g' on line 301.
+. Defining command \Normal with sig. 's t\it t\n O{black} g' on line 351.
 .................................................
 \c@pczexample=\count347
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'example' with sig. 's o' on line 342.
+. Defining environment 'example' with sig. 's o' on line 392.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cExample' with sig. 's o O{}' on line 354.
+. Defining environment 'cExample' with sig. 's o O{}' on line 404.
 .................................................
 \c@pcztheorem=\count348
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'theorem' with sig. 's o' on line 365.
+. Defining environment 'theorem' with sig. 's o' on line 415.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cTheorem' with sig. 's o' on line 374.
+. Defining environment 'cTheorem' with sig. 's o' on line 424.
 .................................................
 \c@pczapplication=\count349
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'application' with sig. 's o' on line 386.
+. Defining environment 'application' with sig. 's o' on line 436.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'remark' with sig. 's o' on line 396.
+. Defining environment 'remark' with sig. 's o' on line 446.
 .................................................
 \c@pczlemma=\count350
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'lemma' with sig. 's o' on line 407.
+. Defining environment 'lemma' with sig. 's o' on line 457.
 .................................................
 \c@pczproposition=\count351
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'proposition' with sig. 's o' on line 418.
+. Defining environment 'proposition' with sig. 's o' on line 468.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cProposition' with sig. 's o' on line 430.
+. Defining environment 'cProposition' with sig. 's o' on line 480.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'proof' with sig. 's o' on line 439.
+. Defining environment 'proof' with sig. 's o' on line 489.
 .................................................
 \c@pczmatlab=\count352
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'matlab' with sig. 's o m' on line 453.
+. Defining environment 'matlab' with sig. 's o m' on line 503.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'pczLearnEnvironment' with sig. 's t\alpha t\asdas
-. O{default} m d|| d<> r() R<>{def}' on line 476.
+. O{default} m d|| d<> r() R<>{def}' on line 526.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \pmat with sig. ' s m O{0} m O{0} m ' on line 516.
+. Redefining command \pmat with sig. ' s m O{0} m O{0} m ' on line 566.
 .................................................
 ) (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
@@ -1926,12 +1933,12 @@ Package rerunfilecheck Info: File `polcz.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 25249 strings out of 493787
+ 25257 strings out of 493787
  125171,794899 words of node,token memory allocated
- 401 words of node memory still in use:
+ 402 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 44 glue_spec, 1 write nodes
-   avail lists: 1:2,2:31,3:492,4:1081,5:161,6:3801,7:170,8:12,9:369,10:344
- 28268 multiletter control sequences out of 65536+600000
+   avail lists: 1:2,2:31,3:495,4:1081,5:161,6:3801,7:170,8:12,9:369,10:344
+ 28276 multiletter control sequences out of 65536+600000
  36 fonts using 1425987 bytes
  61i,10n,87p,828b,924s stack positions out of 5000i,500n,10000p,200000b,100000s
 <</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><</usr
