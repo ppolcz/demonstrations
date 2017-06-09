@@ -23,8 +23,25 @@ persist.backup();
 fc = 30*1e9;
 c = 299792458;
 
-T = 2*pi / fc * c;
+lambda = c / fc;
 
+Delta = lambda / 2;
+
+T = 0.3e-9; % nanosec
+t = linspace(0,T,400);
+
+A = 1;
+phase = rand*2*pi;
+signal = A*exp(1j*(2*pi*fc*t+phase))
+
+
+d = 3;
+M = 8;
+theta = rand(1,3)*2*pi;
+
+(1:M)-1
+
+plot(t,[real(signal) ; imag(signal)])
 
 
 
