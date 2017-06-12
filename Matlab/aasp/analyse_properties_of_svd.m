@@ -20,14 +20,29 @@ persist.backup();
 
 %%
 
-A = [
-    1 2 3
-    4 5 6
-    ];
+N = 10;
+M = 5;
+d = 3;
 
-[U,S,Vh] = svd(A)
+s = rand(d,N);
+A = rand(M,d);
 
-S*Vh'
+X = A*s;
+
+[U,Sigma,Vh] = svd(X);
+
+Us = U(:,1:d);
+U0 = U(:,d+1:M);
+
+Vsh = Vh(:,1:d);
+V0h = Vh(:,d+1:N);
+
+Sigmas = Sigma(1:d,1:d);
+Sigma0 = Sigma(d+1:M,d+1:N);
+
+pcz_info(norm(X - Us * Sigmas * Vsh') < 1e-10,'X == Us * Sigmas * Vsh''')
+pcz_info(norm(U0' * X) < 1e-10,'U0'' spans the null space of X')
+
 %%
 
 A = [
@@ -35,7 +50,7 @@ A = [
     3 4 5 6 7 8 2 1
     ];
 
-[U,S,Vh] = svd(A)
+[U,Sigma,Vh] = svd(A)
 
 %%
 % End of the script.
