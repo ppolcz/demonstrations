@@ -52,6 +52,49 @@ A = [
 
 [U,Sigma,Vh] = svd(A)
 
+
+%% Pseudo inverse of rank deficient matrix using SVD
+
+d = 9;
+M = 100;
+N = 10;
+
+A = rand(M,d) * rand(d,N); % rank(A) == d
+
+[U,Sigma,Vh] = svd(A);
+
+Sigma_pinv = [ blkdiag(diag(1./diag(Sigma(1:d,1:d))), zeros(N-d,N-d)) zeros(N,M-N) ];
+Sigma_pinv * Sigma;
+
+A_pinv = Vh*Sigma_pinv*U';
+I_approx = A_pinv * A
+% Vh*Sigma_pinv*U' * U*Sigma*Vh'
+
+%% System of linear equations
+% Overdetermined systems
+
+m = 5;
+d = 3;
+
+A = rand(m,d);
+s = rand(d,1);
+x = A*s;
+
+s_hat = (A'*A) \ A' * x; 
+
+A*s_hat - x
+
+%% Trace things
+
+A = [
+    0 0 0 1
+    0 0 1 0
+    0 1 0 0
+    1 0 0 0
+    ];
+
+[S,D] = eig(A)
+
 %%
 % End of the script.
 pcz_dispFunctionEnd(TMP_kzOUaGOyFoGAkcaGKdUB);
