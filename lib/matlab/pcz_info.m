@@ -53,6 +53,10 @@ end
 
 fprintf('\n')
 
+if nargout > 0
+    ret = ~bool;
+end
+    
 % cprintf('_green', 'underlined green');
 
 % web('text://<html><h1>Hello World</h1></html>')
