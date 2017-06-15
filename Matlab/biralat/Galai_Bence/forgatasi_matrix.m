@@ -175,7 +175,7 @@ axis equal
 %%
 
 N = 30;
-P_max = 10;
+P_max = 20;
 [d,a] = meshgrid(linspace(0,P_max,N));
 
 F_BG = 1 - 1 ./ (1 + exp(d - a));
@@ -193,7 +193,7 @@ ptitle '$f_{FG}(d,a) = 1 - \\frac{1}{1 + e^{a-d}}$'
 xlim([0,P_max]),
 ylim([0,P_max]),
 
-ptikz
+% ptikz
 %%
 % End of the script.
 pcz_dispFunctionEnd(TMP_QVgVGfoCXYiYXzPhvVPX);
