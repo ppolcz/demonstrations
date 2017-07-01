@@ -19,7 +19,7 @@ ending = sprintf(ending);
 
 delimiters = reshape([repmat({del1}, [m-1,q]) ; repmat({del2}, [1,q])], [1 numel(A)]);
 
-A_char = cellfun(@(a) {sprintf(format,a)}, num2cell(A'));
+A_char = cellfun(@(a) {pcz_scalar2str(format,a)}, num2cell(A'));
 A_char(1,:) = strcat(repmat({pref}, [1,q]), A_char(1,:));
 A_char = reshape(A_char, [1, numel(A)]);
 

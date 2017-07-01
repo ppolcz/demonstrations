@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1496318037 "polcz.tex" "polcz.pdf" "polcz" 1496318039
+["pdflatex"] 1498849570 "polcz.tex" "polcz.pdf" "polcz" 1498849576
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -20,6 +20,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti12.tfm" 1136768653 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm" 1136768653 772 9a936b7f5e2ff0557fce0f62822f0bbf ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1248133631 36554 b67dc2cfa451409e100b3fcf5f506509 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
@@ -29,6 +30,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1248133631 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1248133631 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb" 1248133631 24252 1e4e051947e12dfb50fee0b7f4e26e3a ""
   "/usr/share/texlive/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua" 1396131463 2193 8449719e7f555e0c3b61dec2ac327e00 ""
   "/usr/share/texlive/texmf-dist/scripts/oberdiek/pdftexcmds.lua" 1367105035 9321 d9ce5deda77218ebc443857880bbbd13 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -164,12 +166,12 @@
   "/usr/share/texlive/texmf-dist/tex/luatex/luatexbase/mcb.lua" 1368398313 9471 33967fdd8d1a4ddde6c30c6aa497ca9e ""
   "/usr/share/texlive/texmf-dist/tex/luatex/luatexbase/modutils.lua" 1368398313 4422 65d17d518cef47d7f1a00d8f211f0add ""
   "/var/lib/texmf/web2c/luatex/lualatex.fmt" 1490562446 4346181 4331c836144b3b02cfb0739aff9385fc ""
-  "polcz.aux" 1496318039 742 2d71bba269d72738df028e6afc30e9f2 ""
-  "polcz.out" 1496318039 42 be6ad664b2ce68461f44f0d01865aee1 ""
+  "polcz.aux" 1498849572 742 69a1bfe0b1570b83e20f8838bdf26b72 ""
+  "polcz.out" 1498849572 42 be6ad664b2ce68461f44f0d01865aee1 ""
   "polcz.sty" 1494866030 16047 a1b97a150afe55177179bc31a4f3b126 ""
-  "polcz.tex" 1494866030 4933 1b3b21675a45d7dec83ee55e73ffab33 ""
+  "polcz.tex" 1498849568 4929 dbdb04beece203250e51b19b1cfe095c ""
   (generated)
-  "polcz.log"
   "polcz.aux"
+  "polcz.log"
   "polcz.pdf"
   "polcz.out"
