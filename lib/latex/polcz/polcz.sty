@@ -362,6 +362,7 @@
     \providecommand\applicationTitle{Alkalmazás}
     \providecommand\exampleTitle{Példa}
     \providecommand\theoremTitle{Tétel}
+    \providecommand\definitionTitle{Definíció}
     \providecommand\proofTitle{Bizonyítás}
 
 \else\ifx\thm 2
@@ -372,6 +373,7 @@
     \providecommand\applicationTitle{Application}
     \providecommand\exampleTitle{Example}
     \providecommand\theoremTitle{Theorem}
+    \providecommand\definitionTitle{Definition}
     \providecommand\proofTitle{Proof}
 
 \fi\fi
@@ -409,6 +411,17 @@
     {%
         \refstepcounter{pcztheorem}%
         \bigbreak\noindent\textbf{{\theoremTitle} \thepcztheorem.}\IfNoValueF{#2}{ (#2) }%
+    }
+    {
+        \hfill$\triangleleft$
+    }
+
+    \newcounter{pczdefinition}
+    \DeclareDocumentEnvironment{definition}
+    {s o}
+    {\let\emph\textbf%
+        \refstepcounter{pczdefinition}%
+        \bigbreak\noindent\textbf{{\definitionTitle} \arabic{pczdefinition}.}\IfNoValueF{#2}{ (#2) }\itshape%
     }
     {
         \hfill$\triangleleft$

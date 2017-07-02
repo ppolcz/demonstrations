@@ -14,9 +14,9 @@ html/*.html
 */*/*/*/html/*.html
 */*/*/*/*/html/*.html
 
-html/*.png
-*/html/*.png
-*/*/html/*.png
-*/*/*/html/*.png
-*/*/*/*/html/*.png
-*/*/*/*/*/html/*.png
+*.png
+*/*.png
+*/*/*.png
+*/*/*/*.png
+*/*/*/*/*.png
+*/*/*/*/*/*.png
