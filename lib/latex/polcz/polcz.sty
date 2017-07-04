@@ -654,13 +654,14 @@ t\hun                                  % [#6]
     \refstepcounter{#2}%
     \global\csdef{pczabsthmtitle}%
     {%
-        \bfseries%
-        \IfBooleanTF{#6}%
-        {%
-            \arabic{#2}. #3.%
-        }%
-        {%
-            #3 \arabic{#2}.%
+        {\bfseries%
+            \IfBooleanTF{#6}%
+            {%
+                \arabic{#2}. #3.%
+            }%
+            {%
+                #3 \arabic{#2}.%
+            }%
         }%
         \ifx\hfuzz#4\hfuzz%
         \else%
@@ -670,7 +671,7 @@ t\hun                                  % [#6]
         \else%
             \hfill%
             {\small\color{bourdon}%
-                \itshape #5%
+                #5%
             }\IfBooleanT{#1}{\newline}%
         \fi%
     }%%
@@ -681,163 +682,84 @@ t\hun                                  % [#6]
 
 \DeclareDocumentEnvironment{thm}{
 s
-G{\theoremTitle} d() d||                            % [#2 #3 #4] theorem name, title, info
-t\hun                                               % [#5]
-O{} O{bourdon} D<>{bourdon!35!yellow} D||{bourdon}  % [#6 #7 #8] pcb: tcolorbox properties, color1, color2, color3
+G{\theoremTitle} d() d||               % [#2 #3 #4] theorem name, title, info
+t\hun                                  % [#5]
+O{} O{bourdon} D<>{bourdon!35!yellow}  % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
+G{pcztheorem}
 }
 {%
-    \refstepcounter{pcztheorem}%
-    \global\csdef{thmtitle\arabic{pcztheorem}}%
-    {%
-        \bfseries%
-        \IfBooleanTF{#5}%
-        {%
-            \arabic{pcztheorem}. #2.%
-        }%
-        {%
-            #2 \arabic{pcztheorem}.%
-        }%
-        \IfValueT{#3}{% theorem title%
-            \normalfont\IfBooleanTF{#1}{ ({#3})}{ {#3}}%
-        }%
-        \IfValueT{#4}%
-        {%
-            \hfill%
-            {\small\color{#9}%
-                \itshape #4%
-            }\IfBooleanT{#1}{\newline}%
-        }%
-    }%
-    %
     \IfBooleanTF{#1}%
     {%
+        \begin{absthm}*{#9}{#2}(#3)|#4|\hun%
         \begin{pcb}[#6][#7]<#8>%
-        \csuse{thmtitle\arabic{pcztheorem}}%
+        \csuse{pczabsthmtitle}%
     }%
     {%
-        \begin{pcb}[title={\csuse{thmtitle\arabic{pcztheorem}}},#6][#7]<#8>%
+        \begin{absthm}{#9}{#2}(#3)|#4|\hun%
+        \begin{pcb}[title={\csuse{pczabsthmtitle}},#6][#7]<#8>%
     }%
 }%
 {%
     \end{pcb}%
+    \end{absthm}%
 }%
 
 \DeclareDocumentEnvironment{prop}{
 s
-G{\propositionTitle} d() d||                          % [#2 #3 #4] theorem name, title, info
-t\hun                                                 % [#5]
-O{} O{bourdon} D<>{bourdon!35!yellow} D||{bourdon}    % [#6 #7 #8] pcb: tcolorbox properties, color1, color2, color3
+G{\propositionTitle} D(){} D||{}          % [#2 #3 #4] theorem name, title, info
+t\hun                                     % [#5]
+O{} O{bourdon} D<>{bourdon!35!yellow}     % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
+G{pczproposition}
 }
 {%
-    \refstepcounter{pczproposition}%
-    \global\csdef{pczabsthtitle}%
-    {%
-        {\bfseries%
-            \IfBooleanTF{#5}%
-            {%
-                \arabic{pczproposition}. #2.%
-            }%
-            {%
-                #2 \arabic{pczproposition}.%
-            }%
-        }%
-        \IfValueT{#3}{% theorem title%
-            \normalfont\IfBooleanTF{#1}{ ({#3})}{ {#3}}%
-        }%
-        \IfValueT{#4}%
-        {%
-            \hfill%
-            {\small\color{#9}%
-                \itshape #4%
-            }\IfBooleanT{#1}{\newline}%
-        }%
-    }%
-    %
     \IfBooleanTF{#1}%
     {%
+        \begin{absthm}*{#9}{#2}(#3)|#4|\hun%
         \begin{pcb}[#6][#7]<#8>%
-        \csuse{pczabsthtitle}%
+        \csuse{pczabsthmtitle}%
     }%
     {%
-        \begin{pcb}[title={\csuse{pczabsthtitle}},#6][#7]<#8>%
+        \begin{absthm}{#9}{#2}(#3)|#4|\hun%
+        \begin{pcb}[title={\csuse{pczabsthmtitle}},#6][#7]<#8>%
     }%
 }%
 {%
     \end{pcb}%
+    \end{absthm}%
 }%
 
 \DeclareDocumentEnvironment{fel}{
 s
-G{feladat} d() d||                    % [#2 #3 #4] theorem name, title, info
-t\hun                                 % [#5]
-O{} O{blue} D<>{blue} D||{bourdon}    % [#6 #7 #8] pcb: tcolorbox properties, color1, color2, color3
+G{feladat} D(){} D||{}   % [#2 #3 #4] theorem name, title, info
+t\hun                    % [#5]
+O{} O{blue} D<>{blue}    % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
+G{pczexample}
 }
 {%
-    \refstepcounter{pczexample}%
-    \global\csdef{thmtitle\arabic{pczexample}}%
-    {%
-        {\bfseries \arabic{pczexample}. #2.}%
-        \IfValueT{#3}{% theorem title%
-            \normalfont\IfBooleanTF{#1}{ ({#3})}{ {#3}}%
-        }%
-        \IfValueT{#4}%
-        {%
-            \hfill%
-            {\small\color{#9}%
-                \tt #4%
-            }\IfBooleanT{#1}{\newline}%
-        }%
-    }%
-    %
     \IfBooleanTF{#1}%
     {%
+        \begin{absthm}*{#9}{#2}(#3)|#4|\hun%
         \begin{pcb}[oversize,#6][#7]%
-        \csuse{thmtitle\arabic{pczexample}}%
+        \csuse{pczabsthmtitle}%
     }%
     {%
-        \begin{pcb}[oversize,title={\csuse{thmtitle\arabic{pczexample}}},#6][#7]%
+        \begin{absthm}{#9}{#2}(#3)|#4|\hun%
+        \begin{pcb}[oversize,title={\csuse{pczabsthmtitle}},#6][#7]%
     }%
 }%
 {%
     \end{pcb}%
+    \end{absthm}%
 }%
 
 \DeclareDocumentEnvironment{feladat}{
 s
-G{feladat} d() d||                    % [#2 #3 #4] theorem name, title, info
-t\hun                                 % [#5]
-O{} O{blue} D<>{blue} D||{bourdon}    % [#6 #7 #8] pcb: tcolorbox properties, color1, color2, color3
+G{feladat} D(){} D||{}    % [#2 #3 #4] theorem name, title, info
+t\hun                     % [#5]
+O{} O{blue} D<>{blue}     % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
 }
 {%
-    \refstepcounter{pczexample}%
-    \bigbreak\noindent%
-    \global\csdef{thmtitle\thepczexample}%
-    {%
-        {\bfseries%
-        \arabic{pczexample}. #2.}%
-        \IfValueT{#3}{ ({#3})}%
-        \IfValueT{#4}%
-        {%
-            \hfill%
-            {\small\color{#9}%
-                \tt #4%
-            }\newline%
-        }%
-    }%
-    \csuse{thmtitle\thepczexample}%
-}%
-{%
-    \phantom{.}\hfill$\triangleleft$
-}%
-
-\DeclareDocumentEnvironment{feladat}{
-s
-G{feladat} D(){} D||{}                % [#2 #3 #4] theorem name, title, info
-t\hun                                 % [#5]
-O{} O{blue} D<>{blue} D||{bourdon}    % [#6 #7 #8] pcb: tcolorbox properties, color1, color2, color3
-}
-{%
-    \begin{absthm}*{pczexample}{#2}(#3)|\color{#9} #4|\hun%
+    \begin{absthm}*{pczexample}{#2}(#3)|#4|\hun%
     \bigbreak\noindent\csuse{pczabsthmtitle}%
 }%
 {%
@@ -846,3 +768,29 @@ O{} O{blue} D<>{blue} D||{bourdon}    % [#6 #7 #8] pcb: tcolorbox properties, co
 }%
 
 \fi
+
+
+
+
+
+
+
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{mygreen}{rgb}{0.2,0.5,0.1}
+\definecolor{darkgreen}{HTML}{789130}
+\definecolor{scarlet}{HTML}{95081F}
+\definecolor{mygreen}{HTML}{058714}
+\definecolor{purple}{HTML}{A9006B}
+
+\DeclareDocumentEnvironment{word}
+{s m D<>{} d[] d()}
+{
+    \noindent {\LARGE \bfseries \blue #2 }%
+    \IfBooleanTF{#1}{\small[{\bfseries \red formal}] }{}%
+    \textcolor{darkgreen}{\textit{\normalsize \mdseries #3} }%
+    \IfNoValueTF{#5}{}{\normalsize (\textit{\textcolor{orange}{#5}}) }%
+    \begin{enumerate}%
+}
+{
+    \end{enumerate}
+}
