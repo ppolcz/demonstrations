@@ -27,7 +27,7 @@ end
 \end{luacode}
 
 \usepackage[ownhref,ccsgyak,thmhu]{polcz}
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb,mathtools}
 \usepackage{xcolor}
 \usepackage{lipsum}
 
@@ -40,6 +40,7 @@ end
     anchorcolor = blue,
     pagebackref = false
     ]{hyperref}
+\usepackage[utf8]{inputenc}
 
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
@@ -240,5 +241,210 @@ $
 \luapmat{2}{3}{4}{4}
 $
 
+
+
+\newpage
+\begin{align*}
+    \hmath[remember as=fx]{f(x)}
+    &= \int\limits_{1}^{x} \frac{1}{t^2}~dt = \left[ -\frac{1}{t} \right]_{1}^{x}\\
+    &= -\frac{1}{x} + \frac{1}{1}\\
+    &=
+    \hmath[
+        overlay={
+            % \draw[blue,very thick,->] (fx.south) to[bend right] ([yshift=2mm]frame.west);
+            \draw[bourdon,very thick,->] (fx.south) to[bend right] (frame.160);
+        }
+    ][white]{1-\frac{1}{x}.}
+\end{align*}
+text
+\begin{align}
+\hmath[
+    overlay={
+        % \draw[blue,very thick,->] (fx.south) to[bend right] ([yshift=2mm]frame.west);
+        \draw[bourdon,very thick,->] (fx.south) to[bend right] (frame.140);
+    }
+]{1-\frac{1}{x}}
+\end{align}
+
+\newtcbtheorem[number within=section]{mytheo}{My Theorem}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\begin{mytheo}{This is my title}{theoexample}
+This is the text of the theorem. The counter is automatically assigned and,
+in this example, prefixed with the section number. This theorem is numbered with
+\ref{th:theoexample} and is given on page \pageref{th:theoexample}.
+\end{mytheo}
+
+\tcbmaketheorem{pcbfel}{Feladat}{
+    enhanced,
+    breakable,
+    colback=blue!10 ,
+    boxrule=1pt, arc=4pt, left=0.5\pczoversizelength, right=0.5\pczoversizelength, top=6pt, bottom=6pt,
+    boxsep=0pt,
+    toptitle=4pt,
+    bottomtitle=4pt,
+    fonttitle=\bfseries,
+    coltitle=black,
+    colframe=blue!30!black,
+    colbacktitle=blue!20,
+    subtitle style={
+        boxrule=0.4pt,
+        colback=blue!20},
+    oversize=-\pczoversizelength,
+    % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+}{pczexample}{pl}
+
+\begin{pcbfel}{\pcbTitleHelper{red}{asdasda}{asdddd}\matlab}{marker}
+
+\end{pcbfel}
+
+Lásd: \ref{pl:marker}
+
+\DeclareDocumentCommand{\pcbtheoremname}{s g g o t\hun}
+{%
+    \bfseries%
+    \IfBooleanTF{#5}%
+    {%
+        \arabic{#2}. #3.%
+    }%
+    {%
+        #3 \arabic{#2}.%
+    }%
+    \normalfont%
+    \IfBooleanTF{#1}%
+    { %
+        #4%
+    }%
+    { %
+        (#4)%
+    }%
+}%
+
+\DeclareDocumentCommand{\pcbtheoreminfo}{s g t\tt}
+{%
+    \IfBooleanTF{#1}%
+    {%
+        \hfill%
+        {\small\color{bourdon}%
+            \IfBooleanTF{#3}%
+            {%
+                \tt #2%
+            }%
+            {%
+                \itshape #2%
+            }%
+        }%
+    }%
+    {%
+        {\small\color{bourdon}%
+            \IfBooleanTF{#3}%
+            {%
+                \tt [#2]%
+            }%
+            {%
+                {-- \itshape #2 --}%
+            }%
+        }%
+    }%
+}%
+
+\begin{pcb}[title=Kutyagumi][blue]
+    This is my own box with a mandatory title and options.
+\end{pcb}
+
+\begin{pcb}[title=Kutyagumi,oversize][bourdon]<bourdon!35!yellow>
+    This is my own box with a mandatory title and options.
+\end{pcb}
+
+\begin{cProposition}*{Kutyagumi}
+    This is my own box with a mandatory title and options.
+\end{cProposition}
+
+\begin{cExample}*{Title}[asd][asd]
+
+\end{cExample}
+
+\noindent
+\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \\
+\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\hun \\
+\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \\
+\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\hun \\
+%
+\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \pcbtheoreminfo{interp1} \\
+\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \pcbtheoreminfo{interp1}\tt \\
+\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\hun \pcbtheoreminfo*{interp1} \\
+\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\hun \pcbtheoreminfo*{interp1}\tt \\
+
+\global\csdef{kutyagumi123}{\bfseries almamartas}
+\csuse{kutyagumi123}
+
+\newpage
+\section{Uj Tetelblokk}
+\begin{thm}*{Alma}(Kutyagumi)
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}*{Alma}(Kutyagumi)|matlabFunction|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}*{Alma}(Kutyagumi)|\tt matlabFunction|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}*(Kutyagumi)|\tt matlabFunction|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}*{Alma}|\tt matlabFunction|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}{Alma}(Kutyagumi)
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}{Alma}(Kutyagumi)|matlabFunction|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}{Alma}(Kutyagumi)|\tt matlabFunction|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}(Kutyagumi)|\tt matlabFunction|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}{Alma}|\tt matlabFunction|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}{Alma}|\tt matlabFunction|\hun<magenta>
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}{Alma}|\tt matlabFunction|\hun|red|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\begin{thm}{Alma}|\tt matlabFunction|\hun[][black]|black|
+    Ez itt az uj tetelblokk
+\end{thm}
+
+\section{Uj Proposition blokk}
+
+\providecommand\vx{\vec x}
+\begin{prop}*(integrálgörbék invarianciája)
+    Legyen $\vec F: \mathbb{R}^{n} \to \mathbb{R}^{n}$ vektormező és $f:\mathbb{R}^{{n}} \to \mathbb{R}$ szigorúan pozitív értékű skalármező.
+    Illetve legyen $\vec G(\vx) = \vec F(\vx) f(\vx)$. Ekkor ha $\Gamma = \qty{\vec\gamma(t) ~\middle|~ t \in [a,b]}$ integrálgörbéje $\vec F(\vx)$-nak, akkor $\vec G(\vx)$-nak is integrálgörbéje (és fordítva).
+    \itshape Költői kérdés: ez miért hasznos nekünk?
+\end{prop}
+
+\begin{prop}(Integrálgörbék invarianciája)
+    Legyen $\vec F: \mathbb{R}^{n} \to \mathbb{R}^{n}$ vektormező és $f:\mathbb{R}^{{n}} \to \mathbb{R}$ szigorúan pozitív értékű skalármező.
+    Illetve legyen $\vec G(\vx) = \vec F(\vx) f(\vx)$. Ekkor ha $\Gamma = \qty{\vec\gamma(t) ~\middle|~ t \in [a,b]}$ integrálgörbéje $\vec F(\vx)$-nak, akkor $\vec G(\vx)$-nak is integrálgörbéje (és fordítva).
+    \itshape Költői kérdés: ez miért hasznos nekünk?
+\end{prop}
 
 \end{document}
