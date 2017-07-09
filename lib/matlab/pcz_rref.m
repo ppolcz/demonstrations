@@ -1,4 +1,4 @@
-function [submatrices] = pcz_rref(A)
+function [A_rref,A_perm,submatrices,S,iS] = pcz_rref(A)
 % 
 %  
 %  file:   pcz_rref.m
@@ -21,10 +21,10 @@ A_test = [
 	  17   25   42   -7   77   -9   52
 	  11   13   24   -3   45   -4   12
 	];
-A = A_test;
+% A = A_test;
 
 [m,K] = size(A);
-k = rank(A);
+nk = rank(A);
 
 [A_rref, Ic] = rref(A);
 
@@ -39,25 +39,35 @@ rho = [Ir Jr];
 Irho = pcz_permat(sigma)';
 Isigma = pcz_permat(rho)';
 
-A_can = A(rho,sigma);
+A_perm = A(rho,sigma);
 
 T = A(Ir,Ic);
+iT = T\eye(nk);
 U = A(Ir,Jc);
 Tp = A(Jr,Ic);
 Up = A(Jr,Jc);
 V = [T U];
 W = [Tp Up];
+Gamma = W*V'/(V*V');
 
 submatrices = struct;
-submatrices = pcz_struct_append(submatrices,T,U,Tp,Up);
+submatrices = pcz_struct_append(submatrices,...
+    T,U,Tp,Up,V,W,Gamma,rho,sigma,m,K,nk,Irho,Isigma);
 
-assert(rank(T) == k && all(all(A_can == [T U ; Tp Up])),...
+S = [
+    iT zeros(nk,m-nk)
+    -Gamma eye(m-nk)
+    ];
+
+iS = [
+    T zeros(nk,m-nk)
+    Gamma*T eye(m-nk)
+    ];
+
+assert(rank(T) == nk && all(all(A_perm == [T U ; Tp Up])),...
     'A_can should have a form A_can = [T U ; Tp Up], with T invertible');
 
-% rref(A*Isigma)
-% rref(A'*Irho)
-
-assert(all(all(Isigma*A*Irho' - A_can == 0)),...
+assert(all(all(Isigma*A*Irho' - A_perm == 0)),...
     'A_can == Isigma*A*Irho''');
 
 end
