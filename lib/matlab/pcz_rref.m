@@ -50,10 +50,6 @@ V = [T U];
 W = [Tp Up];
 Gamma = W*V'/(V*V');
 
-submatrices = struct;
-submatrices = pcz_struct_append(submatrices,...
-    T,U,Tp,Up,V,W,Gamma,rho,sigma,m,K,nk,Irho,Isigma);
-
 S = [
     iT zeros(nk,m-nk)
     -Gamma eye(m-nk)
@@ -63,6 +59,10 @@ iS = [
     T zeros(nk,m-nk)
     Gamma*T eye(m-nk)
     ];
+
+submatrices = struct;
+submatrices = pcz_struct_append(submatrices,...
+    T,U,Tp,Up,V,W,Gamma,rho,sigma,m,K,nk,Irho,Isigma,S,iS,A_rref,A_perm);
 
 assert(rank(T) == nk && all(all(A_perm == [T U ; Tp Up])),...
     'A_can should have a form A_can = [T U ; Tp Up], with T invertible');

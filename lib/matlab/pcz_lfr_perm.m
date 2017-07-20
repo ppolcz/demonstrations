@@ -1,4 +1,4 @@
-function [A1,B1,C1,D1,Delta1,Theta1,z0,q] = ...
+function [A1,B1,C1,D1,Delta1,Theta1,z0,q,submatrices] = ...
     pcz_lfr_perm(A, B, C, D, Delta, x)
 %% Script pcz_lfr_perm
 %  
@@ -19,7 +19,7 @@ Pib = [ x ; Pi ];
 
 [Theta,z0,q] = pcz_Pi_canonical_decomp(Pib);
 
-[~,Theta_perm,submatrices] = pcz_rref(Theta);
+[~,~,submatrices] = pcz_rref(Theta);
 
 sigma = submatrices.sigma;
 rho = submatrices.rho;
@@ -42,12 +42,12 @@ Theta1 = Isb * Theta * Ir';
 z01 = Ir * z0;
 
 
-simplify([A B] * Theta * z0 / q)
-simplify([A1 B1] * Theta1 * z01 / q)
-
-simplify([A B] * Theta * z0 / q - [A B]*Pib)
-simplify([A1 B1] * Theta1 * z01 / q - [A B]*Pib)
-
-simplify(Is'*inv(eye(p) - Delta1*D1)*Delta1*C1*x - Pi)
+% simplify([A B] * Theta * z0 / q)
+% simplify([A1 B1] * Theta1 * z01 / q)
+% 
+% simplify([A B] * Theta * z0 / q - [A B]*Pib)
+% simplify([A1 B1] * Theta1 * z01 / q - [A B]*Pib)
+% 
+% simplify(Is'*inv(eye(p) - Delta1*D1)*Delta1*C1*x - Pi)
 
 end

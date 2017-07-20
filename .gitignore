@@ -1,3 +1,11 @@
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.pdf
+*.log
+*.synctex.gz
+*.autosave
 
 *~
 */*~
