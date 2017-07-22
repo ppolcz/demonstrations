@@ -1,0 +1,1876 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ifBo",
+				"IfBooleanT"
+			],
+			[
+				"IfVal",
+				"IfNoValueT"
+			],
+			[
+				"lyap",
+				"eq:prop_invariance_lyap"
+			],
+			[
+				"lfr",
+				"eq:lfr_reduced"
+			],
+			[
+				"lfr_",
+				"eq:lfr_decomposed"
+			],
+			[
+				"skipped",
+				"eq:skipped_pi2"
+			],
+			[
+				"eq",
+				"eq\tequation (align)"
+			],
+			[
+				"o",
+				"o\tω"
+			],
+			[
+				"la",
+				"label\tlabel eq:"
+			],
+			[
+				"dimension",
+				"dimensional"
+			],
+			[
+				"decom",
+				"eq:lfr_decomposed"
+			],
+			[
+				"tra",
+				"eq:permutation_trafo"
+			],
+			[
+				"correspond",
+				"corresponding"
+			],
+			[
+				"al",
+				"al\taligned"
+			],
+			[
+				"corresp",
+				"correspondingly"
+			],
+			[
+				"sys",
+				"sys:lfr_algebraic"
+			],
+			[
+				"p_",
+				"p_k"
+			],
+			[
+				"z_",
+				"z_p"
+			],
+			[
+				"theta",
+				"vartheta\t\\vartheta"
+			],
+			[
+				"fig",
+				"fig/fault_detection.png"
+			],
+			[
+				"fi",
+				"fig/sim_LTI_MIMO_fault_detection.pdf"
+			],
+			[
+				"Na",
+				"eq:Na2_sajat"
+			],
+			[
+				"Ca",
+				"eq:Ca2_alepha2"
+			],
+			[
+				"eq:Ca",
+				"eq:Ca7_alepha7"
+			],
+			[
+				"Nb",
+				"eq:Nb7_sajat"
+			],
+			[
+				"Rnn",
+				"Rnn\tℝ^.."
+			],
+			[
+				"eq:N",
+				"eq:Nb2_sajat"
+			],
+			[
+				"O",
+				"O\tΩ"
+			],
+			[
+				"LFR",
+				"2006_Magni_LFR: Linear fractional representation toolbox (version 2.0) for use with"
+			],
+			[
+				"fig:vdpu",
+				"fig:vdpu_t"
+			],
+			[
+				"ISS",
+				"eq:vdp_ISS_P"
+			],
+			[
+				"vd",
+				"fig:vdp_ISS"
+			],
+			[
+				"norm",
+				"Normal"
+			],
+			[
+				"l",
+				"label\tlabel eq:"
+			],
+			[
+				"Mkk",
+				"MKK_Logo.pdf"
+			],
+			[
+				"use",
+				"use"
+			],
+			[
+				"P16",
+				"eq:P16_a"
+			],
+			[
+				"USERS_RE",
+				"USERS_REMOTE_ADDRESS"
+			],
+			[
+				"USERS_SYNC_",
+				"USERS_SYNC_UP"
+			],
+			[
+				"USERS_",
+				"USERS_SYNC_DOWN"
+			],
+			[
+				"USER",
+				"USERS_LOCAL"
+			],
+			[
+				"US",
+				"USERS_LOCAL"
+			],
+			[
+				"RS",
+				"RSYNC_EGREP"
+			],
+			[
+				"RSY",
+				"RSYNC_FLAGS"
+			],
+			[
+				"rann",
+				"eq:prop_rann_N_hat"
+			],
+			[
+				"Fin",
+				"eq:Finsler_1"
+			],
+			[
+				"Rn",
+				"Rn\tℝ^."
+			],
+			[
+				"label",
+				"label\tlabel eq:"
+			],
+			[
+				"ali",
+				"al\taligned"
+			],
+			[
+				"Lya",
+				"eq:Lyapunov_form"
+			],
+			[
+				"fun",
+				"functions"
+			],
+			[
+				"lf",
+				"sys:lfr_lin"
+			],
+			[
+				"eq:Lya",
+				"eq:Lyapunov_form"
+			],
+			[
+				"Lyap",
+				"eq:Lyapunov_hat"
+			],
+			[
+				"correspon",
+				"correspondingly"
+			],
+			[
+				"dimen",
+				"dimension"
+			],
+			[
+				"observ",
+				"observability"
+			],
+			[
+				"con",
+				"cont_sch-eps-converted-to.pdf"
+			],
+			[
+				"cont_sch",
+				"cont_sch-eps-converted-to.pdf"
+			],
+			[
+				"x1_n",
+				"x1_numd"
+			],
+			[
+				"sec",
+				"sec:LFT"
+			],
+			[
+				"befo",
+				"before_link"
+			],
+			[
+				"R_",
+				"R_DEMONSTRATIONS"
+			],
+			[
+				"If",
+				"IfBooleanTF"
+			],
+			[
+				"DeclareDocument",
+				"DeclareDocumentCommand"
+			],
+			[
+				"Re",
+				"RequirePackage"
+			],
+			[
+				"t",
+				"trigger\tCreate new trigger"
+			],
+			[
+				"input",
+				"input-to-state"
+			],
+			[
+				"f",
+				"eq:f"
+			],
+			[
+				"in",
+				"infty"
+			],
+			[
+				"sub",
+				"subl\tsubequations with label"
+			],
+			[
+				"c",
+				"cout"
+			],
+			[
+				"main",
+				"main\tmain()"
+			],
+			[
+				"subse",
+				"subseteq"
+			],
+			[
+				"trajecto",
+				"trajectories"
+			],
+			[
+				"unc",
+				"eq:unc1_centered"
+			],
+			[
+				"Sec",
+				"Sec_Uncertain_levelset"
+			],
+			[
+				"LMI",
+				"lmi:dV"
+			],
+			[
+				"conse",
+				"consequence"
+			],
+			[
+				"poly",
+				"polytope"
+			],
+			[
+				"equival",
+				"equivalence"
+			],
+			[
+				"en",
+				"en:iii"
+			],
+			[
+				"enu",
+				"enum\tEnumerate"
+			],
+			[
+				"L",
+				"LN\tL_N(..)"
+			],
+			[
+				"math",
+				"mathfrak"
+			],
+			[
+				"eq:GMI",
+				"eq:GMIq"
+			],
+			[
+				"equiv",
+				"equivalence"
+			],
+			[
+				"satis",
+				"satisfy"
+			],
+			[
+				"em",
+				"em"
+			],
+			[
+				"hi",
+				"Hibas\t\\Hibas"
+			],
+			[
+				"algr",
+				"algebraic"
+			],
+			[
+				"mat",
+				"mathcal"
+			],
+			[
+				"aligne",
+				"al\taligned"
+			],
+			[
+				"equiva",
+				"equivalent"
+			],
+			[
+				"GMI",
+				"eq:GMI_F"
+			],
+			[
+				"E",
+				"Eq."
+			],
+			[
+				"xd",
+				"xd\t\\xd"
+			],
+			[
+				"bm",
+				"bm\t[...]"
+			],
+			[
+				"br",
+				"br"
+			],
+			[
+				"tri",
+				"trigger\tCreate new trigger"
+			],
+			[
+				"m",
+				"mf\tℝ^. -> ℝ^.."
+			],
+			[
+				"oo",
+				"oo"
+			],
+			[
+				"eqal",
+				"eqall\tequation aligned with label"
+			],
+			[
+				"trig",
+				"trigger\tCreate new trigger"
+			],
+			[
+				"tr",
+				"trigger"
+			],
+			[
+				"enum",
+				"enum\tEnumerate"
+			],
+			[
+				"defi",
+				"deficient"
+			],
+			[
+				"Finler",
+				"finslerIICore"
+			],
+			[
+				"php",
+				"php\t<?php … ?>"
+			],
+			[
+				"text",
+				"text-success"
+			],
+			[
+				"cl",
+				"class\tAttr"
+			],
+			[
+				"FOR",
+				"FOREACH_COMMIT"
+			],
+			[
+				"COMM",
+				"COMMIT"
+			],
+			[
+				"ana3",
+				"anal3_3_16.pdf"
+			],
+			[
+				"Bastin",
+				"Bastin1990line: On-line estimation and adaptive control of bioreactors"
+			],
+			[
+				"auto",
+				"autonomous"
+			],
+			[
+				"ld",
+				"ldots"
+			],
+			[
+				"anni",
+				"annihilatorV"
+			],
+			[
+				"cen",
+				"centering"
+			],
+			[
+				"lv2_v1",
+				"fig/lv2_v1/Lyap_2.pdf"
+			],
+			[
+				"paddi",
+				"padding-top"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"To",
+				"ToC"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"max-di",
+				"max-width"
+			],
+			[
+				"ASA",
+				"ASA\tHTML Pre Code"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "polcz.tex",
+			"settings":
+			{
+				"buffer_size": 5935,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polcz.sty",
+			"settings":
+			{
+				"buffer_size": 18633,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/ppolcz/Dropbox/Peti/Desktop/CTAN/source/physics.sty",
+			"settings":
+			{
+				"buffer_size": 29610,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\\ProvidesPackage{polcz-old}\n\n\\RequirePackage{physics}\n\\RequirePackage{xparse}\n\\RequirePackage{amsmath}\n\\RequirePackage[utf8]{inputenc}\n\n% http://ctan.org/pkg/tcolorbox\n\\RequirePackage[breakable,skins]{tcolorbox}\n\\tcbuselibrary{theorems}\n\n% \\usepackage[\n%     hyperfootnotes = false,\n%     colorlinks = true,\n%     linkcolor = blue,\n%     urlcolor  = blue,\n%     citecolor = blue,\n%     anchorcolor = blue,\n%     pagebackref = false\n%     ]{hyperref}\n\n% Options\n\\DeclareOption{nohref}{\\let\\hrefopt = 0}\n\\DeclareOption{ownhref}{\\let\\hrefopt = 1}\n\\DeclareOption{href}{\\let\\hrefopt = 2}\n\\DeclareOption{nothm}{\\let\\thm = 0}\n\\DeclareOption{thmhu}{\\let\\thm = 1}\n\\DeclareOption{thmen}{\\let\\thm = 2}\n\\DeclareOption{ccsgyak}{\\let\\ccsgyak = 1}\n\\ExecuteOptions{nohref}\n\\ProcessOptions\\relax\n\n\n%\\DeclareDocumentCommand{\\TODOx}{s O{red} m D<>{6pt} D<>{6pt} D<>{2pt} D<>{2pt}}\n%{\n%    \\IfBooleanTF{#1}{%\n%        \\begin{tcolorbox}[on line,arc=7pt,colback=#2!10!white,colframe=#2!50!black,\n%            before upper={\\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=#4,right=#5,top=#6,bottom=#7]#3\\end{tcolorbox}\n%    }{%\n%        \\begin{tcolorbox}[on line,arc=7pt,colback=#2!10!white,colframe=#2!50!black,\n%            before upper={\\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=8pt,right=8pt,top=8pt,bottom=8pt]#3\\end{tcolorbox}\n%    }\n%}\n\n\n\\DeclareDocumentCommand{\\pcbTitleHelper}{m m m t\\matlab}\n{\n    \\IfBooleanTF{#4}{%\n        #2 \\hfill\\color{#1} {\\normalsize \\tt #3}%\n    }{%\n        #2 \\hfill\\color{#1} \\textit{\\normalsize #3}\n    }\n}\n\n% Colorbox\n\\colorlet{cImportantBaseColor}{red!50!black}\n\\colorlet{cImportantTitleColor}{cImportantBaseColor!10}\n\\colorlet{cImportantBackColor}{cImportantBaseColor!35!yellow!10}\n\\definecolor{cMatlabBaseColor}{rgb}{0.95,0.95,0.95}\n% o: optional tcolorbox arguments\n% g: title\n% O: title comment\n% O: base color\n% O: background color\n% O: title background color\n\\DeclareDocumentEnvironment{pcolorbox}\n{ o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\\matlab}\n{%\n    \\IfBooleanTF{#8}{\n        \\begin{tcolorbox}[\n        oversize,\n        enhanced,\n        breakable,\n        colback=cMatlabBaseColor,\n        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,\n        boxsep=0pt,\n        toptitle=4pt,\n        bottomtitle=4pt,\n        fonttitle=\\bfseries,\n        coltitle=black,\n        colbacktitle=cMatlabBaseColor!90!black,\n        subtitle style={\n            boxrule=0.4pt,\n            colback=cMatlabBaseColor!90!black},\n        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n        title=\\pcbTitleHelper{#7}{\\IfNoValueF{#2}{#2}}{#3}\\matlab,\n        \\IfNoValueT{#2}{\\IfNoValueT{#3}{notitle}},\n        \\IfNoValueF{#1}{#1}\n        ]%\n    }{\n        \\begin{tcolorbox}[\n        oversize,\n        enhanced,\n        breakable,\n        colframe=#4!50, colback=#5,\n        colbacktitle=#6,\n        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,\n        boxsep=0pt,\n        toptitle=4pt,\n        bottomtitle=4pt,\n        fonttitle=\\bfseries,\n        coltitle=black,\n        subtitle style={\n            boxrule=0.4pt,\n            colback=#6},\n        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n        title=\\pcbTitleHelper{#7}{\\IfNoValueF{#2}{#2}}{#3},\n        \\IfNoValueT{#2}{\\IfNoValueT{#3}{notitle}},\n        \\IfNoValueF{#1}{#1}\n        ]%\n    }%\n}{%\n    \\end{tcolorbox}%\n}\n\n% \\begin{pcolorbox}{Title (Cayley-Hamilton)}[arguments]\n%     asdasds\n% \\pcbsub{Subtitle}[arguments]\n%     PMAT - szabalyosan, loop-okkal:\n%     $\\pmqty{\\xmat*{a}{3}{3}}$\n%     $\\pmqty{\\pmat*{a}{3}{3}}$,\n%     $\\pmqty{\\pmat*{x}[2]{8}[4]{7}}$\n% \\end{pcolorbox}\n\n% \\begin{pcolorbox}{Title}[arguments]\\matlab\n%     asdasds\n% \\pcbsub{Subtitle}[arguments]\\matlab\n% \\end{pcolorbox}\n\n% \\begin{pcolorbox}[notitle]{}[asd][blue][blue!10][blue!20]\n%     \\lipsum[1]\n% \\end{pcolorbox}\n\n% \\begin{pcbexample}\n%     \\lipsum[2]\n% \\end{pcbexample}\n\n% \\begin{cTheorem}[Cayley-Hamilton][arguments]\n\n% \\end{cTheorem}\n\n\\DeclareDocumentEnvironment{pcbox}\n{ s o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\\matlab}\n{%\n    \\IfBooleanTF{#8}{\n        \\begin{tcolorbox}[\n        oversize,\n        enhanced,\n        breakable,\n        colback=cMatlabBaseColor,\n        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,\n        boxsep=0pt,\n        toptitle=4pt,\n        bottomtitle=4pt,\n        fonttitle=\\bfseries,\n        coltitle=black,\n        colbacktitle=cMatlabBaseColor!90!black,\n        subtitle style={\n            boxrule=0.4pt,\n            colback=cMatlabBaseColor!90!black},\n        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n        title=\\pcbTitleHelper{#7}{\\IfNoValueF{#2}{#2}}{#3}\\matlab,\n        \\IfNoValueT{#2}{\\IfNoValueT{#3}{notitle}},\n        \\IfNoValueF{#1}{#1}\n        ]%\n    }{\n        \\begin{tcolorbox}[\n        oversize,\n        enhanced,\n        breakable,\n        colframe=#4!50, colback=#5,\n        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,\n        boxsep=0pt,\n        toptitle=4pt,\n        bottomtitle=4pt,\n        fonttitle=\\bfseries,\n        coltitle=black,\n        colbacktitle=#6,\n        subtitle style={\n            boxrule=0.4pt,\n            colback=#6},\n        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n        title=\\pcbTitleHelper{#7}{\\IfNoValueF{#2}{#2}}{#3},\n        \\IfNoValueT{#2}{\\IfNoValueT{#3}{notitle}},\n        \\IfNoValueF{#1}{#1}\n        ]%\n    }%\n}{%\n    \\end{tcolorbox}%\n}\n\n\n\\DeclareDocumentCommand{\\pcbsub}{ s g O{} O{cImportantBaseColor} t\\matlab}\n{%\n    \\tcbsubtitle{%\n        \\IfBooleanTF{#5}{%\n            \\pcbTitleHelper{#4}{\\IfNoValueF{#2}{#2}}{#3}\\matlab%\n        }{%\n            \\pcbTitleHelper{#4}{\\IfNoValueF{#2}{#2}}{#3}%\n        }%\n    }%\n}\n\n\n\\DeclareDocumentEnvironment{pcbexample}\n{s G{} O{}}\n{%\n    \\IfBooleanTF{#1}\n    {\\begin{pcolorbox}{#2}[#3][blue][blue!10][blue!20]}%\n    {\\begin{pcolorbox}[notitle]{}[][blue][blue!10][blue!20]}%\n}{\n    \\end{pcolorbox}\n}\n\n\n\n\n\n\n\\DeclareDocumentCommand{\\Hiba}{s t\\it t\\n O{red} g}\n{\n    \\IfNoValueTF{#5}\n    {%\n        \\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }\n    {%\n        {\\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape} #5}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }\n}\n\n\\DeclareDocumentCommand{\\Atir}{s t\\it t\\n O{blue} g}%\n{%\n    \\IfNoValueTF{#5}%\n    {%\n        \\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }{%\n        {\\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape} #5}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }%\n}\n\n\\DeclareDocumentCommand{\\Normal}{s t\\it t\\n O{black} g}\n{\n    \\IfNoValueTF{#5}\n    {%\n        \\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }\n    {%\n        {\\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape} #5}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }\n}\n\n\n\n\n\n\\ifx\\thm 1\n\n    \\providecommand\\lemmaTitle{Lemma}\n    \\providecommand\\remarkTitle{Remark}\n    \\providecommand\\propositionTitle{Állítás}\n    \\providecommand\\applicationTitle{Alkalmazás}\n    \\providecommand\\exampleTitle{Példa}\n    \\providecommand\\theoremTitle{Tétel}\n    \\providecommand\\definitionTitle{Definíció}\n    \\providecommand\\proofTitle{Bizonyítás}\n    \\providecommand\\solutionTitle{Megoldás}\n\n\\else\\ifx\\thm 2\n\n    \\providecommand\\lemmaTitle{Lemma}\n    \\providecommand\\remarkTitle{Remark}\n    \\providecommand\\propositionTitle{Proposition}\n    \\providecommand\\applicationTitle{Application}\n    \\providecommand\\exampleTitle{Example}\n    \\providecommand\\theoremTitle{Theorem}\n    \\providecommand\\definitionTitle{Definition}\n    \\providecommand\\proofTitle{Proof}\n    \\providecommand\\solutionTitle{Solution}\n\n\\fi\\fi\n\n\n\\ifx\\thm\\undefined\n\\else\n\n    \\newcounter{pczexample}\n    \\DeclareDocumentEnvironment{example}\n    {s G{\\exampleTitle} o t\\hun}\n    {%\n        \\refstepcounter{pczexample}%\n        \\bigbreak\\noindent%\n        \\IfBooleanTF{#4}\n            {\\textbf{\\thepczexample. {#2}. }\\IfNoValueF{#3}{(#3) }}\n            {\\textbf{{#2} \\thepczexample. }\\IfNoValueF{#3}{(#3) }}%\n    }\n    {\n        \\phantom{.}\\hfill$\\triangleleft$\n    }\n\n    \\DeclareDocumentEnvironment{cExample}\n    {s G{\\exampleTitle} o O{} t\\hun}\n    {%\n        \\smallbreak\\noindent\\refstepcounter{pczexample}%\n        \\IfBooleanTF{#1}\n        {\\begin{pcbexample}*{\\IfBooleanTF{#5}{\\thepczexample. {#2}. }{{#2} \\thepczexample. }\\normalfont #3}[#4]}\n        {\\begin{pcbexample}\\textbf{\\IfBooleanTF{#5}{\\thepczexample. {#2}. }{{#2} \\thepczexample. }}\\IfNoValueF{#3}{(#3) }}%\n    }\n    {\n        \\end{pcbexample}%\n    }\n\n    \\newcounter{pcztheorem}\n    \\DeclareDocumentEnvironment{theorem}\n    {s o}\n    {%\n        \\refstepcounter{pcztheorem}%\n        \\bigbreak\\noindent\\textbf{{\\theoremTitle} \\thepcztheorem.}\\IfNoValueF{#2}{ (#2) }%\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\newcounter{pczdefinition}\n    \\DeclareDocumentEnvironment{definition}\n    {s o}\n    {\\let\\emph\\textbf%\n        \\refstepcounter{pczdefinition}%\n        \\bigbreak\\noindent\\textbf{{\\definitionTitle} \\arabic{pczdefinition}.}\\IfNoValueF{#2}{ (#2) }\\itshape%\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\DeclareDocumentEnvironment{cTheorem}\n    {s o}\n    {%\n        \\smallbreak\\noindent\\refstepcounter{pcztheorem}%\n        \\begin{pcolorbox}{{\\theoremTitle} \\thepcztheorem.\\IfNoValueF{#2}{ \\normalfont (#2)}}%\n    }{%\n        \\end{pcolorbox}%\n    }\n\n\n    \\newcounter{pczapplication}\n    \\DeclareDocumentEnvironment{application}\n    {s o}\n    {\n        \\refstepcounter{pczapplication}\n        \\bigbreak\\noindent\\textbf{{\\applicationTitle} \\thepczapplication.}\\IfNoValueF{#2}{ (#2)}\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\DeclareDocumentEnvironment{remark}\n    {s o}\n    {\n        \\refstepcounter{pczapplication}\n        \\bigbreak\\noindent\\textit{{\\remarkTitle} \\thepczapplication.}\\IfNoValueF{#2}{ (#2)}\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\newcounter{pczlemma}\n    \\DeclareDocumentEnvironment{lemma}\n    {s o}\n    {\n        \\refstepcounter{pczlemma}\n        \\bigbreak\\noindent\\textbf{{\\lemmaTitle} \\thepczlemma.}\\IfNoValueF{#2}{ (#2)}\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\newcounter{pczproposition}\n    \\DeclareDocumentEnvironment{proposition}\n    {s o}\n    {\n        \\refstepcounter{pczproposition}\n        \\bigbreak\\noindent\\textbf{{\\propositionTitle} \\thepczproposition.}\\IfNoValueF{#2}{ (#2)}\n    }\n    {\n        \\hfill$\\triangleleft$\\newline\n    }\n\n    \\DeclareDocumentEnvironment{cProposition}\n    {s o}\n    {%\n        \\smallbreak\\noindent\\refstepcounter{pczproposition}%\n        \\IfBooleanTF{#1}%\n        {\\begin{pcolorbox}{{\\propositionTitle} \\thepczproposition.\\IfNoValueF{#2}{ \\normalfont(#2)}}}%\n        {\\begin{pcolorbox}[notitle]\\textbf{{\\propositionTitle} \\thepczproposition.}\\IfNoValueF{#2}{ (#2)}}%\n        %\n    }{%\n        \\end{pcolorbox}%\n    }\n\n    \\DeclareDocumentEnvironment{proof}\n    {s o}\n    {%proof\n        \\noindent\\textit{{\\proofTitle}}\\IfNoValueF{#2}{(#2)}\\textit{.}%\n    }\n    {\n        \\hfill$\\square$\n    }\n\n    \\DeclareDocumentEnvironment{sol}\n    {s o}\n    {%\n        \\smallbreak\\noindent\\textit{{\\solutionTitle}}\\IfNoValueF{#2}{(#2)}\\textit{.}%\n    }\n    {\n        \\phantom{.}\\hfill\\scalebox{0.7}{$\\square$}\n    }\n\n\\fi\n\n\\ifx\\ccsgyak\\undefined\\else\n    % \\newcounter{pczmatlab}\n    \\DeclareDocumentEnvironment{matlab}\n    {s o m}\n    {\n        \\begin{pcolorbox}{\\refstepcounter{pczmatlab}Matlab \\thepczmatlab. %\n        \\IfNoValueF{#2}{\\normalfont #2}}[\\tt #3]\\matlab\n    }\n    {\n        \\end{pcolorbox}\n    }\n\\fi\n% \\begin{matlab}[kutya]{Gumi}\n%     \\lipsum[1]\n% \\end{matlab}\n\n\n% \\tcbmaketheorem{pcbfel}{Feladat}{\n%     enhanced,\n%     breakable,\n%     colback=blue!10 ,\n%     boxrule=1pt, arc=4pt, left=0.5\\pczoversizelength, right=0.5\\pczoversizelength, top=6pt, bottom=6pt,\n%     boxsep=0pt,\n%     toptitle=4pt,\n%     bottomtitle=4pt,\n%     fonttitle=\\bfseries,\n%     coltitle=black,\n%     colframe=blue!30!black,\n%     colbacktitle=blue!20,\n%     subtitle style={\n%         boxrule=0.4pt,\n%         colback=blue!20},\n%     oversize=-\\pczoversizelength,\n%     % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n% }{pczexample}{pl}\n\n% \\begin{pcbfel}{\\pcbTitleHelper{red}{asdasda}{asdddd}\\matlab}{marker}\n% \\end{pcbfel}\n\n\n\n% \\DeclareDocumentCommand{\\pcbtheoremname}{s g g o t\\hun}\n% {%\n%     \\bfseries%\n%     \\IfBooleanTF{#5}%\n%     {%\n%         \\arabic{#2}. #3.%\n%     }%\n%     {%\n%         #3 \\arabic{#2}.%\n%     }%\n%     \\normalfont%\n%     \\IfBooleanTF{#1}%\n%     { %\n%         #4%\n%     }%\n%     { %\n%         (#4)%\n%     }%\n% }%\n\n% \\DeclareDocumentCommand{\\pcbtheoreminfo}{s g t\\tt}\n% {%\n%     \\IfBooleanTF{#1}%\n%     {%\n%         \\hfill%\n%         {\\small\\color{bourdon}%\n%             \\IfBooleanTF{#3}%\n%             {%\n%                 \\tt #2%\n%             }%\n%             {%\n%                 \\itshape #2%\n%             }%\n%         }%\n%     }%\n%     {%\n%         {\\small\\color{bourdon}%\n%             \\IfBooleanTF{#3}%\n%             {%\n%                 \\tt [#2]%\n%             }%\n%             {%\n%                 {-- \\itshape #2 --}%\n%             }%\n%         }%\n%     }%\n% }%\n\n\n\n% \\begin{cProposition}*{Kutyagumi}\n%     This is my own box with a mandatory title and options.\n% \\end{cProposition}\n\n% \\begin{cExample}*{Title}[asd][asd]\n\n% \\end{cExample}\n\n% \\noindent\n% \\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \\\\\n% \\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\\hun \\\\\n% \\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \\\\\n% \\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\\hun \\\\\n% %\n% \\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \\pcbtheoreminfo{interp1} \\\\\n% \\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \\pcbtheoreminfo{interp1}\\tt \\\\\n% \\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\\hun \\pcbtheoreminfo*{interp1} \\\\\n% \\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\\hun \\pcbtheoreminfo*{interp1}\\tt \\\\\n\n% \\global\\csdef{kutyagumi123}{\\bfseries almamartas}\n% \\csuse{kutyagumi123}\n",
+			"file": "polcz-old.sty",
+			"file_size": 14294,
+			"file_write_time": 131452116439681960,
+			"settings":
+			{
+				"buffer_size": 14280,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/OpenInBrowser.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_eps.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_latex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_png.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUml_pdf.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				],
+				[
+					"Packages/User/glpsol.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				],
+				[
+					"Packages/Polcz/run_script.sublime-build",
+					""
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/LaTeXTools.sublime-build",
+					""
+				],
+				[
+					"Packages/User/OpenInBrowser.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_eps.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_latex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_png.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUml_pdf.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				],
+				[
+					"Packages/User/glpsol.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/OpenInBrowser.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_eps.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_latex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_png.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUml_pdf.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				],
+				[
+					"Packages/User/glpsol.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				"Traditional"
+			]
+		],
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/Polcz/run_script.sublime-build",
+					""
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/LaTeXTools.sublime-build",
+					""
+				],
+				[
+					"Packages/User/OpenInBrowser.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_eps.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_latex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_png.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUml_pdf.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				],
+				[
+					"Packages/User/glpsol.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Polcz/run_script.sublime-build",
+					""
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/LaTeXTools.sublime-build",
+					""
+				],
+				[
+					"Packages/User/OpenInBrowser.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_eps.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_latex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_png.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUml_pdf.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				],
+				[
+					"Packages/User/glpsol.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/LaTeXTools.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Polcz/run_script.sublime-build",
+					""
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/OpenInBrowser.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_eps.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_latex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_png.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUml_pdf.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				],
+				[
+					"Packages/User/glpsol.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Polcz/run_script.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/OpenInBrowser.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_eps.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_latex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_png.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUml_pdf.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				],
+				[
+					"Packages/User/glpsol.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 152.0,
+		"last_filter": "syntax late",
+		"selected_items":
+		[
+			[
+				"syntax late",
+				"Set Syntax: LaTeX"
+			],
+			[
+				"polcz",
+				"Polcz: LaTeX Snippets"
+			],
+			[
+				"run",
+				"Build With: C++ Single File - Run"
+			],
+			[
+				"build",
+				"Build With: C++ Single File - Run"
+			],
+			[
+				"prv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"color",
+				"ColorSchemeSelector: Select Color Scheme"
+			],
+			[
+				"bui",
+				"Build With: C++ Single File - Run"
+			],
+			[
+				"buil",
+				"Build With: LaTeX"
+			],
+			[
+				"pr",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"mini",
+				"View: Toggle Minimap"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"open in ",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"scope",
+				"Scope Hunter: Show Scope Under Cursor(s)"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"latex",
+				"Polcz: LaTeX Document Templates"
+			],
+			[
+				"Polcz",
+				"Polcz: Sublime Commands (Python)"
+			],
+			[
+				"\\",
+				"Snippet: Pre/Code HTML tag"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"package contr",
+				"Package Control: Remove Package"
+			],
+			[
+				"latex templ",
+				"Polcz: LaTeX Document Templates"
+			],
+			[
+				"prvo",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"prv o",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"olcz",
+				"Polcz: Users Websources (pages)"
+			],
+			[
+				"template",
+				"Polcz: Users Websources (templates)"
+			],
+			[
+				"JSON",
+				"Set Syntax: JSON"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"syntax sum",
+				"Set Syntax: SublimeClangErrorPanel"
+			],
+			[
+				"syntax JS",
+				"Set Syntax: JSON"
+			],
+			[
+				"commands",
+				"Preferences: Commands - User"
+			],
+			[
+				"Preferences",
+				"Preferences: Commands - Default"
+			],
+			[
+				"Prefences",
+				"Preferences: Commands - User"
+			],
+			[
+				"Preference",
+				"Preferences: Browse Packages"
+			],
+			[
+				"open file",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"html",
+				"HTMLBeautify"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"colo",
+				"ColorSchemeSelector: Select Color Scheme"
+			],
+			[
+				"tmpl",
+				"Tmpl: Create Latex Simple"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"format",
+				"SublimeAStyleFormatter: Format Current File"
+			],
+			[
+				"view",
+				"LaTeXTools: View PDF"
+			],
+			[
+				"focus",
+				"LaTeXTools: Toggle focus (PDF/editor)"
+			],
+			[
+				"foc",
+				"LaTeXTools: Toggle focus (PDF/editor)"
+			],
+			[
+				"focu",
+				"LaTeXTools: Toggle focus (PDF/editor)"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import os; path=sublime.packages_path(); (os.makedirs(path) if not os.path.exists(path) else None); window.run_command('exec', {'cmd': ['git', 'clone', 'https://github.com/twolfson/sublime-edit-command-palette', 'Edit Command Palette'], 'working_dir': path})"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/lib/latex/polcz"
+	],
+	"file_history":
+	[
+		"/usr/share/texlive/texmf-dist/tex/latex/base/article.cls",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/users/public_html/files/targyak/anal3/szorgalmi/anal3_szorgalmi_1_vekanal.tex",
+		"/home/ppolcz/.bash_aliases",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/publish.xsl",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/users/public_html/files/scripts/d2017_07_20_lfr_model_reduction_17_07_20_Time105352_runID8641/d2017_07_20_lfr_model_reduction.html",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/users/public_html/files/scripts/d2017_07_20_lfr_model_reduction_17_07_20_Time105536_runID7819/d2017_07_20_lfr_model_reduction.html",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Sec_Annihilator.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/14_ISS_LFR_trafo/ISS_timedep_unc.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/14_ISS_LFR_trafo/ISS_timedep_unc.tex.backup",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/LFR_trafo/LFR_trafo.tex",
+		"/home/ppolcz/Dropbox/Peti/Desktop/Development.txt",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/include/matlab/ptikz.m",
+		"/home/ppolcz/.local/share/applications/matlab.desktop",
+		"/home/ppolcz/.local/share/applications/okular-tex-physics.desktop",
+		"/home/ppolcz/.local/share/applications/okular-tex-tcolorbox.desktop",
+		"/home/ppolcz/.local/share/applications/okular-tex-xparse.desktop",
+		"/home/ppolcz/.local/share/applications/Trofino.desktop",
+		"/home/ppolcz/.local/share/applications/MatlabR2016a.desktop",
+		"/home/ppolcz/.local/share/applications/libreoffice.desktop",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/mondoka.txt",
+		"/home/ppolcz/Dropbox/Peti/PhD/Ugyintezes/Jelentkezes/Jelentkezesi_lap_2016-kitoltve.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/_fig/X_Y_alph_1/fig_OTDK.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/_fig/X_Y_alph_1/fig_PhD_proc.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/pcz_presentation_defs.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_2017.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_2017_jav.tex",
+		"/home/ppolcz/.local/share/applications/Mathematica-11.desktop",
+		"/home/ppolcz/.local/share/applications/Mathematica.desktop",
+		"/home/ppolcz/.local/share/applications/firefox-2.desktop",
+		"/home/ppolcz/.local/share/applications/kate-2.desktop",
+		"/home/ppolcz/Dropbox/Peti/PhD/PPKE_Template/untitled.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_presentation_v2.toc",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_2017.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/13_PhD_Proceedings_2017.sublime-project",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_presentation.tex",
+		"/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_presentation_v2.vrb",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_presentation.tex",
+		"/home/ppolcz/All/Dropbox/Peti/Others/Config/scripts/dropbox_status.sh",
+		"/home/ppolcz/.dropbox-backup/info.json",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/13_PhD_Proceedings_2017/pcz_presentation_defs.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_presentation_v2.vrb",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_presentation.vrb",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_abra.png",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_2017_sources.zip",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_abra_1.png",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_39/fig.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_38/fig.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_36/fig.tex",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/lib/latex/polcz/polcz.tex",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/lib/latex/polcz/polcz.sty",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/08_output_selection_passivity/Passivity/latex/PassivityOSLTI.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Tanulas/09_Array_Signal_Processing/tantargyleiras.txt",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/08_output_selection_passivity/Passivity/latex/polcz.sty",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Manuscript.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Sec_Annihilator.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Sec_Illustrative_examples.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Sec_Introduction.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/08_output_selection_passivity/Passivity/latex/PassivityOSLTI.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/08_output_selection_passivity/Passivity/latex/preliminary_analysis.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/08_output_selection_passivity/Passivity/latex/Examples.tex",
+		"/home/ppolcz/All/Dropbox/Peti/Desktop/output_selection.txt",
+		"/media/ppolcz/Toshiba_2TB/01_programs/Mathworks_Matlab_R2015a_Linux/fixr2015arel/readme.txt",
+		"/media/ppolcz/Toshiba_2TB/01_programs/Mathworks_Matlab_R2015a_Linux/README",
+		"/home/ppolcz/Dropbox/PhD/Projects_Grants/11_KAP_2017jun/Vida_Katinka_email.txt",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_44/fig.tex",
+		"/home/ppolcz/Dropbox/Others/Eskuvo/Dorottya_Peter_eskuvoi_meghivo_forrasok/2_oldal.tex",
+		"/home/ppolcz/All/Dropbox/Peti/Desktop/lelkiseg.php",
+		"/home/ppolcz/Templates/user036/tesztverseny/valaszok.txt",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/00_matlab_results/projects/3_outsel/dynamic_observer_2017-03-18/Strict_outputpassivity_observer_LTI_BMI_SISO_review/text/script_17_06_01_Time184301_runID4948",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/00_matlab_results/projects/3_outsel/dynamic_observer_2017-03-18/Strict_outputpassivity_observer_LTI_BMI_SISO_review/text/script_17_06_01_Time184701_runID9656",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/users/public_html/files/scripts/pcz_MIMO_to_minphase_r1_using_observer_17_06_05_Time221824_runID6374/pcz_MIMO_to_minphase_r1_using_observer.html",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/projects/3_outsel/dynamic_observer_2017-03-18/Strict_outputpassivity_observer_LTI_BMI_SISO_review.m",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/users/public_html/files/scripts/pcz_SISO_to_minphase_r1_using_observer_17_06_04_Time225517_runID4039/pcz_SISO_to_minphase_r1_using_observer.html",
+		"/home/ppolcz/Dropbox/PhD/Oktatas/06_CCS_2017/CCS_2017/dolgozatok/2017_potzh.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Oktatas/06_CCS_2017/CCS_2017/dolgozatok/2017_potzh.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Biralatok/2016_17_tavasz_diplomaterv_Galai_Bence/biralat_Galai_Bence.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_40/fig.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_41/fig.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_42/fig.tex",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/Matlab/biralat/Galai_Bence/forgatasi_matrix.m",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_43/fig.tex",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/users/public_html/files/scripts/Strict_outputpassivity_observer_LTI_BMI_SISO_review_17_06_01_Time124552_runID2143/Strict_outputpassivity_observer_LTI_BMI_SISO_review.html",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/users/public_html/files/scripts/Schur_complement_17_06_01_Time112945_runID8332/Schur_complement.html",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_37/fig.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Sec_Annihilator.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Sec_Introduction.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Sec_Illustrative_examples.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Manuscript.bbl",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/elsarticle-template-num.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Manuscript.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/References.bib",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-29/Sec_Conclusions.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/elsarticle-template-num.tex",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/startup.m",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/00_matlab_results/projects/2_sta/algo_P_models/trof3D_v5/text/script_17_01_24_Time153721_runID5511",
+		"/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Sec_Annihilator.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Sec_Introduction.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/_fig/fig_35/fig.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/_fig/berge_v5/fig.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/berge_v5/fig_comp.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Sec_Conclusions.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Manuscript.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Sec_Illustrative_examples.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/_fig/berge_v5/fig_comp.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/_fig/fig_35/fig.tex",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/projects/2_sta/algo_P_models/vdp_v5_standalone_5.m",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/lib/matlab/eliduenisch-latexTable-5212622/runExamples.m",
+		"/home/ppolcz/Downloads/elsarticle/elsarticle-template-harv.tex",
+		"/home/ppolcz/Downloads/elsarticle/elsarticle-template-num.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Manuscript.tex",
+		"/home/ppolcz/Downloads/elsarticle/doc/elsdoc.tex",
+		"/home/ppolcz/All/Dropbox/Apps/ShareLaTeX/elsedoc/main.tex",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/projects/2_sta/algo_P_models/vdp_v5_results.csv",
+		"/home/ppolcz/Repositories/Bitbucket/control-systems/nbproject/.gitignore",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/Definitions.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/Sec_Introduction.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Annihilator.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Annihilator.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Conclusions.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Illustrative_examples.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Introduction.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Annihilator.tex",
+		"/home/ppolcz/Dropbox/PhD/Oktatas/04_Analizis/Funkanal/funkanal_2017/12/funkanal_17_12_mo.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Introduction.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Illustrative_examples.tex",
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Diplomaterv_atirat.tex",
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Diplomaterv_atirat.tex"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"proof",
+			"sol",
+			"matlab",
+			"pcolo",
+			"pcolorbox",
+			"subtit",
+			"bfser",
+			"cmatlab",
+			"cprop",
+			"cmatlab",
+			"bfseries",
+			"matlab",
+			"bmqty",
+			"skins",
+			"%",
+			"alig",
+			"#1",
+			"cprop:",
+			"prop",
+			"absthmtitle",
+			"fel",
+			"prop",
+			":",
+			"2:",
+			">{",
+			"]<c",
+			"]<",
+			"][",
+			"#3",
+			"#4",
+			"prop",
+			"abspcbthm",
+			"prop",
+			"#5",
+			"Proposition",
+			"*\\hun",
+			"hun",
+			"prop2",
+			"prop",
+			"Name",
+			"absthmtitle",
+			"abspcbthm",
+			"prop",
+			"abspcbthm",
+			"prop2",
+			"info",
+			"[Name]",
+			"prop2",
+			"4",
+			"prop2",
+			"prop",
+			"comment",
+			"pczabsthmtitle",
+			" T",
+			"T",
+			"T^T",
+			"S_z",
+			"let",
+			"widehat",
+			"let",
+			"hat",
+			"n+k",
+			"eq:lfr_reduced",
+			"pmqty",
+			"align",
+			"_",
+			"align",
+			"&",
+			"_{1",
+			"=",
+			"= ",
+			"\\Theta",
+			"pmqty",
+			"nonumber",
+			"T",
+			"prop}*",
+			"prop",
+			"proposition",
+			"k",
+			"align",
+			"begin",
+			"\\pi",
+			"ordered",
+			"unordered",
+			"\\wt",
+			"unordered",
+			"\\\\",
+			"b_",
+			"\\pi",
+			"pi",
+			"wt",
+			"z",
+			"align",
+			"Theta",
+			"omega",
+			"gamma",
+			"vartheta",
+			"vartheta_1",
+			"forall",
+			"=",
+			"= ",
+			" =",
+			"pi",
+			"pi_p",
+			"pi_b",
+			"xd",
+			"spmqty",
+			"equation",
+			"=",
+			"=\n",
+			"z",
+			"Delta",
+			":=",
+			"hat",
+			"B",
+			"k",
+			"mathcal P",
+			"\\mathcal P",
+			"sigma",
+			"p",
+			"xd",
+			"_p",
+			"m",
+			"P",
+			"^T",
+			"i_b",
+			"TODO",
+			"z"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Ljapunov",
+			"\n\\",
+			"feasible set",
+			"In",
+			"\\\\mathbb{R}^{$1 \\\\times $2}",
+			"\\\\mathbb{R}{$1 \\\\times $2}",
+			"\\\\mathbb{$1 \\\\times $2}",
+			"\\mathbb{$1 \\times $2}",
+			"\\",
+			"line width=1.0pt,mark size=1.5pt",
+			"ize=1.5pt",
+			"h=1.0pt",
+			"th=2.0pt",
+			"line width=4.0pt",
+			"2.pt",
+			"ő",
+			"ű",
+			"í",
+			"Í",
+			"ú",
+			"ő",
+			"ö",
+			"ő",
+			"ó",
+			"é",
+			"í",
+			"ü",
+			"á",
+			"Í",
+			"ú",
+			"ű",
+			"ő",
+			"ö",
+			"ó",
+			"ü",
+			"é",
+			"í",
+			"Ljapunov",
+			"",
+			"Some",
+			",",
+			"dpkg --add-architecture i386\n# apt-get update\n# apt-get upgrade\n# dpkg -i skype-debian_4.3.0.37-1_i386.deb\n# apt-get install -f\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "polcz.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5935,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1738,
+								1738
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "polcz.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18633,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16335,
+								16338
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6317.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/ppolcz/Dropbox/Peti/Desktop/CTAN/source/physics.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 29610,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2531,
+								2531
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/TeX.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 136.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "polcz-old.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14280,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11307,
+								11307
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/LaTeX/TeX.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5791.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 323.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.latextools":
+	{
+		"height": 427.0
+	},
+	"output.scopehunter.results":
+	{
+		"height": 88.0
+	},
+	"output.textarea":
+	{
+		"height": 234.0
+	},
+	"pinned_build_system": "",
+	"project": "polcz-latex-lib.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"polcz.sty"
+			],
+			[
+				"dipl",
+				"12_Manuscripts_2016_osz/Diplomaterv_atirat.tex"
+			],
+			[
+				"phd_pr",
+				"~/Dropbox/PhD/Dokumentaciok/13_PhD_Proceedings_2017/phd_proceedings_2017.tex"
+			],
+			[
+				"publikac",
+				"~/All/Dropbox/Peti/PhD/Ugyintezes/201617_II_felev/KAP_publikacios_lista/PolczP_publikacios_lista.tex"
+			],
+			[
+				"polczpeter",
+				"~/All/Dropbox/Peti/PhD/Dokumentaciok/04_OTDK/Presentation/PolczPeter_TDK2015.tex"
+			],
+			[
+				"publik",
+				"~/All/Dropbox/Peti/PhD/Ugyintezes/201617_II_felev/KAP_publikacios_lista/PolczP_publikacios_lista.tex"
+			],
+			[
+				"dip",
+				"12_Manuscripts_2016_osz/Diplomaterv_atirat.tex"
+			],
+			[
+				"introdu",
+				"12_Manuscripts_2016_osz/Sec_Introduction.tex"
+			],
+			[
+				"refere",
+				"12_Manuscripts_2016_osz/References.bib"
+			],
+			[
+				"se",
+				"12_Manuscripts_2016_osz/Sec_Conclusions.tex"
+			],
+			[
+				"polcz",
+				"~/Repositories/Bitbucket/control-systems/demonstrations/lib/latex/polcz/polcz.sty"
+			],
+			[
+				"int",
+				"12_Manuscripts_2016_osz/Input_to_state_stability.tex"
+			],
+			[
+				"sec",
+				"12_Manuscripts_2016_osz/Sec_Conclusions.tex"
+			],
+			[
+				"chee",
+				"~/All/Dropbox/Peti/Others/Config/_indep/config/sublime-text-3/Packages/Polcz/latex/templates/cheat_sheet.tex"
+			],
+			[
+				"defs",
+				"~/Dropbox/PhD/Dokumentaciok/04_OTDK/PolczPeter_otdk_defs.tex"
+			],
+			[
+				"anni",
+				"~/All/Dropbox/Peti/PhD/Dokumentaciok/04_OTDK/annihilator_theorem.tex"
+			],
+			[
+				"cheet",
+				"~/All/Dropbox/Peti/Others/Config/_indep/config/sublime-text-3/Packages/Polcz/latex/templates/cheat_sheet.tex"
+			],
+			[
+				"che",
+				"~/All/Dropbox/Peti/Others/Config/_indep/config/sublime-text-3/Packages/Polcz/latex/templates/cheat_sheet.tex"
+			],
+			[
+				"otdk",
+				"~/Dropbox/PhD/Dokumentaciok/04_OTDK/Technial_report.tex"
+			],
+			[
+				"bior",
+				"~/Repositories/users_webpage/application/views/pages/bioreactor.php"
+			],
+			[
+				"anal1",
+				"~/Repositories/users_webpage/application/views/pages/anal1.php"
+			],
+			[
+				"header",
+				"~/Repositories/users_webpage/application/views/templates/header.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 900.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Repositories/Bitbucket/control-systems/users/public_html/files/targyak/anal3/szorgalmi/anal3_szorgalmi.sublime-project"
+			],
+			[
+				"okt",
+				"~/All/Dropbox/Peti/PhD/Oktatas/Oktatas.sublime-project"
+			],
+			[
+				"ok",
+				"~/All/Dropbox/Peti/PhD/Oktatas/Oktatas.sublime-project"
+			],
+			[
+				"\\",
+				"~/Dropbox/PhD/Workspace/User_WebPage.sublime-project"
+			]
+		],
+		"width": 1500.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"Section: Finding the maximal level set for a given polytope"
+			]
+		],
+		"width": 1148.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 360.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

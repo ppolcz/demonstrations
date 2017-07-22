@@ -3,6 +3,7 @@
 \RequirePackage{physics}
 \RequirePackage{xparse}
 \RequirePackage{amsmath}
+\RequirePackage{mathtools}
 \RequirePackage[utf8]{inputenc}
 
 % http://ctan.org/pkg/tcolorbox
@@ -35,6 +36,41 @@
     \let\hrefopt = 1
 \fi
 
+
+%   ,,
+%   db
+%
+% `7MM  `7MMpMMMb.  `7MMpMMMb.  .gP"Ya `7Mb,od8 `7MMpdMAo.
+%   MM    MM    MM    MM    MM ,M'   Yb  MM' "'   MM   `Wb
+%   MM    MM    MM    MM    MM 8M""""""  MM       MM    M8
+%   MM    MM    MM    MM    MM YM.    ,  MM       MM   ,AP
+% .JMML..JMML  JMML..JMML  JMML.`Mbmmd'.JMML.     MMbmmd'
+%                                                 MM
+%                                               .JMML.
+% mathtools
+\DeclarePairedDelimiterX\innerp[2]{\langle}{\rangle}{#1,#2}
+
+
+
+
+%             ,,                           ,,
+% `7MM"""Mq.`7MM                           db
+%   MM   `MM. MM
+%   MM   ,M9  MMpMMMb.`7M'   `MF',pP"Ybd `7MM  ,p6"bo  ,pP"Ybd
+%   MMmmdM9   MM    MM  VA   ,V  8I   `"   MM 6M'  OO  8I   `"
+%   MM        MM    MM   VA ,V   `YMMMa.   MM 8M       `YMMMa.
+%   MM        MM    MM    VVV    L.   I8   MM YM.    , L.   I8
+% .JMML.    .JMML  JMML.  ,V     M9mmmP' .JMML.YMbmd'  M9mmmP'
+%                 ,,     ,V
+%               `7MM  OOb"      mm
+%      ,;//'      MM            MM           `\\.
+%   ,;//'    ,M""bMM  ,dW"Yvd mmMMmm `7M'   `MF'`\\:.
+% ,//'     ,AP    MM ,W'   MM   MM     VA   ,V     `\\.
+% `\\.     8MI    MM 8M    MM   MM      VA ,V     ,;//'
+%    `\\:. `Mb    MM YA.   MM   MM       VVV   ,;//'
+%       `\\.`Wbmd"MML.`MbmdMM   `Mbmo    ,V  ,//'
+%                          MM           ,V
+%                        .JMML.      OOb"
 % Brackets and braces
 % REDEFINED, AND AUGMENTED BASED ON Physics 1.3 package
 \DeclareDocumentCommand\quantity{}{{\ifnum\z@=`}\fi\@quantity}
@@ -74,10 +110,19 @@
 \DeclareDocumentCommand\Bqty{ l m }{\braces#1{\lbrace}{\rbrace}{#2}}
 \DeclareDocumentCommand\vqty{ l m }{\braces#1{\lvert}{\rvert}{#2}}
 \DeclareDocumentCommand\dqty{ l m }{\braces#1{<}{>}{#2}}
-
 \DeclareDocumentCommand\dmqty{m}{\left<\begin{matrix}#1\end{matrix}\right>}
 \DeclareDocumentCommand\sdmqty{m}{\dqty{\begin{smallmatrix}#1\end{smallmatrix}}}
 
+
+
+
+% MMP""MM""YMM   .g8""8q. `7MM"""Yb.     .g8""8q.             db      `7MN.   `7MF' .g8"""bgd    .g8""8q. `7MMF'
+% P'   MM   `7 .dP'    `YM. MM    `Yb. .dP'    `YM.          ;MM:       MMN.    M .dP'     `M  .dP'    `YM. MM
+%      MM      dM'      `MM MM     `Mb dM'      `MM         ,V^MM.      M YMb   M dM'       `  dM'      `MM MM
+%      MM      MM        MM MM      MM MM        MM        ,M  `MM      M  `MN. M MM           MM        MM MM
+%      MM      MM.      ,MP MM     ,MP MM.      ,MP        AbmmmqMA     M   `MM.M MM.    `7MMF'MM.      ,MP MM      ,
+%      MM      `Mb.    ,dP' MM    ,dP' `Mb.    ,dP'       A'     VML    M     YMM `Mb.     MM  `Mb.    ,dP' MM     ,M
+%    .JMML.      `"bmmd"' .JMMmmmdP'     `"bmmd"'       .AMA.   .AMMA..JML.    YM   `"bmmmdPY    `"bmmd"' .JMMmmmmMMM
 
 
 \ifx\hrefopt 1
@@ -125,412 +170,31 @@
 \fi
 
 
-% \DeclareDocumentCommand{\pcbTitleHelper}{s O{} O{}}
-% {
-%     \IfBooleanTF{#4}{%
-%         #2 \hfill\color{#1} {\footnotesize \tt #3}%
-%     }{%
-%         #2 \hfill\color{#1} \textit{\footnotesize #3}
-%     }
-% }
 
-%\newtcbox{\TODO}[1][red]{on line,arc=5pt,colback=#1!10!white,colframe=#1!50!black,
-%    before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=4pt,right=4pt,top=2pt,bottom=2pt}
+% MMP""MM""YMM   .g8""8q. `7MM"""Yb.     .g8""8q.
+% P'   MM   `7 .dP'    `YM. MM    `Yb. .dP'    `YM.
+%      MM      dM'      `MM MM     `Mb dM'      `MM `7M'   `MF'
+%      MM      MM        MM MM      MM MM        MM   `VA ,V'
+%      MM      MM.      ,MP MM     ,MP MM.      ,MP     XMX
+%      MM      `Mb.    ,dP' MM    ,dP' `Mb.    ,dP'   ,V' VA.
+%    .JMML.      `"bmmd"' .JMMmmmdP'     `"bmmd"'   .AM.   .MA.
 %
-%\newtcbox{\TODOx}[1][red]{on line,arc=5pt,colback=#1!10!white,colframe=#1!50!black,
-%    before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt}
+\newtcbox{\TODO}[1][red]{on line,arc=5pt,colback=#1!10!white,colframe=#1!50!black,
+    before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=4pt,right=4pt,top=2pt,bottom=2pt}
 
-%\DeclareDocumentEnvironment{\TODOx}{s O{red} m D<>{6pt} D<>{6pt} D<>{2pt} D<>{2pt}}
-%{
-%    \IfBooleanTF{#1}{%
-%        \begin{tcolorbox}[on line,arc=7pt,colback=#2!10!white,colframe=#2!50!black,
-%            before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=#4,right=#5,top=#6,bottom=#7]#3\end{tcolorbox}
-%    }{%
-%        \begin{tcolorbox}[on line,arc=7pt,colback=#2!10!white,colframe=#2!50!black,
-%            before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=8pt,right=8pt,top=8pt,bottom=8pt]#3\end{tcolorbox}
-%    }
-%}
-%{}
-
-\DeclareDocumentCommand{\pcbTitleHelper}{m m m t\matlab}
-{
-    \IfBooleanTF{#4}{%
-        #2 \hfill\color{#1} {\normalsize \tt #3}%
-    }{%
-        #2 \hfill\color{#1} \textit{\normalsize #3}
-    }
-}
-
-% Colorbox
-\colorlet{cImportantBaseColor}{red!50!black}
-\colorlet{cImportantTitleColor}{cImportantBaseColor!10}
-\colorlet{cImportantBackColor}{cImportantBaseColor!35!yellow!10}
-\definecolor{cMatlabBaseColor}{rgb}{0.95,0.95,0.95}
-% o: optional tcolorbox arguments
-% g: title
-% O: title comment
-% O: base color
-% O: background color
-% O: title background color
-\DeclareDocumentEnvironment{pcolorbox}
-{ o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\matlab}
-{%
-    \IfBooleanTF{#8}{
-        \begin{tcolorbox}[
-        oversize,
-        enhanced,
-        breakable,
-        colback=cMatlabBaseColor,
-        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
-        boxsep=0pt,
-        toptitle=4pt,
-        bottomtitle=4pt,
-        fonttitle=\bfseries,
-        coltitle=black,
-        colbacktitle=cMatlabBaseColor!90!black,
-        subtitle style={
-            boxrule=0.4pt,
-            colback=cMatlabBaseColor!90!black},
-        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
-        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3}\matlab,
-        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
-        \IfNoValueF{#1}{#1}
-        ]%
-    }{
-        \begin{tcolorbox}[
-        oversize,
-        enhanced,
-        breakable,
-        colframe=#4!50, colback=#5,
-        colbacktitle=#6,
-        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
-        boxsep=0pt,
-        toptitle=4pt,
-        bottomtitle=4pt,
-        fonttitle=\bfseries,
-        coltitle=black,
-        subtitle style={
-            boxrule=0.4pt,
-            colback=#6},
-        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
-        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3},
-        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
-        \IfNoValueF{#1}{#1}
-        ]%
-    }%
-}{%
-    \end{tcolorbox}%
-}
-
-\DeclareDocumentEnvironment{pcbox}
-{ s o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\matlab}
-{%
-    \IfBooleanTF{#8}{
-        \begin{tcolorbox}[
-        oversize,
-        enhanced,
-        breakable,
-        colback=cMatlabBaseColor,
-        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
-        boxsep=0pt,
-        toptitle=4pt,
-        bottomtitle=4pt,
-        fonttitle=\bfseries,
-        coltitle=black,
-        colbacktitle=cMatlabBaseColor!90!black,
-        subtitle style={
-            boxrule=0.4pt,
-            colback=cMatlabBaseColor!90!black},
-        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
-        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3}\matlab,
-        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
-        \IfNoValueF{#1}{#1}
-        ]%
-    }{
-        \begin{tcolorbox}[
-        oversize,
-        enhanced,
-        breakable,
-        colframe=#4!50, colback=#5,
-        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
-        boxsep=0pt,
-        toptitle=4pt,
-        bottomtitle=4pt,
-        fonttitle=\bfseries,
-        coltitle=black,
-        colbacktitle=#6,
-        subtitle style={
-            boxrule=0.4pt,
-            colback=#6},
-        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
-        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3},
-        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
-        \IfNoValueF{#1}{#1}
-        ]%
-    }%
-}{%
-    \end{tcolorbox}%
-}
+\newtcbox{\TODOx}[1][red]{on line,arc=5pt,colback=#1!10!white,colframe=#1!50!black,
+    before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt}
 
 
-\DeclareDocumentCommand{\pcbsub}{ s g O{} O{cImportantBaseColor} t\matlab}
-{%
-    \tcbsubtitle{%
-        \IfBooleanTF{#5}{%
-            \pcbTitleHelper{#4}{\IfNoValueF{#2}{#2}}{#3}\matlab%
-        }{%
-            \pcbTitleHelper{#4}{\IfNoValueF{#2}{#2}}{#3}%
-        }%
-    }%
-}
-
-
-\DeclareDocumentEnvironment{pcbexample}
-{s G{} O{}}
-{%
-    \IfBooleanTF{#1}
-    {\begin{pcolorbox}{#2}[#3][blue][blue!10][blue!20]}%
-    {\begin{pcolorbox}[notitle]{}[][blue][blue!10][blue!20]}%
-}{
-    \end{pcolorbox}
-}
-
-
-
-
-
-
-\DeclareDocumentCommand{\Hiba}{s t\it t\n O{red} g}
-{
-    \IfNoValueTF{#5}
-    {%
-        \color{#4}%
-        \IfBooleanT{#1}{\bfseries}%
-        \IfBooleanT{#2}{\itshape}%
-        \IfBooleanT{#3}{\normalfont}%
-    }
-    {%
-        {\color{#4}%
-        \IfBooleanT{#1}{\bfseries}%
-        \IfBooleanT{#2}{\itshape} #5}%
-        \IfBooleanT{#3}{\normalfont}%
-    }
-}
-
-\DeclareDocumentCommand{\Atir}{s t\it t\n O{blue} g}%
-{%
-    \IfNoValueTF{#5}%
-    {%
-        \color{#4}%
-        \IfBooleanT{#1}{\bfseries}%
-        \IfBooleanT{#2}{\itshape}%
-        \IfBooleanT{#3}{\normalfont}%
-    }{%
-        {\color{#4}%
-        \IfBooleanT{#1}{\bfseries}%
-        \IfBooleanT{#2}{\itshape} #5}%
-        \IfBooleanT{#3}{\normalfont}%
-    }%
-}
-
-\DeclareDocumentCommand{\Normal}{s t\it t\n O{black} g}
-{
-    \IfNoValueTF{#5}
-    {%
-        \color{#4}%
-        \IfBooleanT{#1}{\bfseries}%
-        \IfBooleanT{#2}{\itshape}%
-        \IfBooleanT{#3}{\normalfont}%
-    }
-    {%
-        {\color{#4}%
-        \IfBooleanT{#1}{\bfseries}%
-        \IfBooleanT{#2}{\itshape} #5}%
-        \IfBooleanT{#3}{\normalfont}%
-    }
-}
-
-
-
-
-
-\ifx\thm 1
-
-    \providecommand\lemmaTitle{Lemma}
-    \providecommand\remarkTitle{Remark}
-    \providecommand\propositionTitle{Állítás}
-    \providecommand\applicationTitle{Alkalmazás}
-    \providecommand\exampleTitle{Példa}
-    \providecommand\theoremTitle{Tétel}
-    \providecommand\definitionTitle{Definíció}
-    \providecommand\proofTitle{Bizonyítás}
-    \providecommand\solutionTitle{Megoldás}
-
-\else\ifx\thm 2
-
-    \providecommand\lemmaTitle{Lemma}
-    \providecommand\remarkTitle{Remark}
-    \providecommand\propositionTitle{Proposition}
-    \providecommand\applicationTitle{Application}
-    \providecommand\exampleTitle{Example}
-    \providecommand\theoremTitle{Theorem}
-    \providecommand\definitionTitle{Definition}
-    \providecommand\proofTitle{Proof}
-    \providecommand\solutionTitle{Solution}
-
-\fi\fi
-
-
-\ifx\thm\undefined
-\else
-
-    \newcounter{pczexample}
-    \DeclareDocumentEnvironment{example}
-    {s G{\exampleTitle} o t\hun}
-    {%
-        \refstepcounter{pczexample}%
-        \bigbreak\noindent%
-        \IfBooleanTF{#4}
-            {\textbf{\thepczexample. {#2}. }\IfNoValueF{#3}{(#3) }}
-            {\textbf{{#2} \thepczexample. }\IfNoValueF{#3}{(#3) }}%
-    }
-    {
-        \phantom{.}\hfill$\triangleleft$
-    }
-
-    \DeclareDocumentEnvironment{cExample}
-    {s G{\exampleTitle} o O{} t\hun}
-    {%
-        \smallbreak\noindent\refstepcounter{pczexample}%
-        \IfBooleanTF{#1}
-        {\begin{pcbexample}*{\IfBooleanTF{#5}{\thepczexample. {#2}. }{{#2} \thepczexample. }\normalfont #3}[#4]}
-        {\begin{pcbexample}\textbf{\IfBooleanTF{#5}{\thepczexample. {#2}. }{{#2} \thepczexample. }}\IfNoValueF{#3}{(#3) }}%
-    }
-    {
-        \end{pcbexample}%
-    }
-
-    \newcounter{pcztheorem}
-    \DeclareDocumentEnvironment{theorem}
-    {s o}
-    {%
-        \refstepcounter{pcztheorem}%
-        \bigbreak\noindent\textbf{{\theoremTitle} \thepcztheorem.}\IfNoValueF{#2}{ (#2) }%
-    }
-    {
-        \hfill$\triangleleft$
-    }
-
-    \newcounter{pczdefinition}
-    \DeclareDocumentEnvironment{definition}
-    {s o}
-    {\let\emph\textbf%
-        \refstepcounter{pczdefinition}%
-        \bigbreak\noindent\textbf{{\definitionTitle} \arabic{pczdefinition}.}\IfNoValueF{#2}{ (#2) }\itshape%
-    }
-    {
-        \hfill$\triangleleft$
-    }
-
-    \DeclareDocumentEnvironment{cTheorem}
-    {s o}
-    {%
-        \smallbreak\noindent\refstepcounter{pcztheorem}%
-        \begin{pcolorbox}{{\theoremTitle} \thepcztheorem.\IfNoValueF{#2}{ \normalfont (#2)}}%
-    }{%
-        \end{pcolorbox}%
-    }
-
-
-    \newcounter{pczapplication}
-    \DeclareDocumentEnvironment{application}
-    {s o}
-    {
-        \refstepcounter{pczapplication}
-        \bigbreak\noindent\textbf{{\applicationTitle} \thepczapplication.}\IfNoValueF{#2}{ (#2)}
-    }
-    {
-        \hfill$\triangleleft$
-    }
-
-    \DeclareDocumentEnvironment{remark}
-    {s o}
-    {
-        \refstepcounter{pczapplication}
-        \bigbreak\noindent\textit{{\remarkTitle} \thepczapplication.}\IfNoValueF{#2}{ (#2)}
-    }
-    {
-        \hfill$\triangleleft$
-    }
-
-    \newcounter{pczlemma}
-    \DeclareDocumentEnvironment{lemma}
-    {s o}
-    {
-        \refstepcounter{pczlemma}
-        \bigbreak\noindent\textbf{{\lemmaTitle} \thepczlemma.}\IfNoValueF{#2}{ (#2)}
-    }
-    {
-        \hfill$\triangleleft$
-    }
-
-    \newcounter{pczproposition}
-    \DeclareDocumentEnvironment{proposition}
-    {s o}
-    {
-        \refstepcounter{pczproposition}
-        \bigbreak\noindent\textbf{{\propositionTitle} \thepczproposition.}\IfNoValueF{#2}{ (#2)}
-    }
-    {
-        \hfill$\triangleleft$\newline
-    }
-
-    \DeclareDocumentEnvironment{cProposition}
-    {s o}
-    {%
-        \smallbreak\noindent\refstepcounter{pczproposition}%
-        \IfBooleanTF{#1}%
-        {\begin{pcolorbox}{{\propositionTitle} \thepczproposition.\IfNoValueF{#2}{ \normalfont(#2)}}}%
-        {\begin{pcolorbox}[notitle]\textbf{{\propositionTitle} \thepczproposition.}\IfNoValueF{#2}{ (#2)}}%
-        %
-    }{%
-        \end{pcolorbox}%
-    }
-
-    \DeclareDocumentEnvironment{proof}
-    {s o}
-    {%
-        \noindent\textit{{\proofTitle}}\IfNoValueF{#2}{(#2)}\textit{.}%
-    }
-    {
-        \hfill$\square$
-    }
-
-    \DeclareDocumentEnvironment{sol}
-    {s o}
-    {%
-        \smallbreak\noindent\textit{{\solutionTitle}}\IfNoValueF{#2}{(#2)}\textit{.}%
-    }
-    {
-        \phantom{.}\hfill\scalebox{0.7}{$\square$}
-    }
-
-\fi
-
-\ifx\ccsgyak\undefined\else
-    \newcounter{pczmatlab}
-    \DeclareDocumentEnvironment{matlab}
-    {s o m}
-    {
-        \begin{pcolorbox}{\refstepcounter{pczmatlab}Matlab \thepczmatlab. %
-        \IfNoValueF{#2}{\normalfont #2}}[\tt #3]\matlab
-    }
-    {
-        \end{pcolorbox}
-    }
-
-\fi
-
+%   ,,
+% `7MM                                            `7MM"""YMM  `7MN.   `7MF'`7MMF'   `7MF'
+%   MM                                              MM    `7    MMN.    M    `MA     ,V
+%   MM  .gP"Ya   ,6"Yb.  `7Mb,od8 `7MMpMMMb.        MM   d      M YMb   M     VM:   ,V
+%   MM ,M'   Yb 8)   MM    MM' "'   MM    MM        MMmmMM      M  `MN. M      MM.  M'
+%   MM 8M""""""  ,pm9MM    MM       MM    MM        MM   Y  ,   M   `MM.M      `MM A'
+%   MM YM.    , 8M   MM    MM       MM    MM        MM     ,M   M     YMM       :MM;
+% .JMML.`Mbmmd' `Moo9^Yo..JMML.   .JMML  JMML.    .JMMmmmmMMM .JML.    YM        VF
+%
 % max 9 nr of arguments
 \DeclareDocumentEnvironment{pczLearnEnvironment}
 {s t\alpha t\asdas O{default} m d|| d<> r() R<>{def}}
@@ -552,13 +216,21 @@
     \noindent{\tt ENVIRONMENT\_END} \\
 }
 
-% \begin{pczLearnEnvironment}*\alpha\asdas[b]{}|c|<d>(required argument)<re>
-% \end{pczLearnEnvironment}
+
+
+%                                      mm
+%                                      MM
+% `7MMpdMAo.`7MMpMMMb.pMMMb.   ,6"Yb.mmMMmm
+%   MM   `Wb  MM    MM    MM  8)   MM  MM
+%   MM    M8  MM    MM    MM   ,pm9MM  MM
+%   MM   ,AP  MM    MM    MM  8M   MM  MM
+%   MMbmmd' .JMML  JMML  JMML.`Moo9^Yo.`Mbmo
+%   MM
+% .JMML.
 %
-% \begin{pczLearnEnvironment}\alpha{}(required argument)<re>
-% \end{pczLearnEnvironment}
-
-
+% Example:
+% $\pmqty{\pmat*{a}{3}{3}}$,
+% $\pmqty{\pmat*{x}[2]{8}[4]{7}}$
 \DeclareDocumentCommand\pmat{ s m O{0} m O{0} m }
 {
     {
@@ -595,7 +267,29 @@
 
 
 
+
+
+
+
+
+
 %% NEW THINGS 2017-07-04-17-50-35
+%
+%   .g8"""bgd   .g8""8q. `7MMF'        .g8""8q. `7MM"""Mq.  `7MM"""Yp,   .g8""8q.`YMM'   `MP'
+% .dP'     `M .dP'    `YM. MM        .dP'    `YM. MM   `MM.   MM    Yb .dP'    `YM.VMb.  ,P
+% dM'       ` dM'      `MM MM        dM'      `MM MM   ,M9    MM    dP dM'      `MM `MM.M'
+% MM          MM        MM MM        MM        MM MMmmdM9     MM"""bg. MM        MM   MMb
+% MM.         MM.      ,MP MM      , MM.      ,MP MM  YM.     MM    `Y MM.      ,MP ,M'`Mb.
+% `Mb.     ,' `Mb.    ,dP' MM     ,M `Mb.    ,dP' MM   `Mb.   MM    ,9 `Mb.    ,dP',P   `MM.
+%   `"bmmmd'    `"bmmd"' .JMMmmmmMMM   `"bmmd"' .JMML. .JMM..JMMmmmd9    `"bmmd"'.MM:.  .:MMa.
+%  ,,                                          ,,
+%`7MM                                   mm   `7MM
+%  MM                                   MM     MM
+%  MMpMMMb.  `7MMpMMMb.pMMMb.   ,6"Yb.mmMMmm   MMpMMMb.
+%  MM    MM    MM    MM    MM  8)   MM  MM     MM    MM
+%  MM    MM    MM    MM    MM   ,pm9MM  MM     MM    MM
+%  MM    MM    MM    MM    MM  8M   MM  MM     MM    MM
+%.JMML  JMML..JMML  JMML  JMML.`Moo9^Yo.`Mbmo.JMML  JMML.
 
 % \tcbuselibrary{skins}
 \colorlet{bourdon}{red!50!black}
@@ -617,17 +311,28 @@
     }
 }
 
+%                     ,,
+%                    *MM
+%                     MM
+% `7MMpdMAo.  ,p6"bo  MM,dMMb.
+%   MM   `Wb 6M'  OO  MM    `Mb
+%   MM    M8 8M       MM     M8
+%   MM   ,AP YM.    , MM.   ,M9
+%   MMbmmd'   YMbmd'  P^YbmdP'
+%   MM
+% .JMML.
+
 \newlength{\pczoversizelength}
 \setlength{\pczoversizelength}{12pt}
-\DeclareDocumentEnvironment{pcb}{ s O{} O{red} d<> }
+\DeclareDocumentEnvironment{pcb}{ s O{} O{red} d<> D(){10} D(){20} D(){50} }
 {
 
     \begin{tcolorbox}[
     enhanced,
     breakable,
-    colback=\IfNoValueTF{#4}{#3}{#4}!10,
-    colbacktitle=\IfNoValueTF{#4}{#3!20}{#3!10},
-    colframe=#3!50,
+    colback=\IfNoValueTF{#4}{#3}{#4}!#5,
+    colbacktitle=#3!#6,
+    colframe=#3!#7,
     subtitle style={boxrule=0.4pt,colback=#3!20},
     boxrule=1pt, arc=4pt, left=0.5\pczoversizelength, right=0.5\pczoversizelength, top=6pt, bottom=6pt,
     boxsep=0pt,
@@ -642,203 +347,141 @@
     \end{tcolorbox}
 }
 
+%         ,,
+%  mm   `7MM
+%  MM     MM
+%mmMMmm   MMpMMMb.  .gP"Ya   ,pW"Wq.`7Mb,od8 .gP"Ya `7MMpMMMb.pMMMb.
+%  MM     MM    MM ,M'   Yb 6W'   `Wb MM' "',M'   Yb  MM    MM    MM
+%  MM     MM    MM 8M"""""" 8M     M8 MM    8M""""""  MM    MM    MM
+%  MM     MM    MM YM.    , YA.   ,A9 MM    YM.    ,  MM    MM    MM
+%  `Mbmo.JMML  JMML.`Mbmmd'  `Ybmd9'.JMML.   `Mbmmd'.JMML  JMML  JMML.
+
 \ifx\thm\undefined
 \else
 
-\DeclareDocumentEnvironment{absthm}{
-s
-m m D(){} D||{}                        % [#2 #3 #4 #5] theorem counter, theorem name, title, info
-t\hun                                  % [#6]
-}
-{%
-    \refstepcounter{#2}%
-    \global\csdef{pczabsthmtitle}%
+    % Interface:
+    % \hun[#2:info]<#3:Name>{#4:Title of theorem}*{#6:counter}
+    % \hun[info]<Name>{Title of theorem}*{theorem}
+    \DeclareDocumentCommand{\absthmtitle}{
+    t\hun o D<>{Theorem} % [#1 #2 #3] \hun[#2:info]<#4:Name>
+    m                    % {#4:Title of theorem}
+    s                    % #5
+    m                    % {#6:counter}
+    }%
     {%
+        \refstepcounter{#6}%
         {\bfseries%
-            \IfBooleanTF{#6}%
+            \IfBooleanTF{#1}% \hun
             {%
-                \arabic{#2}. #3.%
+                % If \hun: `1. #3:name.`
+                \arabic{#6}. #3%
             }%
             {%
-                #3 \arabic{#2}.%
+                % If not \hun: `#3:Name 1.`
+                #3 \arabic{#6}.%
             }%
         }%
-        \ifx\hfuzz#4\hfuzz%
-        \else%
-            \normalfont\IfBooleanTF{#1}{ ({#4})}{ {#4}}%
-        \fi%
-        \ifx\hfuzz#5\hfuzz%
-        \else%
+        \normalfont\IfBooleanTF{#5}% *
+        {%
+            % If *
+            \ifx\hfuzz#4\hfuzz\else\ ({#4})\fi%
+            \IfBooleanT{#1}{{\bfseries.}}%
+        }%
+        {%
+            % If NO *
+            \IfBooleanT{#1}{{\bfseries.}} {#4}%
+        }%
+        \IfValueT{#2}{%
             \hfill%
             {\small\color{bourdon}%
-                #5%
-            }\IfBooleanT{#1}{\newline}%
-        \fi%
-    }%
-}%
-{%
-    \global\csundef{pczabsthmtitle}%
-}%
+                #2%
+            }\IfBooleanT{#5}{\newline}%
+        }%
+    }
 
-\DeclareDocumentCommand{\absthmtitle}{
-s t\hun o D<>{Theorem}   % [#1 #2 #3 #4] *\hun|#3:info|[#4:Name]
-m                        % {#5:Title of theorem}
-m                        % {#6:counter}
-}%
-{%
-    \refstepcounter{#6}%
-    {\bfseries%
-        \IfBooleanTF{#2}%
+    % Interface:
+    % ____           __________________                                              ______________________
+    % \hun{#2:DUMMY}*[#4:info]<#4:Name>{#5:Title of theorem}[#6:tcolorbox properties][#7:color1]<#7:color2>{#8:counter}
+    % \hun{DUMMY}*[info]<Name>{Title of theorem}[oversize][green]<blue>{theorem}
+    \DeclareDocumentEnvironment{abspcbthm}{
+    l   % #1: \hun
+    m   % #2: {DUMMY}
+    s   % #3: *
+    l   % #4: [info]<Name>
+    m   % #5: {Title of theorem}
+    O{} % #6: [tcolorbox properties]
+    l   % #7: [color1]<color2>(10)(20)(80)
+    m   % #8: counter
+    }
+    {%
+        \IfBooleanTF{#3}% *
         {%
-            \arabic{#6}. #4%
+            % If *
+            \begin{pcb}[#6]#7%
+            \absthmtitle#1#4{#5}*{#8}%
         }%
         {%
-            #4 \arabic{#6}.%
+            % If NO *
+            \begin{pcb}[title={\absthmtitle#1#4{#5}{#8}},#6]#7%
         }%
     }%
-    \IfValueT{#5}{%
-        \normalfont\IfBooleanTF{#1}
-        {%
-            \ifx\hfuzz#5\hfuzz\else\ ({#5})\fi%
-            \IfBooleanT{#2}{{\bfseries.}}%
-        }%
-        {%
-            \IfBooleanT{#2}{{\bfseries.}} {#5}%
-        }%
-    }%
-    \IfValueT{#3}{%
-        \hfill%
-        {\small\color{bourdon}%
-            #3%
-        }\IfBooleanT{#1}{\newline}%
-    }%
-}
-
-% *\hun|info|[Name]{Title of theorem}[tcolorbox properties][color1]<color2>{counter}
-% *\hun|info|[Name]{Title of theorem}[oversize][green]<blue>{theorem}
-\DeclareDocumentEnvironment{abspcbthm}{
-s
-l   % #2: \hun[info]<Name>
-m   % #3: {Title of theorem}
-O{} % #4: [tcolorbox properties]
-l   % #5: [color1]<color2>
-m   % #6: counter
-}
-{%
-    \IfBooleanTF{#1}%
     {%
-        \begin{pcb}[#4]#5%
-        \absthmtitle*#2{#3}{#6}%
+        \end{pcb}%
     }%
-    {%
-        \begin{pcb}[title={\absthmtitle#2{#3}{#6}},#4]#5%
-    }%
-}%
-{%
-    \end{pcb}%
-}%
 
-\DeclareDocumentEnvironment{thm}{
-s
-G{\theoremTitle} d() d||               % [#2 #3 #4] theorem name, title, info
-t\hun                                  % [#5]
-O{} O{bourdon} D<>{bourdon!35!yellow}  % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
-G{pcztheorem}
-}
-{%
-    \IfBooleanTF{#1}%
-    {%
-        \begin{absthm}*{#9}{#2}(#3)|#4|\hun%
-        \begin{pcb}[#6][#7]<#8>%
-        \csuse{pczabsthmtitle}%
-    }%
-    {%
-        \begin{absthm}{#9}{#2}(#3)|#4|\hun%
-        \begin{pcb}[title={\csuse{pczabsthmtitle}},#6][#7]<#8>%
-    }%
-}%
-{%
-    \end{pcb}%
-    \end{absthm}%
-}%
+    % Interface for cthm, cprop, cfel, c...
+    % *[info]{Title of theorem}[tcolorbox properties][color1]<color2>
+    % *[info]{Title of theorem}[oversize][red]<yellow>
+    % Arguments:
+    % l                               % #1: *[info]
+    % m                               % #2: {Title of theorem}
+    % O{}                             % #3: [tcolorbox properties]
+    % O{red!80!black} D<>{yellow}     % [#4 #5] pcb: color1, color2
 
-% \DeclareDocumentEnvironment{prop}{
-% s
-% G{\propositionTitle} D(){} D||{}          % [#2 #3 #4] theorem name, title, info
-% t\hun                                     % [#5]
-% O{} O{red!80!black} D<>{yellow}     % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
-% G{pczproposition}
-% }
-% {%
-%     \IfBooleanTF{#1}%
-%     {%
-%         \begin{absthm}*{#9}{#2}(#3)|#4|\hun%
-%         \begin{pcb}[#6][#7]<#8>%
-%         \csuse{pczabsthmtitle}%
-%     }%
-%     {%
-%         \begin{absthm}{#9}{#2}(#3)|#4|\hun%
-%         \begin{pcb}[title={\csuse{pczabsthmtitle}},#6][#7]<#8>%
-%     }%
-% }%
-% {%
-%     \end{pcb}%
-%     \end{absthm}%
-% }%
+    \newcounter{pczmatlab}
+    \newcounter{pczproposition}
+    \newcounter{pcztheorem}
+    \newcounter{pczexample}
 
-% *\hun[info]{Title of theorem}[tcolorbox properties][color1]<color2>
-% *\hun[info]{Title of theorem}[oversize][red]<yellow>
-\DeclareDocumentEnvironment{prop}{
-l   % #1: *\hun[info]
-m   % #2: {Title of theorem}
-O{} % #3: [tcolorbox properties]
-O{red!80!black} D<>{yellow}     % [#4 #5] pcb: color1, color2
-}
-{%
-    \begin{abspcbthm}#1<Proposition>{#2}[#3][#4]<#5>{pczproposition}%
-}%
-{%
-    \end{abspcbthm}%
-}%
+    \DeclareDocumentEnvironment{cthm}{ l m O{} O{red!80!black} D<>{yellow} }
+    {\begin{abspcbthm}{}#1<Theorem>{#2}[#3][#4]<#5>{pcztheorem}}
+    {\end{abspcbthm}}
 
-\DeclareDocumentEnvironment{fel}{
-s
-G{feladat} D(){} D||{}   % [#2 #3 #4] theorem name, title, info
-t\hun                    % [#5]
-O{} O{blue} D<>{blue}    % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
-G{pczexample}
-}
-{%
-    \IfBooleanTF{#1}%
-    {%
-        \begin{absthm}*{#9}{#2}(#3)|#4|\hun%
-        \begin{pcb}[oversize,#6][#7]%
-        \csuse{pczabsthmtitle}%
-    }%
-    {%
-        \begin{absthm}{#9}{#2}(#3)|#4|\hun%
-        \begin{pcb}[oversize,title={\csuse{pczabsthmtitle}},#6][#7]%
-    }%
-}%
-{%
-    \end{pcb}%
-    \end{absthm}%
-}%
+    \DeclareDocumentEnvironment{cprop}{ l m O{} O{red!80!black} D<>{yellow}}
+    {\begin{abspcbthm}{}#1<Proposition>{#2}[#3][#4]<#5>{pczproposition}}
+    {\end{abspcbthm}}
 
-\DeclareDocumentEnvironment{feladat}{
-s
-G{feladat} D(){} D||{}    % [#2 #3 #4] theorem name, title, info
-t\hun                     % [#5]
-O{} O{blue} D<>{blue}     % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
-}
-{%
-    \begin{absthm}*{pczexample}{#2}(#3)|#4|\hun%
-    \bigbreak\noindent\csuse{pczabsthmtitle}%
-}%
-{%
-    \phantom{.}\hfill$\triangleleft$%
-    \end{absthm}%
-}%
+    \DeclareDocumentEnvironment{callitas}{ l m O{} O{red!80!black} D<>{yellow} }
+    {\begin{abspcbthm}\hun{}#1<állítás>{#2}[#3][#4]<#5>{pczproposition}}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{cfel}{ l m O{} O{blue} D<>{blue} }
+    {\begin{abspcbthm}\hun{}#1<feladat>{#2}[#3][#4]<#5>{pczexample}}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{cmatlab}{ l m O{} O{black} D<>{gray} }
+    {\begin{abspcbthm}{}#1<Matlab>{#2}[#3][#4]<#5>(10)(20)(70){pczmatlab}}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{fel}{ l m }
+    {\smallbreak\noindent\absthmtitle#1<Matlab>{#2}*{pczmatlab}}
+    {\phantom{.}\hfill$\triangleleft$}
+
+    \DeclareDocumentEnvironment{solution}{s o}
+    {\smallbreak\noindent\textit{{Solution}}\IfNoValueF{#2}{(#2)}\textit{.}}
+    {\phantom{.}\hfill\scalebox{0.7}{$\square$}}
+
+    \DeclareDocumentEnvironment{megoldas}{s o}
+    {\smallbreak\noindent\textit{{Megoldás}}\IfNoValueF{#2}{(#2)}\textit{.}}
+    {\phantom{.}\hfill\scalebox{0.7}{$\square$}}
+
+    \DeclareDocumentEnvironment{proof}{s o}
+    {\noindent\textit{{Proof}}\IfNoValueF{#2}{(#2)}\textit{.}}
+    {\phantom{.}\hfill\scalebox{0.7}{$\square$}}
+
+    \DeclareDocumentEnvironment{bizonyitas}{s o}
+    {\noindent\textit{{Bizonyítás}}\IfNoValueF{#2}{(#2)}\textit{.}}
+    {\phantom{.}\hfill\scalebox{0.7}{$\square$}}
 
 \fi
 
@@ -847,6 +490,22 @@ O{} O{blue} D<>{blue}     % [#6 #7 #8] pcb: tcolorbox properties, color1, color2
 
 
 
+
+% `7MM"""Yb. `7MMF' .g8"""bgd MMP""MM""YMM `7MMF' .g8""8q. `7MN.   `7MF'     db      `7MM"""Mq.`YMM'   `MM'
+%   MM    `Yb. MM .dP'     `M P'   MM   `7   MM .dP'    `YM. MMN.    M      ;MM:       MM   `MM. VMA   ,V
+%   MM     `Mb MM dM'       `      MM        MM dM'      `MM M YMb   M     ,V^MM.      MM   ,M9   VMA ,V
+%   MM      MM MM MM               MM        MM MM        MM M  `MN. M    ,M  `MM      MMmmdM9     VMMP
+%   MM     ,MP MM MM.              MM        MM MM.      ,MP M   `MM.M    AbmmmqMA     MM  YM.      MM
+%   MM    ,dP' MM `Mb.     ,'      MM        MM `Mb.    ,dP' M     YMM   A'     VML    MM   `Mb.    MM
+% .JMMmmmdP' .JMML. `"bmmmd'     .JMML.    .JMML. `"bmmd"' .JML.    YM .AMA.   .AMMA..JMML. .JMM. .JMML.
+%
+% `7MMF'     A     `7MF' .g8""8q. `7MM"""Mq.  `7MM"""Yb.
+%   `MA     ,MA     ,V .dP'    `YM. MM   `MM.   MM    `Yb.
+%    VM:   ,VVM:   ,V  dM'      `MM MM   ,M9    MM     `Mb
+%     MM.  M' MM.  M'  MM        MM MMmmdM9     MM      MM
+%     `MM A'  `MM A'   MM.      ,MP MM  YM.     MM     ,MP
+%      :MM;    :MM;    `Mb.    ,dP' MM   `Mb.   MM    ,dP'
+%       VF      VF       `"bmmd"' .JMML. .JMM..JMMmmmdP'
 
 \definecolor{orange}{rgb}{1,0.5,0}
 \definecolor{mygreen}{rgb}{0.2,0.5,0.1}

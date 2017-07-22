@@ -75,9 +75,9 @@ end
 \makeatother
 
 \begin{document}
-    $
-    % \pmat{a}{2}{4}
-    $
+    $$
+        \innerp*{\frac12}{a}
+    $$
 
     Loop: \\
     \foreach \x/\index in {4,5,4,2/0} {
@@ -124,7 +124,7 @@ end
     }
     \ifnum \i < 5
         \global\matrixtoks = \expandafter{\the\matrixtoks \\ }
-        \repeat
+    \repeat
 
     \i=0
     \loop
@@ -162,41 +162,15 @@ end
     \begin{pczLearnEnvironment}\alpha{}(required argument)<re>
     \end{pczLearnEnvironment}
 
-    \begin{pcolorbox}{Title (Cayley-Hamilton)}[arguments]
-        asdasds
-    \pcbsub{Subtitle}[arguments]
-    PMAT - szabalyosan, loop-okkal:
-    $\bmqty{\xmat*{a}{3}{3}}$
-    $\bmqty{\pmat*{a}{3}{3}}$,
-    $\bmqty{\pmat*{a}[2]{8}[4]{7}}$
-    \end{pcolorbox}
-
-    \begin{pcolorbox}{Title}[arguments]\matlab
-        asdasds
-    \pcbsub{Subtitle}[arguments]\matlab
-    \end{pcolorbox}
-
-    \begin{pcolorbox}[notitle]{}[asd][blue][blue!10][blue!20]
-        \lipsum[1]
-    \end{pcolorbox}
-
-    \begin{pcbexample}
-        \lipsum[2]
-    \end{pcbexample}
-
-    \begin{cTheorem}[Cayley-Hamilton][arguments]
-
-    \end{cTheorem}
-
-    \Hiba*{123}
+    \noindent
     \color{black}
-    \TODO{Kutyagumi}(black)
+    \TODO{Kutyagumi}
+    \TODOx{Kutyagumi}
 
-    \Hiba*[blue]
+    \noindent
     Kutyagumi asdasdasdasd asd asdas dasd as asd as
     asdasda sd as asd asd asd asd asd ad asd as
 
-    \color{black}
     Kutyagumi(black)
 
 \angol[Magyarazat]{Szo}
@@ -211,9 +185,15 @@ end
   \lipsum[1-6]
 \end{tcolorbox}
 
+\normalfont
+\begin{cmatlab}[\tt kutya]{Gumi}
+    \lipsum[1]
+    \tcbsubtitle{Subtitle \thepczmatlab.1}
+    \lipsum[1]
+\end{cmatlab}
 
 
-\Normal\n
+% \Normal\n
 \section{LuaCode}
 \newcommand{\luapmat}[4]{%
   $\directlua{ paren_array(\luatexluaescapestring{#1},\luatexluaescapestring{#2},\luatexluaescapestring{#3},\luatexluaescapestring{#4}) }$
@@ -232,16 +212,14 @@ end
 \bigskip
 %% call the second function from within a LaTeX "array" environment
 $
-A = \left[ \begin{array}{*{5}{c}}
+    A = \left[ \begin{array}{*{5}{c}}
        \directlua{ subscript_array("a",2,3,5,5 ) }
     \end{array} \right]
 $
 
 $
-\luapmat{2}{3}{4}{4}
+    \luapmat{2}{3}{4}{4}
 $
-
-
 
 \newpage
 \begin{align*}
@@ -266,6 +244,10 @@ text
 ]{1-\frac{1}{x}}
 \end{align}
 
+\begin{align}
+    I = \frac{1}{1-x} \int_0^1 \frac{1}{\sqrt{1 + x^2}} \diffd x
+\end{align}
+
 \newtcbtheorem[number within=section]{mytheo}{My Theorem}%
 {colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
 
@@ -275,78 +257,7 @@ in this example, prefixed with the section number. This theorem is numbered with
 \ref{th:theoexample} and is given on page \pageref{th:theoexample}.
 \end{mytheo}
 
-\tcbmaketheorem{pcbfel}{Feladat}{
-    enhanced,
-    breakable,
-    colback=blue!10 ,
-    boxrule=1pt, arc=4pt, left=0.5\pczoversizelength, right=0.5\pczoversizelength, top=6pt, bottom=6pt,
-    boxsep=0pt,
-    toptitle=4pt,
-    bottomtitle=4pt,
-    fonttitle=\bfseries,
-    coltitle=black,
-    colframe=blue!30!black,
-    colbacktitle=blue!20,
-    subtitle style={
-        boxrule=0.4pt,
-        colback=blue!20},
-    oversize=-\pczoversizelength,
-    % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
-}{pczexample}{pl}
-
-\begin{pcbfel}{\pcbTitleHelper{red}{asdasda}{asdddd}\matlab}{marker}
-
-\end{pcbfel}
-
 Lásd: \ref{pl:marker}
-
-\DeclareDocumentCommand{\pcbtheoremname}{s g g o t\hun}
-{%
-    \bfseries%
-    \IfBooleanTF{#5}%
-    {%
-        \arabic{#2}. #3.%
-    }%
-    {%
-        #3 \arabic{#2}.%
-    }%
-    \normalfont%
-    \IfBooleanTF{#1}%
-    { %
-        #4%
-    }%
-    { %
-        (#4)%
-    }%
-}%
-
-\DeclareDocumentCommand{\pcbtheoreminfo}{s g t\tt}
-{%
-    \IfBooleanTF{#1}%
-    {%
-        \hfill%
-        {\small\color{bourdon}%
-            \IfBooleanTF{#3}%
-            {%
-                \tt #2%
-            }%
-            {%
-                \itshape #2%
-            }%
-        }%
-    }%
-    {%
-        {\small\color{bourdon}%
-            \IfBooleanTF{#3}%
-            {%
-                \tt [#2]%
-            }%
-            {%
-                {-- \itshape #2 --}%
-            }%
-        }%
-    }%
-}%
 
 \begin{pcb}[title=Kutyagumi][blue]
     This is my own box with a mandatory title and options.
@@ -355,27 +266,5 @@ Lásd: \ref{pl:marker}
 \begin{pcb}[title=Kutyagumi,oversize][bourdon]<bourdon!35!yellow>
     This is my own box with a mandatory title and options.
 \end{pcb}
-
-\begin{cProposition}*{Kutyagumi}
-    This is my own box with a mandatory title and options.
-\end{cProposition}
-
-\begin{cExample}*{Title}[asd][asd]
-
-\end{cExample}
-
-\noindent
-\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \\
-\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\hun \\
-\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \\
-\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\hun \\
-%
-\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \pcbtheoreminfo{interp1} \\
-\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \pcbtheoreminfo{interp1}\tt \\
-\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\hun \pcbtheoreminfo*{interp1} \\
-\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\hun \pcbtheoreminfo*{interp1}\tt \\
-
-\global\csdef{kutyagumi123}{\bfseries almamartas}
-\csuse{kutyagumi123}
 
 \end{document}

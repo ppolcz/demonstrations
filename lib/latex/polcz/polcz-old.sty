@@ -1,0 +1,548 @@
+\ProvidesPackage{polcz-old}
+
+\RequirePackage{physics}
+\RequirePackage{xparse}
+\RequirePackage{amsmath}
+\RequirePackage[utf8]{inputenc}
+
+% http://ctan.org/pkg/tcolorbox
+\RequirePackage[breakable,skins]{tcolorbox}
+\tcbuselibrary{theorems}
+
+% \usepackage[
+%     hyperfootnotes = false,
+%     colorlinks = true,
+%     linkcolor = blue,
+%     urlcolor  = blue,
+%     citecolor = blue,
+%     anchorcolor = blue,
+%     pagebackref = false
+%     ]{hyperref}
+
+% Options
+\DeclareOption{nohref}{\let\hrefopt = 0}
+\DeclareOption{ownhref}{\let\hrefopt = 1}
+\DeclareOption{href}{\let\hrefopt = 2}
+\DeclareOption{nothm}{\let\thm = 0}
+\DeclareOption{thmhu}{\let\thm = 1}
+\DeclareOption{thmen}{\let\thm = 2}
+\DeclareOption{ccsgyak}{\let\ccsgyak = 1}
+\ExecuteOptions{nohref}
+\ProcessOptions\relax
+
+
+%\DeclareDocumentCommand{\TODOx}{s O{red} m D<>{6pt} D<>{6pt} D<>{2pt} D<>{2pt}}
+%{
+%    \IfBooleanTF{#1}{%
+%        \begin{tcolorbox}[on line,arc=7pt,colback=#2!10!white,colframe=#2!50!black,
+%            before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=#4,right=#5,top=#6,bottom=#7]#3\end{tcolorbox}
+%    }{%
+%        \begin{tcolorbox}[on line,arc=7pt,colback=#2!10!white,colframe=#2!50!black,
+%            before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=8pt,right=8pt,top=8pt,bottom=8pt]#3\end{tcolorbox}
+%    }
+%}
+
+
+\DeclareDocumentCommand{\pcbTitleHelper}{m m m t\matlab}
+{
+    \IfBooleanTF{#4}{%
+        #2 \hfill\color{#1} {\normalsize \tt #3}%
+    }{%
+        #2 \hfill\color{#1} \textit{\normalsize #3}
+    }
+}
+
+% Colorbox
+\colorlet{cImportantBaseColor}{red!50!black}
+\colorlet{cImportantTitleColor}{cImportantBaseColor!10}
+\colorlet{cImportantBackColor}{cImportantBaseColor!35!yellow!10}
+\definecolor{cMatlabBaseColor}{rgb}{0.95,0.95,0.95}
+% o: optional tcolorbox arguments
+% g: title
+% O: title comment
+% O: base color
+% O: background color
+% O: title background color
+\DeclareDocumentEnvironment{pcolorbox}
+{ o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\matlab}
+{%
+    \IfBooleanTF{#8}{
+        \begin{tcolorbox}[
+        oversize,
+        enhanced,
+        breakable,
+        colback=cMatlabBaseColor,
+        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
+        boxsep=0pt,
+        toptitle=4pt,
+        bottomtitle=4pt,
+        fonttitle=\bfseries,
+        coltitle=black,
+        colbacktitle=cMatlabBaseColor!90!black,
+        subtitle style={
+            boxrule=0.4pt,
+            colback=cMatlabBaseColor!90!black},
+        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3}\matlab,
+        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
+        \IfNoValueF{#1}{#1}
+        ]%
+    }{
+        \begin{tcolorbox}[
+        oversize,
+        enhanced,
+        breakable,
+        colframe=#4!50, colback=#5,
+        colbacktitle=#6,
+        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
+        boxsep=0pt,
+        toptitle=4pt,
+        bottomtitle=4pt,
+        fonttitle=\bfseries,
+        coltitle=black,
+        subtitle style={
+            boxrule=0.4pt,
+            colback=#6},
+        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3},
+        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
+        \IfNoValueF{#1}{#1}
+        ]%
+    }%
+}{%
+    \end{tcolorbox}%
+}
+
+% \begin{pcolorbox}{Title (Cayley-Hamilton)}[arguments]
+%     asdasds
+% \pcbsub{Subtitle}[arguments]
+%     PMAT - szabalyosan, loop-okkal:
+%     $\pmqty{\xmat*{a}{3}{3}}$
+%     $\pmqty{\pmat*{a}{3}{3}}$,
+%     $\pmqty{\pmat*{x}[2]{8}[4]{7}}$
+% \end{pcolorbox}
+
+% \begin{pcolorbox}{Title}[arguments]\matlab
+%     asdasds
+% \pcbsub{Subtitle}[arguments]\matlab
+% \end{pcolorbox}
+
+% \begin{pcolorbox}[notitle]{}[asd][blue][blue!10][blue!20]
+%     \lipsum[1]
+% \end{pcolorbox}
+
+% \begin{pcbexample}
+%     \lipsum[2]
+% \end{pcbexample}
+
+% \begin{cTheorem}[Cayley-Hamilton][arguments]
+
+% \end{cTheorem}
+
+\DeclareDocumentEnvironment{pcbox}
+{ s o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\matlab}
+{%
+    \IfBooleanTF{#8}{
+        \begin{tcolorbox}[
+        oversize,
+        enhanced,
+        breakable,
+        colback=cMatlabBaseColor,
+        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
+        boxsep=0pt,
+        toptitle=4pt,
+        bottomtitle=4pt,
+        fonttitle=\bfseries,
+        coltitle=black,
+        colbacktitle=cMatlabBaseColor!90!black,
+        subtitle style={
+            boxrule=0.4pt,
+            colback=cMatlabBaseColor!90!black},
+        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3}\matlab,
+        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
+        \IfNoValueF{#1}{#1}
+        ]%
+    }{
+        \begin{tcolorbox}[
+        oversize,
+        enhanced,
+        breakable,
+        colframe=#4!50, colback=#5,
+        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
+        boxsep=0pt,
+        toptitle=4pt,
+        bottomtitle=4pt,
+        fonttitle=\bfseries,
+        coltitle=black,
+        colbacktitle=#6,
+        subtitle style={
+            boxrule=0.4pt,
+            colback=#6},
+        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+        title=\pcbTitleHelper{#7}{\IfNoValueF{#2}{#2}}{#3},
+        \IfNoValueT{#2}{\IfNoValueT{#3}{notitle}},
+        \IfNoValueF{#1}{#1}
+        ]%
+    }%
+}{%
+    \end{tcolorbox}%
+}
+
+
+\DeclareDocumentCommand{\pcbsub}{ s g O{} O{cImportantBaseColor} t\matlab}
+{%
+    \tcbsubtitle{%
+        \IfBooleanTF{#5}{%
+            \pcbTitleHelper{#4}{\IfNoValueF{#2}{#2}}{#3}\matlab%
+        }{%
+            \pcbTitleHelper{#4}{\IfNoValueF{#2}{#2}}{#3}%
+        }%
+    }%
+}
+
+
+\DeclareDocumentEnvironment{pcbexample}
+{s G{} O{}}
+{%
+    \IfBooleanTF{#1}
+    {\begin{pcolorbox}{#2}[#3][blue][blue!10][blue!20]}%
+    {\begin{pcolorbox}[notitle]{}[][blue][blue!10][blue!20]}%
+}{
+    \end{pcolorbox}
+}
+
+
+
+
+
+
+\DeclareDocumentCommand{\Hiba}{s t\it t\n O{red} g}
+{
+    \IfNoValueTF{#5}
+    {%
+        \color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape}%
+        \IfBooleanT{#3}{\normalfont}%
+    }
+    {%
+        {\color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape} #5}%
+        \IfBooleanT{#3}{\normalfont}%
+    }
+}
+
+\DeclareDocumentCommand{\Atir}{s t\it t\n O{blue} g}%
+{%
+    \IfNoValueTF{#5}%
+    {%
+        \color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape}%
+        \IfBooleanT{#3}{\normalfont}%
+    }{%
+        {\color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape} #5}%
+        \IfBooleanT{#3}{\normalfont}%
+    }%
+}
+
+\DeclareDocumentCommand{\Normal}{s t\it t\n O{black} g}
+{
+    \IfNoValueTF{#5}
+    {%
+        \color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape}%
+        \IfBooleanT{#3}{\normalfont}%
+    }
+    {%
+        {\color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape} #5}%
+        \IfBooleanT{#3}{\normalfont}%
+    }
+}
+
+
+
+
+
+\ifx\thm 1
+
+    \providecommand\lemmaTitle{Lemma}
+    \providecommand\remarkTitle{Remark}
+    \providecommand\propositionTitle{Állítás}
+    \providecommand\applicationTitle{Alkalmazás}
+    \providecommand\exampleTitle{Példa}
+    \providecommand\theoremTitle{Tétel}
+    \providecommand\definitionTitle{Definíció}
+    \providecommand\proofTitle{Bizonyítás}
+    \providecommand\solutionTitle{Megoldás}
+
+\else\ifx\thm 2
+
+    \providecommand\lemmaTitle{Lemma}
+    \providecommand\remarkTitle{Remark}
+    \providecommand\propositionTitle{Proposition}
+    \providecommand\applicationTitle{Application}
+    \providecommand\exampleTitle{Example}
+    \providecommand\theoremTitle{Theorem}
+    \providecommand\definitionTitle{Definition}
+    \providecommand\proofTitle{Proof}
+    \providecommand\solutionTitle{Solution}
+
+\fi\fi
+
+
+\ifx\thm\undefined
+\else
+
+    \newcounter{pczexample}
+    \DeclareDocumentEnvironment{example}
+    {s G{\exampleTitle} o t\hun}
+    {%
+        \refstepcounter{pczexample}%
+        \bigbreak\noindent%
+        \IfBooleanTF{#4}
+            {\textbf{\thepczexample. {#2}. }\IfNoValueF{#3}{(#3) }}
+            {\textbf{{#2} \thepczexample. }\IfNoValueF{#3}{(#3) }}%
+    }
+    {
+        \phantom{.}\hfill$\triangleleft$
+    }
+
+    \DeclareDocumentEnvironment{cExample}
+    {s G{\exampleTitle} o O{} t\hun}
+    {%
+        \smallbreak\noindent\refstepcounter{pczexample}%
+        \IfBooleanTF{#1}
+        {\begin{pcbexample}*{\IfBooleanTF{#5}{\thepczexample. {#2}. }{{#2} \thepczexample. }\normalfont #3}[#4]}
+        {\begin{pcbexample}\textbf{\IfBooleanTF{#5}{\thepczexample. {#2}. }{{#2} \thepczexample. }}\IfNoValueF{#3}{(#3) }}%
+    }
+    {
+        \end{pcbexample}%
+    }
+
+    \newcounter{pcztheorem}
+    \DeclareDocumentEnvironment{theorem}
+    {s o}
+    {%
+        \refstepcounter{pcztheorem}%
+        \bigbreak\noindent\textbf{{\theoremTitle} \thepcztheorem.}\IfNoValueF{#2}{ (#2) }%
+    }
+    {
+        \hfill$\triangleleft$
+    }
+
+    \newcounter{pczdefinition}
+    \DeclareDocumentEnvironment{definition}
+    {s o}
+    {\let\emph\textbf%
+        \refstepcounter{pczdefinition}%
+        \bigbreak\noindent\textbf{{\definitionTitle} \arabic{pczdefinition}.}\IfNoValueF{#2}{ (#2) }\itshape%
+    }
+    {
+        \hfill$\triangleleft$
+    }
+
+    \DeclareDocumentEnvironment{cTheorem}
+    {s o}
+    {%
+        \smallbreak\noindent\refstepcounter{pcztheorem}%
+        \begin{pcolorbox}{{\theoremTitle} \thepcztheorem.\IfNoValueF{#2}{ \normalfont (#2)}}%
+    }{%
+        \end{pcolorbox}%
+    }
+
+
+    \newcounter{pczapplication}
+    \DeclareDocumentEnvironment{application}
+    {s o}
+    {
+        \refstepcounter{pczapplication}
+        \bigbreak\noindent\textbf{{\applicationTitle} \thepczapplication.}\IfNoValueF{#2}{ (#2)}
+    }
+    {
+        \hfill$\triangleleft$
+    }
+
+    \DeclareDocumentEnvironment{remark}
+    {s o}
+    {
+        \refstepcounter{pczapplication}
+        \bigbreak\noindent\textit{{\remarkTitle} \thepczapplication.}\IfNoValueF{#2}{ (#2)}
+    }
+    {
+        \hfill$\triangleleft$
+    }
+
+    \newcounter{pczlemma}
+    \DeclareDocumentEnvironment{lemma}
+    {s o}
+    {
+        \refstepcounter{pczlemma}
+        \bigbreak\noindent\textbf{{\lemmaTitle} \thepczlemma.}\IfNoValueF{#2}{ (#2)}
+    }
+    {
+        \hfill$\triangleleft$
+    }
+
+    \newcounter{pczproposition}
+    \DeclareDocumentEnvironment{proposition}
+    {s o}
+    {
+        \refstepcounter{pczproposition}
+        \bigbreak\noindent\textbf{{\propositionTitle} \thepczproposition.}\IfNoValueF{#2}{ (#2)}
+    }
+    {
+        \hfill$\triangleleft$\newline
+    }
+
+    \DeclareDocumentEnvironment{cProposition}
+    {s o}
+    {%
+        \smallbreak\noindent\refstepcounter{pczproposition}%
+        \IfBooleanTF{#1}%
+        {\begin{pcolorbox}{{\propositionTitle} \thepczproposition.\IfNoValueF{#2}{ \normalfont(#2)}}}%
+        {\begin{pcolorbox}[notitle]\textbf{{\propositionTitle} \thepczproposition.}\IfNoValueF{#2}{ (#2)}}%
+        %
+    }{%
+        \end{pcolorbox}%
+    }
+
+    \DeclareDocumentEnvironment{proof}
+    {s o}
+    {%
+        \noindent\textit{{\proofTitle}}\IfNoValueF{#2}{(#2)}\textit{.}%
+    }
+    {
+        \hfill$\square$
+    }
+
+    \DeclareDocumentEnvironment{sol}
+    {s o}
+    {%
+        \smallbreak\noindent\textit{{\solutionTitle}}\IfNoValueF{#2}{(#2)}\textit{.}%
+    }
+    {
+        \phantom{.}\hfill\scalebox{0.7}{$\square$}
+    }
+
+\fi
+
+\ifx\ccsgyak\undefined\else
+    % \newcounter{pczmatlab}
+    \DeclareDocumentEnvironment{matlab}
+    {s o m}
+    {
+        \begin{pcolorbox}{\refstepcounter{pczmatlab}Matlab \thepczmatlab. %
+        \IfNoValueF{#2}{\normalfont #2}}[\tt #3]\matlab
+    }
+    {
+        \end{pcolorbox}
+    }
+\fi
+% \begin{matlab}[kutya]{Gumi}
+%     \lipsum[1]
+% \end{matlab}
+
+
+% \tcbmaketheorem{pcbfel}{Feladat}{
+%     enhanced,
+%     breakable,
+%     colback=blue!10 ,
+%     boxrule=1pt, arc=4pt, left=0.5\pczoversizelength, right=0.5\pczoversizelength, top=6pt, bottom=6pt,
+%     boxsep=0pt,
+%     toptitle=4pt,
+%     bottomtitle=4pt,
+%     fonttitle=\bfseries,
+%     coltitle=black,
+%     colframe=blue!30!black,
+%     colbacktitle=blue!20,
+%     subtitle style={
+%         boxrule=0.4pt,
+%         colback=blue!20},
+%     oversize=-\pczoversizelength,
+%     % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+% }{pczexample}{pl}
+
+% \begin{pcbfel}{\pcbTitleHelper{red}{asdasda}{asdddd}\matlab}{marker}
+% \end{pcbfel}
+
+
+
+% \DeclareDocumentCommand{\pcbtheoremname}{s g g o t\hun}
+% {%
+%     \bfseries%
+%     \IfBooleanTF{#5}%
+%     {%
+%         \arabic{#2}. #3.%
+%     }%
+%     {%
+%         #3 \arabic{#2}.%
+%     }%
+%     \normalfont%
+%     \IfBooleanTF{#1}%
+%     { %
+%         #4%
+%     }%
+%     { %
+%         (#4)%
+%     }%
+% }%
+
+% \DeclareDocumentCommand{\pcbtheoreminfo}{s g t\tt}
+% {%
+%     \IfBooleanTF{#1}%
+%     {%
+%         \hfill%
+%         {\small\color{bourdon}%
+%             \IfBooleanTF{#3}%
+%             {%
+%                 \tt #2%
+%             }%
+%             {%
+%                 \itshape #2%
+%             }%
+%         }%
+%     }%
+%     {%
+%         {\small\color{bourdon}%
+%             \IfBooleanTF{#3}%
+%             {%
+%                 \tt [#2]%
+%             }%
+%             {%
+%                 {-- \itshape #2 --}%
+%             }%
+%         }%
+%     }%
+% }%
+
+
+
+% \begin{cProposition}*{Kutyagumi}
+%     This is my own box with a mandatory title and options.
+% \end{cProposition}
+
+% \begin{cExample}*{Title}[asd][asd]
+
+% \end{cExample}
+
+% \noindent
+% \pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \\
+% \pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\hun \\
+% \pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \\
+% \pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\hun \\
+% %
+% \pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \pcbtheoreminfo{interp1} \\
+% \pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \pcbtheoreminfo{interp1}\tt \\
+% \pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\hun \pcbtheoreminfo*{interp1} \\
+% \pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\hun \pcbtheoreminfo*{interp1}\tt \\
+
+% \global\csdef{kutyagumi123}{\bfseries almamartas}
+% \csuse{kutyagumi123}
