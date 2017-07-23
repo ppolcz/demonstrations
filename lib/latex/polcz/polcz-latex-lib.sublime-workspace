@@ -523,7 +523,16 @@
 			"file": "polcz.tex",
 			"settings":
 			{
-				"buffer_size": 5935,
+				"buffer_size": 6726,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polcz-beamer.tex",
+			"settings":
+			{
+				"buffer_size": 2115,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -532,7 +541,7 @@
 			"file": "polcz.sty",
 			"settings":
 			{
-				"buffer_size": 18633,
+				"buffer_size": 18638,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -546,10 +555,7 @@
 			}
 		},
 		{
-			"contents": "\\ProvidesPackage{polcz-old}\n\n\\RequirePackage{physics}\n\\RequirePackage{xparse}\n\\RequirePackage{amsmath}\n\\RequirePackage[utf8]{inputenc}\n\n% http://ctan.org/pkg/tcolorbox\n\\RequirePackage[breakable,skins]{tcolorbox}\n\\tcbuselibrary{theorems}\n\n% \\usepackage[\n%     hyperfootnotes = false,\n%     colorlinks = true,\n%     linkcolor = blue,\n%     urlcolor  = blue,\n%     citecolor = blue,\n%     anchorcolor = blue,\n%     pagebackref = false\n%     ]{hyperref}\n\n% Options\n\\DeclareOption{nohref}{\\let\\hrefopt = 0}\n\\DeclareOption{ownhref}{\\let\\hrefopt = 1}\n\\DeclareOption{href}{\\let\\hrefopt = 2}\n\\DeclareOption{nothm}{\\let\\thm = 0}\n\\DeclareOption{thmhu}{\\let\\thm = 1}\n\\DeclareOption{thmen}{\\let\\thm = 2}\n\\DeclareOption{ccsgyak}{\\let\\ccsgyak = 1}\n\\ExecuteOptions{nohref}\n\\ProcessOptions\\relax\n\n\n%\\DeclareDocumentCommand{\\TODOx}{s O{red} m D<>{6pt} D<>{6pt} D<>{2pt} D<>{2pt}}\n%{\n%    \\IfBooleanTF{#1}{%\n%        \\begin{tcolorbox}[on line,arc=7pt,colback=#2!10!white,colframe=#2!50!black,\n%            before upper={\\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=#4,right=#5,top=#6,bottom=#7]#3\\end{tcolorbox}\n%    }{%\n%        \\begin{tcolorbox}[on line,arc=7pt,colback=#2!10!white,colframe=#2!50!black,\n%            before upper={\\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=8pt,right=8pt,top=8pt,bottom=8pt]#3\\end{tcolorbox}\n%    }\n%}\n\n\n\\DeclareDocumentCommand{\\pcbTitleHelper}{m m m t\\matlab}\n{\n    \\IfBooleanTF{#4}{%\n        #2 \\hfill\\color{#1} {\\normalsize \\tt #3}%\n    }{%\n        #2 \\hfill\\color{#1} \\textit{\\normalsize #3}\n    }\n}\n\n% Colorbox\n\\colorlet{cImportantBaseColor}{red!50!black}\n\\colorlet{cImportantTitleColor}{cImportantBaseColor!10}\n\\colorlet{cImportantBackColor}{cImportantBaseColor!35!yellow!10}\n\\definecolor{cMatlabBaseColor}{rgb}{0.95,0.95,0.95}\n% o: optional tcolorbox arguments\n% g: title\n% O: title comment\n% O: base color\n% O: background color\n% O: title background color\n\\DeclareDocumentEnvironment{pcolorbox}\n{ o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\\matlab}\n{%\n    \\IfBooleanTF{#8}{\n        \\begin{tcolorbox}[\n        oversize,\n        enhanced,\n        breakable,\n        colback=cMatlabBaseColor,\n        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,\n        boxsep=0pt,\n        toptitle=4pt,\n        bottomtitle=4pt,\n        fonttitle=\\bfseries,\n        coltitle=black,\n        colbacktitle=cMatlabBaseColor!90!black,\n        subtitle style={\n            boxrule=0.4pt,\n            colback=cMatlabBaseColor!90!black},\n        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n        title=\\pcbTitleHelper{#7}{\\IfNoValueF{#2}{#2}}{#3}\\matlab,\n        \\IfNoValueT{#2}{\\IfNoValueT{#3}{notitle}},\n        \\IfNoValueF{#1}{#1}\n        ]%\n    }{\n        \\begin{tcolorbox}[\n        oversize,\n        enhanced,\n        breakable,\n        colframe=#4!50, colback=#5,\n        colbacktitle=#6,\n        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,\n        boxsep=0pt,\n        toptitle=4pt,\n        bottomtitle=4pt,\n        fonttitle=\\bfseries,\n        coltitle=black,\n        subtitle style={\n            boxrule=0.4pt,\n            colback=#6},\n        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n        title=\\pcbTitleHelper{#7}{\\IfNoValueF{#2}{#2}}{#3},\n        \\IfNoValueT{#2}{\\IfNoValueT{#3}{notitle}},\n        \\IfNoValueF{#1}{#1}\n        ]%\n    }%\n}{%\n    \\end{tcolorbox}%\n}\n\n% \\begin{pcolorbox}{Title (Cayley-Hamilton)}[arguments]\n%     asdasds\n% \\pcbsub{Subtitle}[arguments]\n%     PMAT - szabalyosan, loop-okkal:\n%     $\\pmqty{\\xmat*{a}{3}{3}}$\n%     $\\pmqty{\\pmat*{a}{3}{3}}$,\n%     $\\pmqty{\\pmat*{x}[2]{8}[4]{7}}$\n% \\end{pcolorbox}\n\n% \\begin{pcolorbox}{Title}[arguments]\\matlab\n%     asdasds\n% \\pcbsub{Subtitle}[arguments]\\matlab\n% \\end{pcolorbox}\n\n% \\begin{pcolorbox}[notitle]{}[asd][blue][blue!10][blue!20]\n%     \\lipsum[1]\n% \\end{pcolorbox}\n\n% \\begin{pcbexample}\n%     \\lipsum[2]\n% \\end{pcbexample}\n\n% \\begin{cTheorem}[Cayley-Hamilton][arguments]\n\n% \\end{cTheorem}\n\n\\DeclareDocumentEnvironment{pcbox}\n{ s o g O{} O{cImportantBaseColor} O{cImportantBackColor} O{cImportantTitleColor} O{cImportantBaseColor} t\\matlab}\n{%\n    \\IfBooleanTF{#8}{\n        \\begin{tcolorbox}[\n        oversize,\n        enhanced,\n        breakable,\n        colback=cMatlabBaseColor,\n        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,\n        boxsep=0pt,\n        toptitle=4pt,\n        bottomtitle=4pt,\n        fonttitle=\\bfseries,\n        coltitle=black,\n        colbacktitle=cMatlabBaseColor!90!black,\n        subtitle style={\n            boxrule=0.4pt,\n            colback=cMatlabBaseColor!90!black},\n        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n        title=\\pcbTitleHelper{#7}{\\IfNoValueF{#2}{#2}}{#3}\\matlab,\n        \\IfNoValueT{#2}{\\IfNoValueT{#3}{notitle}},\n        \\IfNoValueF{#1}{#1}\n        ]%\n    }{\n        \\begin{tcolorbox}[\n        oversize,\n        enhanced,\n        breakable,\n        colframe=#4!50, colback=#5,\n        boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt,\n        boxsep=0pt,\n        toptitle=4pt,\n        bottomtitle=4pt,\n        fonttitle=\\bfseries,\n        coltitle=black,\n        colbacktitle=#6,\n        subtitle style={\n            boxrule=0.4pt,\n            colback=#6},\n        % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n        title=\\pcbTitleHelper{#7}{\\IfNoValueF{#2}{#2}}{#3},\n        \\IfNoValueT{#2}{\\IfNoValueT{#3}{notitle}},\n        \\IfNoValueF{#1}{#1}\n        ]%\n    }%\n}{%\n    \\end{tcolorbox}%\n}\n\n\n\\DeclareDocumentCommand{\\pcbsub}{ s g O{} O{cImportantBaseColor} t\\matlab}\n{%\n    \\tcbsubtitle{%\n        \\IfBooleanTF{#5}{%\n            \\pcbTitleHelper{#4}{\\IfNoValueF{#2}{#2}}{#3}\\matlab%\n        }{%\n            \\pcbTitleHelper{#4}{\\IfNoValueF{#2}{#2}}{#3}%\n        }%\n    }%\n}\n\n\n\\DeclareDocumentEnvironment{pcbexample}\n{s G{} O{}}\n{%\n    \\IfBooleanTF{#1}\n    {\\begin{pcolorbox}{#2}[#3][blue][blue!10][blue!20]}%\n    {\\begin{pcolorbox}[notitle]{}[][blue][blue!10][blue!20]}%\n}{\n    \\end{pcolorbox}\n}\n\n\n\n\n\n\n\\DeclareDocumentCommand{\\Hiba}{s t\\it t\\n O{red} g}\n{\n    \\IfNoValueTF{#5}\n    {%\n        \\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }\n    {%\n        {\\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape} #5}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }\n}\n\n\\DeclareDocumentCommand{\\Atir}{s t\\it t\\n O{blue} g}%\n{%\n    \\IfNoValueTF{#5}%\n    {%\n        \\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }{%\n        {\\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape} #5}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }%\n}\n\n\\DeclareDocumentCommand{\\Normal}{s t\\it t\\n O{black} g}\n{\n    \\IfNoValueTF{#5}\n    {%\n        \\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }\n    {%\n        {\\color{#4}%\n        \\IfBooleanT{#1}{\\bfseries}%\n        \\IfBooleanT{#2}{\\itshape} #5}%\n        \\IfBooleanT{#3}{\\normalfont}%\n    }\n}\n\n\n\n\n\n\\ifx\\thm 1\n\n    \\providecommand\\lemmaTitle{Lemma}\n    \\providecommand\\remarkTitle{Remark}\n    \\providecommand\\propositionTitle{Állítás}\n    \\providecommand\\applicationTitle{Alkalmazás}\n    \\providecommand\\exampleTitle{Példa}\n    \\providecommand\\theoremTitle{Tétel}\n    \\providecommand\\definitionTitle{Definíció}\n    \\providecommand\\proofTitle{Bizonyítás}\n    \\providecommand\\solutionTitle{Megoldás}\n\n\\else\\ifx\\thm 2\n\n    \\providecommand\\lemmaTitle{Lemma}\n    \\providecommand\\remarkTitle{Remark}\n    \\providecommand\\propositionTitle{Proposition}\n    \\providecommand\\applicationTitle{Application}\n    \\providecommand\\exampleTitle{Example}\n    \\providecommand\\theoremTitle{Theorem}\n    \\providecommand\\definitionTitle{Definition}\n    \\providecommand\\proofTitle{Proof}\n    \\providecommand\\solutionTitle{Solution}\n\n\\fi\\fi\n\n\n\\ifx\\thm\\undefined\n\\else\n\n    \\newcounter{pczexample}\n    \\DeclareDocumentEnvironment{example}\n    {s G{\\exampleTitle} o t\\hun}\n    {%\n        \\refstepcounter{pczexample}%\n        \\bigbreak\\noindent%\n        \\IfBooleanTF{#4}\n            {\\textbf{\\thepczexample. {#2}. }\\IfNoValueF{#3}{(#3) }}\n            {\\textbf{{#2} \\thepczexample. }\\IfNoValueF{#3}{(#3) }}%\n    }\n    {\n        \\phantom{.}\\hfill$\\triangleleft$\n    }\n\n    \\DeclareDocumentEnvironment{cExample}\n    {s G{\\exampleTitle} o O{} t\\hun}\n    {%\n        \\smallbreak\\noindent\\refstepcounter{pczexample}%\n        \\IfBooleanTF{#1}\n        {\\begin{pcbexample}*{\\IfBooleanTF{#5}{\\thepczexample. {#2}. }{{#2} \\thepczexample. }\\normalfont #3}[#4]}\n        {\\begin{pcbexample}\\textbf{\\IfBooleanTF{#5}{\\thepczexample. {#2}. }{{#2} \\thepczexample. }}\\IfNoValueF{#3}{(#3) }}%\n    }\n    {\n        \\end{pcbexample}%\n    }\n\n    \\newcounter{pcztheorem}\n    \\DeclareDocumentEnvironment{theorem}\n    {s o}\n    {%\n        \\refstepcounter{pcztheorem}%\n        \\bigbreak\\noindent\\textbf{{\\theoremTitle} \\thepcztheorem.}\\IfNoValueF{#2}{ (#2) }%\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\newcounter{pczdefinition}\n    \\DeclareDocumentEnvironment{definition}\n    {s o}\n    {\\let\\emph\\textbf%\n        \\refstepcounter{pczdefinition}%\n        \\bigbreak\\noindent\\textbf{{\\definitionTitle} \\arabic{pczdefinition}.}\\IfNoValueF{#2}{ (#2) }\\itshape%\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\DeclareDocumentEnvironment{cTheorem}\n    {s o}\n    {%\n        \\smallbreak\\noindent\\refstepcounter{pcztheorem}%\n        \\begin{pcolorbox}{{\\theoremTitle} \\thepcztheorem.\\IfNoValueF{#2}{ \\normalfont (#2)}}%\n    }{%\n        \\end{pcolorbox}%\n    }\n\n\n    \\newcounter{pczapplication}\n    \\DeclareDocumentEnvironment{application}\n    {s o}\n    {\n        \\refstepcounter{pczapplication}\n        \\bigbreak\\noindent\\textbf{{\\applicationTitle} \\thepczapplication.}\\IfNoValueF{#2}{ (#2)}\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\DeclareDocumentEnvironment{remark}\n    {s o}\n    {\n        \\refstepcounter{pczapplication}\n        \\bigbreak\\noindent\\textit{{\\remarkTitle} \\thepczapplication.}\\IfNoValueF{#2}{ (#2)}\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\newcounter{pczlemma}\n    \\DeclareDocumentEnvironment{lemma}\n    {s o}\n    {\n        \\refstepcounter{pczlemma}\n        \\bigbreak\\noindent\\textbf{{\\lemmaTitle} \\thepczlemma.}\\IfNoValueF{#2}{ (#2)}\n    }\n    {\n        \\hfill$\\triangleleft$\n    }\n\n    \\newcounter{pczproposition}\n    \\DeclareDocumentEnvironment{proposition}\n    {s o}\n    {\n        \\refstepcounter{pczproposition}\n        \\bigbreak\\noindent\\textbf{{\\propositionTitle} \\thepczproposition.}\\IfNoValueF{#2}{ (#2)}\n    }\n    {\n        \\hfill$\\triangleleft$\\newline\n    }\n\n    \\DeclareDocumentEnvironment{cProposition}\n    {s o}\n    {%\n        \\smallbreak\\noindent\\refstepcounter{pczproposition}%\n        \\IfBooleanTF{#1}%\n        {\\begin{pcolorbox}{{\\propositionTitle} \\thepczproposition.\\IfNoValueF{#2}{ \\normalfont(#2)}}}%\n        {\\begin{pcolorbox}[notitle]\\textbf{{\\propositionTitle} \\thepczproposition.}\\IfNoValueF{#2}{ (#2)}}%\n        %\n    }{%\n        \\end{pcolorbox}%\n    }\n\n    \\DeclareDocumentEnvironment{proof}\n    {s o}\n    {%proof\n        \\noindent\\textit{{\\proofTitle}}\\IfNoValueF{#2}{(#2)}\\textit{.}%\n    }\n    {\n        \\hfill$\\square$\n    }\n\n    \\DeclareDocumentEnvironment{sol}\n    {s o}\n    {%\n        \\smallbreak\\noindent\\textit{{\\solutionTitle}}\\IfNoValueF{#2}{(#2)}\\textit{.}%\n    }\n    {\n        \\phantom{.}\\hfill\\scalebox{0.7}{$\\square$}\n    }\n\n\\fi\n\n\\ifx\\ccsgyak\\undefined\\else\n    % \\newcounter{pczmatlab}\n    \\DeclareDocumentEnvironment{matlab}\n    {s o m}\n    {\n        \\begin{pcolorbox}{\\refstepcounter{pczmatlab}Matlab \\thepczmatlab. %\n        \\IfNoValueF{#2}{\\normalfont #2}}[\\tt #3]\\matlab\n    }\n    {\n        \\end{pcolorbox}\n    }\n\\fi\n% \\begin{matlab}[kutya]{Gumi}\n%     \\lipsum[1]\n% \\end{matlab}\n\n\n% \\tcbmaketheorem{pcbfel}{Feladat}{\n%     enhanced,\n%     breakable,\n%     colback=blue!10 ,\n%     boxrule=1pt, arc=4pt, left=0.5\\pczoversizelength, right=0.5\\pczoversizelength, top=6pt, bottom=6pt,\n%     boxsep=0pt,\n%     toptitle=4pt,\n%     bottomtitle=4pt,\n%     fonttitle=\\bfseries,\n%     coltitle=black,\n%     colframe=blue!30!black,\n%     colbacktitle=blue!20,\n%     subtitle style={\n%         boxrule=0.4pt,\n%         colback=blue!20},\n%     oversize=-\\pczoversizelength,\n%     % lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},\n% }{pczexample}{pl}\n\n% \\begin{pcbfel}{\\pcbTitleHelper{red}{asdasda}{asdddd}\\matlab}{marker}\n% \\end{pcbfel}\n\n\n\n% \\DeclareDocumentCommand{\\pcbtheoremname}{s g g o t\\hun}\n% {%\n%     \\bfseries%\n%     \\IfBooleanTF{#5}%\n%     {%\n%         \\arabic{#2}. #3.%\n%     }%\n%     {%\n%         #3 \\arabic{#2}.%\n%     }%\n%     \\normalfont%\n%     \\IfBooleanTF{#1}%\n%     { %\n%         #4%\n%     }%\n%     { %\n%         (#4)%\n%     }%\n% }%\n\n% \\DeclareDocumentCommand{\\pcbtheoreminfo}{s g t\\tt}\n% {%\n%     \\IfBooleanTF{#1}%\n%     {%\n%         \\hfill%\n%         {\\small\\color{bourdon}%\n%             \\IfBooleanTF{#3}%\n%             {%\n%                 \\tt #2%\n%             }%\n%             {%\n%                 \\itshape #2%\n%             }%\n%         }%\n%     }%\n%     {%\n%         {\\small\\color{bourdon}%\n%             \\IfBooleanTF{#3}%\n%             {%\n%                 \\tt [#2]%\n%             }%\n%             {%\n%                 {-- \\itshape #2 --}%\n%             }%\n%         }%\n%     }%\n% }%\n\n\n\n% \\begin{cProposition}*{Kutyagumi}\n%     This is my own box with a mandatory title and options.\n% \\end{cProposition}\n\n% \\begin{cExample}*{Title}[asd][asd]\n\n% \\end{cExample}\n\n% \\noindent\n% \\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \\\\\n% \\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\\hun \\\\\n% \\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \\\\\n% \\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\\hun \\\\\n% %\n% \\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa] \\pcbtheoreminfo{interp1} \\\\\n% \\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa] \\pcbtheoreminfo{interp1}\\tt \\\\\n% \\pcbtheoremname{pczexample}{Theorem}[Valamilyen példa]\\hun \\pcbtheoreminfo*{interp1} \\\\\n% \\pcbtheoremname*{pczexample}{Theorem}[Valamilyen példa]\\hun \\pcbtheoreminfo*{interp1}\\tt \\\\\n\n% \\global\\csdef{kutyagumi123}{\\bfseries almamartas}\n% \\csuse{kutyagumi123}\n",
 			"file": "polcz-old.sty",
-			"file_size": 14294,
-			"file_write_time": 131452116439681960,
 			"settings":
 			{
 				"buffer_size": 14280,
@@ -1352,6 +1358,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"tikz",
+			"ti",
 			"proof",
 			"sol",
 			"matlab",
@@ -1477,9 +1485,7 @@
 			"m",
 			"P",
 			"^T",
-			"i_b",
-			"TODO",
-			"z"
+			"i_b"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1539,7 +1545,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1548,15 +1554,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5935,
+						"buffer_size": 6726,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1738,
-								1738
+								5944,
+								5944
 							]
 						],
 						"settings":
@@ -1564,27 +1570,55 @@
 							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 450.0,
+						"translation.y": 3737.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "polcz.sty",
+					"file": "polcz-beamer.tex",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18633,
+						"buffer_size": 2115,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16335,
-								16338
+								2115,
+								2115
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 500.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "polcz.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18638,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								496,
+								496
 							]
 						],
 						"settings":
@@ -1594,14 +1628,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6317.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "/home/ppolcz/Dropbox/Peti/Desktop/CTAN/source/physics.sty",
 					"semi_transient": false,
 					"settings":
@@ -1626,11 +1660,11 @@
 						"translation.y": 136.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "polcz-old.sty",
 					"semi_transient": false,
 					"settings":
@@ -1657,7 +1691,7 @@
 						"translation.y": 5791.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1830,7 +1864,7 @@
 		[
 			[
 				"",
-				"~/Repositories/Bitbucket/control-systems/users/public_html/files/targyak/anal3/szorgalmi/anal3_szorgalmi.sublime-project"
+				"~/Dropbox/Peti/PhD/Dokumentaciok/14_ISS_LFR_trafo/14_ISS_LFR_trafo.sublime-workspace"
 			],
 			[
 				"okt",

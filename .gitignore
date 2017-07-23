@@ -4,6 +4,9 @@
 *.out
 *.pdf
 *.log
+*.nav
+*.snm
+*.toc
 *.synctex.gz
 *.autosave
 

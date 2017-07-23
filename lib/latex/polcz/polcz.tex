@@ -244,6 +244,27 @@ text
 ]{1-\frac{1}{x}}
 \end{align}
 
+\begin{equation*}
+\vec{a}_p = \vec{a}_o+\frac{{}^bd^2}{dt^2}\vec{r} +
+        \tikz[baseline,remember picture]{
+            \draw
+                node [fill=red!20,anchor=base] (eq) {$\displaystyle2\vec{\omega}_{ib}\times\frac{{}^bd}{dt}\vec{r}$}
+                node at (eq.south west) [coordinate] (t1) {}
+                node at (eq.south east) [coordinate] (t2) {};
+        }
+        \tikz[remember picture,overlay]{\draw[<->] (t1) -- node[below] {$n$} (t2); }
+        +
+        \tikz[baseline]{
+            \node[fill=red!20,anchor=base] (t2)
+            {$\vec{\alpha}_{ib}\times\vec{r}$};
+        }
+        +
+        \tikz[baseline]{
+            \node[fill=green!20,anchor=base] (t3)
+            {$\vec{\omega}_{ib}\times(\vec{\omega}_{ib}\times\vec{r})$};
+        }
+\end{equation*}
+
 \begin{align}
     I = \frac{1}{1-x} \int_0^1 \frac{1}{\sqrt{1 + x^2}} \diffd x
 \end{align}
