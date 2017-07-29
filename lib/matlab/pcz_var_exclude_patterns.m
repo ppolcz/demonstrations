@@ -12,7 +12,10 @@ exclude = {
     '^props$'
     '^opts$'
     '^persist$'
+    '^fname$'
     '.*_old_\d{2}_\d{2}_\d{2}'
     };
+
+%     '^$'
 
 end

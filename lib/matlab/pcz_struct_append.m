@@ -64,12 +64,21 @@ for i = 2:opts_start
 end
 
     function append(name, value)
-        if isfield(str, name)
+        if isfield(str, name) && ~check(name,value)
             newname = [ name props.snapshot ];
             str.(newname) = str.(name);
             warning('Field %s already exists, renamed to %s!', name, newname);
         end
         str.(name) = value;
+    end
+
+    function ret = check(name, value)
+        oldval = str.(name);
+        
+        c(1) = all(size(oldval) == size(value));
+        % c(2) = pcz_symeq(symvar(oldval),symvar(value));
+        
+        ret = all(c);
     end
 
 end

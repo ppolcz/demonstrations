@@ -41,7 +41,8 @@ for k = 1:numel(varargin)
         % disp([ fn{i} ' = '])
         % disp(str.(fn{i}))
 
-        if evalin('caller', ['exist(''' fn{i} ''',''var'')'])
+        if evalin('caller', ['exist(''' fn{i} ''',''var'')']) ...
+            && ~check(str.(fn{i}),evalin('caller',fn{i}))
             if props.rewrite
                 newname = [ fn{i} props.snapshot ];
                 assignin('caller', newname, evalin('caller',fn{i}))
@@ -55,5 +56,12 @@ for k = 1:numel(varargin)
         end
     end
 end
+
+    function ret = check(value, oldval)        
+        c(1) = all(size(oldval) == size(value));
+        % c(2) = pcz_symeq(symvar(oldval),symvar(value));
+        
+        ret = all(c);
+    end
 
 end
