@@ -1,10 +1,10 @@
-function [ret] = pcz_symzero1(z, prec, N)
-%% Script pcz_symzero1
+function [indices,maxdiff,perc] = pcz_symzero_perc(z, prec, N)
+%% Script pcz_symzero_perc
 %  
-%  file:   pcz_symzero1.m
+%  file:   pcz_symzero_perc.m
 %  author: Peter Polcz <ppolcz@gmail.com> 
 %  
-%  Created on 2017.07.31. Monday, 23:53:35
+%  Created on 2017.08.01. Tuesday, 01:21:16
 %
 %%
 
@@ -20,7 +20,9 @@ s = symvar(sym(z));
 
 if isempty(s)
     ZERO = double(z);
-    ret = all(abs(ZERO(:)) < 10^(-prec));
+    indices = find(abs(ZERO(:)) < 10^(-prec));
+    perc = numel(indices) / numel(ZERO);
+    maxdiff = max(abs(ZERO(:)));
 else
     z_fh = matlabFunction(z(:), 'vars', {s(:)});
     ZERO = zeros(numel(z),N);    
@@ -32,17 +34,6 @@ else
     indices = find(greater);
     perc = numel(indices) / numel(z);
     maxdiff = max(abs(ZERO(:)));
-
-    ret = perc == 0 && maxdiff < 10^(-perc);
-    
-%     for i = 1:N
-%         ZERO = double(subs(z, s, prec*randn(size(s))));
-%         if any(abs(ZERO(:)) > 10^(-prec))
-%             ret = false;
-%             return
-%         end
-%     end
-%     ret = true;
-end 
+end
 
 end
