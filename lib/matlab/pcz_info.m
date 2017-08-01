@@ -23,38 +23,16 @@ end
     
 %%
 
-k = [0 0 0];
-g = [0 0.7 0];
-r = [1 0 0];
-b = [0 0 1];
-
-if islogical(bool)
-
-    if bool
-        % fprintf('[  %s  ] ', colorizedstring('green','OK'))
-        cprintf(k, '[  ')
-        cprintf(g, 'OK')
-        cprintf(k, '  ] ')
-    else
-        % fprintf('[%s] ', colorizedstring('red','FAILED'))
-        cprintf(k,'[')
-        cprintf(r, 'FAILED')
-        cprintf(k, '] ')
-    end
-
-    cprintf(k, varargin{:})
-
-elseif ischar(bool)
-    cprintf(k, '[ ')
-    cprintf(b, 'INFO')
-    cprintf(k,' ] ')
-    cprintf(k, bool, varargin{:});
-end
+pcz_OK_FAILED(bool, varargin{:});
 
 fprintf('\n')
 
 if nargout > 0
-    ret = ~bool;
+    if islogical(bool)
+        ret = ~bool;
+    else
+        ret = [];
+    end
 end
     
 % cprintf('_green', 'underlined green');

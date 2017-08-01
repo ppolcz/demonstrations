@@ -1,4 +1,4 @@
-function [ret] = pcz_symzero(z, prec, N)
+function [ret] = pcz_symzero(z, prec, N, varargin)
 %% Script pcz_symzero
 %  
 %  file:   pcz_symzero.m
@@ -8,15 +8,21 @@ function [ret] = pcz_symzero(z, prec, N)
 %
 %%
 
-if nargin < 3
+if nargin < 3 || isempty(N) || ischar(N)
+    if nargin >= 3 && ischar(N)
+        varargin = [N varargin];
+    end
     N = 10;
 end
 
-if nargin < 2
+if nargin < 2 || isempty(prec) || ischar(prec)
+    if nargin >= 2 && ischar(prec)
+        varargin = [prec varargin];
+    end
     prec = 10;
 end
 
-if pcz_symzero1(z,prec,N)
+if pcz_symzero1(z,prec,N,varargin{:})
     ret = true;
     return
 end
