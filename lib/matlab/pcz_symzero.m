@@ -1,4 +1,4 @@
-function [ret] = pcz_symzero(z, prec, N, varargin)
+function [return_val] = pcz_symzero(z, prec, N, varargin)
 %% Script pcz_symzero
 %  
 %  file:   pcz_symzero.m
@@ -24,16 +24,24 @@ end
 
 if pcz_symzero1(z,prec,N,varargin{:})
     ret = true;
-    return
 end
 
-s = symvar(sym(z));
+if ~ret
+    s = symvar(sym(z));
+    
+    try
+        [Theta,z0,q] = P_Pi_canonical_decomp(z(:), s);
+        ret = pcz_symzero(Theta, prec, N);
+    catch
+        ret = false;
+    end
+end
 
-try
-    [Theta,z0,q] = P_Pi_canonical_decomp(z(:), s);
-    ret = pcz_symzero(Theta, prec, N);
-catch
-    ret = false;
+if nargout > 0
+    return_val = ret;
+else
+    pcz_OK_FAILED(ret,varargin{:})
+    disp ' '
 end
 
 end

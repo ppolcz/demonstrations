@@ -13,6 +13,10 @@ g = [0 0.7 0];
 r = [1 0 0];
 b = [0 0 1];
 
+if ~islogical(bool) && ~ischar(bool)
+    bool = bool == 1;
+end
+
 if islogical(bool)
 
     if bool

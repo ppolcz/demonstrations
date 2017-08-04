@@ -8,6 +8,10 @@ function [ret] = pcz_symeq(a,b,varargin)
 %
 %%
 
-ret = pcz_symzero(a-b,varargin{:});
+if nargout > 0
+    ret = pcz_symzero(simplify(a-b),varargin{:});
+else
+    pcz_symzero(simplify(a-b),varargin{:})
+end
 
 end

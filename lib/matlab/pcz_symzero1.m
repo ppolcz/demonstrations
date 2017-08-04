@@ -24,6 +24,10 @@ end
 
 s = symvar(sym(z));
 
+% prec
+% N
+% varargin
+
 if isempty(s)
     ZERO = double(z);
     ret = all(abs(ZERO(:)) < 10^(-prec));
