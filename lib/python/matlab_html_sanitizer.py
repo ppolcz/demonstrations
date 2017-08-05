@@ -8,6 +8,9 @@ from bs4 import Tag, Comment, NavigableString, BeautifulSoup
 def criteria_imglatex(tag):
     return tag.name == "img" and tag.has_attr('alt') and "$" in tag["alt"]
 
+def criteria_simplepre(tag):
+    return tag.name == "pre" and not tag.has_attr('class')
+
 # soup.find_all(has_class_but_no_id)
 # [<p class="title"><b>The Dormouse's story</b></p>,
 #  <p class="story">Once upon a time there were...</p>,
@@ -54,37 +57,47 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
     for img in imgs:
         img.replace_with(img["alt"])
 
+    # Format Matlab code
     pres = content.find_all("pre", class_=re.compile("(codeinput|language-matlab)"))
     for pre in pres:
-        # <pre><code class="matlab">
         pre.name = "code"
         pre["class"] = "matlab"
         pre.wrap(soup.new_tag("pre"))
-
         # erase span elements
         for e in pre:
             if isinstance(e,Tag):
                 e.unwrap()
 
+    # Format simple preformatted text
+    pres = content.find_all(criteria_simplepre)
+    for pre in pres:
+        pre["class"] = "preformatted"
+
+    # Format Matlab's output (codeoutput)
     outs = content.find_all("pre", class_="codeoutput")
     for out in outs:
         new_tag = soup.new_tag("h6")
         new_tag.string = "Output:"
         out.insert_before(new_tag)
 
-    # footer
+    # Format footer
     footer = content.find_all("p", class_="footer")
     if len(footer) > 0:
         footer = footer[-1]
+        for br in footer.find_all('br'):
+            br.extract()
         if footer.has_attr("class"):
             footer["class"] = "footer-matlab"
 
-        footera = footer.find_next("a", string=re.compile("MATLAB"))
-        asoup = soup.new_tag("a")
-        asoup["href"] = "https://www.crummy.com/software/BeautifulSoup/bs4/doc/"
-        asoup.string = "BeautifulSoup"
-        footera.insert_after(asoup)
-        footera.insert_after(NavigableString(", and sanitarized by "))
+        lnksoup = soup.new_tag("a")
+        lnksoup["href"] = "https://www.crummy.com/software/BeautifulSoup/bs4/doc/"
+        lnksoup.string = "BeautifulSoup"
+
+        footer.append(", and sanitarized by ")
+        footer.append(lnksoup)
+        footer.append(".")
+
+        print(footer)
 
     # Change img source with php tag
     imgs = content.find_all("img")
