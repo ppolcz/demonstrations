@@ -93,31 +93,37 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         lnksoup["href"] = "https://www.crummy.com/software/BeautifulSoup/bs4/doc/"
         lnksoup.string = "BeautifulSoup"
 
+        lnkgithub = soup.new_tag("a")
+        lnkgithub["href"] = "https://github.com/ppolcz/demonstrations/blob/master/lib/python/matlab_html_sanitizer.py"
+        lnkgithub.string = "Python script"
+
         footer.append(", and sanitarized by ")
         footer.append(lnksoup)
-        footer.append(".")
-
-        print(footer)
+        footer.append(" (")
+        footer.append(lnkgithub)
+        footer.append(" using BSoup is written by Polcz).")
 
     # Change img source with php tag
     imgs = content.find_all("img")
     for img in imgs:
-        img["src"] = "<?php echo '$media'; ?>/" + img["src"]
+        img["src"] = "<?php echo \"$media\"; ?>/" + img["src"]
 
     toc = content.find_all("h2", string="Contents", limit=1)[0]
     toc_div = toc.find_all_next("div", limit=1)[0]
-    # print(toc)
-    # print(toc_div)
     toc.extract()
     toc_div.extract()
 
     # html = content.prettify('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
-    html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
+    # html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
+
+    html = "\n\n".join([ e.encode("utf8") for e in content ])
+    print(html)
+
     f.write(html)
 
 
 def demo():
-    soup = BeautifulSoup("<div class='content'><b>Kutyagumi</b> not bolt <b>bold again</b><div>alma</div></div>", "html.parser")
+    soup = BeautifulSoup("<div class='content'><b>Kutyagumi</b> not bolt <b>bold again</b><div>alma</div></div><a>asd</a>", "html.parser")
     sys.stdout.write("\nBEFORE:\n" + str(soup) + "\n\n")
 
     print(soup.div)

@@ -43,7 +43,7 @@ persist.pub_output = pub_output;
 assignin('base', 'persist', persist)
 
 subl(php)
-open(pub_output)
+% open(pub_output)
 
 
 end
