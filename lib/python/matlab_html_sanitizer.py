@@ -4,17 +4,6 @@ import sys, re
 
 from bs4 import Tag, Comment, NavigableString, BeautifulSoup
 
-
-def criteria_imglatex(tag):
-    return tag.name == "img" and tag.has_attr('alt') and "$" in tag["alt"]
-
-def criteria_simplepre(tag):
-    return tag.name == "pre" and not tag.has_attr('class')
-
-# soup.find_all(has_class_but_no_id)
-# [<p class="title"><b>The Dormouse's story</b></p>,
-#  <p class="story">Once upon a time there were...</p>,
-
 """
 <class 'bs4.element.Tag'>
 ['HTML_FORMATTERS', 'XML_FORMATTERS', '__call__', '__class__', '__contains__', '__copy__', '__delattr__', '__delitem__', '__dict__', '__doc__',
@@ -36,6 +25,46 @@ def criteria_simplepre(tag):
 'tag_name_re', 'text', 'unwrap', 'wrap']
 [Finished in 0.1s]
 """
+
+def demo():
+    soup = BeautifulSoup("<div class='content'><b>Kutyagumi</b> not bolt <b>bold again</b><div>alma</div></div><a>asd</a>", "html.parser")
+    sys.stdout.write("\nBEFORE:\n" + str(soup) + "\n\n")
+
+    print(soup.div)
+
+    new_tag = soup.new_tag("span")
+    new_tag.string = "example.net"
+    new_tag["class"] = "bold"
+
+    x = soup.div.b
+
+    x.replace_with(new_tag)
+
+    sys.stdout.write("\nAFTER:\n" + str(soup) + "\n\n")
+
+    print(' ')
+    print('FOR LOOP')
+    for x in soup.div:
+        sys.stdout.write(str(type(x)) + ":" + str(x) + "\n")
+
+    sys.stdout.write('\n\nFind div with class content:\n')
+
+    print(dir(soup.div))
+
+    x = soup.find_all("div", class_="content")
+    print(x)
+    x = soup.find_all("div", "content")
+    print(x)
+    x = soup.find_all("div", attrs={"class": "content"})
+    print(x)
+    x = soup.find_all("div.content") # this is not good
+    print(x)
+
+def criteria_imglatex(tag):
+    return tag.name == "img" and tag.has_attr('alt') and "$" in tag["alt"]
+
+def criteria_simplepre(tag):
+    return tag.name == "pre" and not tag.has_attr('class')
 
 def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/oktatas/anal3/html/anal3_vekanal_1.html",
          opath = "/home/ppolcz/Repositories/Bitbucket/control-systems/html/publish_demo2_output.html"):
@@ -103,10 +132,19 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         footer.append(lnkgithub)
         footer.append(" using BSoup is written by Polcz).")
 
-    # Change img source with php tag
+    # Matlab figures: change img source with php tag
     imgs = content.find_all("img")
     for img in imgs:
         img["src"] = "<?php echo \"$media\"; ?>/" + img["src"]
+        img["class"] = "matlabfig"
+        datagal = soup.new_tag('a')
+        datagal["href"] = img["src"]
+        datagal["data-gallery"] = ""
+
+        img.wrap(datagal)
+        img.insert_before(NavigableString("\n    "))
+        datagal.append("\n")
+        # img.replace_with(datagal)
 
     toc = content.find_all("h2", string="Contents", limit=1)[0]
     toc_div = toc.find_all_next("div", limit=1)[0]
@@ -116,45 +154,10 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
     # html = content.prettify('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
     # html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
 
-    html = "\n\n".join([ e.encode("utf8") for e in content ])
+    html = "\n\n".join([ e.encode("utf8") for e in content ]).replace('&lt;?php', '<?php').replace('?&gt;','?>')
     print(html)
 
     f.write(html)
-
-
-def demo():
-    soup = BeautifulSoup("<div class='content'><b>Kutyagumi</b> not bolt <b>bold again</b><div>alma</div></div><a>asd</a>", "html.parser")
-    sys.stdout.write("\nBEFORE:\n" + str(soup) + "\n\n")
-
-    print(soup.div)
-
-    new_tag = soup.new_tag("span")
-    new_tag.string = "example.net"
-    new_tag["class"] = "bold"
-
-    x = soup.div.b
-
-    x.replace_with(new_tag)
-
-    sys.stdout.write("\nAFTER:\n" + str(soup) + "\n\n")
-
-    print(' ')
-    print('FOR LOOP')
-    for x in soup.div:
-        sys.stdout.write(str(type(x)) + ":" + str(x) + "\n")
-
-    sys.stdout.write('\n\nFind div with class content:\n')
-
-    print(dir(soup.div))
-
-    x = soup.find_all("div", class_="content")
-    print(x)
-    x = soup.find_all("div", "content")
-    print(x)
-    x = soup.find_all("div", attrs={"class": "content"})
-    print(x)
-    x = soup.find_all("div.content") # this is not good
-    print(x)
 
 if __name__ == "__main__":
     if len(sys.argv) >= 3:
