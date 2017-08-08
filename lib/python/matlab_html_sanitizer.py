@@ -146,10 +146,12 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         datagal.append("\n")
         # img.replace_with(datagal)
 
-    toc = content.find_all("h2", string="Contents", limit=1)[0]
-    toc_div = toc.find_all_next("div", limit=1)[0]
-    toc.extract()
-    toc_div.extract()
+    toc = content.find_all("h2", string="Contents", limit=1)
+    if toc:
+        toc = toc[0]
+        toc_div = toc.find_all_next("div", limit=1)[0]
+        toc.extract()
+        toc_div.extract()
 
     # html = content.prettify('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
     # html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
