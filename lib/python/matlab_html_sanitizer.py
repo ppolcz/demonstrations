@@ -87,6 +87,8 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         img.replace_with(img["alt"])
 
     # Format Matlab code
+    # <pre class="codeinput">
+    # <pre class="language-matlab">
     pres = content.find_all("pre", class_=re.compile("(codeinput|language-matlab)"))
     for pre in pres:
         pre.name = "code"
@@ -97,12 +99,18 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             if isinstance(e,Tag):
                 e.unwrap()
 
+    # Remove all errors
+    for pre in content.find_all("pre", class_="error"):
+        pre.extract()
+
     # Format simple preformatted text
+    # <pre>
     pres = content.find_all(criteria_simplepre)
     for pre in pres:
         pre["class"] = "preformatted"
 
     # Format Matlab's output (codeoutput)
+    # <pre class="codeoutput">
     outs = content.find_all("pre", class_="codeoutput")
     for out in outs:
         new_tag = soup.new_tag("h6")
@@ -110,6 +118,7 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         out.insert_before(new_tag)
 
     # Format footer
+    # <p class="footer">
     footer = content.find_all("p", class_="footer")
     if len(footer) > 0:
         footer = footer[-1]

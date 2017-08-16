@@ -206,28 +206,27 @@ I = integral(f, a,b)
 % <html><h1>Vonalintegrál felületintegrál</h1></html>
 %
 % <html><blockquote class="danger"> Matlabban számítsuk ki numerikusan
-% mekkora munkát gyakorol egy $\boldsymbol F(\boldsymbol r)$ erőtér
-% egy anyagi pontra, miközben az anyagi pont a $\Gamma$ által leírt
-% görbe mentén halad. Magyarán szólva, integráld az $\boldsymbol
-% F(\boldsymbol r)$ vektormezőt $\Gamma$ görbe mentén. $\boldsymbol
-% F(\boldsymbol r)$ és $\Gamma$ tetszőlegesen megválasztható,
-% támpontként szolgálhat az 1. gyakorlat 5-7. feladata. Ugyanazokat a
-% függvényeket is lehet használni. </blockquote> <h5>Támpont</h5> <ol>
+% mekkora munkát gyakorol egy $\vec F(\vec r)$ erőtér egy anyagi
+% pontra, miközben az anyagi pont a $\Gamma$ által leírt görbe mentén
+% halad. Magyarán szólva, integráld az $\vec F(\vec r)$ vektormezőt
+% $\Gamma$ görbe mentén. $\vec F(\vec r)$ és $\Gamma$ tetszőlegesen
+% megválasztható, támpontként szolgálhat az 1. gyakorlat 5-7.
+% feladata. Ugyanazokat a függvényeket is lehet használni.
+% </blockquote> <h5>Támpont</h5> <ol>
 %     <li>Definiáljunk egy $x$ és $y$-tól függő <tt>F</tt>, majd egy $t$-től függő <tt>gamma</tt> szimbolikus függvényt.</li>
 %     <li>$\gamma(t)$ deriváltjának kiszámításához használjuk a <tt><a href="http://www.mathworks.com/help/matlab/ref/diff.html">diff</a></tt> parancsot.</li>
-%     <li>A <a href="matlab_segedlet#subs"><tt>subs</tt></a> parancs segítségével helyettesítsük be <tt>[x;y]</tt> helyébe a <tt>gamma</tt>-t, hogy megkapjuk $\boldsymbol F(\boldsymbol \gamma(t))$-t.</li>
+%     <li>A <a href="matlab_segedlet#subs"><tt>subs</tt></a> parancs segítségével helyettesítsük be <tt>[x;y]</tt> helyébe a <tt>gamma</tt>-t, hogy megkapjuk $\vec F(\vec \gamma(t))$-t.</li>
 %     <li>A szimbolikus <tt>t</tt> változótól függő integrandust alakítsuk anoním függvénnyé a <a href="matlab_segedlet#matlabFunction"><tt>matlabFunction</tt></a> segítségével. Nevezzük el (pl.) <tt>Integrand_fh</tt>-nek</li>
 %     <li>Végül hívjuk meg az <tt>integral</tt> parancsot numerikus integrálás végett: <br><tt>I = integral(Integrand_fh,t0,t1)</tt></li>
 % </ol>
 % </html>
 %
 % <html> <blockquote class="danger"> Matlabban számítsuk ki
-% numerikusan mekkora a <i>hozama</i> egy $\boldsymbol F(\boldsymbol
-% r)$ vektormező által leírt áramlásnak egy $\boldsymbol S(u,v)$
-% paraméteresen megadott felületen keresztül. <br> Vagyis:
-% \begin{align}
-%     \int_S \boldsymbol F(\boldsymbol{r}) \mathrm{d}\boldsymbol{S} =
-%     \int_S F(\boldsymbol{r}) \boldsymbol{n}\mathrm{d} S = ?
+% numerikusan mekkora a <i>hozama</i> egy $\vec F(\vec r)$ vektormező
+% által leírt áramlásnak egy $\vec S(u,v)$ paraméteresen megadott
+% felületen keresztül. <br> Vagyis: \begin{align}
+%     \int_S \vec F(\vec{r}) \mathrm{d}\vec{S} = \int_S F(\vec{r})
+%     \vec{n}\mathrm{d} S = ?
 % \end{align} </blockquote> <h5>Támpont</h5> <p>Az eljárás majdnem
 % ugyanaz mint vonalintegrál esetén, kettős integrál kiszámításához
 % pedig használjátok az <tt><a
@@ -235,13 +234,13 @@ I = integral(f, a,b)
 % függvényt.</p> </html>
 
 %% Vonalintegrál kiszámítása szimbolikus határozatlan integrálás segítségével
-% Integráljuk $\boldsymbol F(x,y)$-t $\Gamma$ mentén.
+% Integráljuk $\vec F(x,y)$-t $\Gamma$ mentén.
 
 syms t x y a b real
 r = [x;y];
 
 %%%
-% $\boldsymbol F(x,y) = \boldsymbol F(\boldsymbol r)$ kétdimenziós vektormező
+% $\vec F(x,y) = \vec F(\vec r)$ kétdimenziós vektormező
 F = [
     x^2
     y^2
@@ -260,7 +259,7 @@ t1 = 0;
 t2 = pi/2;
 
 %%%
-% Integrálandó függvény: $\left<\boldsymbol F\big(\boldsymbol \gamma(t)\big),\dot{\boldsymbol \gamma}(t)\right>$
+% Integrálandó függvény: $\left<\vec F\big(\vec \gamma(t)\big),\dot{\vec \gamma}(t)\right>$
 Integrand = subs(F,r,g)' * diff(g, t);
 pcz_pretty('Integrálandó függvény', Integrand)
 
@@ -285,7 +284,7 @@ syms t x y z real
 r = [x;y;z];
 
 %%%
-% $\boldsymbol F(x,y,z) = \boldsymbol F(\boldsymbol r)$ háromdimenziós vektormező
+% $\vec F(x,y,z) = \vec F(\vec r)$ háromdimenziós vektormező
 F = [
     3*x^2*y^2*z
     2*x^3*y*z
@@ -301,7 +300,7 @@ t1 = 0;
 t2 = 1;
 
 %%%
-% Integrálandó függvény: $\left<\boldsymbol F\big(\boldsymbol \gamma(t)\big),\dot{\boldsymbol \gamma}(t)\right>$
+% Integrálandó függvény: $\left<\vec F\big(\vec \gamma(t)\big),\dot{\vec \gamma}(t)\right>$
 Integrand = subs(F,r,g)' * diff(g, t)
 
 %%
@@ -340,17 +339,17 @@ S = [
     ];
 
 %%%
-% $\mathrm{d}\boldsymbol{S} = \left(\boldsymbol S'_u \times \boldsymbol S'_v \right) \mathrm{d}(u,v)$  számítása
+% $\mathrm{d}\vec{S} = \left(\vec S'_u \times \vec S'_v \right) \mathrm{d}(u,v)$  számítása
 dSu = jacobian(S,u)
 dSv = jacobian(S,v)
 dS = simplify(cross(dSu, dSv))
 
 %%
-% $\boldsymbol F(\boldsymbol r)$-be helyettesítjük $\boldsymbol S(u,v)$-t.
+% $\vec F(\vec r)$-be helyettesítjük $\vec S(u,v)$-t.
 FSuv = subs(F,r,S)
 
 %%
-% Itegrálandó: $\left<\boldsymbol F\big(\boldsymbol S(u,v)\big), \boldsymbol S'_u \times \boldsymbol S'_v\right>$
+% Itegrálandó: $\left<\vec F\big(\vec S(u,v)\big), \vec S'_u \times \vec S'_v\right>$
 Integrand = FSuv' * dS
 
 %%
