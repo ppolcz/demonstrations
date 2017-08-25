@@ -19,5 +19,7 @@ system(sprintf('convert %s -trim %s', fname, fname));
 system(sprintf('convert %s -bordercolor White -border %dx%d %s', ...
     fname, border(1:2), fname));
 
+pcz_dispFunction('File saved to:\n%s', fname);
+
 
 end
