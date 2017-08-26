@@ -162,6 +162,46 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         toc.extract()
         toc_div.extract()
 
+    # Detect request for video`
+    revid = re.compile("vid\d{4}\.webm");
+    for pre_with_vid in content.find_all("pre", attrs="codeoutput", string=revid):
+        # print(pre_with_vid)
+        # print(pre_with_vid.string)
+
+        vidname = revid.findall(pre_with_vid.string)[0]
+        # print(vidname)
+
+        # <source src="<?php echo "$media"; ?>/vid1878.webm" type='video/webm; codecs="vp8.0, vorbis"'>
+        source = soup.new_tag("source")
+        source["src"] = '<?php echo "$media"; ?>/' + vidname
+        source["type"] = 'video/webm; codecs="vp8.0, vorbis"'
+        # print(source)
+
+        # <video width="620" style="max-width:100%" poster="" controls></video>
+        video = soup.new_tag("video")
+        video["width"] = "620"
+        video["style"] = "max-width:100%"
+        video["poster"] = ""
+        video["controls"] = ""
+        video.append("\n    ")
+        video.append(source)
+        video.append("\n    Your browser does not support the video tag.\n")
+        # print(video)
+
+        if pre_with_vid.previous_element.parent.name == "h6":
+            pre_with_vid.previous_element.parent.extract()
+
+        pre_with_vid.insert_after(video)
+        pre_with_vid.extract()
+
+    # Remove the beginning and ending scopes
+    for pre_with_TMP in content.find_all(string=re.compile("TMP_[a-zA-Z0-9]{20}")):
+        print(pre_with_TMP.parent)
+
+        if pre_with_TMP.parent.parent and pre_with_TMP.parent.parent.name == "pre":
+            pre_with_TMP.parent.parent.extract()
+
+
     # html = content.prettify('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
     # html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
 
@@ -174,7 +214,8 @@ if __name__ == "__main__":
     if len(sys.argv) >= 3:
         main(sys.argv[1], sys.argv[2])
     else:
-        main()
+        main("/home/ppolcz/Repositories/Bitbucket/control-systems/oktatas/anal3/4_pde/html/hullamegyenlet_gyenge_megoldasok_v1.html",
+            "/home/ppolcz/Repositories/Bitbucket/control-systems/oktatas/anal3/4_pde/html/hullamegyenlet_gyenge_megoldasok_v1_output.html")
 
     # demo()
 
