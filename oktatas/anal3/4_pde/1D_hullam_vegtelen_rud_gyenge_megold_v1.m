@@ -1,7 +1,7 @@
 %% Hullámegyenlet végtelen hosszú rúdban
 % Analitikus gyenge megoldások
 %
-%  file:   hullamegyenlet_gyenge_megoldasok_v1.m
+%  file:   1D_hullam_vegtelen_rud_gyenge_megold_v1.m
 %  author: Peter Polcz <ppolcz@gmail.com>
 %
 %  Created on 2017. August 25.
@@ -168,15 +168,15 @@ for i = 1:numel(tspan)
     [~,Ixpct] = ode45(@(x,G) g(x), xspan + c*t, 0);
     [~,Ixmct] = ode45(@(x,G) g(x), xspan - c*t, 0);
     u = (2*c)\( Ixmct - integral(g,xspan(1)-c*t,0) - Ixpct + integral(g,xspan(1)+c*t,0) );
-    
+
     plot(xspan', u)
     ylim([-0.3,0.3])
     drawnow
-    
+
     if t == 0.3
         persist.pub_vid_poster('1D_hullamegyenlet_sin_kezdeti_sebesseggel')
     end
-    
+
     frames(i) = getframe(fig);
 end
 delete(fig)
@@ -199,21 +199,21 @@ for i = 1:numel(tspan)
     [~,Ixpct] = ode45(@(x,G) g(x), xspan + c*t, 0);
     [~,Ixmct] = ode45(@(x,G) g(x), xspan - c*t, 0);
     u = (2*c)\( Ixmct - integral(g,xspan(1)-c*t,0) - Ixpct + integral(g,xspan(1)+c*t,0) );
-    
+
     plot(xspan', u)
     title(sprintf('t = %g', t), persist.font.latex18{:})
     ylim([-5,1])
     drawnow
     pause(0.1)
-    
+
     if t == 2
         persist.pub_vid_poster('1D_hullamegyenlet_sin_kezdeti_sebesseggel')
     end
-    
+
     if t == 3
         persist.pub_vid_poster('1D_hullamegyenlet_sin_kezdeti_sebesseggel')
     end
-    
+
     frames(i) = getframe(fig);
 end
 delete(fig)
