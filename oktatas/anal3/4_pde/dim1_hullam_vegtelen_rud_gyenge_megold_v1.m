@@ -1,7 +1,9 @@
 %% Hullámegyenlet végtelen hosszú rúdban
-% Analitikus gyenge megoldások
+% Analitikus gyenge megoldások.
+% <https://github.com/ppolcz/demonstrations/blob/master/oktatas/anal3/4_pde/dim1_hullam_vegtelen_rud_gyenge_megold_v1.m
+% Matlab kód>
 %
-%  file:   1D_hullam_vegtelen_rud_gyenge_megold_v1.m
+%  file:   dim1_hullam_vegtelen_rud_gyenge_megold_v1.m
 %  author: Peter Polcz <ppolcz@gmail.com>
 %
 %  Created on 2017. August 25.
@@ -16,7 +18,6 @@
 % \end{aligned}\right.
 % $$
 %%
-
 % Automatically generated stuff
 global SCOPE_DEPTH
 SCOPE_DEPTH = 0;
