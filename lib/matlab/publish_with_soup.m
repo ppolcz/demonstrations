@@ -10,6 +10,7 @@ function [ret] = publish_with_soup
 
 G = pglobals;
 
+
 % Get active editor
 active = matlab.desktop.editor.getActive;
 f = pcz_resolvePath(active.Filename);
@@ -23,17 +24,21 @@ opt.format = 'html';
 opt.outputDir = persist.pub_absdir;
 opt.stylesheet = [G.ROOT '/publish.xsl' ];
 
+
 % Publis + tidy html code
 warning off
 pub_output = publish(f.path, opt); 
 warning on
 
-php = [G.VIEW_SCRIPTS '/' persist.pub_dirname '.php'];
+% Backup script to publish directory
+copyfile(persist.file.path, persist.pub_backup_script_path)
 
 %system([ 'tidy -im ' pub_output])
 fprintf('\ngenerated output: \n%s\n\n', pub_output)
 
-system([ G.SANITIZER ' ' persist.pub_absdir '/' f.bname '.html ' php ])
+php = [G.VIEW_SCRIPTS '/' persist.pub_dirname '.php'];
+command = [ G.SANITIZER ' ' , persist.pub_absdir '/' f.bname '.html ' , php ' ' , persist.pub_backup_script_relpath ];
+system(command)
 
 % Copy html code to clipboard
 persist.pub_html = sprintf('<a class="" href="<?php echo base_url(''index.php/main/script/%s.php'') ?>">%s</a>', ...

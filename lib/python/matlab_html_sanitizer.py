@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+# -*- coding: utf-8 -*-
 import sys, re
 
 from bs4 import Tag, Comment, NavigableString, BeautifulSoup
@@ -67,7 +67,8 @@ def criteria_simplepre(tag):
     return tag.name == "pre" and not tag.has_attr('class')
 
 def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/oktatas/anal3/html/anal3_vekanal_1.html",
-         opath = "/home/ppolcz/Repositories/Bitbucket/control-systems/html/publish_demo2_output.html"):
+         opath = "/home/ppolcz/Repositories/Bitbucket/control-systems/html/publish_demo2_output.html",
+         scriptpath = None):
     contents = open(ipath, 'r').read()
     f = open(opath, 'w')
 
@@ -76,6 +77,26 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
 
     # print(type(content))
     # print(dir(content))
+
+    if scriptpath:
+        a = soup.new_tag("a")
+        a["href"] = "<?php echo base_url(); ?>/" + scriptpath
+        a.append("TELJES MATLAB SCRIPT")
+
+        github = soup.new_tag("a")
+        github["href"] = "https://github.com/ppolcz/demonstrations"
+        github.append("KIEGÉSZÍTŐ FÜGGVÉNYEKKEL")
+
+        p = soup.new_tag("p")
+        p["class"] = "text-muted"
+        p.append("\n    ")
+        p.append(a)
+        p.append("\n    ")
+        p.append(github)
+        p.append("\n")
+        # print(p)
+
+        content.insert(1,p)
 
     # Remove all comments
     for element in content(text=lambda text: isinstance(text, Comment)):
@@ -196,7 +217,7 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
 
     # Remove the beginning and ending scopes
     for pre_with_TMP in content.find_all(string=re.compile("TMP_[a-zA-Z0-9]{20}")):
-        print(pre_with_TMP.parent)
+        # print(pre_with_TMP.parent)
 
         if pre_with_TMP.parent.parent and pre_with_TMP.parent.parent.name == "pre":
             pre_with_TMP.parent.parent.extract()
@@ -211,7 +232,9 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
     f.write(html)
 
 if __name__ == "__main__":
-    if len(sys.argv) >= 3:
+    if len(sys.argv) >= 4:
+        main(sys.argv[1], sys.argv[2], sys.argv[3])
+    elif len(sys.argv) >= 3:
         main(sys.argv[1], sys.argv[2])
     else:
         main("/home/ppolcz/Repositories/Bitbucket/control-systems/oktatas/anal3/4_pde/html/hullamegyenlet_gyenge_megoldasok_v1.html",
