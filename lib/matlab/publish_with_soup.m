@@ -25,6 +25,8 @@ opt.outputDir = persist.pub_absdir;
 opt.stylesheet = [G.ROOT '/publish.xsl' ];
 
 
+% mkdir(opt.outputDir);
+
 % Publis + tidy html code
 warning off
 pub_output = publish(f.path, opt); 
