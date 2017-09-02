@@ -55,6 +55,27 @@ rank([U V])
 % space.
 
 
+%%
+% 
+
+% SISO
+n = 1;
+m = 1;
+r = 1;
+
+T = randn(2*n,n);
+
+A = T*randn(n)/(T'*T)*T';
+B = T*randn(n,r);
+C = randn(m,n)/(T'*T)*T';
+
+Cn = ctrb(A,B);
+
+L = orth(Cn);
+Lp = null(L');
+
+L'*Lp
+
 
 %%
 % End of the script.
