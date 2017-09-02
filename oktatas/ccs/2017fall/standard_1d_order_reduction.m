@@ -51,7 +51,7 @@ rank([U V])
 % X = X_{co} \otimes X_{c \bar o} \otimes X_{\bar c o} \otimes X_{\bar c \bar o}
 % $$
 % 
-% $X_{\cdot \cdot}$ are pairwise orthogonal subsets of the state
+% $X_{\cdot \cdot}$ are pairwise orthogonal subspaces of the state
 % space.
 
 
