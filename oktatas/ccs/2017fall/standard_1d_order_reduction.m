@@ -77,6 +77,11 @@ Lp = null(L');
 L'*Lp
 
 
+%% 
+
+
+
+
 %%
 % End of the script.
 pcz_dispFunctionEnd(TMP_QVgVGfoCXYiYXzPhvVPX);
