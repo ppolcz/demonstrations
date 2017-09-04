@@ -22,6 +22,7 @@ if nargin < 2 || isempty(prec) || ischar(prec)
     prec = 10;
 end
 
+ret = false;
 if pcz_symzero1(z,prec,N,varargin{:})
     ret = true;
 end
