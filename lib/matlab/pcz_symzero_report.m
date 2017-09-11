@@ -26,7 +26,7 @@ s = symvar(sym(z));
 
 if isempty(s)
     ZERO = double(z);
-    indices = find(abs(ZERO(:)) < 10^(-prec));
+    indices = find(abs(ZERO(:)) > 10^(-prec));
     perc = numel(indices) / numel(ZERO);
     maxdiff = max(abs(ZERO(:)));
 else
