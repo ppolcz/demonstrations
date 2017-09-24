@@ -68,7 +68,9 @@ def criteria_simplepre(tag):
 
 def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/oktatas/anal3/html/anal3_vekanal_1.html",
          opath = "/home/ppolcz/Repositories/Bitbucket/control-systems/html/publish_demo2_output.html",
-         scriptpath = None):
+         scriptpath = None,
+         livepath = None,
+         livepublished = None):
     contents = open(ipath, 'r').read()
     f = open(opath, 'w')
 
@@ -79,24 +81,48 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
     # print(dir(content))
 
     if scriptpath:
-        a = soup.new_tag("a")
-        a["href"] = "<?php echo base_url(); ?>/" + scriptpath
-        a.append("TELJES MATLAB SCRIPT")
-
-        github = soup.new_tag("a")
-        github["href"] = "https://github.com/ppolcz/demonstrations"
-        github.append("KIEGÉSZÍTŐ FÜGGVÉNYEKKEL")
-
         p = soup.new_tag("p")
         p["class"] = "text-muted"
         p.append("\n    ")
+
+        a = soup.new_tag("a")
+        a["href"] = "<?php echo base_url(); ?>/" + scriptpath
+        a.append("Teljes Matlab script")
         p.append(a)
         p.append("\n    ")
+
+        if livepath:
+            a = soup.new_tag("a")
+            a["href"] = "<?php echo base_url(); ?>/" + livepath
+            a.append("live script")
+            p.append("(és ")
+            p.append(a)
+            p.append(")\n    ")
+
+        github = soup.new_tag("a")
+        github["href"] = "https://github.com/ppolcz/demonstrations"
+        github.append("kiegészítő függvényekkel")
         p.append(github)
+        p.append(".")
+
+        if livepublished:
+            br = soup.new_tag("br")
+            p.append("\n")
+            p.append(br)
+            p.append("\n    ")
+
+            a = soup.new_tag("a")
+            a["href"] = "<?php echo base_url(); ?>/" + livepublished
+            a["class"] = "text-danger bold big"
+            a.append("\n        ")
+            a.append("Nézd meg Matlab live script html nézetben is!")
+            a.append("\n    ")
+            p.append(a)
+
         p.append("\n")
-        # print(p)
 
         content.insert(1,p)
+
 
     # Remove all comments
     for element in content(text=lambda text: isinstance(text, Comment)):
@@ -227,12 +253,18 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
     # html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
 
     html = "\n\n".join([ e.encode("utf8") for e in content ]).replace('&lt;?php', '<?php').replace('?&gt;','?>')
-    print(html)
+    # print(html)
 
     f.write(html)
 
 if __name__ == "__main__":
-    if len(sys.argv) >= 4:
+    if len(sys.argv) >= 7:
+        main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
+    elif len(sys.argv) >= 6:
+        main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    elif len(sys.argv) >= 5:
+        main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    elif len(sys.argv) >= 4:
         main(sys.argv[1], sys.argv[2], sys.argv[3])
     elif len(sys.argv) >= 3:
         main(sys.argv[1], sys.argv[2])

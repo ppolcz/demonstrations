@@ -1,0 +1,11 @@
+{
+    "pmlx": {
+        "inputs": [
+            {
+                "kind": "required",
+                "name": "Matlab Live script",
+                "type": "filepath=*.mlx"
+            }
+        ]
+    }
+}
