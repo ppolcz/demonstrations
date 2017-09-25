@@ -30,11 +30,13 @@ end
 if ~ret
     s = symvar(sym(z));
     
-    try
-        [Theta,z0,q] = P_Pi_canonical_decomp(z(:), s);
-        ret = pcz_symzero(Theta, prec, N);
-    catch
-        ret = false;
+    if ~isempty(s)    
+        try
+            [Theta,z0,q] = P_Pi_canonical_decomp(z(:), s);
+            ret = pcz_symzero(Theta, prec, N);
+        catch
+            ret = false;
+        end
     end
 end
 

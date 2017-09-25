@@ -7,5 +7,14 @@
                 "type": "filepath=*.mlx"
             }
         ]
+    },
+    "pcs": {
+        "inputs": [
+            {
+                "kind": "required",
+                "name": "Matlab Live script",
+                "type": "filepath=*"
+            }
+        ]
     }
 }
