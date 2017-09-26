@@ -28,6 +28,8 @@ opt.stylesheet = [G.ROOT '/publish.xsl' ];
 
 % mkdir(opt.outputDir);
 
+edit(mfn);
+
 % Publish
 warning off
 pub_output = publish(mfn, opt);
@@ -53,7 +55,7 @@ command = [ ...
     backup_mlx_relpath ' ' ...
     html_relpath ' ' ...
     ];
-system(command)
+system(command);
 
 % Copy html code to clipboard
 persist.pub_html = sprintf('<a class="" href="<?php echo base_url(''index.php/main/script/%s.php'') ?>">%s</a>', ...
@@ -62,9 +64,9 @@ clipboard('copy', persist.pub_html);
 
 % Update persist object of the base workspace
 persist.pub_output = pub_output;
-assignin('base', 'persist', persist)
+assignin('base', 'persist', persist);
 
-subl(php)
+subl(php);
 % open(pub_output)
 
 end

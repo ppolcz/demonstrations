@@ -67,6 +67,11 @@ if nargout == 0
         fprintf('Indices, where not equal: \n');
         disp(indices(:)');
     end
-end
+    
+    try
+        error('info: stack trace')
+    catch ex
+        disp(getReport(ex,'extended'))
+    end
     
 end

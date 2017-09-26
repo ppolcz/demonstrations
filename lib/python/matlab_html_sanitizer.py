@@ -115,7 +115,7 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             a["href"] = "<?php echo base_url(); ?>/" + livepublished
             a["class"] = "text-danger bold big"
             a.append("\n        ")
-            a.append("Nézd meg Matlab live script html nézetben is!")
+            a.append("Tekintsd meg LiveEditor nézetben is!")
             a.append("\n    ")
             p.append(a)
 
@@ -208,6 +208,11 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         toc_div = toc.find_all_next("div", limit=1)[0]
         toc.extract()
         toc_div.extract()
+
+    h2s = content.find_all("h2")
+    for h2 in h2s:
+        if h2.next_sibling and h2.next_sibling.name == "h2":
+            h2.name = "h1";
 
     # Detect request for video`
     revid = re.compile("vid\d{4}\.webm");
