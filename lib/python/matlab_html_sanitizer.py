@@ -244,6 +244,7 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             pre_with_vid.previous_element.parent.extract()
 
         pre_with_vid.insert_after(video)
+        print(pre_with_vid)
         pre_with_vid.extract()
 
     # Remove the beginning and ending scopes
