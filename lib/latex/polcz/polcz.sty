@@ -451,7 +451,7 @@ o m % [#2 #3] [#2:info]{#3:Title}
   before skip=2mm,after skip=3mm,
   breakable,
   boxrule=0.4pt,left=0.3mm,right=0.3mm,top=0.3mm,bottom=0.3mm,
-  colback=yellow!30,
+  colback=yellow!20,
   colframe=yellow!20!black,
   sharp corners,%rounded corners=southeast,arc is angular,arc=3mm,
   #1}
@@ -538,7 +538,7 @@ o m % [#2 #3] [#2:info]{#3:Title}
             \hfill%
             {\small\color{bourdon}%
                 #2%
-            }\IfBooleanT{#5}{\newline}%
+            }\IfBooleanT{#5}{\vspace*{1mm}\newline}%
         }%
     }
 
@@ -590,31 +590,95 @@ o m % [#2 #3] [#2:info]{#3:Title}
     \newcounter{pczexample}
 
     \DeclareDocumentEnvironment{cthm}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
-    {\begin{abspcbthm}{}#1<Theorem>{#2}[#3][#4]<#5>{pcztheorem}[#7]}
+    {\begin{abspcbthm}{}#1<Theorem>{#2}[#3][#4]<#5>(10)(15)(70){pcztheorem}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{cthmw}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
+    {\begin{abspcbthm}{}#1<Theorem>{#2}[#3][#4]<#5>(0)(0)(70){pcztheorem}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{clemmaw}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
+    {\begin{abspcbthm}{}#1<Lemma>{#2}[#3][#4]<#5>(0)(0)(70){pcztheorem}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{ctetel}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
+    {\begin{abspcbthm}\hun{}#1<tétel>{#2}[#3][#4]<#5>(10)(15)(70){pcztheorem}[#7]}
     {\end{abspcbthm}}
 
     \DeclareDocumentEnvironment{cprop}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
-    {\begin{abspcbthm}{}#1<Proposition>{#2}[#3][#4]<#5>(10)(15)(70){pczproposition}[#7]}
+    {\begin{abspcbthm}{}#1<Proposition>{#2}[#3][#4]<#5>(10)(15)(70){pcztheorem}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{cpropw}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
+    {\begin{abspcbthm}{}#1<Proposition>{#2}[#3][#4]<#5>(0)(0)(70){pcztheorem}[#7]}
     {\end{abspcbthm}}
 
     \DeclareDocumentEnvironment{callitas}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
-    {\begin{abspcbthm}\hun{}#1<állítás>{#2}[#3][#4]<#5>(10)(15)(70){pczproposition}[#7]}
+    {\begin{abspcbthm}\hun{}#1<állítás>{#2}[#3][#4]<#5>(10)(15)(70){pcztheorem}[#7]}
     {\end{abspcbthm}}
 
     \DeclareDocumentEnvironment{cdef}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
     {\begin{abspcbthm}\hun{}#1<definíció>{#2}[#3][#4]<#5>(10)(15)(70){pcztheorem}[#7]}
     {\end{abspcbthm}}
 
+    \DeclareDocumentEnvironment{cdefinition}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
+    {\begin{abspcbthm}{}#1<Definition>{#2}[#3][#4]<#5>(10)(15)(70){pcztheorem}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{cdefinitionw}{ l m O{} O{red!80!black} D<>{yellow} t\label m }
+    {\begin{abspcbthm}{}#1<Definition>{#2}[#3][#4]<#5>(0)(0)(70){pcztheorem}[#7]}
+    {\end{abspcbthm}}
+
     \DeclareDocumentEnvironment{cfel}{ l m O{} O{blue} D<>{blue} t\label m }
     {\begin{abspcbthm}\hun{}#1<feladat>{#2}[#3][#4]<#5>{pczexample}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{cexample}{ l m O{} O{blue} D<>{blue} t\label m }
+    {\begin{abspcbthm}{}#1<Example>{#2}[#3][#4]<#5>{pczexample}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{cexamplew}{ l m O{} O{blue} D<>{blue} t\label m }
+    {\begin{abspcbthm}{}#1<Example>{#2}[#3][#4]<#5>(0)(0)(80){pczexample}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{cproblem}{ l m O{} O{blue} D<>{blue} t\label m }
+    {\begin{abspcbthm}{}#1<Problem>{#2}[#3][#4]<#5>{pczexample}[#7]}
     {\end{abspcbthm}}
 
     \DeclareDocumentEnvironment{cmatlab}{ l m O{} O{black} D<>{gray} t\label m }
     {\begin{abspcbthm}{}#1<Matlab>{#2}[#3][#4]<#5>(10)(20)(70){pczmatlab}[#7]}
     {\end{abspcbthm}}
 
+    \DeclareDocumentEnvironment{cmatlabw}{ l m O{} O{black} D<>{gray} t\label m }
+    {\begin{abspcbthm}{}#1<Matlab>{#2}[#3][#4]<#5>(0)(0)(50){pczmatlab}[#7]}
+    {\end{abspcbthm}}
+
+    \DeclareDocumentEnvironment{lemma}{ l m }
+    {\noindent\absthmtitle#1<Lemma>{#2}*{pcztheorem}}
+    {}
+
+    \DeclareDocumentEnvironment{prop}{ l m }
+    {\noindent\absthmtitle#1<Proposition>{#2}*{pcztheorem}}
+    {}
+
+    \DeclareDocumentEnvironment{thm}{ l m }
+    {\noindent\absthmtitle#1<Theorem>{#2}*{pcztheorem}}
+    {}
+
+    \DeclareDocumentEnvironment{example}{ l m }
+    {\noindent\absthmtitle#1<Example>{#2}*{pczexample}}
+    {}
+
+    \DeclareDocumentEnvironment{matlab}{ l m }
+    {\noindent\absthmtitle#1<Matlab>{#2}*{pczmatlab}}
+    {}
+
     \DeclareDocumentEnvironment{fel}{ l m }
     {\noindent\absthmtitle\hun#1<feladat>{#2}*{pczexample}}
+    {}
+
+    \DeclareDocumentEnvironment{problem}{ l m }
+    {\noindent\absthmtitle#1<Problem>{#2}*{pczexample}}
     {}
     %{\phantom{.}\hfill$\triangleleft$}
 
@@ -732,6 +796,59 @@ o m % [#2 #3] [#2:info]{#3:Title}
 \fi
 
 \usepackage{listings}
-\usepackage[numbered,autolinebreaks]{mcode}
+%\usepackage[numbered,autolinebreaks]{mcode}
+\usepackage[autolinebreaks]{mcode}
 \usepackage{matlab-prettifier}
 \lstset{aboveskip=0pt,belowskip=0pt}
+
+
+
+\DeclareDocumentCommand{\Hiba}{s t\it t\n O{red} g}
+{
+    \IfNoValueTF{#5}
+    {%
+        \color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape}%
+        \IfBooleanT{#3}{\normalfont}%
+    }
+    {%
+        {\color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape} #5}%
+        \IfBooleanT{#3}{\normalfont}%
+    }
+}
+
+\DeclareDocumentCommand{\Atir}{s t\it t\n O{blue} g}%
+{%
+    \IfNoValueTF{#5}%
+    {%
+        \color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape}%
+        \IfBooleanT{#3}{\normalfont}%
+    }{%
+        {\color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape} #5}%
+        \IfBooleanT{#3}{\normalfont}%
+    }%
+}
+
+\DeclareDocumentCommand{\Normal}{s t\it t\n O{black} g}
+{
+    \IfNoValueTF{#5}
+    {%
+        \color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape}%
+        \IfBooleanT{#3}{\normalfont}%
+    }
+    {%
+        {\color{#4}%
+        \IfBooleanT{#1}{\bfseries}%
+        \IfBooleanT{#2}{\itshape} #5}%
+        \IfBooleanT{#3}{\normalfont}%
+    }
+}
