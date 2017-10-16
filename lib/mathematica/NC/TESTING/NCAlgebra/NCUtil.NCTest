@@ -1,0 +1,200 @@
+<< NCUtil`
+
+Block[
+  {k,test,expr,a,b,c,d,i,x,y,z,list,index,X,Y},
+
+  SetCommutative[a,b,c,d];
+  SetNonCommutative[i,x,y,z];
+
+  (* NCConsistentQ *)
+
+  expr = 0;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = 1;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = Sqrt[2];
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = a + b c;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = x ** x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = x ** x ** y;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = x ** x ** y + y ** x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = x ** x ** y + y ** x ** inv[z];
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = 2 x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = 2 x ** x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = 2 x ** x ** y;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = 2 x ** x ** y + 3 y ** x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = 2 x ** x ** y + 3 y ** x ** inv[z];
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = a x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = a x ** x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = a x ** x ** y;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = a x ** x ** y + b y ** x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = a x ** x ** y + b y ** x ** inv[z];
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = Sqrt[a] x ** x ** y + b y ** x ** inv[z];
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = x x;
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = x y;
+  NCTest[NCConsistentQ[expr], False];
+
+  expr = Sqrt[2] x ** x y + 3 y ** x ** inv[z];
+  NCTest[NCConsistentQ[expr], False];
+
+  expr = Sqrt[2] x ** x ** y + 3 y x ** inv[z];
+  NCTest[NCConsistentQ[expr], False];
+
+  expr = x / y;
+  NCTest[NCConsistentQ[expr], False];
+
+  expr = Sqrt[2] x ** x ** y + 3 y ** x / z;
+  NCTest[NCConsistentQ[expr], False];
+
+  expr = Sqrt[2] x ** x ** y + 3 x ** inv[x + z ** y];
+  NCTest[NCConsistentQ[expr], True];
+
+  expr = Sqrt[2] x ** x ** y + 3 x ** inv[x + x z ** y];
+  NCTest[NCConsistentQ[expr], False];
+
+  (* NCGrabSymbols *)
+  
+  expr = a aj[x]**y+inv[1+inv[x**tp[y]+b]];
+  NCTest[NCGrabSymbols[expr], {a,b,x,y}];
+  NCTest[NCGrabSymbols[expr, tp], {tp[y]}];
+  NCTest[NCGrabSymbols[expr, tp|aj], {aj[x],tp[y]}];
+
+  expr = {{a**x, b**tp[y]},{1,y**tp[x]}};
+  NCTest[NCGrabSymbols[expr], {a,b,x,y}];
+
+  expr = SparseArray[{{a**x, b**tp[y]},{1,y**tp[x]}}];
+  NCTest[NCGrabSymbols[expr], {a,b,x,y}];
+  NCTest[NCGrabSymbols[expr, tp], {tp[x],tp[y]}];
+
+  (* with Subscript *)
+  expr = Subscript[a,i] aj[Subscript[x,i]]**y+inv[1+inv[Subscript[x,i]**tp[y]+b]];
+  NCTest[NCGrabSymbols[expr], Union[{Subscript[a,i],b,Subscript[x,i],y}]];
+  NCTest[NCGrabSymbols[expr, tp], {tp[y]}];
+  NCTest[NCGrabSymbols[expr, tp|aj], {aj[Subscript[x,i]],tp[y]}];
+
+  expr = {{Subscript[a,i]**Subscript[x,i], b**tp[y]},{1,y**tp[Subscript[x,i]]}};
+  NCTest[NCGrabSymbols[expr], Union[{Subscript[a,i],b,Subscript[x,i],y}]];
+
+  expr = SparseArray[{{Subscript[a,i]**Subscript[x,i], b**tp[y]},{1,y**tp[Subscript[x,i]]}}];
+  NCTest[NCGrabSymbols[expr], Union[{Subscript[a,i],b,Subscript[x,i],y}]];
+  NCTest[NCGrabSymbols[expr, tp], Union[{tp[Subscript[x,i]],tp[y]}]];
+
+  (* NCGrabFunctions *)
+  expr = a aj[x]**y+inv[1+inv[x**tp[y]+b]];
+  NCTest[NCGrabFunctions[expr, tp], {tp[y]}];
+  NCTest[NCGrabFunctions[expr, tp|aj], {aj[x],tp[y]}];
+  NCTest[NCGrabFunctions[expr, inv], {inv[1+inv[x**tp[y]+b]], 
+                                      inv[x**tp[y]+b]}];
+
+  NCTest[NCGrabFunctions[expr], {aj[x], inv[1+inv[x**tp[y]+b]],
+                                 inv[x**tp[y]+b], tp[y]}];
+
+  expr = {{a**x, b**tp[y]},{1,y**tp[x]}};
+  NCTest[NCGrabFunctions[expr], {tp[x],tp[y]}];
+
+  expr = SparseArray[{{a**x, inv[x]**tp[y]},{1,y**tp[x]}}];
+  NCTest[NCGrabFunctions[expr], {inv[x],tp[x],tp[y]}];
+  NCTest[NCGrabFunctions[expr, tp], {tp[x],tp[y]}];
+
+  expr = a aj[x]**y-inv[1-inv[x**tp[y]-b]];
+  NCTest[NCGrabFunctions[expr], {aj[x], inv[1-inv[x**tp[y]-b]],
+                                 inv[x**tp[y]-b], tp[y]}];
+
+  expr = { y**inv[x]**y + tp[inv[x+y]], 3 + 4 inv[y]**b**inv[y] + x };
+  NCTest[NCGrabFunctions[expr], {inv[x], inv[y], inv[tp[x]+tp[y]], tp[x], tp[y]}];
+
+  NCTest[NCGrabIndeterminants[expr],
+         {b, x, y, inv[x], inv[y], inv[tp[x]+tp[y]]}];
+
+  expr = SparseArray[{{a**x, inv[inv[x]**tp[y]]},{1,y**tp[x]}}];
+  NCTest[NCGrabIndeterminants[expr], {a,x,y,inv[inv[x]**tp[y]],tp[x]}];
+
+  (* NCConsolidateList *)
+  {list,index} = NCConsolidateList[{3,1,2,3}];
+  NCTest[list, {3,1,2}];
+  NCTest[index, {1,2,3,1}];
+
+  {list,index} = NCConsolidateList[{z,t,s,f,d,f,z}];
+  NCTest[list, {z,t,s,f,d}];
+  NCTest[index, {1,2,3,4,5,4,1}];
+
+  (* NCToExpression *)
+  X = {{1,2},{2,1}}; Y = {{3,5},{5,3}};
+  expr = x ** y;
+  answer = X . Y;
+  NCTest[NCToExpression[expr, {x->X,y->Y}], answer];
+
+  expr = y ** x;
+  answer = Y . X;
+  NCTest[NCToExpression[expr, {x->X,y->Y}], answer];
+
+  expr = x ** y + y ** x;
+  answer = X . Y + Y . X;
+  NCTest[NCToExpression[expr, {x->X,y->Y}], answer];
+
+  expr = 1 + x;
+  answer = IdentityMatrix[2] + X;
+  NCTest[NCToExpression[expr, {x->X}], answer];
+
+  expr = x ** (1 + y);
+  answer = X . (IdentityMatrix[2] + Y);
+  NCTest[NCToExpression[expr, {x->X,y->Y}], answer];
+
+  expr = 2 + inv[1 + y ** y] + x ** x;
+  X = {{1}};  Y = {{1}};
+  answer = 2 IdentityMatrix[1] + Inverse[IdentityMatrix[1] + Y.Y] + X.X;
+  NCTest[NCToExpression[expr, {x->X,y->Y}], answer];
+
+  X = {{1,2},{2,1}}; Y = {{3,5},{5,3}};
+  answer = 2 IdentityMatrix[2] + Inverse[IdentityMatrix[2] + Y.Y] + X.X;
+  NCTest[NCToExpression[expr, {x->X,y->Y}], answer];
+
+  (* NCLeafCount *)
+  NCTest[NCLeafCount[0], -Infinity];
+  NCTest[NCLeafCount[2], 2];
+  NCTest[NCLeafCount[-2], 2];
+  NCTest[NCLeafCount[2+a], -LeafCount[2+a]];
+  NCTest[NCLeafCount[{0,-2,2+a}], {-Infinity,2,-LeafCount[2+a]}];
+  NCTest[Normal[NCLeafCount[SparseArray[{0,-2,2+a}]]], {-Infinity,2,-LeafCount[2+a]}];
+
+];

@@ -1,0 +1,27 @@
+SetOptions[$Output,PageWidth->1000];
+
+<< NC`
+<< NCTest`
+<< NCPoly`
+
+Print["> BEGIN NCPOLYTEST\n" ];
+
+tests = {
+  "Digits",
+  "Constructors",
+  "Arithmetic",
+  "Product",
+  "Reduce",
+  "CoeffArray",
+  "Groebner",
+  "Hankel",
+  "NCPolyInterface",
+  "NCGBX"
+};
+results = NCTestRun[tests];
+NCTestSummarize[results];
+
+Print["\n> END NCPOLYTEST\n" ];
+
+Print["> EVEN IF ALL THE TESTS SUCCEEDED YOU SHOULD QUIT THE KERNEL"]
+Print["  IN YOUR MATHEMATICA SESSION AND START OVER." ];

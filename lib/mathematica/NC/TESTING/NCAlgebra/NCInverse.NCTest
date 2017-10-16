@@ -1,0 +1,88 @@
+Module[
+  {a, b, c, d, x, y, mat, invmat, answer}, 
+
+  SetNonCommutative[a, b, c, d, x, y];
+
+  NCTest[CommutativeQ[inv], False];
+
+  NCTest[inv[a ** b], Unevaluated[inv[a ** b]]];
+  NCTest[inv[a] ** inv[b], Unevaluated[inv[a] ** inv[b]]];
+
+  NCTest[inv[a] ** a, 1];
+  NCTest[b ** inv[a] ** a, b];
+  NCTest[inv[a] ** a ** c, c];
+  NCTest[b ** inv[a] ** a ** c, b ** c];
+
+  NCTest[inv[a ** b] ** a ** b, 1];
+  NCTest[b ** inv[a ** b] ** a ** b, b];
+  NCTest[inv[a ** b] ** a ** b ** c, c];
+  NCTest[b ** inv[a ** b] ** a ** b ** c, b ** c];
+
+  NCTest[inv[f[a]] ** f[a], 1];
+  NCTest[b ** inv[f[a]] ** f[a], b];
+  NCTest[inv[f[a]] ** f[a] ** c, c];
+  NCTest[b ** inv[f[a]] ** f[a] ** c, b ** c];
+
+  NCTest[inv[inv[a]], a];
+
+  NCTest[inv[a * b], inv[a] * inv[b]];
+
+  NCTest[NCInverse[{{0,1},{1,0}}], {{0,1},{1,0}}];
+
+  mat = {{a,b},{c,d}};
+  invmat = NCInverse[mat];
+  answer = {{inv[a]**(1+b**inv[d-c**inv[a]**b]**c**inv[a]), 
+              -inv[a]**b **inv[d-c**inv[a]**b]},
+            {-inv[d-c**inv[a]**b]**c**inv[a], inv[d-c**inv[a]**b]}};
+  NCTest[invmat, answer];
+
+  NCTest[NCSimplifyRational[NCInverse[NCInverse[{{a,b},{0,d}}]]],
+         {{a,b},{0,d}}];
+
+  NCTest[NCSimplifyRational[NCDot[invmat,mat]],
+         {{1,0},{0,1}}];
+
+  mat = {{a,0},{c,d}};
+  invmat = NCInverse[mat];
+  answer = {{inv[a], 0},
+            {-inv[d]**c**inv[a], inv[d]}};
+  NCTest[invmat, answer];
+
+  mat = {{tp[x], 0, 3}, {y, inv[y], 1}, {2, x ** y, 0}};
+  invmat = NCInverse[mat];
+
+  NCTest[NCSimplifyRational[NCDot[mat, invmat]], 
+         {{1,0,0},{0,1,0},{0,0,1}}];
+
+  (* Distributive property *)
+  NCTest[inv[a**b], Unevaluated[inv[a**b]]];
+  NCTest[inv[a**b] =!= inv[b]**inv[a]];
+  
+  NCTest[inv[a**b**c], Unevaluated[inv[a**b**c]]];
+  NCTest[inv[a**b**c] =!= inv[c]**inv[b]**inv[a]];
+  
+  NCTest[Options[inv], {Distribute -> False}];
+
+
+  SetOptions[inv, Distribute -> True];
+  
+  NCTest[inv[a**b], Unevaluated[inv[b]**inv[a]]];
+  NCTest[inv[a**b] === inv[b]**inv[a]];
+
+  NCTest[inv[a**b**c], Unevaluated[inv[c]**inv[b]**inv[a]]];
+  NCTest[inv[a**b**c] === inv[c]**inv[b]**inv[a]];
+
+  NCTest[Options[inv], {Distribute -> True}];
+
+
+  SetOptions[inv, Distribute -> False];
+
+  NCTest[inv[a**b], Unevaluated[inv[a**b]]];
+  NCTest[inv[a**b] =!= inv[b]**inv[a]];
+
+  NCTest[inv[a**b**c], Unevaluated[inv[a**b**c]]];
+  NCTest[inv[a**b**c] =!= inv[c]**inv[b]**inv[a]];
+
+  NCTest[Options[inv], {Distribute -> False}];
+
+];  

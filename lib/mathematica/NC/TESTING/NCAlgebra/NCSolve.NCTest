@@ -1,0 +1,38 @@
+(* :Title: 	NCSolve.NCTest // Mathematica 1.2 and 2.0 *)
+
+(* :Author: 	Mark Stankus (mstankus). *)
+
+(* :Summary:    TEST FILE.  *)
+
+(* :History: 
+   :8/13/92      Written.(mstankus)
+*)
+
+Block[
+  {k,x,y,a,b,c,d,i},
+
+  k = 1;
+
+  (* Print[ "Running NCSolve.NCTest" ]; *)
+
+  SetNonCommutative[a,b,c,d,x,y];
+  NCTest[NCSolveLinear1[a**x==b, x], {x -> inv[a]**b}, "NCSolve", k++];
+  NCTest[NCSolveCheck[], 0, "NCSolve", k++];
+  NCTest[NCSolveLinear1[a**y+c==b+d,y],  
+         {y -> inv[a]**b+ inv[a]**d- inv[a]**c}, "NCSolve", k++];
+  NCTest[NCSolveCheck[]==0, "NCSolve", k++];
+  NCTest[NCSolveLinear1[a**y==b**y,y], {y -> 0}, "NCSolve", k++];
+  NCTest[NCSolveCheck[]==0, "NCSolve", k++];
+
+  NCTest[NCSolveLinear1[a**y+c==b**y,y],  
+         {y -> -inv[a-b]**c}, "NCSolve", k++];
+  NCTest[NCSolveCheck[], c-a**inv[a-b]**c+b**inv[a-b]**c, "NCSolve", k++];
+    
+  Print["There should be an error message next..."];
+
+  NCTest[NCSolveLinear1[a**y==a**y,y], {{}}, "NCSolve", k++];
+
+  Print["There should have been an error message above..."];
+
+];
+

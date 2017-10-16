@@ -1,0 +1,84 @@
+<< SDP`
+<< SDPFlat`
+<< SDPSeDuMi`
+
+Begin["NCTest`Local`"];
+
+Module[
+  {A, b, y, sdp,
+   X, Y, S, flags,
+   AA, BB, CC
+  },
+
+  A = {y0 - 2, {{y1, y0}, {y0, 1}}, {{y2, y1}, {y1, 1}}};
+  b = y2;
+  y = {y0, y1, y2};
+
+  {AA,BB,CC} = SDPMatrices[b, A, y];
+
+  {Y, X, S, flags} = SDPSolve[{AA, BB, CC}];
+  answer = 16;
+  exp = -SDPInner[BB, Y];
+  NCTest[Abs[(exp - answer)/answer] < 10^(-5), True];
+
+  exp = -SDPInner[CC, X];
+  NCTest[Abs[(exp - answer)/answer] < 10^(-5), True];
+
+  (* Test options *)
+  Print["******************************************************************"];
+  Print["** W A R N I N G: BEGIN DebugLevel > 0 prints lots of messages! **"];
+  Print["******************************************************************"];
+  {Y, X, S, flags} = SDPSolve[{AA, BB, CC}, DebugLevel -> 2];
+  NCTest[ Part[Iterations /. flags, 1, 1], 1 ];
+  Print["***************************************"];
+  Print["** W A R N I N G: END DebugLevel > 0 **"];
+  Print["***************************************"];
+
+  NCTestCheck[
+      {Y, X, S, flags} = SDPSolve[{AA, BB, CC}, Method -> Iterative]
+     ,
+      {$Failed,$Failed,$Failed,$Failed}
+     ,
+      PrimalDual::InvalidMethod
+  ];
+  NCTestCheck[
+      {Y, X, S, flags} = SDPSolve[{AA, BB, CC}, SearchDirection -> KHS]
+     ,
+      {$Failed,$Failed,$Failed,$Failed}
+     ,
+      PrimalDual::InvalidSearchDirection
+  ];
+
+  (* Supported search directions *)
+  {Y, X, S, flags} = SDPSolve[{AA, BB, CC}, SearchDirection -> KSH];
+  answer = 16;
+  exp = -SDPInner[BB, Y];
+  NCTest[Abs[(exp - answer)/answer] < 10^(-5), True];
+
+  {Y, X, S, flags} = SDPSolve[{AA, BB, CC}, SearchDirection -> KSHDual];
+  answer = 16;
+  exp = -SDPInner[BB, Y];
+  NCTest[Abs[(exp - answer)/answer] < 10^(-5), True];
+
+  (* Supported methods *)
+  {Y, X, S, flags} = SDPSolve[{AA, BB, CC}, Method -> LongStep];
+  answer = 16;
+  exp = -SDPInner[BB, Y];
+  NCTest[Abs[(exp - answer)/answer] < 10^(-5), True];
+
+  (* Supported methods *)
+  {Y, X, S, flags} = SDPSolve[{AA, BB, CC}, Method -> ShortStep];
+  answer = 16;
+  exp = -SDPInner[BB, Y];
+  NCTest[Abs[(exp - answer)/answer] < 10^(-5), True];
+
+  (* Rationalize iterates *)
+  {Y, X, S, flags} = SDPSolve[{AA, BB, CC},
+                              RationalizeIterates -> True];
+  answer = 16;
+  exp = -SDPInner[BB, Y];
+  NCTest[Abs[(exp - answer)/answer] < 10^(-5), True];
+
+];
+
+End[];

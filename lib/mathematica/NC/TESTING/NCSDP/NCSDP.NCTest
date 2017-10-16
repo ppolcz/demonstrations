@@ -1,0 +1,393 @@
+<< NCAlgebra`
+<< NCSDP`
+
+Begin["NCTest`Local`"];
+
+Module[
+  {
+    a,x,F,vars,obj,
+    n,data,
+    abc,rules,
+    exp,answer,
+    Idn,
+    q,
+    b,b1,c1,c2,d12,y,w,
+    Ze,Zemn,Zexz,
+    Idm,Zemm,Zenm,
+    IdX,IdW,Zenpm,
+    Zepp, Zenp, Idpp,
+    dF, dVars, dObj
+    (* These must be global for COMPleib
+    A,B1,B,C1,CC,D11,D12,D21,
+    nx,nu,nw,nz,ny
+    *)
+  },
+
+  (* Test #1: Lyapunov inequality *)
+
+  SNC[a, x];
+  F = {a ** x + x ** tp[a] + 1, -x};
+  vars = {x};
+  obj = {-1};
+
+  n = 2;
+  A = {{0, 1}, {-1, -2}};
+
+  data = {a -> A};
+
+  Quiet[
+     {abc, rules} = NCSDP[F, vars, obj, data, DebugLevel -> 0];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+
+  Idn = IdentityMatrix[n];
+  Ze = ConstantArray[0, {n,n}];
+  answer = {
+    {
+      {A, 2 Idn}
+    },
+    {
+      {Idn, -Idn}
+    }
+  };
+  NCTest[abc[[1]], answer];
+
+  answer = {-Idn};
+  NCTest[abc[[2]], answer];
+
+  answer = {-Idn, Ze};
+  NCTest[abc[[3]], answer];
+
+  answer = SymmetricVariables->{1};
+  NCTest[rules, answer];
+
+  Quiet[
+     {dF, dVars, dObj} = NCSDPDual[F, vars, obj, DualSymbol -> "w"];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+ 
+  answer = {w1,w2};
+  NCTest[dVars, answer];
+
+  answer = {-1 - w2 + tp[a] ** w1 + w1 ** a};
+  NCTest[dF, answer];
+
+  answer = {1, 0};
+  NCTest[dObj, answer];
+
+
+  (* Test #2: Lyapunov inequality *)
+
+  SNC[a, q, x];
+  F = {a ** x + x ** tp[a] + q, -x};
+  vars = {x};
+  obj = {-1};
+
+  Q = {{2, 1}, {1, 2}};
+  data = {a -> A, q -> Q};
+
+  Quiet[
+     {abc, rules} = NCSDP[F, vars, obj, data, UserRules -> {tp[q] -> q}, DebugLevel -> 0];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+
+  answer = {
+    {
+      {A, 2 Idn}
+    },
+    {
+      {Idn, -Idn}
+    }
+  };
+  NCTest[abc[[1]], answer];
+
+  answer = {-Idn};
+  NCTest[abc[[2]], answer];
+
+  answer = {-Q, Ze};
+  NCTest[abc[[3]], answer];
+
+  answer = SymmetricVariables->{1};
+  NCTest[rules, answer];
+
+  Quiet[
+     {dF, dVars, dObj} = NCSDPDual[F, vars, obj, DualSymbol -> "w"];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+ 
+  answer = {w1,w2};
+  NCTest[dVars, answer];
+
+  answer = {-1 - w2 + tp[a] ** w1 + w1 ** a};
+  NCTest[dF, answer];
+
+  answer = {q, 0};
+  NCTest[dObj, answer];
+
+
+  (* Test #3: Modified Lyapunov inequality *)
+
+  SNC[a, b, q, x];
+  F = {a ** x + x ** tp[a] + b ** x ** tp[b] + q, -x};
+  vars = {x};
+  obj = {-1};
+
+  Q = {{2, 1}, {1, 2}};
+  B = A . A;
+  data = {a -> A, b -> B, q -> Q};
+
+  Quiet[
+     {abc, rules} = NCSDP[F, vars, obj, data, UserRules -> {tp[q] -> q}, DebugLevel -> 0];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+   
+  answer = {
+    {
+      {ArrayFlatten[{{A, B}}], ArrayFlatten[{{2 Idn, Transpose[B]}}]}
+    },
+    {
+      {Idn, -Idn}
+    }
+  };
+  NCTest[abc[[1]], answer];
+
+  answer = {-Idn};
+  NCTest[abc[[2]], answer];
+
+  answer = {-Q, Ze};
+  NCTest[abc[[3]], answer];
+
+  answer = SymmetricVariables->{1};
+  NCTest[rules, answer];
+
+  Quiet[
+     {dF, dVars, dObj} = NCSDPDual[F, vars, obj, DualSymbol -> "w"];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+ 
+  answer = {w1,w2};
+  NCTest[dVars, answer];
+
+  answer = {-1 - w2 + tp[a] ** w1 + w1 ** a + tp[b] ** w1 ** b};
+  NCTest[dF, answer];
+
+  answer = {q, 0};
+  NCTest[dObj, answer];
+
+
+  (* Test #4: Stabilizability *)
+
+  SNC[a, b, b1, c1, d12, x, y, w];
+  F = {a ** x + b ** y + x ** tp[a] + tp[b ** y], -x + 1};
+  vars = {x, y};
+  obj = {-1, 0};
+
+  << "COMPleib/MmaCOMPleib/AC3.m";
+  data = {a -> A, b -> B, b1 -> B1, c1 -> C1, d12 -> D12};
+  Idn = IdentityMatrix[nx];
+  Ze = ConstantArray[0, {nx,nx}];
+  Zemn = ConstantArray[0, {nu,nx}];
+
+  Quiet[
+     {abc, rules} = NCSDP[F, vars, obj, data, DebugLevel -> 0];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+
+  answer = {
+    {
+      {A, 2 Idn}, {B, 2 Idn}
+    },
+    {
+      {Idn, -Idn}, {Transpose[Zemn], Ze}
+    }
+  };
+  NCTest[abc[[1]], answer];
+
+  answer = {-Idn, Zemn};
+  NCTest[abc[[2]], answer];
+
+  answer = {Ze, -Idn};
+  NCTest[abc[[3]], answer];
+
+  answer = SymmetricVariables->{1};
+  NCTest[rules, answer];
+
+  Quiet[
+     {dF, dVars, dObj} = NCSDPDual[F, vars, obj, DualSymbol -> "w"];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+ 
+  answer = {w1,w2};
+  NCTest[dVars, answer];
+
+  answer = {-1 - w2 + tp[a] ** w1 + w1 ** a, 2 tp[b] ** w1};
+  NCTest[dF, answer];
+
+  answer = {0, 1};
+  NCTest[dObj, answer];
+
+
+  (* Test #5: H2 control *)
+
+  SNC[a, b, b1, c1, d12, x, y, w];
+  F = {a ** x + b ** y + x ** tp[a] + tp[b ** y] + 
+       b1 ** tp[b1], -{{w, c1 ** x + d12 ** y}, {tp[c1 ** x + d12 ** y], 
+        x}}} /. tp[x] -> x /. c1 -> 0 /. d12 -> 1;
+  vars = {x, y, w};
+  obj = {0, 0, -1};
+
+  data = {a -> A, b -> B, b1 -> B1};
+  Idm=IdentityMatrix[nu];
+  Zemm=ConstantArray[0,{nu,nu}];
+  Zenm=ConstantArray[0,{nx,nu}];
+  IdX=ArrayFlatten[{{Transpose[Zenm]},{Idn}}];
+  IdW=ArrayFlatten[{{Idm},{Zenm}}];
+  Zenpm=ConstantArray[0,{nx+nu,nx+nu}];
+
+  Quiet[
+     {abc, rules} = NCSDP[F, vars, obj, data, DebugLevel -> 0];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+
+  answer = {
+    {{A,2 Idn},{B,2 Idn},{Zenm,Transpose[Zenm]}},(* A X + B L < -I *)
+    {{IdX,-Transpose[IdX]},{IdW,-2 Transpose[IdX]},{IdW,-Transpose[IdW]}} (* -[W, L; L^T X] < 0 *)
+  };
+  NCTest[abc[[1]], answer];
+
+  answer = {Ze, Zemn,-Idm};
+  NCTest[abc[[2]], answer];
+
+  answer = {-B1.Transpose[B1], Zenpm};
+  NCTest[abc[[3]], answer];
+
+  answer = SymmetricVariables->{1,3};
+  NCTest[rules, answer];
+
+  Quiet[
+     {dF, dVars, dObj} = NCSDPDual[F, vars, obj, DualSymbol -> "w"];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+     
+  answer = {w1,{{Subscript[w2,1,1],tp[Subscript[w2,2,1]]},{Subscript[w2,2,1],Subscript[w2,2,2]}}};
+  NCTest[dVars, answer];
+
+  answer = {-Subscript[w2,2,2] + tp[a] ** w1 + w1 ** a, 
+            2 tp[b] ** w1 - 2 tp[Subscript[w2,2,1]], 
+            -1 - Subscript[w2,1,1]};
+  NCTest[dF, answer];
+
+  answer = {b1 ** tp[b1], {{0,0},{0,0}}};
+  NCTest[dObj, answer];
+
+  (* Test #6: Hoo control *)
+
+  SNC[a, b, b1, c1, d12, x, y];
+  F = {{{a ** x + b ** y + x ** tp[a] + tp[b ** y] + b1 ** tp[b1], 
+       x ** tp[c1] + tp[y] ** tp[d12]}, {c1 ** x + d12 ** y, -1}}, -x};
+  vars = {x, y};
+  obj = {};
+
+  data = {a -> A, b -> B, b1 -> B1, c1 -> C1, d12 -> D12};
+  Quiet[
+     {abc, rules} = NCSDP[F, vars, obj, data, DebugLevel -> 0];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+    
+  Zepp=ConstantArray[0,{nz,nz}];
+  Zenp=ConstantArray[0,{nx,nz}];
+  answer = {
+    {{ArrayFlatten[{{A},{C1}}], 2 ArrayFlatten[{{Idn,Zenp}}]},
+     {ArrayFlatten[{{B},{D12}}], 2 ArrayFlatten[{{Idn,Zenp}}]}},
+    {{Idn,-Idn},{Zenm, Ze}}
+  };
+  NCTest[abc[[1]], answer];
+
+  answer = {Ze, Zemn};
+  NCTest[abc[[2]], answer];
+
+  Idpp=IdentityMatrix[nz];
+  answer = { -ArrayFlatten[{{B1 . Transpose[B1], Zenp}, {Transpose[Zenp], -Idpp}}], Ze };
+  NCTest[abc[[3]], answer];
+
+  answer = SymmetricVariables->{1};
+  NCTest[rules, answer];
+
+  Quiet[
+     {dF, dVars, dObj} = NCSDPDual[F, vars, obj, DualSymbol -> "w"];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+ 
+  answer = {-w2 + tp[a] ** Subscript[w1,1,1] + Subscript[w1,1,1] ** a
+                + tp[c1] ** Subscript[w1,2,1] + tp[Subscript[w1,2,1]] ** c1, 
+            2 tp[b] ** Subscript[w1,1,1] + 2 tp[d12] ** Subscript[w1,2,1]};
+  NCTest[dF, answer];
+
+  answer = {{{Subscript[w1,1,1],tp[Subscript[w1,2,1]]},{Subscript[w1,2,1],Subscript[w1,2,2]}}, w2};
+  NCTest[dVars, answer];
+
+  answer = {{{b1 ** tp[b1],0},{0,-1}},0};
+  NCTest[dObj, answer];
+
+  (* Test #7: Mixed H2/Hoo control *)
+
+  SNC[a, b, b1, c1, d12, x, y, w];
+  F = {{{a ** x + b ** y + x ** tp[a] + tp[b ** y] + b1 ** tp[b1], 
+         x ** tp[c1] + tp[y] ** tp[d12]}, {c1 ** x + d12 ** y, -1}}, 
+	 -{{w, y}, {tp[y], x}}};
+  vars = {x, y, w};
+  obj = {0, 0, -1};
+
+  Quiet[
+     {abc, rules} = NCSDP[F, vars, obj, data, DebugLevel -> 0];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+
+  answer = {
+    {{ArrayFlatten[{{A},{C1}}], 2 ArrayFlatten[{{Idn,Zenp}}]},
+     {ArrayFlatten[{{B},{D12}}], 2 ArrayFlatten[{{Idn,Zenp}}]},
+     {ConstantArray[0,{nx+nz,nu}], ConstantArray[0,{nu, nx+nz}]}},
+    {{IdX,-Transpose[IdX]},{IdW,-2 Transpose[IdX]},{IdW,-Transpose[IdW]}}
+  };
+  NCTest[abc[[1]], answer];
+
+  answer = {Ze, Zemn,-Idm};
+  NCTest[abc[[2]], answer];
+
+  answer = { -ArrayFlatten[{{B1 . Transpose[B1], Zenp}, {Transpose[Zenp], -Idpp}}], Zenpm};
+  NCTest[abc[[3]], answer];
+
+  Quiet[
+     {dF, dVars, dObj} = NCSDPDual[F, vars, obj, DualSymbol -> "w", DebugLevel -> 0];
+    ,
+     NCSymmetricQ::SymmetricVariables
+  ];
+ 
+  answer = {{{Subscript[w1,1,1],tp[Subscript[w1,2,1]]},{Subscript[w1,2,1],Subscript[w1,2,2]}}, {{Subscript[w2,1,1],tp[Subscript[w2,2,1]]},{Subscript[w2,2,1],Subscript[w2,2,2]}}};
+  NCTest[dVars, answer];
+
+  answer = {-Subscript[w2,2,2] + tp[a] ** Subscript[w1,1,1] + Subscript[w1,1,1] ** a
+                + tp[c1] ** Subscript[w1,2,1] + tp[Subscript[w1,2,1]] ** c1, 
+            2 tp[b] ** Subscript[w1,1,1] + 2 tp[d12] ** Subscript[w1,2,1] - 2 tp[Subscript[w2,2,1]], 
+	    -1 - Subscript[w2,1,1]};
+  NCTest[dF, answer];
+
+  answer = {{{b1 ** tp[b1],0},{0,-1}},{{0,0},{0,0}}};
+  NCTest[dObj, answer];
+
+];
+
+End[];

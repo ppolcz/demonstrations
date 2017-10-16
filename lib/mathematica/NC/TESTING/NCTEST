@@ -1,0 +1,44 @@
+SetOptions[$Output,PageWidth->1000];
+
+<< NC`
+<< NCAlgebra`
+<< NCTest`
+
+Print["> BEGIN NCTEST\n" ];
+
+tests = {
+  "CommutativeQ",
+  "NCMultiplication",
+  "NCDeprecated",
+  "NCUtil",
+  "NCSymmetric",
+  "NCSelfAdjoint",
+  "NCReplace",
+  "NCPolynomial",
+  "NCSimplifyRational",
+  "NCSylvester",
+  "NCQuadratic",
+  "MatrixDecompositions",
+  "NCMatrixDecompositions",
+  "NCCollect",
+  "NCInverse",
+  "NCDiff",
+  "NCDot",
+  "NCRoots",
+  "NCConjugate",
+  "NCOutput",
+  "NCConvexity", 
+  "Matrix"
+  (*,
+  "NCRational",
+  "NCRealization",
+  "NCSystem"
+  *)
+};
+results = NCTestRun[tests];
+NCTestSummarize[results];
+
+Print["\n> END NCTEST\n" ];
+
+Print["> EVEN IF ALL THE TESTS SUCCEEDED YOU SHOULD QUIT THE KERNEL"]
+Print["  IN YOUR MATHEMATICA SESSION AND START OVER." ];

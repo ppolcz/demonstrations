@@ -1,0 +1,226 @@
+<< NCSelfAdjoint`
+
+Module[
+  {expr, a, b, c, d,
+   x,y,w,
+   answer,
+   isSym, symVars},
+
+  SetNonCommutative[a, b, c, d];
+  SetNonCommutative[x,y,w];
+
+  NCTest[CommutativeQ[aj], False];
+
+  NCTest[aj[0], 0];
+  NCTest[aj[1], 1];
+  NCTest[aj[Pi], Pi];
+  NCTest[aj[I], -I];
+  NCTest[aj[1 + I], 1 - I];
+
+  NCTest[aj[2 a], 2 aj[a]];
+  NCTest[aj[3 a ** b], Unevaluated[3 aj[b] ** aj[a]]];
+  NCTest[aj[(3 + I) a ** b], Unevaluated[Complex[3,-1] aj[b] ** aj[a]]];
+
+  expr = aj[2 a + 3 b];
+  NCTest[expr, Unevaluated[2 aj[a] + 3 aj[b]]];
+
+  expr = aj[a**b];
+  NCTest[expr, Unevaluated[aj[b] ** aj[a]]];
+
+  expr = aj[b]**aj[a];
+  NCTest[expr, Unevaluated[aj[b] ** aj[a]]];
+
+  expr = c**aj[a**b];
+  NCTest[expr, Unevaluated[c ** aj[b] ** aj[a]]];
+
+  expr = aj[a**b]**d;
+  NCTest[expr, Unevaluated[aj[b] ** aj[a] ** d]];
+
+  expr = c**aj[a**b]**d;
+  NCTest[expr, Unevaluated[c ** aj[b] ** aj[a] ** d]];
+
+  (* NCSelfAdjointQ *)
+
+  expr = a + aj[a];
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], True];
+
+  expr = a ** b + aj[a ** b];
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], True];
+
+  expr = a + aj[a];
+  NCTest[NCSelfAdjointQ[expr], True];
+
+  expr = a ** b + aj[a ** b];
+  NCTest[NCSelfAdjointQ[expr], True];
+
+  expr = a;
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = a + b ** c;
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = a + tp[a];
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = a ** b + tp[a ** b];
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = tp[a] + aj[a];
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = a;
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = a - aj[a];
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = a ** b + tp[a ** b];
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = a - tp[a];
+  NCTest[NCSelfAdjointQ[expr, ExcludeVariables -> All], False];
+
+  expr = tp[a] + aj[a];
+  NCTest[NCSelfAdjointQ[expr], False];
+
+  expr = a - aj[a];
+  NCTest[NCSelfAdjointQ[expr], False];
+
+  expr = a - tp[a];
+  NCTest[NCSelfAdjointQ[expr], False];
+
+  (* NCSelfAdjointQ *)
+
+  Quiet[
+
+    expr = a;
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a ** b + tp[a ** b];
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a + b;
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a ** b + tp[a ** b];
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a + b ** c + c ** b;
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a + aj[b] ** c + c ** b;
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a + tp[b] ** c + c ** b;
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a + b + aj[b] ** c + c ** b;
+    NCTest[NCSelfAdjointQ[expr], False];
+
+    expr = a + b + tp[b] ** c + c ** b;
+    NCTest[NCSelfAdjointQ[expr], False];
+
+    expr = a + b ** aj[b] + aj[b] ** c + c ** b;
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a + b ** tp[b] + tp[b] ** c + c ** b;
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = a + b ** tp[b] + aj[b] ** c + c ** b;
+    NCTest[NCSelfAdjointQ[expr], False];
+
+    expr = {{0,1},{1,0}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = 1.*{{0,1},{1,0}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = {{0,I},{-I,0}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = 1.*{{0,I},{-I,0}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = {{0,1},{2,0}};
+    NCTest[NCSelfAdjointQ[expr], False];
+
+    expr = 1.*{{0,1},{2,0}};
+    NCTest[NCSelfAdjointQ[expr], False];
+
+    expr = {{0,I},{I,0}};
+    NCTest[NCSelfAdjointQ[expr], False];
+
+    expr = 1.*{{0,I},{I,0}};
+    NCTest[NCSelfAdjointQ[expr], False];
+    
+    expr = {{x,x},{x,x}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = {{x,y},{y,x}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = {{x,y},{tp[y],x}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = {{x,y},{aj[y],x}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = {{x+tp[x],y},{tp[y],w}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = {{x+aj[x],y},{tp[y],w}};
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = {{a**x+tp[x],y},{tp[y],w}};
+    NCTest[NCSelfAdjointQ[expr], False];
+
+    expr = {{w, c ** x + d ** y}, {aj[c ** x + d ** y], x}};
+    NCTest[NCSelfAdjointQ[expr, Strict -> True], False];
+
+    expr = {{w, c ** x + d ** y}, {aj[c ** x + d ** y], x}};
+    NCTest[NCSelfAdjointQ[expr, Strict -> True, SelfAdjointVariables -> {x}], True];
+
+    expr = {{w, c ** x + d ** y}, {aj[c ** x + d ** y], x}};
+    NCTest[NCSelfAdjointQ[expr, Strict -> False], True];
+
+    expr = SparseArray[{{x,x},{x,x}}];
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = SparseArray[{{x,y},{y,x}}];
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = SparseArray[{{x,y},{tp[y],x}}];
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = SparseArray[{{x,y},{aj[y],x}}];
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = SparseArray[{{x+tp[x],y},{tp[y],w}}];
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = SparseArray[{{x+aj[x],y},{tp[y],w}}];
+    NCTest[NCSelfAdjointQ[expr], True];
+
+    expr = SparseArray[{{a**x+tp[x],y},{tp[y],w}}];
+    NCTest[NCSelfAdjointQ[expr], False];
+
+    expr = SparseArray[{{w, c ** x + d ** y}, {aj[c ** x + d ** y], x}}];
+    NCTest[NCSelfAdjointQ[expr, Strict -> True], False];
+
+    expr = SparseArray[{{w, c ** x + d ** y}, {aj[c ** x + d ** y], x}}];
+    NCTest[NCSelfAdjointQ[expr, Strict -> True, SelfAdjointVariables -> {x}], True];
+
+    expr = SparseArray[{{w, c ** x + d ** y}, {aj[c ** x + d ** y], x}}];
+    NCTest[NCSelfAdjointQ[expr, Strict -> False], True];
+
+   ,
+    {NCSelfAdjointQ::SelfAdjointVariables, NCSymmetricQ::SymmetricVariables}
+  ];
+
+];
+
+aaa := Block[{},
+
+  Print[];
+
+];

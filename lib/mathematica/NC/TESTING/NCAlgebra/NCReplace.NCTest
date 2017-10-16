@@ -1,0 +1,245 @@
+<< NCReplace`
+
+Module[
+     {rule, expr, answer, 
+      a,b,c,d,e,K,x,y,z,
+      id,m1,m2,m3},
+
+     SetCommutative[K];
+     SetNonCommutative[a,b,c,d,e,m1,m2,m3,x,y,z,id];
+
+     rule = a -> b;
+
+     expr = a;
+
+     answer = b;
+     NCTest[expr /. rule, answer];
+     NCTest[NCReplace[expr,rule], answer];
+     NCTest[NCReplaceAll[expr,rule], answer];
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+     NCTest[NCR[expr,rule], answer];
+     NCTest[NCRA[expr,rule], answer];
+     NCTest[NCRR[expr,rule], answer];
+
+     expr = a**b;
+
+     answer = b**b;
+     NCTest[expr /. rule, answer];
+     NCTest[NCReplace[expr,rule], expr];
+     NCTest[NCReplaceAll[expr,rule], answer];
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+
+     expr = a**b + b**inv[1+a] + b**inv[a];
+
+     answer = 1 + b**b + b**inv[1+b];
+     NCTest[expr /. rule, answer];
+     NCTest[NCReplace[expr,rule], expr];
+     NCTest[NCReplaceAll[expr,rule], answer];
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+
+     rule = a**b -> c;
+
+     expr = a**b**c;
+
+     answer = expr;
+     NCTest[expr /. rule, answer];
+     NCTest[NCReplace[expr,rule], expr];
+
+     answer = c**c;
+     NCTest[NCReplaceAll[expr,rule], answer];
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+
+     expr = a**b + a**b**c + d**a**b + d**a**b**c;
+
+     answer = c + c**c + d**c + d**c**c;
+     NCTest[NCReplace[expr,rule], expr];
+     NCTest[NCReplaceAll[expr,rule], answer];
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+
+     rule = a**b -> a;
+
+     expr = a**b**b**c;
+
+     answer = expr;
+     NCTest[expr /. rule, answer];
+     NCTest[NCReplace[expr,rule], expr];
+
+     answer = a**b**c;
+     NCTest[NCReplaceAll[expr,rule], answer];
+
+     answer = a**c;
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+
+     expr = a**b**b + a**b**c + d**a**b + d**a**b**c;
+
+     answer = a**b + a**c + d**a + d**a**c;
+     NCTest[NCReplace[expr,rule], expr];
+     NCTest[NCReplaceAll[expr,rule], answer];
+
+     answer = a + a**c + d**a + d**a**c;
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+
+     expr = inv[1 + A x] ** x;
+     rule = d___ ** inv[1 + K_. a_] ** a_ ** e___ :> 
+              (1/K) d ** e - (1/K) d ** inv[1 + K a] ** e;
+     answer = (1/A) - (1/A) inv[1 + A x];
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+
+     expr = inv[1 + x] ** x;
+     rule = d___ ** inv[1 + K_. a_] ** a_ ** e___ :> 
+              (1/K) d ** e - (1/K) d ** inv[1 + K a] ** e;
+     answer = 1 - inv[1 + x];
+     NCTest[NCReplaceRepeated[expr,rule], answer];
+
+     (* NCMakeRuleSymmetric *)
+
+     rule = a -> b;
+     answer = {a -> b, tp[a] -> tp[b]};
+     NCTest[NCMakeRuleSymmetric[rule], answer];
+
+     rule = a :> b;
+     answer = {a :> b, tp[a] :> tp[b]};
+     NCTest[NCMakeRuleSymmetric[rule], answer];
+
+     rule = {a -> b, c -> d};
+     answer = {a -> b, tp[a] -> tp[b], c -> d, tp[c] -> tp[d]};
+     NCTest[NCMakeRuleSymmetric[rule], answer];
+
+     rule = {a :> b, c :> d};
+     answer = {a :> b, tp[a] :> tp[b], c :> d, tp[c] :> tp[d]};
+     NCTest[NCMakeRuleSymmetric[rule], answer];
+
+     rule = {a -> b, c :> d};
+     answer = {a -> b, tp[a] -> tp[b], c :> d, tp[c] :> tp[d]};
+     NCTest[NCMakeRuleSymmetric[rule], answer];
+
+     rule = {{a -> b, c -> d}, {a -> -b, c -> 2d}};
+     answer = {{a -> b, tp[a] -> tp[b], c -> d, tp[c] -> tp[d]},
+               {a -> -b, tp[a] -> -tp[b], c -> 2d, tp[c] -> 2tp[d]}};
+     NCTest[NCMakeRuleSymmetric[rule], answer];
+
+     (* NCMakeRuleSelfAdjoint *)
+
+     rule = a -> b;
+     answer = {a -> b, aj[a] -> aj[b]};
+     NCTest[NCMakeRuleSelfAdjoint[rule], answer];
+
+     rule = a :> b;
+     answer = {a :> b, aj[a] :> aj[b]};
+     NCTest[NCMakeRuleSelfAdjoint[rule], answer];
+
+     rule = {a -> b, c -> d};
+     answer = {a -> b, aj[a] -> aj[b], c -> d, aj[c] -> aj[d]};
+     NCTest[NCMakeRuleSelfAdjoint[rule], answer];
+
+     rule = {a :> b, c :> d};
+     answer = {a :> b, aj[a] :> aj[b], c :> d, aj[c] :> aj[d]};
+     NCTest[NCMakeRuleSelfAdjoint[rule], answer];
+
+     rule = {a -> b, c :> d};
+     answer = {a -> b, aj[a] -> aj[b], c :> d, aj[c] :> aj[d]};
+     NCTest[NCMakeRuleSelfAdjoint[rule], answer];
+
+     rule = {{a -> b, c -> d}, {a -> -b, c -> 2d}};
+     answer = {{a -> b, aj[a] -> aj[b], c -> d, aj[c] -> aj[d]},
+               {a -> -b, aj[a] -> -aj[b], c -> 2d, aj[c] -> 2aj[d]}};
+     NCTest[NCMakeRuleSelfAdjoint[rule], answer];
+
+     (* NCMatrixReplaceAll *)
+     
+     m1 = {{a,b},{c,d}};
+     m2 = {{b,a},{d,e}};
+     rule = {x -> m1, y -> m2, id -> IdentityMatrix[2]};
+
+     answer = NCDot[m1, m2] + m2;
+     expr = NCMatrixReplaceAll[x ** y + y, rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[x ** y + y, rule];
+     NCTest[expr, answer];
+
+     answer = NCDot[m1, tp[m2]] + m2;
+     expr = NCMatrixReplaceAll[x ** tp[y] + y, rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[x ** tp[y] + y, rule];
+     NCTest[expr, answer];
+
+     answer = NCDot[NCInverse[m1], m2] + m2;
+     expr = NCMatrixReplaceAll[inv[x] ** y + y, rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[inv[x] ** y + y, rule];
+     NCTest[expr, answer];
+
+     answer = NCDot[m1, NCInverse[IdentityMatrix[2] + m1]] - 
+              NCDot[NCInverse[IdentityMatrix[2] + m1], m1];
+     expr = NCMatrixReplaceAll[x ** inv[id + x] - inv[id + x] ** x, rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[x ** inv[id + x] - inv[id + x] ** x, rule];
+     NCTest[expr, answer];
+
+     answer = NCDot[m1, NCInverse[1 + m1]] + m1;
+     expr = NCMatrixReplaceAll[x ** inv[1 + x] + x, rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[x ** inv[1 + x] + x, rule];
+     NCTest[expr, answer];
+
+     answer = NCDot[m1, NCInverse[IdentityMatrix[2] + m1]] + m1;
+     expr = NCMatrixReplaceAll[x ** inv[id + x] + x, rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[x ** inv[id + x] + x, rule];
+     NCTest[expr, answer];
+
+     answer = IdentityMatrix[2] + NCInverse[m1];
+     expr = NCMatrixReplaceAll[id + inv[x], rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[id + inv[x], rule];
+     NCTest[expr, answer];
+
+     answer = IdentityMatrix[2] + NCInverse[IdentityMatrix[2] + m1];
+     expr = NCMatrixReplaceAll[id + inv[id + x], rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[id + inv[id + x], rule];
+     NCTest[expr, answer];
+
+     answer = IdentityMatrix[2] + NCInverse[IdentityMatrix[2] + NCInverse[IdentityMatrix[2] + m1]];
+     expr = NCMatrixReplaceAll[id + inv[id + inv[id + x]], rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[id + inv[id + inv[id + x]], rule];
+     NCTest[expr, answer];
+
+     answer = ArrayFlatten[{{IdentityMatrix[2], m1},{m1,IdentityMatrix[2]}}];
+     expr = NCMatrixReplaceAll[{{id, x}, {x, id}}, rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[{{id, x}, {x, id}}, rule];
+     NCTest[expr, answer];
+
+     answer = NCInverse[ArrayFlatten[{{IdentityMatrix[2], m1},{m1,IdentityMatrix[2]}}]];
+     expr = NCMatrixReplaceAll[inv[{{id, x}, {x, id}}], rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[inv[{{id, x}, {x, id}}], rule];
+     NCTest[expr, answer];
+
+     answer = NCInverse[ArrayFlatten[{{IdentityMatrix[2], m1},{m1,IdentityMatrix[2]}}]];
+     expr = NCMatrixReplaceAll[inv[{{id, x}, {x, id}}], rule];
+     NCTest[expr, answer];
+     expr = NCMatrixReplaceRepeated[inv[{{id, x}, {x, id}}], rule];
+     NCTest[expr, answer];
+
+     rule = {x -> m1, y -> m2, id -> IdentityMatrix[2], z -> {{id,x},{x,id}}};
+     answer = NCInverse[{{id,x},{x,id}}];
+     expr = NCMatrixReplaceAll[inv[z], rule];
+     NCTest[expr, answer];
+
+     answer = NCInverse[ArrayFlatten[{{IdentityMatrix[2], m1},{m1,IdentityMatrix[2]}}]];
+     expr = NCMatrixReplaceRepeated[inv[z], rule];
+     NCTest[expr, answer];
+
+     (* Bill's substitution *)
+     expr = 2 a ** b + c;
+     answer = 2 a ** b + c;
+     NCTest[NCReplaceAll[expr, 2 a -> b], answer];
+
+     expr = 2 a ** b + c;
+     answer = b ** b + c;
+     NCTest[NCReplaceAll[expr, a -> b/2], answer];
+
+];
