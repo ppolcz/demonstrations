@@ -31,12 +31,12 @@ plot(nk .* p.^k .* (1-p).^(n-k))
 % <https://medium.com/@andrew.chamberlain/deriving-the-poisson-distribution-from-the-binomial-distribution-840cc1668239
 % Derivation>
 
-%% Hipergeometrikus eloszlas
+%% Hipergeometrikus eloszlas vs Binomialis
+%% Ezt irjak rola
 % The binomial distribution gives you the probability of x successes in n
 % trials where the probability of success is p (that is, constant).
 % 
-% The hypergeometric d% ---
-istribution is exactly like the binomial distribution
+% The hypergeometric distribution is exactly like the binomial distribution
 % except that the probability changes with each trial.
 % 
 % Think of the binomial distribution as sampling with replacement and the
@@ -54,33 +54,116 @@ istribution is exactly like the binomial distribution
 % 
 % Example 2: Sampling without replacement
 % 
-% Now think of the sam% ---
-e box with the same marbles in it. This time when we
+% Now think of the same box with the same marbles in it. This time when we
 % pick a marble we don't put it back into the box. Then the probability of
 % picking exactly 1 blue marble in 2 tries is given by 1/2 (picking the
 % blue marble) * 2/3 (since there are 2 red and 1 blue left) PLUS 1/2
 % (picking the red marble first) * 2/3 (picking one of the two remaining
 % blue marbles. This equals, 0.33 + 0.33 ~ 0.66. Using the hypergeometric
 % distribution we have, p(1) = (2C1 * 2C1) / 4C2 ~ 0.66
-
-N = 100;
-K = 50;
-n = 30;
-
-% 4. feladat
-% N = 8;
-% K = 5;
-% n = 4;
+%% Rossz kozelitessel binomialis
+% 5. heti feladatsor, 3. pelda
+N = 12; % osszesen
+K = 9;  % gombolyu
+n = 6;  % kivalasztunk
 
 f = zeros(1,n+1);
 
 for k = max(K-N+n,0):min(K,n)
-    f(k+1) = nchoosek(K,k)*nchoosek(N-k,n-k) / nchoosek(N,n);
+    f(k+1) = nchoosek(K,k) / nchoosek(N,n) * nchoosek(N-K,n-k);
 end
-size(0:n)
-size(f)
-plot(0:n,f,'o-')
+figure
+plot(0:n,f,'o-'), hold on
 
+p = K/N;
+k = num2cell(0:n);
+nk = cellfun(@(k) nchoosek(n,k),k);
+k = [k{:}];
+plot(0:n,nk .* p.^k .* (1-p).^(n-k),'o-')
+
+L = legend('hipergeom','binomialis');
+L.Location = 'northwest';
+
+title(sprintf('N = %d, K = %d, n = %d',N,K,n))
+xlabel k
+
+%% Egyaltalan nem binomialis
+% 5. heti feladatsor, 3. pelda modositva.
+N = 12; % osszesen
+K = 3;  % gombolyu
+n = 10;  % kivalasztunk
+
+f = zeros(1,n+1);
+
+for k = max(K-N+n,0):min(K,n)
+    f(k+1) = nchoosek(K,k) / nchoosek(N,n) * nchoosek(N-K,n-k);
+end
+figure
+plot(0:n,f,'o-'), hold on
+
+p = K/N;
+k = num2cell(0:n);
+nk = cellfun(@(k) nchoosek(n,k),k);
+k = [k{:}];
+plot(0:n,nk .* p.^k .* (1-p).^(n-k),'o-')
+
+L = legend('hipergeom','binomialis');
+L.Location = 'northeast';
+
+title(sprintf('N = %d, K = %d, n = %d',N,K,n))
+xlabel k
+
+%% Jo kozelitessel binomialis
+% 4. heti feladatsor, 6. pelda
+N = 100; % osszesen
+K = 80;  % van bankkartyaja
+n = 10;  % kivalasztunk
+
+f = zeros(1,n+1);
+
+for k = max(K-N+n,0):min(K,n)
+    f(k+1) = nchoosek(K,k) / nchoosek(N,n) * nchoosek(N-K,n-k);
+end
+figure
+plot(0:n,f,'o-'), hold on
+
+p = K/N;
+k = num2cell(0:n);
+nk = cellfun(@(k) nchoosek(n,k),k);
+k = [k{:}];
+plot(0:n,nk .* p.^k .* (1-p).^(n-k),'o-')
+
+L = legend('hipergeom','binomialis');
+L.Location = 'northwest';
+
+title(sprintf('N = %d, K = %d, n = %d',N,K,n))
+xlabel k
+
+%% Megjobb kozelitessel binomialis
+% 4. heti feladatsor, 6. pelda modositva
+N = 1000; % osszesen
+K = 600;  % van bankkartyaja
+n = 40;  % kivalasztunk
+
+f = zeros(1,n+1);
+
+for k = max(K-N+n,0):min(K,n)
+    f(k+1) = nchoosek(K,k) / nchoosek(N,n) * nchoosek(N-K,n-k);
+end
+figure
+plot(0:n,f,'o-'), hold on
+
+p = K/N;
+k = num2cell(0:n);
+nk = cellfun(@(k) nchoosek(n,k),k);
+k = [k{:}];
+plot(0:n,nk .* p.^k .* (1-p).^(n-k),'o-')
+
+L = legend('hipergeom','binomialis');
+L.Location = 'northwest';
+
+title(sprintf('N = %d, K = %d, n = %d',N,K,n))
+xlabel k
 
 %%
 % End of the script.
