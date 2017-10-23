@@ -360,4 +360,3 @@ Integrand_fh = matlabFunction(Integrand,'vars',{u v})
 % Integrálás $u = \left[\frac{\pi}{6},\frac{\pi}{3}\right]$,
 % $v = \left[\frac{\pi}{4},\frac{\pi}{2}\right]$ tartományon.
 integral2(Integrand_fh,pi/6,pi/3,pi/4,pi/2)
-
