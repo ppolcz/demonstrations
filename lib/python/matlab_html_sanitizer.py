@@ -211,6 +211,10 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
 
     h2s = content.find_all("h2")
     for h2 in h2s:
+        if h2.has_attr("class"):
+            h2['class'] = h2['class'] + " nocount";
+        else:
+            h2['class'] = "nocount";
         if h2.next_sibling and h2.next_sibling.name == "h2":
             h2.name = "h1";
 
