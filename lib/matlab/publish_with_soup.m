@@ -39,7 +39,13 @@ copyfile(persist.file.path, persist.pub_backup_script_path)
 fprintf('\ngenerated output: \n%s\n\n', pub_output)
 
 php = [G.VIEW_SCRIPTS '/' persist.pub_dirname '.php'];
-command = [ G.SANITIZER ' ' , persist.pub_absdir '/' f.bname '.html ' , php ' ' , persist.pub_backup_script_relpath ];
+command = [ 
+    G.SANITIZER ' ' ...
+    persist.pub_absdir '/' f.bname '.html ' ...
+    php ' ' ...
+    persist.pub_backup_script_relpath ' ' ...
+    f.dir
+    ];
 system(command)
 
 % Copy html code to clipboard

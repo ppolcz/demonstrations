@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import sys, re
+import sys, re, os, shutil
 
 from bs4 import Tag, Comment, NavigableString, BeautifulSoup
 
@@ -66,6 +66,15 @@ def criteria_imglatex(tag):
 def criteria_simplepre(tag):
     return tag.name == "pre" and not tag.has_attr('class')
 
+def a_href_slx(href):
+    return href and re.compile(".*\.slx").search(href)
+
+def a_href_img(href):
+    return href and re.compile(".*\.(png|jpg)").search(href)
+
+def a_href_br(href):
+    return href and re.compile("br").search(href)
+
 def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/oktatas/anal3/html/anal3_vekanal_1.html",
          opath = "/home/ppolcz/Repositories/Bitbucket/control-systems/html/publish_demo2_output.html",
          scriptpath = None,
@@ -80,10 +89,24 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
     # print(type(content))
     # print(dir(content))
 
+    sourcedir = None
+    if livepath and os.path.isdir(livepath):
+        sourcedir = livepath
+        livepath = None
+
+    targetdir = os.path.dirname(ipath)
+
+    print("sourcedir = " + sourcedir)
+    print("targetdir = " + targetdir)
+
     if scriptpath:
         p = soup.new_tag("p")
         p["class"] = "text-muted"
         p.append("\n    ")
+
+        print("ipath = " + ipath)
+        print("opath = " + opath)
+        print("scriptpath = " + scriptpath)
 
         a = soup.new_tag("a")
         a["href"] = "<?php echo base_url(); ?>/" + scriptpath
@@ -123,6 +146,54 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
 
         content.insert(1,p)
 
+    # Collect Simulink models
+    for a in content.find_all(href=a_href_slx, string=re.compile("Simulink")):
+        # print(a)
+        slxname = a["href"]
+        src = sourcedir + "/" + slxname
+
+        if os.path.isfile(src) and os.path.isdir(targetdir):
+            shutil.copy2(src, targetdir)
+
+            scriptdir = os.path.basename(targetdir)
+            # print("scriptdir = " + scriptdir)
+
+            a["href"] = "<?php echo base_url(); ?>files/scripts/" + scriptdir + "/" + slxname
+            a.string = "Download Simulink model (" + slxname + ")"
+
+        # print(a)
+
+    # Collect images
+    for a in content.find_all(href=a_href_img, string=re.compile("img")):
+        # print(a)
+
+        imgname = a["href"]
+        src = sourcedir + "/" + imgname
+
+        if os.path.isfile(src) and os.path.isdir(targetdir):
+            targetpath = targetdir + "/" + os.path.dirname(imgname)
+            # print("src = " + src)
+            # print("targetpath = " + targetpath)
+
+            if not os.path.exists(targetpath):
+                os.makedirs(targetpath)
+
+            shutil.copy2(src, targetpath)
+
+            scriptdir = os.path.basename(targetdir)
+            # print("scriptdir = " + scriptdir)
+
+            a.name = "img"
+            a.attrs = { "src": imgname }
+            a.string = ""
+
+    # Collect <a href="br">br</a> tags and rewrite to <br></br>
+    for a in content.find_all(href=a_href_br, string=re.compile("br")):
+        # print(a)
+        # a.name = "br"
+        # a.string = ""
+        # a.attrs = {}
+        a.replace_with(soup.new_tag("br"))
 
     # Remove all comments
     for element in content(text=lambda text: isinstance(text, Comment)):
@@ -257,7 +328,6 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
 
         if pre_with_TMP.parent.parent and pre_with_TMP.parent.parent.name == "pre":
             pre_with_TMP.parent.parent.extract()
-
 
     # html = content.prettify('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
     # html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
