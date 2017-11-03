@@ -147,9 +147,9 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         content.insert(1,p)
 
     # Collect Simulink models
-    for a in content.find_all(href=a_href_slx, string=re.compile("Simulink")):
-        # print(a)
-        slxname = a["href"]
+    for a in content.find_all(href="sim", string=re.compile(".*\.slx")):
+        print(a)
+        slxname = a.string
         src = sourcedir + "/" + slxname
 
         if os.path.isfile(src) and os.path.isdir(targetdir):
@@ -159,15 +159,30 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             # print("scriptdir = " + scriptdir)
 
             a["href"] = "<?php echo base_url(); ?>files/scripts/" + scriptdir + "/" + slxname
-            a.string = "Download Simulink model (" + slxname + ")"
 
         # print(a)
+
+    # for a in content.find_all(href=a_href_slx, string=re.compile("Simulink")):
+    #     # print(a)
+    #     slxname = a["href"]
+    #     src = sourcedir + "/" + slxname
+
+    #     if os.path.isfile(src) and os.path.isdir(targetdir):
+    #         shutil.copy2(src, targetdir)
+
+    #         scriptdir = os.path.basename(targetdir)
+    #         # print("scriptdir = " + scriptdir)
+
+    #         a["href"] = "<?php echo base_url(); ?>files/scripts/" + scriptdir + "/" + slxname
+    #         a.string = "Download Simulink model (" + slxname + ")"
+
+    #     # print(a)
 
     # Collect images
-    for a in content.find_all(href=a_href_img, string=re.compile("img")):
+    for a in content.find_all(href="img", string=re.compile(".*\.(png|jpg)")):
         # print(a)
 
-        imgname = a["href"]
+        imgname = a.string
         src = sourcedir + "/" + imgname
 
         if os.path.isfile(src) and os.path.isdir(targetdir):
@@ -187,12 +202,32 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             a.attrs = { "src": imgname }
             a.string = ""
 
+    # for a in content.find_all(href=a_href_img, string=re.compile("img")):
+    #     # print(a)
+
+    #     imgname = a["href"]
+    #     src = sourcedir + "/" + imgname
+
+    #     if os.path.isfile(src) and os.path.isdir(targetdir):
+    #         targetpath = targetdir + "/" + os.path.dirname(imgname)
+    #         # print("src = " + src)
+    #         # print("targetpath = " + targetpath)
+
+    #         if not os.path.exists(targetpath):
+    #             os.makedirs(targetpath)
+
+    #         shutil.copy2(src, targetpath)
+
+    #         scriptdir = os.path.basename(targetdir)
+    #         # print("scriptdir = " + scriptdir)
+
+    #         a.name = "img"
+    #         a.attrs = { "src": imgname }
+    #         a.string = ""
+
     # Collect <a href="br">br</a> tags and rewrite to <br></br>
-    for a in content.find_all(href=a_href_br, string=re.compile("br")):
-        # print(a)
-        # a.name = "br"
-        # a.string = ""
-        # a.attrs = {}
+    # for a in content.find_all(href=a_href_br, string=re.compile("br")):
+    for a in content.find_all(href="br", string="br"):
         a.replace_with(soup.new_tag("br"))
 
     # Remove all comments
