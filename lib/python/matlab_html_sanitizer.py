@@ -96,8 +96,8 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
 
     targetdir = os.path.dirname(ipath)
 
-    print("sourcedir = " + sourcedir)
-    print("targetdir = " + targetdir)
+    # print("sourcedir = " + sourcedir)
+    # print("targetdir = " + targetdir)
 
     if scriptpath:
         p = soup.new_tag("p")
