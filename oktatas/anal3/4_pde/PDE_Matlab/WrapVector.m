@@ -1,0 +1,1 @@
+function MatWrapped=WrapVector(Vec)%18.086 Final Project%By Joseph Kovac%Revised and submitted for OCW 9/12/05%Vec must be a column vectorOutMat=[];NumRows=(prod(size(Vec)))^0.5;for X=1:NumRows    OutMat=[OutMat Vec((X-1)*NumRows+1:X*NumRows)];endMatWrapped=OutMat;
