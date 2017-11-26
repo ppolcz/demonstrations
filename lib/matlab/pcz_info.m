@@ -7,25 +7,25 @@ function [ret] = pcz_info(bool, varargin)
 %  Created on 2017.01.06. Friday, 13:56:14
 %
 
-global SCOPE_DEPTH
+global SCOPE_DEPTH VERBOSE
 
 [ST,I] = dbstack;
     
 depth = SCOPE_DEPTH;
 
-for i = 2:depth
-    fprintf('│   ')
-end
+if VERBOSE
+    for i = 2:depth
+        fprintf('│   ')
+    end
 
-if numel(ST) > I
-    fprintf('│   ')
-end
+    if numel(ST) > I
+        fprintf('│   ')
+    end
     
-%%
+    pcz_OK_FAILED(bool, varargin{:});
 
-pcz_OK_FAILED(bool, varargin{:});
-
-fprintf('\n')
+    fprintf('\n')
+end
 
 if nargout > 0
     if islogical(bool)
