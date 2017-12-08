@@ -86,9 +86,12 @@ plabel 'x' '$x$ tengely', plabel 'y' '$y$ tengely'
 [p,~,t] = meshToPet(msh);
 
 figure('Position', [668 220 674 753]), hold on
-trisurf(t(1:3,:)',p(1,:)',p(2,:)',u),
-shading interp; light, axis square, view([ 233 , 34 ])
+trisurf(t(1:3,:)',p(1,:)',p(2,:)',u,'AmbientStrength',0.9),
+shading interp; axis square
 plabel 'x' '$x$ tengely', plabel 'y' '$y$ tengely'
+light('Position',[5 0 1],'Style','local')
+view([ 34 , 40 ])
+tricontour([p(1,:)',p(2,:)'], t(1:3,:)', u, 30)
 
 edge = polygon(repmat(1:size(polygon,1),[2,1]), :);
 edge = [edge(:,1:2) , circshift(edge(:,3),1)];
@@ -166,9 +169,12 @@ msh = generateMesh(pdem,'Hmax',0.04);
 [p,~,t] = meshToPet(msh);
 
 figure('Position', [668 220 674 753]), hold on
-trisurf(t(1:3,:)',p(1,:)',p(2,:)',u),
-shading interp; light, axis square, view([ 233 , 34 ])
+trisurf(t(1:3,:)',p(1,:)',p(2,:)',u,'AmbientStrength',0.9),
+shading interp; axis square
 plabel 'x' '$x$ tengely', plabel 'y' '$y$ tengely'
+light('Position',[5 0 1],'Style','local')
+view([ 34 , 40 ])
+tricontour([p(1,:)',p(2,:)'], t(1:3,:)', u, 30)
 
 edge = polygon(repmat(1:size(polygon,1),[2,1]), :);
 edge = [edge(:,1:2) , circshift(edge(:,3),1)];
@@ -178,3 +184,5 @@ plot3(edge(:,1), edge(:,2), edge(:,3),'r', 'LineWidth', 3)
 x = linspace(0,1,50);
 plot3(x,x*0+1,bcfun2(x,x),'r', 'LineWidth', 3);
 view([ 34 , 40 ])
+
+
