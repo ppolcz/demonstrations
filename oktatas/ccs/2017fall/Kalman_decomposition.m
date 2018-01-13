@@ -1,4 +1,15 @@
-%% CCS 2017 fall. Homework 2. Solutions
+%% Kalman decomposition
+%  
+%  File: Kalman_decomposition.m
+%  Directory: demonstrations/oktatas/ccs/2017fall
+%  Author: Peter Polcz (ppolcz@gmail.com)  
+% 
+%  Created on 2018. January 13.
+% 
+%% 
+% Inhereted from: 
+% 
+%  CCS 2017 fall. Homework 2. Solutions
 %  
 %  File: d2017_10_26_hf2_mo.m
 %  Directory: demonstrations/oktatas/ccs/2017fall
@@ -6,59 +17,23 @@
 %  
 %  Created on 2017. October 04.
 %  Reviewed on 2017. October 30.
-% 
+%
 %%
 
 % Automatically generated stuff
-global SCOPE_DEPTH
+global SCOPE_DEPTH VERBOSE 
 SCOPE_DEPTH = 0;
+VERBOSE = 1;
 
-TMP_wgiSzglEBgsToKZiSoXF = pcz_dispFunctionName;
-
-try c = evalin('caller','persist'); catch; c = []; end
-persist = pcz_persist(mfilename('fullpath'), c); clear c; 
-persist.backup();
-%clear persist
-
-%% Acetone - human body
-
-A = [
-    -6 0 0
-    4 0 0
-    2 0 0
-    ];
-B = [ 1 ; 0 ; 0 ];
-C = [ 0 0 1 ];
-
-On = obsv(A,C)
-Cn = ctrb(A,B)
-
-rank(On)
-rank(Cn)
-
-orth(sym(Cn))
-null(sym(On))
-
-Hs = minreal(tf(ss(A,B,C,0)))
-
-syms s t
-clear H
-H(s) = simplify(C/(s*eye(3) - A)*B)
-
-h(t) = ilaplace(H)
-
-disp 'NEM BIBO STABIL'
-
-%% Kalman decomposition
 %% Generate a decomposable system
 
-a = 4;
-b = 2;
-c = 1;
-d = 2;
-n = a+b+c+d;
-r = 2;
-m = 2;
+a = 4;        % Nr. of contr. and obs.
+b = 2;        % Nr. of contr. and unobs.
+c = 1;        % Nr. of uncontr. and obs.
+d = 2;        % Nr. of uncontr. and unobs.
+n = a+b+c+d;  % Nr. of states
+r = 2;        % Nr. of inputs
+m = 2;        % Nr. of outputs
 
 A_ = [
     randn(a,a) zeros(a,b) randn(a,c) zeros(a,d)
@@ -80,12 +55,15 @@ D = zeros(m,r);
 
 %%% 
 % System $(\bar A, \bar B, \bar C, D)$ is in Kalman decomposed form. The
-% transfer function is reducible to an $a$th order system.
+% transfer function is reducible to a $a$rd order system.
 sys = ss(A_,B_,C_,D)
+
+%% 
+% Transfer function
 H = minreal(tf(sys))
 
 %% 
-% Transform the system with a random transformation matrix $T$.
+% Transform the system with a random orthogonal transformation matrix $T$.
 T = orth(rand(n));
 A = T * A_ * T';
 B = T * B_;
@@ -145,7 +123,46 @@ A1 = round(U*A/U,10)
 B1 = round(U*B,10)
 C1 = round(C/U,10)
 
+%% Subspaces
+%% Controllable subspace
+
+dim_X_C = rank(Cn);
+
+X_C = S1(:,1:dim_X_C)
+
+%%%
+% Alternatively
+% 
+%  X_C = orth(Cn);
+
 %%
-% End of the script.
-pcz_dispFunctionEnd(TMP_wgiSzglEBgsToKZiSoXF);
-clear TMP_wgiSzglEBgsToKZiSoXF
+% Check if $Im(B) \subset X_c$. 
+%
+% *Background.* Let $V$ and $W$ be two subspaces of $\mathbb{R}^n$, dim$(V)
+% = k$, dim$(W) = m$. $V \subset W$ if there exists a matrix
+% 
+% $$ 
+% A = \begin{pmatrix} 
+%     a_{11} & ... & a_{1k} \\ ... & ... & ... \\ a_{m1} & ... & a_{mk}
+% \end{pmatrix}
+% $$
+% 
+% such that $V = W A$. If there exists such matrix, it can be computed as
+% follows: $A = \left(W^T W\right)^{-1} W^T V$. If the equility $V = W A$
+% holds for this matrix $A$, than $V \subset W$. So, we need that $W
+% \left(W^T W\right)^{-1} W^T V - V$ be approximately the zero matrix.
+%
+% For this purpose, we define the following function (in a separate file,
+% called |pcz_vecalg_subset.m|)
+% 
+%   function [ret] = pcz_vecalg_subset(V, W, tol)
+%   ret = rank(W / (W'*W) * W' * V - V, tol) == 0;
+% 
+% Using this function we can check whether $Im(B) \subset X_c$.
+pcz_info(pcz_vecalg_subset(orth(B),X_C,1e-10), 'Im(B) ⊂ X_C')
+
+%% 
+% Check if $A X_c \subseteq X_c$.
+pcz_info(pcz_vecalg_subset(A*X_C,X_C,1e-10), 'A X_C ⊆ X_C')
+
+disp '$a$'

@@ -26,7 +26,9 @@ if nargout > 0
 end
 
 for i = 1:nr
-    fprintf('%s = ', inputname(i));
+    if ~isempty(inputname(i))
+        fprintf('%s = ', inputname(i));
+    end
     
     o.var = varargin{i};
     if o.round > 0 

@@ -270,6 +270,17 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         new_tag.string = "Output:"
         out.insert_before(new_tag)
 
+    # Format Matlab's output (codeoutput) with latex content
+    # <pre class="codeoutput">\begin{equation}\end{equation}</pre>
+    outs = content.find_all("pre", class_="codeoutput", string=re.compile("\s*\\\\begin{equation}.*\\\\end{equation}\s*", re.MULTILINE | re.DOTALL))
+    #outs = content.find_all("pre", class_="codeoutput", string=re.compile("\s*\\begin{equation}.*\\end{equation}\s*"))
+    for out in outs:
+        out.previous_sibling.previous_sibling.extract()
+        out.previous_sibling.extract()
+        new_tag = out.string
+        out.insert_before(new_tag)
+        out.extract()
+
     # Format footer
     # <p class="footer">
     footer = content.find_all("p", class_="footer")
@@ -368,7 +379,7 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
     # html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
 
     html = "\n\n".join([ e.encode("utf8") for e in content ]).replace('&lt;?php', '<?php').replace('?&gt;','?>')
-    # print(html)
+    #print(html)
 
     f.write(html)
 
