@@ -54,43 +54,46 @@
 \fi
 
 
-%   ,,
-%   db
+
+%                                   ,,                                ,,
+%                            mm   `7MM        mm                    `7MM
+%                            MM     MM        MM                      MM
+% `7MMpMMMb.pMMMb.   ,6"Yb.mmMMmm   MMpMMMb.mmMMmm ,pW"Wq.   ,pW"Wq.  MM  ,pP"Ybd
+%   MM    MM    MM  8)   MM  MM     MM    MM  MM  6W'   `Wb 6W'   `Wb MM  8I   `"
+%   MM    MM    MM   ,pm9MM  MM     MM    MM  MM  8M     M8 8M     M8 MM  `YMMMa.
+%   MM    MM    MM  8M   MM  MM     MM    MM  MM  YA.   ,A9 YA.   ,A9 MM  L.   I8
+% .JMML  JMML  JMML.`Moo9^Yo.`Mbmo.JMML  JMML.`Mbmo`Ybmd9'   `Ybmd9'.JMML.M9mmmP'
 %
-% `7MM  `7MMpMMMb.  `7MMpMMMb.  .gP"Ya `7Mb,od8 `7MMpdMAo.
-%   MM    MM    MM    MM    MM ,M'   Yb  MM' "'   MM   `Wb
-%   MM    MM    MM    MM    MM 8M""""""  MM       MM    M8
-%   MM    MM    MM    MM    MM YM.    ,  MM       MM   ,AP
-% .JMML..JMML  JMML..JMML  JMML.`Mbmmd'.JMML.     MMbmmd'
-%                                                 MM
-%                                               .JMML.
-% mathtools
+% \usepackage{mathtools}
+% Dependencies: ?
+% Macros: dcases, shortintertext, intertext
+% Further definitions based on this package:
+%
+% [1] Inner product between <a,b>
 \DeclarePairedDelimiterX\innerp[2]{\langle}{\rangle}{#1,#2}
 \DeclarePairedDelimiterX\dotprod[1]{\langle}{\rangle}{#1}
 
 
 
-
-%             ,,                           ,,
-% `7MM"""Mq.`7MM                           db
-%   MM   `MM. MM
-%   MM   ,M9  MMpMMMb.`7M'   `MF',pP"Ybd `7MM  ,p6"bo  ,pP"Ybd
-%   MMmmdM9   MM    MM  VA   ,V  8I   `"   MM 6M'  OO  8I   `"
-%   MM        MM    MM   VA ,V   `YMMMa.   MM 8M       `YMMMa.
-%   MM        MM    MM    VVV    L.   I8   MM YM.    , L.   I8
-% .JMML.    .JMML  JMML.  ,V     M9mmmP' .JMML.YMbmd'  M9mmmP'
-%                 ,,     ,V
-%               `7MM  OOb"      mm
-%      ,;//'      MM            MM           `\\.
-%   ,;//'    ,M""bMM  ,dW"Yvd mmMMmm `7M'   `MF'`\\:.
-% ,//'     ,AP    MM ,W'   MM   MM     VA   ,V     `\\.
-% `\\.     8MI    MM 8M    MM   MM      VA ,V     ,;//'
-%    `\\:. `Mb    MM YA.   MM   MM       VVV   ,;//'
-%       `\\.`Wbmd"MML.`MbmdMM   `Mbmo    ,V  ,//'
-%                          MM           ,V
-%                        .JMML.      OOb"
-% Brackets and braces
-% REDEFINED, AND AUGMENTED BASED ON Physics 1.3 package
+%            ,,                           ,,
+%          `7MM                           db
+%            MM
+% `7MMpdMAo. MMpMMMb.`7M'   `MF',pP"Ybd `7MM  ,p6"bo  ,pP"Ybd
+%   MM   `Wb MM    MM  VA   ,V  8I   `"   MM 6M'  OO  8I   `"
+%   MM    M8 MM    MM   VA ,V   `YMMMa.   MM 8M       `YMMMa.
+%   MM   ,AP MM    MM    VVV    L.   I8   MM YM.    , L.   I8
+%   MMbmmd'.JMML  JMML.  ,V     M9mmmP' .JMML.YMbmd'  M9mmmP'
+%   MM                  ,V
+% .JMML.             OOb"
+%
+% \usepackage{physics}
+% Dependencies: xparse, amsmath
+% Macros: ..qty, pdv, dv,
+% Further definitions based on this package:
+%
+% [1] Redefine \quantity in order to make possible to use <> as delimiters as well.
+% Based on Physics 1.3 package.
+% [[DEPRECATED]]
 \DeclareDocumentCommand\quantity{}{{\ifnum\z@=`}\fi\@quantity}
 \DeclareDocumentCommand\@quantity{ t\big t\Big t\bigg t\Bigg g o d() d|| d<> }
 { % Flexible automatic bracketing of an expression in () or [] or {} or ||
@@ -122,18 +125,38 @@
     {\ltag\lbrace#5\rtag\rbrace  \IfNoValueTF{#6}{}{[#6]} \IfNoValueTF{#7}{}{(#7)} \IfNoValueTF{#8}{}{|#8|}}
     \ifnum\z@=`{\fi}
 }
+%
+% [2] New qty commands based on the previous redefinition of \quantity which includes the <> delimiters
+% [[DEPRECATED]]
+\DeclareDocumentCommand\dmqty{ l m }{\left<\begin{matrix}#1 #2 \end{matrix}\right>}
 \DeclareDocumentCommand\dqty{ l m }{\braces#1{<}{>}{#2}}
-\DeclareDocumentCommand\dmqty{m}{\left<\begin{matrix}#1\end{matrix}\right>}
 \DeclareDocumentCommand\sdmqty{m}{\dqty{\begin{smallmatrix}#1\end{smallmatrix}}}
 
 
+%                                                                      ,,
+%                                                               mm   `7MM
+%                                                               MM     MM
+%  ,6"Yb.  `7MMpMMMb.pMMMb.  ,pP"Ybd `7MMpMMMb.pMMMb.   ,6"Yb.mmMMmm   MMpMMMb.
+% 8)   MM    MM    MM    MM  8I   `"   MM    MM    MM  8)   MM  MM     MM    MM
+%  ,pm9MM    MM    MM    MM  `YMMMa.   MM    MM    MM   ,pm9MM  MM     MM    MM
+% 8M   MM    MM    MM    MM  L.   I8   MM    MM    MM  8M   MM  MM     MM    MM
+% `Moo9^Yo..JMML  JMML  JMML.M9mmmP' .JMML  JMML  JMML.`Moo9^Yo.`Mbmo.JMML  JMML.
+%
+% \usepackage{amsmath}
+% Dependencies: ?
+% Macros: ...
+% Further definitions based on this package:
+%
+% [1] The following makes possible to create verticales lines inside matrix environments using the optional parameter [cc|c]
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip -\arraycolsep
-  \let\@ifnextchar\new@ifnextchar
-  \array{#1}}
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
 \makeatother
-
+%
+% [2] \pqty, \Pmqty, \bmqty should be adopt to the new matrix rules: \pmqty[]
+% Dependencies: physics
 \DeclareDocumentCommand\pmqty{ l m }{\begin{pmatrix}#1 #2 \end{pmatrix}}
 \DeclareDocumentCommand\Pmqty{ l m }{\left\lgroup\begin{matrix}#1 #2 \end{matrix}\right\rgroup}
 \DeclareDocumentCommand\bmqty{ l m }{\begin{bmatrix}#1 #2 \end{bmatrix}}
@@ -657,9 +680,14 @@ o m % [#2 #3] [#2:info]{#3:Title}
     {\noindent\absthmtitle#1<Lemma>{#2}*{pcztheorem}}
     {}
 
+%\ifcsname prop\endcsname%
+%\else%
+    % \ifcsname prop\endcsname
+    % \DeclareDocumentEnvironment{\ifdefined\prop proposition\else prop\fi}{ l m }
     \DeclareDocumentEnvironment{prop}{ l m }
     {\noindent\absthmtitle#1<Proposition>{#2}*{pcztheorem}}
     {}
+%\fi%
 
     \DeclareDocumentEnvironment{thm}{ l m }
     {\noindent\absthmtitle#1<Theorem>{#2}*{pcztheorem}}
