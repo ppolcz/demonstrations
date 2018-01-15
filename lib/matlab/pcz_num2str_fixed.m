@@ -29,7 +29,7 @@ else
     str = '';
 end
 
-str = [ str beginning strjoin(A_char, delimiters(1:end-1)) ending ];
+str = [ str beginning strjoin(A_char, delimiters(1:end-1)) , del2 , ending ];
 
 if nargout > 0
     ret = str;
