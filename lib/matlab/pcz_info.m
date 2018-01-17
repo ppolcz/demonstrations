@@ -14,12 +14,15 @@ global SCOPE_DEPTH VERBOSE
 depth = SCOPE_DEPTH;
 
 if VERBOSE
-    for i = 2:depth
-        fprintf('│   ')
-    end
+    
+    if depth >= 0
+        for i = 2:depth
+            fprintf('│   ')
+        end
 
-    if numel(ST) > I
-        fprintf('│   ')
+        if numel(ST) > I
+            fprintf('│   ')
+        end
     end
     
     pcz_OK_FAILED(bool, varargin{:});

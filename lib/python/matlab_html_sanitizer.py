@@ -271,9 +271,9 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         out.insert_before(new_tag)
 
     # Format Matlab's output (codeoutput) with latex content
-    # <pre class="codeoutput">\begin{equation}\end{equation}</pre>
-    outs = content.find_all("pre", class_="codeoutput", string=re.compile("\s*\\\\begin{equation}.*\\\\end{equation}\s*", re.MULTILINE | re.DOTALL))
-    #outs = content.find_all("pre", class_="codeoutput", string=re.compile("\s*\\begin{equation}.*\\end{equation}\s*"))
+    # <pre class="codeoutput">\begin{align}\end{align}</pre>
+    outs = content.find_all("pre", class_="codeoutput", string=re.compile("\s*\\\\begin{align}.*\\\\end{align}\s*", re.MULTILINE | re.DOTALL))
+    #outs = content.find_all("pre", class_="codeoutput", string=re.compile("\s*\\begin{align}.*\\end{align}\s*"))
     for out in outs:
         out.previous_sibling.previous_sibling.extract()
         out.previous_sibling.extract()
@@ -334,6 +334,14 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             h2['class'] = "nocount";
         if h2.next_sibling and h2.next_sibling.name == "h2":
             h2.name = "h1";
+
+    h2s = content.find_all("a", href="EXTRACT-THIS")
+    for a in h2s:
+        h2 = a.parent
+        if h2.next_sibling.name == "pre" and h2.next_sibling.has_attr("class") and h2.next_sibling["class"] == "preformatted":
+            h2.next_sibling.extract()
+            h2.extract()
+
 
     # Detect request for video`
     revid = re.compile("vid\d{4}\.webm");

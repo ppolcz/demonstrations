@@ -14,20 +14,20 @@ LATEX_EQNR = LATEX_EQNR + 1;
 
 o.label = '';
 o.sed_user = {};
-o.disp_mode = 0;
+o.disp_mode = 2;
 o.prec = 0;
 o.vline = [];
 o.hline = [];
 o.A = A;
 o = parsepropval(o,varargin{:});
 
-fprintf('\n\\begin{equation} {\\LARGE(%d) \\quad}', LATEX_EQNR)
+fprintf('\n\\begin{align} {\\LARGE(%d) \\quad}\n', LATEX_EQNR)
 if isempty(o.label)
-    pcz_latex_v6(o.A, 'label', ['\n' inputname(1) ' = '], varargin{:});
+    pcz_latex_v6(o.A, 'disp_mode', o.disp_mode, 'label', ['\n' inputname(1) ' = '], varargin{:});
 else
-    pcz_latex_v6(o.A, varargin{:});
+    pcz_latex_v6(o.A, 'disp_mode', o.disp_mode, varargin{:});
 end
-fprintf('\\end{equation}\n')
+fprintf('\\end{align}\n')
 
 
 end
