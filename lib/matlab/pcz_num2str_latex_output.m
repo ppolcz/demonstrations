@@ -76,18 +76,26 @@ else
         
     fprintf('\\begin{align} {\\LARGE(%d) \\quad}\n', LATEX_EQNR)
 
-    for i = 1:numel(A)
-        coldef = repmat('c',[1 size(A{i},2)]);
+    A_cell = A;
+    for i = 1:numel(A_cell)
+        
+        A = A_cell{i};
+        
+        tol = 10^(-o.round);
+        A( A < tol & A > -tol ) = 0;
+        o.A = A;
+        
+        coldef = repmat('c',[1 size(A,2)]);
         b = ['    ' o.label{i} o.postlabel '\\left(\\begin{array}{' coldef '}\n'];
 
-        A_latex = pcz_num2str_latex(A{i}, 'format', o.format, ...
+        A_latex = pcz_num2str_latex(o.A, 'format', o.format, ...
             'beginning', b, ...
             'ending', '    \\end{array}\\right)', ...
             'del1', o.del1, 'del2', o.del2, 'pref', o.pref, 'round', o.round);
         
         disp(A_latex)
         
-        if i < numel(A)
+        if i < numel(A_cell)
             disp ',\quad'
         end
     end
