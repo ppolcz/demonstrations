@@ -24,6 +24,14 @@ o.hline = [];
 o.postlabel = '';
 o = parsepropval(o,varargin{:});
 
+
+if isempty(LATEX_EQNR)
+    fprintf('\n\\begin{align} \n')
+else
+    fprintf('\n\\begin{align} {\\LARGE(%d) \\quad}\n', LATEX_EQNR)
+end
+
+
 if ~iscell(A)
 
     tol = 10^(-o.round);
@@ -46,9 +54,6 @@ if ~iscell(A)
 
     b = ['    ' o.label '\\left(\\begin{array}{' coldef '}\n'];
 
-    fprintf('\\begin{align} {\\LARGE(%d) \\quad}\n', LATEX_EQNR)
-
-
     A_latex = pcz_num2str_latex(o.A, 'format', o.format, ...
         'beginning', b, ...
         'ending', '    \\end{array}\\right)', ...
@@ -62,8 +67,6 @@ if ~iscell(A)
 
     disp(A_latex)
 
-    disp '\end{align}'
-
 else
     assert(isempty(o.label) || ( iscell(o.label) && all(size(o.label) == size(A)) ), ...
         'Label should be empty or a cell with the same size')
@@ -74,8 +77,6 @@ else
         o.postlabel = ' = ';
     end
         
-    fprintf('\\begin{align} {\\LARGE(%d) \\quad}\n', LATEX_EQNR)
-
     A_cell = A;
     for i = 1:numel(A_cell)
         
@@ -99,9 +100,9 @@ else
             disp ',\quad'
         end
     end
-    
-    disp '\end{align}'
-    
 end
+
+disp '\end{align}'
+
 
 end

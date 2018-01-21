@@ -21,7 +21,12 @@ o.hline = [];
 o.A = A;
 o = parsepropval(o,varargin{:});
 
-fprintf('\n\\begin{align} {\\LARGE(%d) \\quad}\n', LATEX_EQNR)
+if isempty(LATEX_EQNR)
+    fprintf('\n\\begin{align} \n')
+else
+    fprintf('\n\\begin{align} {\\LARGE(%d) \\quad}\n', LATEX_EQNR)
+end
+
 if isempty(o.label)
     pcz_latex_v6(o.A, 'disp_mode', o.disp_mode, 'label', ['\n' inputname(1) ' = '], varargin{:});
 else
