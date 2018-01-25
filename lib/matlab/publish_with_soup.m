@@ -57,7 +57,19 @@ clipboard('copy', persist.pub_html);
 persist.pub_output = pub_output;
 assignin('base', 'persist', persist)
 
-subl(php)
+if (G.PUB_SUBL)
+    subl(php)
+end
+
+if (G.PUB_WEBVIEW)
+   web(sprintf('http://localhost/index.php/main/view/%s.php', persist.pub_dirname)) 
+end
+
+if (G.PUB_EDIT)
+    edit(php)
+end
+
+
 % open(pub_output)
 
 
