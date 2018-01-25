@@ -7,16 +7,10 @@
 %
 %%
 
-% Automatically generated stuff
-global SCOPE_DEPTH
+global SCOPE_DEPTH VERBOSE LATEX_EQNR 
 SCOPE_DEPTH = 0;
-
-TMP_QVgVGfoCXYiYXzPhvVPX = pcz_dispFunctionName;
-
-try c = evalin('caller','persist'); catch; c = []; end
-persist = pcz_persist(mfilename('fullpath'), c); clear c; 
-persist.backup();
-%clear persist
+VERBOSE = 1;
+LATEX_EQNR = 0;
 
 %% Preserve a full matrix to have very large values
 
@@ -42,6 +36,47 @@ optimize( [ mu*eye(2) C ; C' eye(3) ] >= 0 , C(1)+C(3) , sdpopts);
 val_C = value(C)
 
 %%
-% End of the script.
-pcz_dispFunctionEnd(TMP_QVgVGfoCXYiYXzPhvVPX);
-clear TMP_QVgVGfoCXYiYXzPhvVPX
+
+a = 5;
+b = 3;
+
+A = sdpvar(5);
+R = sdpvar(5,3);
+
+M = [ 
+    A R
+    R' zeros(b)
+    ];
+
+sdpopts = sdpsettings('solver','mosek');
+
+optimize([ A <= -1e-10 , M >= 0 ] , [], sdpopts)
+
+A = value(A);
+M = value(M);
+
+eig(A), eig(M)
+
+
+%% Fontos kérdések
+%% 1. kérdés
+% 
+% $$ P \succeq 0 \overset{?}{\Leftrightarrow} \pmqty{P & R \\ R^T & 0} \succeq 0 $$
+% 
+% Válasz: *nem*, mivel. Attól, hogy $P \succeq 0$ még létezhet $R$ ú.h.
+% $\pmqty{P & R \\ R^T & 0}$ indefinit lesz.
+
+
+a = 5;
+b = 3;
+
+P = randn(a);
+P = P*P';
+R = randn(a,b);
+
+%%
+
+pcz_num2str_latex_output(eig([P R ; R' zeros(b)])','label','\text{Sajátértékek}: ', 'esc', 0)
+
+%% 
+% Fordítva igaz-e? Sejtés: *igen*.
