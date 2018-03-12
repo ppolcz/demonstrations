@@ -80,3 +80,30 @@ pcz_num2str_latex_output(eig([P R ; R' zeros(b)])','label','\text{Sajátértéke
 
 %% 
 % Fordítva igaz-e? Sejtés: *igen*.
+
+%% 2. kérdés
+
+n = 4;
+m = 5;
+
+P = sdpvar(n);
+L = sdpvar(n,m);
+
+i = round(n*m*rand() - 0.1) + 1;
+
+M = [ P L ; L' zeros(m,m) ];
+
+CONS = [ M <= 0 , L(i) > 1e-5 ]
+
+sdpopts = sdpsettings('solver','sedumi')
+
+optimize(CONS,[],sdpopts)
+check(CONS)
+
+M = value(M);
+L = value(L);
+
+
+Eig_M = eig(M)
+Norm_L = norm(L)
+

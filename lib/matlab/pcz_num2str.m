@@ -27,6 +27,7 @@ function [ret] = pcz_num2str(varargin)
 o.format = '%g';
 o.del1 = ' , ';
 o.del2 = ' ; ';
+o.del2end = '';
 o.pref = '';
 o.beginning = '[ ';
 o.ending = ' ]';
