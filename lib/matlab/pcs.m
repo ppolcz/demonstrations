@@ -1,4 +1,4 @@
-function pcs(varargin)
+function ret = pcs(varargin)
 %% Script pcs
 %  
 %  file:   pcs.m
@@ -8,6 +8,10 @@ function pcs(varargin)
 %
 %%
 
-pcz_createScript(varargin{:});
+if nargout > 0
+    ret = pcz_createScript(varargin{:});
+else
+    pcz_createScript(varargin{:});
+end
 
 end

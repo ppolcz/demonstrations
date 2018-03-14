@@ -43,8 +43,7 @@ end
 if nargout > 0
     return_val = ret;
 else
-    pcz_OK_FAILED(ret,varargin{:})
-    disp ' '
+    pcz_info(ret,varargin{:})
 end
 
 end

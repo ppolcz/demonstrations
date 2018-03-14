@@ -1,4 +1,4 @@
-function [ret] = pcz_isfullrank(A)
+function [ret] = pcz_isfullrank(A,varargin)
 %% Script pcz_isfullrank
 %  
 %  File: pcz_isfullrank.m
@@ -10,7 +10,7 @@ function [ret] = pcz_isfullrank(A)
 
 %%
 
-ret = rank(A) == min(size(A));
+ret = rank(A,varargin{:}) == min(size(A));
 
 
 end
