@@ -12,14 +12,15 @@ function [ret] = ptikz(varargin)
 
 FIG_ROOT = '/home/ppolcz/Dropbox/Peti/PhD/Dokumentaciok/_fig';
 
-figdir = @(i) [FIG_ROOT '/fig_' num2str(i)];
+% figdir = @(i) [FIG_ROOT '/fig_' num2str(i)];
+% i = 1;
+% while exist(figdir(i),'file'), i = i+1; end
+% ip.filename = [figdir(i) '/fig.tex'];
 
-i = 1;
-while exist(figdir(i),'file'), i = i+1; end;
-
+pause(1);
 ip.externalData = true;
 ip.standalone = true;
-ip.filename = [figdir(i) '/fig.tex'];
+ip.filename = [FIG_ROOT '/fig_' sprintf('%d-%02d-%02d__%02d-%02d-%02.0f', clock) '/fig.tex'];
 
 if mod(nargin,2) == 1
     varargin = [ {'filename'} varargin ];
