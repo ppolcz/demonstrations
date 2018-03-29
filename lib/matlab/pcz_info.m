@@ -9,6 +9,11 @@ function [ret] = pcz_info(bool, varargin)
 
 global SCOPE_DEPTH VERBOSE
 
+if nargin == 1 && iscell(bool)
+    varargin = bool(2:end);
+    bool = bool{1};
+end
+
 [ST,I] = dbstack;
     
 depth = SCOPE_DEPTH;
