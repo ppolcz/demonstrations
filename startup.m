@@ -1,1 +1,2 @@
-addpath(genpath([cd '/lib']))
+addpath(genpath([cd '/lib/matlab']))
+addpath(genpath([cd '/lib/python']))
