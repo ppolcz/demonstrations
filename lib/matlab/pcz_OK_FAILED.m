@@ -5,13 +5,9 @@ function [ret] = pcz_OK_FAILED(bool, varargin)
 %  author: Peter Polcz <ppolcz@gmail.com> 
 %  
 %  Created on 2017.08.01. Tuesday, 14:06:46
+%  Modified on 2018.04.04. (április  4, szerda), 20:09
 %
 %%
-
-k = [0 0 0];
-g = [0 0.7 0];
-r = [1 0 0];
-b = [0 0 1];
 
 if ~islogical(bool) && ~ischar(bool)
     bool = bool == 1;
@@ -21,25 +17,25 @@ if islogical(bool)
 
     if bool
         % fprintf('[  %s  ] ', colorizedstring('green','OK'))
-        cprintf(k, '[  ')
-        cprintf(g, 'OK')
-        cprintf(k, '  ] ')
+        fprintf('[   ');
+        cprintf('*green', 'OK ');
+        fprintf('  ] ');
     else
         % fprintf('[%s] ', colorizedstring('red','FAILED'))
-        cprintf(k,'[')
-        cprintf(r, 'FAILED')
-        cprintf(k, '] ')
+        fprintf('[ ');
+        cprintf('*err', 'FAILED ');
+        fprintf('] ');
     end
 
     if ~isempty(varargin)
-        cprintf(k, varargin{:})
+        fprintf(varargin{:})
     end
 
 elseif ischar(bool)
-    cprintf(k, '[ ')
-    cprintf(b, 'INFO')
-    cprintf(k,' ] ')
-    cprintf(k, bool, varargin{:});
+    fprintf('[  ');
+    cprintf('*blue', 'INFO ');
+    fprintf(' ] ');
+    fprintf(bool, varargin{:});
 end
 
 end
