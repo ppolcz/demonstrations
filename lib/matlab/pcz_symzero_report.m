@@ -55,23 +55,20 @@ if nargout > 0
 end
 
 if nargout == 0
-    bool = perc == 0 && maxdiff < 10^(-perc);
+    bool = perc == 0 && maxdiff < 10^(-prec);
     
-    fprintf('\nEquality report ')
-    pcz_OK_FAILED(bool, varargin{:})
-    fprintf('\n---------------\n')
-    fprintf('Equality percentage: %g%%\n', (1-perc)*100)
-    fprintf('Maximal difference: %g\n', maxdiff)
+    pcz_info(bool, varargin{:})
     
-    if ~isempty(indices)
-        fprintf('Indices, where not equal: \n');
-        disp(indices(:)');
+    if ~bool
+        pcz_dispFunction('Equality percentage: %g%%', (1-perc)*100)
+        pcz_dispFunction('Maximal difference: %g', maxdiff)
+        pcz_dispFunction('Precision: %g', 10^(-prec))
+
+        if ~isempty(indices)
+            pcz_dispFunction('Indices, where not equal: %s', pcz_num2str(indices(:)'));
+        end
+
+        pcz_dispFunctionStackTrace
+        pcz_dispFunctionNeedNewLine
     end
-    
-    try
-        error('info: stack trace')
-    catch ex
-        disp(getReport(ex,'extended'))
-    end
-    
 end
