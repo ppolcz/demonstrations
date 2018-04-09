@@ -57,11 +57,16 @@ end
 if nargout == 0
     bool = perc == 0 && maxdiff < 10^(-prec);
     
+    if bool
+        varargin{1} = [ varargin{1} ' Maximal difference: %g' ];
+        varargin = [ varargin maxdiff ];
+    end
+    
     pcz_info(bool, varargin{:})
     
     if ~bool
-        pcz_dispFunction('Equality percentage: %g%%', (1-perc)*100)
         pcz_dispFunction('Maximal difference: %g', maxdiff)
+        pcz_dispFunction('Equality percentage: %g%%', (1-perc)*100)
         pcz_dispFunction('Precision: %g', 10^(-prec))
 
         if ~isempty(indices)
