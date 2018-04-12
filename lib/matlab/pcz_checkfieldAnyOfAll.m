@@ -11,6 +11,10 @@ function [index, ret] = pcz_checkfieldAnyOfAll(model,varargin)
 
 global VERBOSE
 
+if isempty(VERBOSE)
+    VERBOSE = 0;
+end
+
 index = find(cellfun(@(names) pcz_checkfieldAll(model,names{:}), varargin), 1);
 
 if VERBOSE || nargout > 1
