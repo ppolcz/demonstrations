@@ -71,6 +71,7 @@ if nargout == 0
 
         if ~isempty(indices)
             pcz_dispFunction('Indices, where not equal: %s', pcz_num2str(indices(:)'));
+            pcz_dispFunction('size(indices) = %d', numel(indices))
         end
 
         pcz_dispFunctionStackTrace

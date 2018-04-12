@@ -44,6 +44,8 @@ disp(ip)
 [pathstr,~,~] = fileparts(ip.filename);
 if ~exist(pathstr, 'dir'), mkdir(pathstr); end
 
+ip
+
 set(gcf,'Units','pixels');
 matlab2tikz(ip.filename, 'externalData', ip.externalData, 'standalone', ip.standalone);
 
