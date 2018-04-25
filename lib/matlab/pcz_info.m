@@ -51,7 +51,9 @@ if VERBOSE
     pcz_OK_FAILED(bool, varargin{:});
     fprintf('\n')
 
-    pcz_dispFunctionStackTrace('', 'first', 3)
+    pcz_dispFunctionStackTrace('', 'first', 3, 'skip_last', 0)
+    
+    % pcz_dispFunction('Depth = %d', SCOPE_DEPTH)
     
     % disp([prefix '- ' link])
 end
