@@ -8,6 +8,8 @@ function [r_indices,r_maxdiff,r_perc] = pcz_symzero_report(z, prec, N, varargin)
 %
 %%
 
+% TMP_ZNEWEagSzRkCGbFsczkg = pcz_dispFunctionName;
+
 if nargin < 3 || isempty(N) || ischar(N)
     if nargin >= 3 && ischar(N)
         varargin = [N varargin];
@@ -58,7 +60,12 @@ if nargout == 0
     bool = perc == 0 && maxdiff < 10^(-prec);
     
     if bool
-        varargin{1} = [ varargin{1} ' Maximal difference: %g' ];
+        if ~isempty(varargin)
+            varargin{1} = [ varargin{1} ' Maximal difference: %g' ];
+        else
+            varargin{1} = 'Maximal difference: %g';
+        end
+        
         varargin = [ varargin maxdiff ];
     end
     
@@ -71,10 +78,14 @@ if nargout == 0
 
         if ~isempty(indices)
             pcz_dispFunction('Indices, where not equal: %s', pcz_num2str(indices(:)'));
-            pcz_dispFunction('size(indices) = %d', numel(indices))
+            pcz_dispFunction('nr of elements where not zero/all: %d/%d', numel(indices), numel(z))
         end
 
-        pcz_dispFunctionStackTrace
-        pcz_dispFunctionNeedNewLine
+        % pcz_dispFunctionStackTrace
+        % pcz_dispFunctionNeedNewLine
     end
 end
+%%
+
+% pcz_dispFunctionEnd(TMP_ZNEWEagSzRkCGbFsczkg);
+
