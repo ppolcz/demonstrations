@@ -44,6 +44,21 @@ else
     maxdiff = max(abs(ZERO(:)));
 end
 
+S = dbstack;
+% S.name
+
+first = 1;
+for i = 1:numel(S)-1
+    if strcmp(S(2).name, 'pcz_symzero_report')
+        first = i;
+        break;
+    end
+end
+
+if strcmp(S(first+1).name, 'pcz_symeq_report')
+    first = first+1;
+end
+
 if nargout > 2
     r_perc = perc;
 end
@@ -69,7 +84,7 @@ if nargout == 0
         varargin = [ varargin maxdiff ];
     end
     
-    pcz_info(bool, varargin{:})
+    pcz_info(bool, varargin{:}, {'first', first+1})
     
     if ~bool
         pcz_dispFunction('Maximal difference: %g', maxdiff)

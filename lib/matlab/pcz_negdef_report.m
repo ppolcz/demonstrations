@@ -64,11 +64,11 @@ if nargout == 0
         varargin = [ varargin tol extremum ];
     end
     
-    pcz_info(isdef, varargin{:})
+    pcz_info(isdef, varargin{:}, {'first',2})
     
     if ~isdef
         pcz_dispFunction('Worst eigenvalue: %g', extremum)
-        pcz_dispFunction('Percentage of good eigenvalues: %g%%', (1-perc)*100)
+        pcz_dispFunction('Percentage of good eigenvalues: %g%%', perc*100)
         pcz_dispFunction('Tolerance: %g', tol)
         pcz_dispFunction('Nr of bad eigenvalues/all: %d/%d', numel(indices), numel(eigvals))
 

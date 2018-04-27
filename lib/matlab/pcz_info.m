@@ -35,6 +35,18 @@ if nargin == 1 && iscell(bool)
     bool = bool{1};
 end
 
+opts.first = 1;
+opts.last = 0;
+
+if nargin > 1 && iscell(varargin{end})
+    args = varargin{end};
+    varargin = varargin(1:end-1);
+    opts = parsepropval(opts,args{:});
+end
+
+% S = dbstack;
+% S.name
+
 depth = SCOPE_DEPTH;
 
 if VERBOSE
@@ -45,13 +57,13 @@ if VERBOSE
         prefix = repmat(tab,[1 depth]);
     end
     
-    disp(prefix)
+    disp([ prefix ' '])
 
     fprintf(prefix)
     pcz_OK_FAILED(bool, varargin{:});
     fprintf('\n')
 
-    pcz_dispFunctionStackTrace('', 'first', 3, 'skip_last', 0)
+    pcz_dispFunctionStackTrace('', 'first', opts.first, 'last', opts.last)
     
     % pcz_dispFunction('Depth = %d', SCOPE_DEPTH)
     
