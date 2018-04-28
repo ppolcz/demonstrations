@@ -40,6 +40,21 @@ int sum (bool tomb[], int meret)
     return S;
 }
 
+int ellenoriz (int nap[], int meret)
+{
+    int index_rossz = -1;
+    for (int i=0; i<meret; i++)
+    {
+        // ha meg nem talaltam rossz erteket es az aktualis ertek rossz
+        if ( index_rossz < 0 && (nap[i] > 50 || nap[i] < -50) )
+        {
+            index_rossz = i;
+        }
+    }
+
+    return index_rossz;
+}
+
 // Bemenet
 // 3 5
 // 10 15 12 10 10  - elso telepules
@@ -49,7 +64,16 @@ int sum (bool tomb[], int meret)
 // Kimenet
 // 2 1 2
 
-// 3 5 10 15 12 10 10 11 11 11 11 20 12 16 16 16 20
+/*
+
+Helyes adat
+3 5 10 15 12 10 10 11 11 11 11 20 12 16 16 16 20
+
+Helytelen adat
+3 5 10 15 12 10 10 61 11 11 11 -80 12 16 16 16 20
+
+*/
+
 
 int main()
 {
@@ -66,42 +90,71 @@ int main()
             cin >> adat[i][j];
         }
     }
-    // Min. fuggveny keszitese
-    // minden oszlopra Min. + tombbe: adott varosban van-e min
-    bool mine[N] = {false};
-    for (int i=0; i<M; i++)
-    {
-        // min lekerese
-        int index=minind(adat[i],N);
-        mine[index]=true;
-        // vegig a tombon: ahol min,, ott a min-et  atrakni true-ra
-    }
 
-    // REGI MODSZER (egy for ciklussal tobb van benne)
-    // --
-    // bool mine[N] = {false};
+    // adatok ellenorzese
+    bool hibas=false;
     // for (int i=0; i<M; i++)
     // {
-    //     // min lekerese
-    //     int minimum=minfv(adat[i],N);
-    //     for (int j=0; j<N; j++)
+    //     int index=ellenoriz(adat[i],N);
+    //     if (index > 0)
     //     {
-    //         if (adat[i][j]==minimum)
-    //         {
-    //             mine[j]=true;
-    //         }
+    //         hibas = true;
+    //         cout << "Hibas adatot talaltam, varos sorszama: " << index+1 << ", nap sorszama: " << i+1 << endl;
     //     }
-    //     // vegig a tombon: ahol min,, ott a min-et  atrakni true-ra
     // }
-
-    //kimenet kiirasa
-    cout << sum(mine,N);
-
-    for (int i=0; i<N; i++)
+    for (int j=0; j<N; j++)
     {
-        if (mine[i])
+        for (int i=0; i<M; i++)
         {
-            cout << ' ' << i+1;
+            if (adat[i][j] > 50 || adat[i][j] < -50)
+            {
+                hibas = true;
+                cout << "Hibas adatot talaltam, varos sorszama: " << j+1 << ", nap sorszama: " << i+1 << endl;
+            }
+
+        }
+    }
+
+
+    if (!hibas)
+    {
+        // Min. fuggveny keszitese
+        // minden oszlopra Min. + tombbe: adott varosban van-e min
+        bool mine[N] = {false};
+        for (int i=0; i<M; i++)
+        {
+            // min lekerese
+            int index=minind(adat[i],N);
+            mine[index]=true;
+            // vegig a tombon: ahol min,, ott a min-et  atrakni true-ra
+        }
+
+        // REGI MODSZER (egy for ciklussal tobb van benne)
+        // --
+        // bool mine[N] = {false};
+        // for (int i=0; i<M; i++)
+        // {
+        //     // min lekerese
+        //     int minimum=minfv(adat[i],N);
+        //     for (int j=0; j<N; j++)
+        //     {
+        //         if (adat[i][j]==minimum)
+        //         {
+        //             mine[j]=true;
+        //         }
+        //     }
+        //     // vegig a tombon: ahol min,, ott a min-et  atrakni true-ra
+        // }
+
+        //kimenet kiirasa
+        cout << sum(mine,N);
+
+        for (int i=0; i<N; i++)
+        {
+            if (mine[i])
+            {
+                cout << ' ' << i+1;
+            }
         }
     }
 
