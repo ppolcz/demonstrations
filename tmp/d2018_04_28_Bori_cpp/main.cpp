@@ -49,6 +49,7 @@ int sum (bool tomb[], int meret)
 // Kimenet
 // 2 1 2
 
+// 3 5 10 15 12 10 10 11 11 11 11 20 12 16 16 16 20
 
 int main()
 {
