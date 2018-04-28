@@ -76,7 +76,8 @@ int main()
         }
     }
 
-    // adatok ellenorzese
+    // adatok helyessegenek ellenorzese
+    // ---------------------------------------------------------
     bool hibas=false;
     for (int j=0; j<N; j++)
     {
@@ -90,6 +91,7 @@ int main()
 
         }
     }
+    // ---------------------------------------------------------
 
 
     if (!hibas)
