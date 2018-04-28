@@ -40,21 +40,6 @@ int sum (bool tomb[], int meret)
     return S;
 }
 
-int ellenoriz (int nap[], int meret)
-{
-    int index_rossz = -1;
-    for (int i=0; i<meret; i++)
-    {
-        // ha meg nem talaltam rossz erteket es az aktualis ertek rossz
-        if ( index_rossz < 0 && (nap[i] > 50 || nap[i] < -50) )
-        {
-            index_rossz = i;
-        }
-    }
-
-    return index_rossz;
-}
-
 // Bemenet
 // 3 5
 // 10 15 12 10 10  - elso telepules
@@ -93,15 +78,6 @@ int main()
 
     // adatok ellenorzese
     bool hibas=false;
-    // for (int i=0; i<M; i++)
-    // {
-    //     int index=ellenoriz(adat[i],N);
-    //     if (index > 0)
-    //     {
-    //         hibas = true;
-    //         cout << "Hibas adatot talaltam, varos sorszama: " << index+1 << ", nap sorszama: " << i+1 << endl;
-    //     }
-    // }
     for (int j=0; j<N; j++)
     {
         for (int i=0; i<M; i++)
