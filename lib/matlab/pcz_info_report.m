@@ -1,11 +1,12 @@
-function [ret] = pcz_info(bool, varargin)
-%%
-%  File: pcz_info.m
+function [ret] = pcz_info_report(bool, varargin)
+%% pcz_info_report
+%  
+%  File: pcz_info_report.m
 %  Directory: 2_demonstrations/lib/matlab
 %  Author: Peter Polcz (ppolcz@gmail.com) 
-% 
-%  Created on 2017.01.06. Friday, 13:56:14
-%  Modified on 2018. April 30.
+%  
+%  Created on 2018. April 30.
+%
 
 %%
 
@@ -59,13 +60,13 @@ if VERBOSE
         prefix = repmat(tab,[1 depth]);
     end
     
-    % disp([ prefix ' '])
+    disp([ prefix ' '])
 
     fprintf(prefix)
     pcz_OK_FAILED(bool, varargin{:});
     fprintf('\n')
 
-    % pcz_dispFunctionStackTrace('', 'first', opts.first, 'last', opts.last)
+    pcz_dispFunctionStackTrace('', 'first', opts.first, 'last', opts.last)
     
     % pcz_dispFunction('Depth = %d', SCOPE_DEPTH)
     

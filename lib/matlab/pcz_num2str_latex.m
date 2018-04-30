@@ -26,8 +26,9 @@ if nargout > 0
 end
 
 for i = 1:nr
+    pref = '';
     if ~isempty(inputname(i))
-        fprintf('%s = ', inputname(i));
+        pref = sprintf('%s = ', inputname(i));
     end
     
     o.var = varargin{i};
@@ -35,7 +36,7 @@ for i = 1:nr
         o.var = round(o.var,o.round);
     end        
 
-    str = pcz_num2str_fixed(o.var,o.format, o.del1, o.del2, o.pref, o.beginning, o.ending);
+    str = [ pref pcz_num2str_fixed(o.var,o.format, o.del1, o.del2, o.pref, o.beginning, o.ending) ];
     
     if nargout > 0
         ret{i} = str;

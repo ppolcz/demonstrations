@@ -8,9 +8,15 @@ function [ret] = pcz_num2str_multiline(A,varargin)
 %
 %%
 
-pcz_num2str(A, 'del1', ' ', 'del2', '\n', ...
+str = pcz_num2str(A, 'del1', ' ', 'del2', '\n', ...
     'pref', '    ', 'beg', '[\n', ...
     'label', [inputname(1) ' = '], ... '{inputname} = ', ...
-    'end', '\n    ];\n', varargin{:})
+    'end', '\n    ];\n', varargin{:});
+
+if nargout > 0
+    ret = str;
+else
+    disp(str)
+end
 
 end

@@ -84,7 +84,7 @@ if nargout == 0
         varargin = [ varargin maxdiff ];
     end
     
-    pcz_info(bool, varargin{:}, {'first', first+1})
+    pcz_info_report(bool, varargin{:}, {'first', first+1})
     
     if ~bool
         pcz_dispFunction('Maximal difference: %g', maxdiff)
