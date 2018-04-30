@@ -19,7 +19,7 @@ o = parsepropval(o,varargin{:});
 
 if ~isempty(o.hline), o.disp_mode = 2; end
 
-fprintf(o.label);
+label = sprintf(o.label);
 
 disp_mode = o.disp_mode;
 sed_user = o.sed_user;
@@ -131,7 +131,7 @@ else
     name = '';
 end
 
-cmdout = [name cmdout];
+cmdout = [label name cmdout];
 
 if status
     fprintf(['\nreturn_value = ' num2str(status) '\n\n'])
