@@ -55,7 +55,7 @@ for i = 1:numel(S)-1
     end
 end
 
-if strcmp(S(first+1).name, 'pcz_symeq_report')
+if numel(S) > first && strcmp(S(first+1).name, 'pcz_symeq_report')
     first = first+1;
 end
 
