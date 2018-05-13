@@ -74,7 +74,7 @@ end
 if nargout == 0
     bool = perc == 0 && maxdiff < 10^(-prec);
     
-    if bool
+    if bool && maxdiff > 0
         if ~isempty(varargin)
             varargin{1} = [ varargin{1} ' Maximal difference: %g' ];
         else
