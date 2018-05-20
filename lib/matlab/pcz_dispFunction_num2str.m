@@ -57,7 +57,7 @@ else
     disp([prefix ' '])
     disp(str);
     pcz_dispFunctionStackTrace('', 'first', 1, 'last', 0);
-    disp([prefix ' '])
+    % disp([prefix ' '])
 end
 
 end
