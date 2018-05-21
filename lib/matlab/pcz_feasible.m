@@ -1,4 +1,4 @@
-function [ret] = pcz_feasible(CONS)
+function [ret] = pcz_feasible(sol, CONS)
 %% pcz_feasible
 %  
 %  File: pcz_feasible.m
@@ -9,6 +9,8 @@ function [ret] = pcz_feasible(CONS)
 %
 
 %%
+
+pcz_info(sol.problem == 0, '%s. Solver time: %g', sol.info, sol.solvertime);
 
 [Prim,Dual] = check(CONS);
 
@@ -22,7 +24,7 @@ if mp <= 0
 end
 
 if md <= 0
-    msg = [msg , sprintf(' Min(Dua) = %d.', md)];
+    msg = [msg , sprintf(' Min(Dual) = %d.', md)];
 end
 
 pcz_info(mp > 0 && md > 0,msg);
