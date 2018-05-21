@@ -1,13 +1,15 @@
-function [ret] = pcz_OK_FAILED(bool, varargin)
-%% Script pcz_OK_FAILED
+function [ret] = pcz_OK_WARN(bool, varargin)
+%% pcz_OK_WARN
 %  
-%  file:   pcz_OK_FAILED.m
-%  author: Peter Polcz <ppolcz@gmail.com> 
+%  File: pcz_OK_WARN.m
+%  Directory: 2_demonstrations/lib/matlab
+%  Author: Peter Polcz (ppolcz@gmail.com) 
 %  
-%  Created on 2017.08.01. Tuesday, 14:06:46
-%  Modified on 2018.04.04. (április  4, szerda), 20:09
+%  Created on 2018. May 21.
 %
+
 %%
+
 
 if ~islogical(bool) && ~ischar(bool)
     bool = bool == 1;
@@ -26,10 +28,10 @@ if islogical(bool)
         fprintf('  ] ');
     else
         % fprintf('[%s] ', colorizedstring('red','FAILED'))
-        fprintf('[ ');
-        fprintf(2,'<strong>FAILED</strong> ');
+        fprintf('[  ');
+        fprintf('[\b<strong>WARN</strong>]\b ')
         % cprintf('*err', 'FAILED ');
-        fprintf('] ');
+        fprintf(' ] ');
     end
 
     if ~isempty(varargin)
@@ -43,5 +45,6 @@ elseif ischar(bool)
     fprintf(' ] ');
     fprintf(bool, varargin{:});
 end
+
 
 end
