@@ -39,16 +39,17 @@ if Mode_xlim
     end
 end
 
-Mode_str = { 'vertices are given' 'rectangular region: limits are given' };
-
-pcz_info('Mode: %s, tolerance: %g, positive tolerance: %g.', Mode_str{Mode_xlim+1}, opts.tolerance, opts.postol);
-% pcz_dispFunction2('X_v = %s', pcz_num2str(X_v));
-% pcz_dispFunction ''
-
 
 X_Nr = size(X_v,1);
 P = value(P);
 L = value(L);
+
+Mode_str = { 'vertices are given' 'rectangular region: limits are given' };
+pcz_info('Mode: %s, tolerance: %g, positive tolerance: %g.', Mode_str{Mode_xlim+1}, opts.tolerance, opts.postol);
+pcz_info('LMI size: (%dx%d), annihilator rows: %d. ', size(P), size(L,2));
+% pcz_dispFunction2('X_v = %s', pcz_num2str(X_v));
+% pcz_dispFunction ''
+
 
 feasible = zeros(X_Nr,1);
 min_eig = zeros(X_Nr,1);
