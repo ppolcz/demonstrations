@@ -1,4 +1,4 @@
-function [ret] = pcz_dispFunctionSeparator
+function [ret] = pcz_dispFunctionSeparator(varargin)
 %% pcz_dispFunctionSeparator
 %  
 %  File: pcz_dispFunctionSeparator.m
@@ -29,7 +29,7 @@ end
 %     fprintf('│   ')
 % end
 
-msg = sprintf(varargin{:});
+% msg = sprintf(varargin{:});
 
 % if numel(ST) > I    
 %     if ~isempty(msg)
