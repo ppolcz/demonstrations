@@ -14,4 +14,8 @@ if ~bool
     pcz_info(bool, varargin{:});
 end
 
+if nargout > 0
+    ret = ~bool;
+end
+
 end

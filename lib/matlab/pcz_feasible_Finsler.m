@@ -8,13 +8,14 @@ function [ret] = pcz_feasible_Finsler(P, L, N, x_lim, varargin)
 %  Created on 2018. May 22.
 %
 
-TMP_PwVjnhhTEChSGsAudmgj = pcz_dispFunctionName;
-
 %%
 
+opts.title = 'Finsler''s lemma check: P + L N + N'' L'' >= 0';
 opts.postol = 1e-6;
 opts.tolerance = 1e-10;
 opts = parsepropval(opts, varargin{:});
+
+TMP_PwVjnhhTEChSGsAudmgj = pcz_dispFunctionName(opts.title);
 
 %%
 
