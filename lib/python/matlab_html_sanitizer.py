@@ -202,6 +202,31 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             a.attrs = { "src": imgname }
             a.string = ""
 
+    # Collect scripts
+    # <script 2_demonstrations/lib/matlab/vekanal_subsmesh.m>
+    for a in content.find_all(href="script", string=re.compile(".*\.m")):
+        # print(a)
+
+        scriptname = a.string
+        src = "/home/ppolcz/Repositories/Bitbucket/control-systems/" + scriptname
+
+        if os.path.isfile(src) and os.path.isdir(targetdir):
+            targetpath = targetdir + "/" + os.path.dirname(scriptname)
+            # print("src = " + src)
+            # print("targetpath = " + targetpath)
+
+            if not os.path.exists(targetpath):
+                os.makedirs(targetpath)
+
+            shutil.copy2(src, targetpath)
+
+            scriptdir = os.path.basename(targetdir)
+            # print("scriptdir = " + scriptdir)
+
+            a.name = "a"
+            a.attrs = { "href": "<?php echo \"$media\"; ?>/" + scriptname }
+            a.string = os.path.basename(scriptname)
+
     # for a in content.find_all(href=a_href_img, string=re.compile("img")):
     #     # print(a)
 
