@@ -180,15 +180,15 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
 
     # Collect images
     for a in content.find_all(href="img", string=re.compile(".*\.(png|jpg)")):
-        # print(a)
+        print(a)
 
         imgname = a.string
         src = sourcedir + "/" + imgname
 
         if os.path.isfile(src) and os.path.isdir(targetdir):
             targetpath = targetdir + "/" + os.path.dirname(imgname)
-            # print("src = " + src)
-            # print("targetpath = " + targetpath)
+            print("src = " + src)
+            print("targetpath = " + targetpath)
 
             if not os.path.exists(targetpath):
                 os.makedirs(targetpath)
@@ -196,12 +196,14 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             shutil.copy2(src, targetpath)
 
             scriptdir = os.path.basename(targetdir)
-            # print("scriptdir = " + scriptdir)
+            print("scriptdir = " + scriptdir)
 
             a.name = "img"
             a.attrs = { "src": imgname }
             a.string = ""
 
+    # Lásd még sim|file --> ugyanazt csinalja (csak a ROOT mappabol indulva)
+    # 2018.07.30. (július 30, hétfő), 10:54
     # Collect scripts
     # <script 2_demonstrations/lib/matlab/vekanal_subsmesh.m>
     for a in content.find_all(href="script", string=re.compile(".*\.m")):
