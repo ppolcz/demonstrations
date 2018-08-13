@@ -369,6 +369,28 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
             h2.next_sibling.extract()
             h2.extract()
 
+    h2s = content.find_all("a", href="EXTRACT-IO")
+    for a in h2s:
+        h2 = a.parent
+        code = h2.next_sibling
+        output_title = code.next_sibling
+        output = output_title.next_sibling
+        if code.name == "pre" and code.has_attr("class") and code["class"] == "preformatted" and output_title.name == "h6":
+            output.extract()
+            output_title.extract()
+            code.extract()
+            h2.extract()
+
+    h2s = content.find_all("a", href="EXTRACT-OUTPUT")
+    for a in h2s:
+        h2 = a.parent
+        code = h2.next_sibling
+        output_title = code.next_sibling
+        output = output_title.next_sibling
+        if code.name == "pre" and code.has_attr("class") and code["class"] == "preformatted" and output_title.name == "h6":
+            output.extract()
+            output_title.extract()
+
 
     # Detect request for video`
     revid = re.compile("vid\d{4}\.webm");
