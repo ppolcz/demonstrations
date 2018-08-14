@@ -147,7 +147,7 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         content.insert(1,p)
 
     # Collect Simulink models
-    for a in content.find_all(href=re.compile("sim|file"), string=re.compile(".*\.(slx|m|mat)")):
+    for a in content.find_all(href=re.compile("sim|file"), string=re.compile(".*\.(slx|m|mat|nb|html|htm|pdf)")):
         print(a)
         slxname = a.string
         src = sourcedir + "/" + slxname

@@ -24,7 +24,6 @@ opt.format = 'html';
 opt.outputDir = persist.pub_absdir;
 opt.stylesheet = [G.ROOT '/publish.xsl' ];
 
-
 % mkdir(opt.outputDir);
 
 % Publis + tidy html code
@@ -48,9 +47,23 @@ command = [
     ];
 system(command)
 
+fid = fopen(f.path);
+tline = fgets(fid);
+tline = fgets(fid)
+
+% str = '<title>My Title</title><p class="lead">Here is some text.</p>';
+% tline = '<html><p class="lead">Coordinate transformation, feedback linearization and zero dynamics.</p></html>'
+[tokens,~] = regexp(tline,'<html><(\w+).*>(.*)</\1></html>','tokens','match');
+tokens = tokens{1};
+
+dispname = f.bname;
+if numel(tokens) > 1 && strcmp(tokens{1}, 'p') && ~isempty(tokens{2})
+    dispname = tokens{2};
+end
+
 % Copy html code to clipboard
 persist.pub_html = sprintf('<a class="" href="<?php echo base_url(''index.php/main/script/%s.php'') ?>">%s</a>', ...
-    persist.pub_dirname, f.bname);
+    persist.pub_dirname, dispname)
 clipboard('copy', persist.pub_html);
 
 % Update persist object of the base workspace
