@@ -49,12 +49,15 @@ system(command)
 
 fid = fopen(f.path);
 tline = fgets(fid);
-tline = fgets(fid)
+tline = fgets(fid);
 
 % str = '<title>My Title</title><p class="lead">Here is some text.</p>';
 % tline = '<html><p class="lead">Coordinate transformation, feedback linearization and zero dynamics.</p></html>'
 [tokens,~] = regexp(tline,'<html><(\w+).*>(.*)</\1></html>','tokens','match');
-tokens = tokens{1};
+
+if numel(tokens) > 0
+    tokens = tokens{1};
+end
 
 dispname = f.bname;
 if numel(tokens) > 1 && strcmp(tokens{1}, 'p') && ~isempty(tokens{2})
