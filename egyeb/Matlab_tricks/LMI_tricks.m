@@ -107,3 +107,17 @@ L = value(L);
 Eig_M = eig(M)
 Norm_L = norm(L)
 
+%% 3. kérdés
+% Ha $P > 0$, akkor $L^T P L > 0$ minden $L$ esetén?
+
+n = 5;
+m = 3;
+
+% Probalok ellenpeldat keresni.
+P = randn(n); P = P'*P;
+
+for i = 1:1000
+    L = randn(n,m);
+    
+    pcz_posdef_report(L'*P*L, 10, 1, 'Eigenvalues: %s, ', pcz_num2str(eig(L'*P*L), 'format', '%7.1f'));
+end
