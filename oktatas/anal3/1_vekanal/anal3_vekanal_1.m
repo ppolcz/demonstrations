@@ -1,9 +1,13 @@
-%% Analízis III (2017) - I. Vektoranalízis
-%  file:   anal3_vekanal_1.m
-%  author: Polcz Péter <ppolcz@gmail.com>
-%
+%% Analízis III - I. Vektoranalízis
+% <html><p class="lead">Különböző differenciálok, differenciálási szabályok, vonalintegrálok, felületintegrálok</p></html>
+% 
+%  File: anal3_vekanal_1.m
+%  Directory: 2_demonstrations/oktatas/anal3/1_vekanal
+%  Author: Peter Polcz (ppolcz@gmail.com) 
+% 
 %  Created on 2017.08.04. Friday, 15:15:13
-%
+%  Created on 2018. September 23.
+
 %%
 % Az elkövetkezendőkben a Matlab Symbolic Math Toolbox (SMT) által
 % kínált vektoranalízis
@@ -20,7 +24,7 @@
 web(fullfile(docroot, 'symbolic/examples.html'))
 
 % SMT vector analysis
-web(fullfile(docroot, 'symbolic/vector-analysis.html'))
+web(fullfile(docroot, 'symbolic/vector-analysis-1.html'))
 
 %%
 % <html><h1>Divergencia, rotáció, gradiens, Jacobi mátrix számítása</h1></html>
@@ -35,12 +39,13 @@ F = [
     sin(x)
     cos(y)
     ];
-pcz_pretty('F(x,y)', F)
 
 %%
 % Divergencia szimbolikus kiszámítása
 divF = divergence(F,r);
-pcz_pretty('div F(x,y)', divF)
+
+%%
+pcz_align(latex(divF))
 
 %% Szimbolikus skalárfüggvény numerizálása és ábrázolása
 %
@@ -110,36 +115,49 @@ F = [
 % Skalármező
 f = sin(x)*cos(y)*z^2;
 
-pcz_display('F(x,y)', F)
-pcz_display('div F(x,y)', divergence(F,r))
-pcz_display('curl F(x,y)', curl(F,r))
-pcz_display('jacobian F(x,y)', jacobian(F,r))
+% Gradiens r = (x,y,z) szerint
+grad_f = jacobian(f,r);
 
-pcz_display('jacobian f(x,y) = `grad f(x,y)` [row-vector]', jacobian(f,r))
-pcz_display('gradient f(x,y) [column-vector]', gradient(f,r))
+% Gradiens r = (x,y,z) szerint
+grad_f_2 = gradient(f,r);
+
+% Divergencia r = (x,y,z) szerint
+div_F = divergence(F,r);
+
+% Rotacio r = (x,y,z) szerint
+rot_F = curl(F,r);
+
+% Jacobi matrix r = (x,y,x) szerint
+Jacobian_F = jacobian(F,r);
+
+%%
+
+pcz_align('%s %s', '{\rm grad}\, f = ', latex(grad_f))
+pcz_align('%s %s,~~ %s', '{\rm grad}\, f = ', latex(grad_f_2), '\text{(using ''''gradient'''')}')
+pcz_align('%s = %s', '{\rm div}\, F', latex(div_F))
+pcz_align('%s = %s', '{\rm rot}\, F', latex(rot_F))
+pcz_align('%s = %s', 'J_F', latex(Jacobian_F))
 
 %% Vektoranalízis deriválási szabályainak ellenőrzése (bonyolultabb)
 % Először deklaráljuk a szimbólikus objektumokat
 syms x y z real
 r = [x;y;z];
 
-f = sym('f(x,y,z)');
-g = sym('g(x,y,z)');
+syms f(x,y,z) g(x,y,z) 
+syms F1(x,y,z) F2(x,y,z) F3(x,y,z)
+syms G1(x,y,z) G2(x,y,z) G3(x,y,z)
 
-F = [
-    sym('F1(x,y,z)')
-    sym('F2(x,y,z)')
-    sym('F3(x,y,z)')
+F(x,y,z) = [
+    F1
+    F2
+    F3
     ];
 
-G = [
-    sym('G1(x,y,z)')
-    sym('G2(x,y,z)')
-    sym('G3(x,y,z)')
+G(x,y,z) = [
+    G1
+    G2
+    G3
     ];
-
-% Feltételezzük, hogy minden szimbólikus objektum valós (nem komplex)
-assume([F,G,f,g,r],'real')
 
 % Gradiens, divergencia, rotáció, vektoriális szorzat műveletek
 grad = @(f) jacobian(f,r);
@@ -149,12 +167,29 @@ trans = @(F) reshape(F,[1 3]);
 % gradient: oszlopvektor
 % cross: olyan lesz a vegeredmeny mint amilyen az elso
 
+SYM_EQUAL = @(f,g) ~any(double(simplify(f-g)));
+
 % Végül a szabályok ellenőrzése, nullát kell kapjunk minden esetben
-pcz_symeq(grad(f*g), f*grad(g) + g*grad(f), '∇(f g) = f ∇g + g ∇f')
-pcz_symeq(divergence(f*F,r), grad(f)*F + f*divergence(F,r), '∇(f F) = ⟨∇f,F⟩ + ⟨f,∇F⟩')
-pcz_symeq(curl(f*F), cross(gradient(f),F) + f*curl(F), '∇×(f F) = ∇f×F + f ∇×F')
-pcz_symeq(divergence(cross(F,G),r), G'*curl(F) - F'*curl(G), '∇(F×G) = ⟨G,∇×F⟩ - ⟨F,∇×G⟩')
-pcz_symeq(grad(F'*G), F'*grad(G) + G'*grad(F), '∇⟨F,G⟩ = ⟨F,∇G⟩ + ⟨G,∇F⟩')
+
+if SYM_EQUAL(grad(f*g), f*grad(g) + g*grad(f))
+    disp 'f*grad(g) + g*grad(f)'
+end
+
+if SYM_EQUAL(divergence(f*F,r), grad(f)*F + f*divergence(F,r))
+    disp '∇(f F) = ⟨∇f,F⟩ + ⟨f,∇F⟩'
+end
+
+if SYM_EQUAL(curl(f*F), cross(gradient(f),F) + f*curl(F))
+    disp '∇×(f F) = ∇f×F + f ∇×F'
+end
+
+if SYM_EQUAL(divergence(cross(F,G),r), transpose(G)*curl(F) - transpose(F)*curl(G))
+    disp '∇(F×G) = ⟨G,∇×F⟩ - ⟨F,∇×G⟩'
+end
+
+if SYM_EQUAL(grad(transpose(F)*G), transpose(F)*grad(G) + transpose(G)*grad(F))
+    disp '∇⟨F,G⟩ = ⟨F,∇G⟩ + ⟨G,∇F⟩'
+end
 
 %%
 % <html><h1>Numerikus integrálás</h1></html>
