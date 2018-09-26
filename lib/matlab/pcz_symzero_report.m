@@ -31,6 +31,7 @@ if isempty(s)
     indices = find(abs(ZERO(:)) > 10^(-prec));
     perc = numel(indices) / numel(ZERO);
     maxdiff = max(abs(ZERO(:)));
+    alldiff = abs(ZERO(:));
 else
     z_fh = matlabFunction(z(:), 'vars', {s(:)});
     ZERO = zeros(numel(z),N);    
@@ -42,6 +43,7 @@ else
     indices = find(greater);
     perc = numel(indices) / numel(z);
     maxdiff = max(abs(ZERO(:)));
+    alldiff = abs(ZERO(:));
 end
 
 S = dbstack;
@@ -93,7 +95,8 @@ if nargout == 0
 
         if ~isempty(indices)
             pcz_dispFunction('Indices, where not equal: %s / %d', pcz_num2str(indices(:)'), numel(z));
-            pcz_dispFunction('nr of elements where not zero/all: %d/%d', numel(indices), numel(z))
+            pcz_dispFunction('nr of elements where not zero/all: %d/%d', numel(indices), numel(z));
+            pcz_dispFunction('differences: %s', pcz_num2str(alldiff(indices)))
         end
 
         % pcz_dispFunctionStackTrace
