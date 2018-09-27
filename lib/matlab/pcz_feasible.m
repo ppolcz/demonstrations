@@ -44,4 +44,8 @@ else
     pcz_warning(mp > 0 && md > 0, [msg1 msg3]);
 end
 
+if nargout > 0
+    ret = bool;
+end
+
 end
