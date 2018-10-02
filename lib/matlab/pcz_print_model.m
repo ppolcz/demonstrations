@@ -19,6 +19,7 @@ opts.simulate = false;
 opts = parsepropval(opts, varargin{:});
 
 open_system(modelname)
+system('mkdir -p fig');
 print('-dpdf', [opts.dirname '/' modelname '.pdf'], ['-s' modelname]);
 
 % pdfcrop --margins 10 fig/Isidori_Example414_PID.pdf

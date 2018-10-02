@@ -66,7 +66,7 @@ end
 
 % Copy html code to clipboard
 persist.pub_html = sprintf('<a class="" href="<?php echo base_url(''index.php/main/script/%s.php'') ?>">%s</a>', ...
-    persist.pub_dirname, dispname)
+    persist.pub_dirname, dispname);
 clipboard('copy', persist.pub_html);
 
 % Update persist object of the base workspace
