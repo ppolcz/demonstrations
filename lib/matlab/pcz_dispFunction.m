@@ -58,4 +58,8 @@ else
     disp([ prefix ' '])
 end
 
+if nargout > 0
+    ret  = [];
+end
+
 end
