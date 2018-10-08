@@ -24,7 +24,7 @@ function [ret] = pcz_num2str(varargin)
 %      0.127 , 0.2785 , 0.1576 , 0.8003 , 0.7922
 %      0.9134 , 0.5469 , 0.9706 , 0.1419 , 0.9595 ]
 
-o.format = '%g';
+o.format = '%8.3f';
 o.del1 = ' , ';
 o.del2 = ' ; ';
 o.del2end = '';
