@@ -1,0 +1,32 @@
+Ez egy automata uzenet a PPKE email virusvedelmi rendszeretol
+--------------------------------------------------------------------
+Az Onnek kuldott level "log_deblock.mat" nevu melleklete a
+levelezoszerver szamara elfogadhatatlan kiterjesztessel vagy tartalommal
+rendelkezo mellekletet tartalmazott, ezert le lett cserelve erre a
+figyelmezteto uzenetre.
+
+Amennyiben szeretne a *gyanusnak talalt* mellekletbol egy masolatot
+kapni, az alabbi URL-en teheti meg 10 napon belul.
+(10 nap eltelte utan automatikusan torlodnek a szerverrol!)
+
+Csak akkor jarjon el igy, ha:
+1. Ismeri a feladot.
+2. Varja a mellekletet a feladotol.
+3. Tudja, hogy az adott fajl nem okoz kart a gepeben.
+
+Az ellenorzes eredmenye, Tue Oct  9 00:11:00 2018 idopontban:
+   MailScanner: Microsoft Access Shortcuts are dangerous in email (log_deblock.mat)
+
+
+Ha a fentieket elolvasta es tovabbra is keri, akkor innen toltheti le
+a csatolmanyokat:
+http://q.mail.ppke.hu/list/20181009/1g9djt-0004lb-MP
+(5 percenkent masolodnak a levelek a fenti cimre, igy hiba eseten
+par perc mulva probalkozzunk ismet!)
+
+-- 
+Tovabbi kerdes eseten: it@helpdesk.ppke.hu
+MailScanner - Email Virus Scanner - http://www.mailscanner.info
+the PPKE (mailgw.ppke.hu) MailScanner
+Pazmany Peter Katolikus Egyetem
+ Kozponti Informatika

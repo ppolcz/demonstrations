@@ -1,93 +1,115 @@
-%% Renerate matrices
+%%
+%  File: LPV_ctrb_obsv.m
+%  Directory: 2_demonstrations/workspace/ccs/ccs_2018
+%  Author: Peter Polcz (ppolcz@gmail.com) 
+% 
+%  Created on 2018. October 09.
 
-tol = 1e-10;
+%% [Step1] Instabil, nem min. fazisu MIMO LTI
 
-a = 2;        % Nr. of contr. and obs.
+a = 4;        % Nr. of contr. and obs.
 b = 2;        % Nr. of contr. and unobs.
 c = 1;        % Nr. of uncontr. and obs.
 d = 2;        % Nr. of uncontr. and unobs.
 n = a+b+c+d;  % Nr. of states
-r = 2;        % Nr. of inputs
-m = 2;        % Nr. of outputs
+m = 2;        % Nr. of inputs and outputs
 
-A_ = [
-    randn(a,a) zeros(a,b) randn(a,c) zeros(a,d)
-    randn(b,a) randn(b,b) randn(b,c) randn(b,d)
-    zeros(c,a) zeros(c,b) randn(c,c) zeros(c,d)
-    zeros(d,a) zeros(d,b) randn(d,c) randn(d,d)
-    ];
-B_ = [
-    randn(a+b,round(r/2)) * randn(round(r/2),r)
-    % randn(a,r)
-    % randn(b,r)
-    zeros(c,r)
-    zeros(d,r)
-    ];
-C_ = [
-    randn(m,a) zeros(m,b) randn(m,c) zeros(m,d)
-    ];
+while true
 
-D0 = zeros(m,r);
+    A = round([
+        randn(a,a) zeros(a,b) randn(a,c) zeros(a,d)
+        randn(b,a) randn(b,b) randn(b,c) randn(b,d)
+        zeros(c,a) zeros(c,b) hurwitz(c) zeros(c,d)
+        zeros(d,a) zeros(d,b) randn(d,c) hurwitz(d)
+        ],8);
+    B = round([
+        randn(a,m)
+        randn(b,m)
+        zeros(c,m)
+        zeros(d,m)
+        ],8);
+    C = round([
+        randn(m,a) zeros(m,b) randn(m,c) zeros(m,d)
+        ],8);
 
-%%%
-% System $(\bar A, \bar B, \bar C, D)$ is in Kalman decomposed form. The
-% transfer function is reducible exactly to an $a$th order system.
+    D = zeros(m,m);
 
-fprintf '\nSize of (A_,B_,C_,D0): \n'
-sys = ss(A_,B_,C_,D0);
-size(minreal(sys,tol,false))
+    T = randn(n,n);
+    T = orth(T);
+    
+    A = T*A*T';
+    B = T*B;
+    C = C*T';
+    
+    %%%
+    % System $(\bar A, \bar B, \bar C, D)$ is in Kalman decomposed form. The
+    % transfer function is reducible to a $a$rd order system.
+    sys = ss(A,B,C,D);
 
-%%
-% Transform the system with a random transformation matrix $T$.
 
-%%%
-% Random permutation matrix
+    System_zeros = sort(tzero(sys));
+    % [~,ZEROS] = pzmap(sys)
 
-T = pcz_permat(randperm(n));
+    sys = minreal(sys,[],false);
 
-%%%
-% Random "nice" transformation matrix
+    Transmission_zeros = sort(tzero(sys));
+    % [~,ZEROS] = pzmap(H)
 
-while 1
-    T = round(randn(n)) .* (rand(n) > 0.8);
-    if abs(det(T)) < 0.9 || abs(det(T)) > 20 || sum(sum(T ~= 0)) > 2*n
+
+    [~,eigvals] = eig(A);
+    if false ...
+            || any(real(diag(eigvals)) ~= diag(eigvals)) ...
+            || all(real(diag(eigvals)) < 0) ...
+            
+        continue
+    end
+    if all(real(diag(eigvals)) < 0)
         continue
     end
 
-    Ti = inv(T);
-    if sum(sum(Ti ~= 0)) > 2*n
-        continue
+    % Detektálhatóság ellenőrzése (kvadratikus értelemben)
+
+    P = sdpvar(n);
+    N = sdpvar(n,m,'full');
+
+    Big_M = P*A + A'*P - N*C - C'*N';
+
+    I = eye(n);
+
+    Constraints = [
+        P - I >= 0
+        Big_M + I <= 0
+        ];
+
+    sdpopts = sdpsettings('verbose', false);
+    sol = optimize(Constraints,[],sdpopts);
+    % check(Constraints)
+
+    Big_M = value(Big_M);
+    N = value(N);
+    P = value(P);
+    L = P\N;
+
+    % eig(A - L*C)
+
+    if sol.problem == 0
+        break
     end
 
-    break
 end
 
-% pcz_display(T)
+pcz_display(A,B,C,D)
+
+
+
 
 %%
 
-A0 = T \ A_ * T;
-B0 = T \ B_;
-C0 = C_ * T;
+function A = hurwitz(c)
+    A = randn(c,c);
+    B = randn(c,1);
+    eigs = -rand(c,1)-0.1;
+    K = place(A,B,eigs);
+    A = A - B*K;
+end
 
-fprintf '\nSize of (A0,B0,C0,D0): \n'
-sys = minreal(ss(A0,B0,C0,D0),tol,false);
-size(sys)
-
-%%
-% Now, generate $A(\rho) = A_0 + A_1 \rho$ with a sparse matrix $A_1$. The
-% same with $B$.
-
-A1 = randn(n).*(rand(n) > 0.95);
-B1 = randn(n,r).*(rand(n,m) > 0.94);
-C1 = zeros(m,n);
-D1 = zeros(m,r);
-
-pcz_display(A1,B1);
-
-%%
-% Check joint controllability and observability for a few values of $\rho$.
-A_fh = @(rho) A0 + A1*rho;
-B_fh = @(rho) B0 + B1*rho;
-C_fh = @(rho) C0 + C1*rho;
-D_fh = @(rho) D0 + D1*rho;
