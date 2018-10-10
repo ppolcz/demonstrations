@@ -94,7 +94,7 @@ if nargout == 0
         pcz_dispFunction('Precision: %g', 10^(-prec))
 
         if ~isempty(indices)
-            pcz_dispFunction('Indices, where not equal: %s / %d', pcz_num2str(indices(:)'), numel(z));
+            pcz_dispFunction('Indices, where not equal: %s / %d', pcz_num2str(indices(:)','format', '%d'), numel(z));
             pcz_dispFunction('nr of elements where not zero/all: %d/%d', numel(indices), numel(z));
             pcz_dispFunction('differences: %s', pcz_num2str(alldiff(indices)))
         end
