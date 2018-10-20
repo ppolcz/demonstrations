@@ -45,7 +45,7 @@ o = parsepropval(o,varargin{first:end});
 nr = first-1;
 
 if nargout > 0
-    ret = cell(nr);
+    ret = cell(nr,1);
 end
 
 for i = 1:nr
