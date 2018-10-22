@@ -1,4 +1,4 @@
-function [ret] = pcz_sdpvar2sym(name, var, assumption)
+function [ret,variables,new_vars] = pcz_sdpvar2sym(name, var, assumption)
 %% pcz_sdpvar2sym
 %  
 %  File: pcz_sdpvar2sym.m

@@ -13,6 +13,9 @@ function [indices, not_indices, N] = pcz_select_symvar(collection, selection)
 % collection
 % selection
 
+% collection = transpose(collection(:));
+% selection = selection(selection(:));
+
 s = numel(collection);
 q = numel(selection);
 
