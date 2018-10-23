@@ -12,7 +12,9 @@ TMP_QVgVGfoCXYiYXzPhvVPX = pcz_dispFunctionName;
 
 MATLB_ROOT = matlabroot;
 
-edit([MATLB_ROOT '/toolbox/local/TC.xml'])
+edit([ getenv('DIR_DEMOS_LIB') '/functionSignatures.json' ])
+edit([getenv('ROOT_INCLUDE_DIR') '/functionSignatures.json'])
+% edit([MATLB_ROOT '/toolbox/local/TC.xml'])
 edit([MATLB_ROOT '/toolbox/local/pathdef.m'])
 edit([MATLB_ROOT '/toolbox/local/Contents.m'])
 

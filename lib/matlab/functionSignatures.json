@@ -16,5 +16,23 @@
                 "type": "filepath=*"
             }
         ]
+    },
+    "pcz_headerComment": {
+        "inputs": [
+            {
+                "kind": "required",
+                "name": "Matlab Live script",
+                "type": "filepath=*"
+            }
+        ]
+    },
+    "dummy": {
+        "inputs": [
+            {
+                "kind": "required",
+                "name": "Matlab Live script",
+                "type": "filepath=*"
+            }
+        ]
     }
 }
