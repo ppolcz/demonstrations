@@ -74,34 +74,37 @@ X = allcomb(rho_lims_cell{:});
 % quadratic Lyapunov function $V(x) = x^T P x$ for any admissible parameter
 % value.
 
-M = sdpvar(n,p,'full');
-P = sdpvar(n);
+% ...
 
-CONS = [ P - 0.001*eye(n) >= 0 ];
-for i = 1:size(X,1)
-    rhoi = X(i,:)';
-    Ai = A_fh(rhoi);
-    
-    CONS = [ CONS 
-        Ai'*P + P*Ai - M*C - C'*M' + 0.001*eye(n) <= 0
-        ];
-end
+CONS = [ ];
+
+% ...
 
 sdpopts = sdpsettings('solver', 'sedumi');
 sol = optimize(CONS,[],sdpopts)
 
-P = double(P);
-M = double(M);
-L = P\M;
+% L = ...
+L = [0 ; 0];
 
 %%
 % Check solution
 
+minden_OK = 1;
 for i = 1:size(X,1)
     rhoi = X(i,:)';
     Ai = A_fh(rhoi);
-        
-    eig(Ai - L*C)
+
+    if any(eig(Ai - L*C) >= 0)
+        fprintf '\n\n\nNOT A STABLE OBSERVER!!!!!!!!!!\n\n'
+        minden_OK = 0;
+        break
+    else
+        fprintf 'OK, '
+    end
+end
+
+if minden_OK
+    fprintf 'Minden OK\n'
 end
 
 %% Estimate L2 norm
@@ -111,77 +114,12 @@ end
 
 K = [5 5];
 
-P = sdpvar(n);
-gammaSqr = sdpvar;
-
-CONS = [ P - 0.001*eye(n) >= 0, gammaSqr >= 0 ];
-for i = 1:size(X,1)
-    rhoi = X(i,:)';
-    Ai = A_fh(rhoi);
-    Bi = B_fh(rhoi); 
-
-    Ak = Ai - Bi*K;
-    eig(Ak)
-    
-    Lambda = [
-        Ak'*P + P*Ak + C'*C , P * Bi
-        Bi'*P               , -eye(m)*gammaSqr
-        ];
-        
-    CONS = [ CONS 
-        Lambda <= 0
-        ];
-end
-
-sdpopts = sdpsettings('solver', 'sedumi');
-sol = optimize(CONS,gammaSqr,sdpopts)
-
-% Check LMI solution
-check(CONS)
-
-gammaSqr = double(gammaSqr);
-
-gamma = sqrt(gammaSqr)
-
-
 %% Minimize L2 norm
 % Compute the optimal feedback gain $K$, \mbox{$u = -K x + v$} (where $v$
 % is a disturbance input), that stabilizes the system and gives a minimal
 % L2 gain from the disturbance $v$ to the output $y$.
 
-N = sdpvar(m,n, 'full');
-Q = sdpvar(n);
-gammaSqr = sdpvar;
-
-CONS = [ Q - 0.001*eye(n) >= 0, gammaSqr >= 0 ];
-for i = 1:size(X,1)
-    rhoi = X(i,:)';
-    Ai = A_fh(rhoi);
-    Bi = B_fh(rhoi); 
-    
-    Lambda = [
-        Q*Ai' + Ai*Q - Bi*N - N'*Bi' , Bi               , Q*C'
-        Bi'                          , -eye(m)*gammaSqr , zeros(m,p)
-        C*Q                          , zeros(p,m)       , -eye(p)
-        ];
-        
-    CONS = [ CONS 
-        Lambda <= 0
-        ];
-end
-
-sdpopts = sdpsettings('solver', 'sedumi');
-sol = optimize(CONS,gammaSqr,sdpopts)
-check(CONS)
-
-Q = double(Q);
-N = double(N);
-P = inv(Q);
-K = N/Q;
-
-gammaSqr = double(gammaSqr);
-
-gamma = sqrt(gammaSqr)
+% K = ...
 
 %% Check optimal L2 with simulation
 
