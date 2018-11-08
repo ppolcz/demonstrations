@@ -1,1 +1,0 @@
-meld "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/lib/latex/polcz/polcz.sty" "$(dirname $0)/polcz.sty"
