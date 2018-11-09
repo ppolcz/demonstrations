@@ -10,7 +10,7 @@ function [ret] = pcz_feasible_Finsler(P, L, N, x_lim, varargin)
 
 %%
 
-opts.title = 'Finsler''s lemma check: P + L N + N'' L'' >= 0';
+opts.title = 'Finsler''s lemma check';
 opts.postol = 1e-6;
 opts.tolerance = 1e-10;
 opts = parsepropval(opts, varargin{:});
@@ -46,7 +46,8 @@ P = value(P);
 L = value(L);
 
 Mode_str = { 'vertices are given' 'rectangular region: limits are given' };
-pcz_info('Mode: %s, tolerance: %g, positive tolerance: %g.', Mode_str{Mode_xlim+1}, opts.tolerance, opts.postol);
+pcz_info('Mode: %s, nr. of corners: %d', Mode_str{Mode_xlim+1}, X_Nr);
+pcz_info('Tolerance: %g, positive tolerance: %g.', opts.tolerance, opts.postol)
 pcz_info('LMI size: (%dx%d), annihilator rows: %d. ', size(P), size(L,2));
 % pcz_dispFunction2('X_v = %s', pcz_num2str(X_v));
 % pcz_dispFunction ''

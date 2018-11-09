@@ -15,7 +15,8 @@ opts = parsepropval(opts, varargin{:});
 
 %%
 
-pcz_info(sol.problem == 0, '%s. Solver time: %g', sol.info, sol.solvertime);
+pcz_info(sol.problem == 0, '%s. Solver time: <strong>%g</strong>', ...
+    sol.info, sol.solvertime);
 
 [Prim,Dual] = check(CONS);
 

@@ -31,7 +31,11 @@ end
 %     fprintf('│   ')
 % end
 
-msg = sprintf(varargin{:});
+if nargin > 1 && ~ischar(varargin{1})
+    msg = sprintf(varargin{2:end});
+else
+    msg = sprintf(varargin{:});
+end
 
 % if numel(ST) > I    
 %     if ~isempty(msg)
@@ -53,7 +57,9 @@ if depth >= 1
 end
 
 if ~isempty(msg)
-    disp([ prefix '- ' msg])
+    fprintf([ prefix '- '])
+    fprintf(varargin{:})
+    fprintf('\n')
 else
     disp([ prefix ' '])
 end

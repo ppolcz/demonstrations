@@ -58,7 +58,9 @@ else
 end    
 
 if ~(nargin < 1 || isempty(subtitle))
-    name = [name ' - ' subtitle];
+    title = [' - [\b<strong>' subtitle '</strong>]\b'];
+else
+    title = '';
 end
 
 if nargin < 2
@@ -84,7 +86,8 @@ if depth_method == 1
     end
     
     if numel(ST) > I
-        disp(['┌ ' name msg_text])
+        fprintf('%s', ['┌ ' name ])
+        fprintf([ title '%s\n' ], msg_text)
     end
     
     start_time = tic;
@@ -101,7 +104,8 @@ else
     end
     
     if numel(ST) > I
-        disp(['┌ ' name msg_text])
+        fprintf('%s', ['┌ ' name ])
+        fprintf([ title '%s\n' ], msg_text)
     end
     
     start_time = tic;

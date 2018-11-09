@@ -39,7 +39,9 @@ if islogical(bool)
 elseif ischar(bool)
     fprintf('[  ');
     % fprintf('<a href="">INFO</a> ')
-    cprintf('*blue', 'INFO ');
+    % fprintf('<strong>INFO</strong> ')
+    fprintf('[\bINFO]\b ')
+    % cprintf('*blue', 'INFO ');
     fprintf(' ] ');
     fprintf(bool, varargin{:});
 end
