@@ -1,4 +1,4 @@
-function [I_sigma] = pcz_permat(sigma)
+function [I_sigma] = pcz_permat(sigma, sigma_good)
 % I_sigma = pcz_permat(sigma)
 % 
 % Returns a permutation matrix I_sigma.
@@ -16,9 +16,17 @@ function [I_sigma] = pcz_permat(sigma)
 
 %%
 
-n = numel(sigma);
+N = numel(sigma);
 
-I_sigma = eye(n);
+
+I_sigma = eye(N);
+if nargin >= 2
+    I_sigma = I_sigma(sigma_good,:);    
+end
+
+
 I_sigma = I_sigma(:,sigma);
 
+
+    
 end
