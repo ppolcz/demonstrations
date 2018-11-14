@@ -121,3 +121,26 @@ for i = 1:1000
     
     pcz_posdef_report(L'*P*L, 10, 1, 'Eigenvalues: %s, ', pcz_num2str(eig(L'*P*L), 'format', '%7.1f'));
 end
+
+%% 4. kérdés
+% ( X I ; I Y ) > 0, mit garantál
+% V
+
+n = 2;
+
+X = sdpvar(n);
+Y = sdpvar(n);
+
+I = eye(n);
+
+LMI = [
+    X I 
+    I Y
+    ];
+
+CONS = LMI >= 0;
+
+sol = optimize(CONS)
+
+X = double(X)
+Y = double(Y)
