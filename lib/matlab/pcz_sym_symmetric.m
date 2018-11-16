@@ -28,3 +28,11 @@ P(U == 1) = p;
 P = P + triu(P,1).';
 
 end
+
+function self_check
+%%
+% TODO: erre nem mukodik
+
+P = pcz_sym_symmetric('p',4,0)
+
+end
