@@ -144,3 +144,29 @@ sol = optimize(CONS)
 
 X = double(X)
 Y = double(Y)
+
+%% 5. kérdés
+% M = [ A B ; B' e*C ]
+% A, C kicsi, B nagy értékűek.
+% Létezik-e mindig olyan e nagy szám, hogy mégis pozitív definit legyen.
+
+n = 5;
+m = 5;
+
+P = randn(n); P = P*P';
+R = 2000*randn(n,m);
+Q = sdpvar(m);
+
+M = [ P R ; R' Q ];
+
+CONS = M + 0.00001 * eye(n+m) >= 0;
+
+optimize(CONS)
+
+Q = value(Q);
+M = value(M)
+
+eig(M)+
+
+
+
