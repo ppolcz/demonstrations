@@ -64,9 +64,13 @@ for i = 1:nr
         o.var = round(o.var,o.round);
     end
 
-    str = pcz_num2str_fixed(o.var,o.format, o.del1, o.del2, o.pref, ...
-        [label o.beginning], o.ending);
-
+    if isempty(o.var)
+        str = '[]';
+    else
+        str = pcz_num2str_fixed(o.var,o.format, o.del1, o.del2, o.pref, ...
+            [label o.beginning], o.ending);
+    end
+        
     if nargout > 0
         ret{i} = str;
     else

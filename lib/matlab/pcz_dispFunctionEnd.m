@@ -48,4 +48,6 @@ else
     
 end
 
+evalin('caller', [ 'clear ' inputname(1) ]);
+
 end

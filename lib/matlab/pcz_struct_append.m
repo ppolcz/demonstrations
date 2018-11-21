@@ -21,7 +21,7 @@ props.rewrite = false;
 % This is for the case when we want to append a single, not certainly
 % anonime variable
 if      ... the third argument is a property name
-        isempty(inputname(3)) && ischar(varargin{3}) ... 
+        nargin > 2 && isempty(inputname(3)) && ischar(varargin{3}) ... 
         ... the number of arguments is odd (str, var, 'name','x','prop','value',...)
         && mod(nargin,2) == 0 && nargin >= 4
     

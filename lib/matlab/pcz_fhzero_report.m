@@ -61,6 +61,11 @@ if nargout > 0
     r_perc = perc;
 end
 
+if p == 0
+    perc = 0;
+    maxdiff = 0;
+end
+
 if nargout == 0
     bool = perc == 0 && maxdiff < 10^(-prec);
     
@@ -75,6 +80,10 @@ if nargout == 0
     end
     
     pcz_info_report(bool, varargin{:}, {'first', first+1})
+    
+    if p == 0
+        pcz_dispFunction('Variable is empty');
+    end
     
     if ~bool
         pcz_dispFunction('Maximal difference: %g', maxdiff)
