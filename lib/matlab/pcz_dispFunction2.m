@@ -50,6 +50,7 @@ if depth >= 1
 end
 
 if ~isempty(msg)
+    msg = strrep(msg,newline,[ newline prefix ]);
     disp([ prefix '' msg])
 else
     disp([ prefix ' '])

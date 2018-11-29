@@ -57,9 +57,9 @@ if depth >= 1
 end
 
 if ~isempty(msg)
+    msg = strrep(msg,newline,[ newline prefix ]);
     fprintf([ prefix '- '])
-    fprintf(varargin{:})
-    fprintf('\n')
+    disp(msg)
 else
     disp([ prefix ' '])
 end
