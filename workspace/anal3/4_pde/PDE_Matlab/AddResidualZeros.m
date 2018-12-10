@@ -1,1 +1,0 @@
-function ResidualZeros=AddResidualZeros(InMat)%18.086 Final Project%By Joseph Kovac%Revised and submitted for OCW 9/12/05EdgeLength=sqrt(prod(size(InMat)));OutMat=0*speye(EdgeLength+2);OutMat(2:EdgeLength+1,2:EdgeLength+1)=InMatResidualZeros=OutMat;
