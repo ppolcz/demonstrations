@@ -166,7 +166,48 @@ optimize(CONS)
 Q = value(Q);
 M = value(M)
 
-eig(M)+
+eig(M)
+
+%% 5. Optimize Frobenius norm
+% https://math.stackexchange.com/questions/2184430/minimization-of-frobenius-norm-and-schur-complement?answertab=votes
+
+n = 5;
+k = 3;
+
+A = randn(n);
+B = randn(n,k);
+P = sdpvar(k);
+
+M = A + B*P*B';
 
 
+CONS = [ P >= 0 ];
 
+obj = trace(M*M');
+
+optimize(CONS,obj)
+
+P_val1 = double(P)
+obj_val1 = double(obj)
+
+
+%%% MASKEPP
+
+P = sdpvar(k);
+X = sdpvar(n);
+
+M = A + B*P*B';
+
+Lambda = [
+    eye(n)  M
+    M'      X
+    ];
+
+CONS = [ Lambda >= 0 , P >= 0 ];
+obj = trace(X);
+
+optimize(CONS, obj)
+
+
+P_val2 = double(P)
+obj_val2 = double(obj)
