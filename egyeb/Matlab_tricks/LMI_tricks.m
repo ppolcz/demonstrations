@@ -150,64 +150,142 @@ Y = double(Y)
 % A, C kicsi, B nagy értékűek.
 % Létezik-e mindig olyan e nagy szám, hogy mégis pozitív definit legyen.
 
-n = 5;
-m = 5;
+n = 66;
+m = 66;
 
 P = randn(n); P = P*P';
-R = 2000*randn(n,m);
+P = eye(n);
+R = 2000*randn(n,m/3)*randn(m/3,m);
 Q = sdpvar(m);
 
-M = [ P R ; R' Q ];
+M = [ Pe R ; R' Q ];
 
 CONS = M + 0.00001 * eye(n+m) >= 0;
 
 optimize(CONS)
 
 Q = value(Q);
-M = value(M)
+M = value(M);
 
-eig(M)
+eig(M)';
 
 %% 5. Optimize Frobenius norm
 % https://math.stackexchange.com/questions/2184430/minimization-of-frobenius-norm-and-schur-complement?answertab=votes
+% https://math.stackexchange.com/questions/252819/why-is-frobenius-norm-of-a-matrix-greater-than-or-equal-to-the-2-norm
 
-n = 5;
-k = 3;
+m = 5;
+n = 3;
 
-A = randn(n);
-B = randn(n,k);
-P = sdpvar(k);
+Sigma_F = randn(m);
+A = randn(m,n);
+Sigma_P = sdpvar(n);
 
-M = A + B*P*B';
+M = Sigma_F + A*Sigma_P*A';
 
 
-CONS = [ P >= 0 ];
+CONS = [ Sigma_P >= 0 ];
 
 obj = trace(M*M');
 
 optimize(CONS,obj)
 
-P_val1 = double(P)
+P_val1 = double(Sigma_P)
 obj_val1 = double(obj)
 
 
 %%% MASKEPP
 
-P = sdpvar(k);
-X = sdpvar(n);
+Sigma_P = sdpvar(n);
+X = sdpvar(m);
 
-M = A + B*P*B';
+M = Sigma_F + A*Sigma_P*A';
 
 Lambda = [
-    eye(n)  M
+    eye(m)  M
     M'      X
     ];
 
-CONS = [ Lambda >= 0 , P >= 0 ];
+CONS = [ Lambda >= 0 , Sigma_P >= 0 ];
 obj = trace(X);
 
 optimize(CONS, obj)
 
 
-P_val2 = double(P)
+Sigma_P_val2 = double(Sigma_P)
 obj_val2 = double(obj)
+
+
+%% Numerikusan instabil
+
+m = 3;
+n = 2;
+k = 1;
+
+Sigma_P = sdpvar(n);
+X = sdpvar(m);
+
+Sigma_F = 1e3*randn(m,k);
+Sigma_F = Sigma_F*Sigma_F';
+
+A = randn(m,n);
+
+M = Sigma_F + A*Sigma_P*A';
+
+Lambda = [
+    eye(m)  M
+    M'      X
+    ];
+
+CONS = [ Lambda >= 0 , Sigma_P - eye(n) >= 0 ];
+obj = trace(X);
+
+optimize(CONS, obj)
+
+
+Sigma_P_val2 = double(Sigma_P)
+obj_val2 = double(obj)
+
+
+%% Numerikusan instabil
+
+m = 1;
+n = 1;
+k = 1;
+
+Sigma_P = sdpvar(n);
+X = sdpvar(m);
+
+L = sdpvar(1);
+
+Sigma_F = 1e4*randn(m,k);
+Sigma_F = Sigma_F*Sigma_F';
+
+A = randn(m,n);
+
+Sigma_P = randn(n);
+Sigma_P = Sigma_P * Sigma_P';
+
+
+M = Sigma_F + A*Sigma_P*A';
+
+Lambda = [
+    L*eye(m)  M
+    M'      X
+    ];
+
+CONS = [ Lambda >= 0 ];
+obj = trace(X) + L;
+
+optimize(CONS, obj)
+
+
+Sigma_P_val2 = double(Sigma_P)
+obj_val2 = double(obj)
+val_L = double(L)
+
+trace(double(X)) * val_L
+%    2.3322e+16
+
+trace(M*M')
+%    2.3322e+16
+
