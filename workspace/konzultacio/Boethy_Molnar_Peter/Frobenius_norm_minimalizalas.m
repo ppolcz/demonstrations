@@ -164,10 +164,10 @@ Lambda = [
     M_skalazott'  X
     ];
 
-CONS = [ Lambda >= 0 , Sigma_P - 0.000001*eye(n) >= 0 ];
+CONS = [ Lambda >= 0 , Sigma_P >= 0 ];
 obj = trace(X);
 
-optimize(CONS,obj,sdpsettings('solver','sedumi'))
+optimize(CONS,obj,sdpsettings('solver','mosek'))
 
 Sigma_P_val = double(Sigma_P)
 obj_val = double(obj)
@@ -176,3 +176,16 @@ X_val = double(X);
 
 Norm_1 = sqrt(trace(X_val))/Szorzo
 Norm_2 = sqrt(trace(M_val*M_val'))
+
+% Ez jott ki:
+%   3.9853e+04
+
+%% Mit kapok random Sigma_P-re
+
+Sigma_P = 0.000001*randn(n);
+Sigma_P = Sigma_P * Sigma_P';
+
+M = Sigma_F + A * Sigma_P * A';
+
+sqrt(trace(M*M'))
+
