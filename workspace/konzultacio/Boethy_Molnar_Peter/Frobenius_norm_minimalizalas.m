@@ -142,26 +142,37 @@ diffsov = diffsov.';
 
 n = 18;
 
-Sigma_P = sdpvar(n,n);
+% Ez okozza a numerikus problemakat
 Sigma_F = covarsov;
 
 m = size(Sigma_F,1);
 
+Sigma_P = sdpvar(n,n);
+X = sdpvar(m);
+
+% Ezzel a szorzoval probalom meg javitani
+Szorzo = 1/max(Sigma_F(:));
+
 A = diffsov;
 M = Sigma_F + A * Sigma_P * A';
+M_skalazott = M * Szorzo;
 
 X = sdpvar(m);
 
 Lambda = [
-    eye(m)  M
-    M'      X
+    eye(m)        M_skalazott
+    M_skalazott'  X
     ];
 
 CONS = [ Lambda >= 0 , Sigma_P - 0.000001*eye(n) >= 0 ];
 obj = trace(X);
 
-optimize(CONS,[] ,sdpsettings('solver','mosek'))
+optimize(CONS,obj,sdpsettings('solver','sedumi'))
 
 Sigma_P_val = double(Sigma_P)
 obj_val = double(obj)
+M_val = double(M);
+X_val = double(X);
 
+Norm_1 = sqrt(trace(X_val))/Szorzo
+Norm_2 = sqrt(trace(M_val*M_val'))
