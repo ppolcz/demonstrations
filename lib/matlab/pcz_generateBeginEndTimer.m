@@ -14,7 +14,7 @@ function varargout = pcz_generateBeginEndTimer
 
 var = ['TMP_' pcz_generateString(20, 0) ];
 beginning = sprintf('%s = pcz_dispFunctionName;\n', var);
-ending = sprintf('\n%%%%\n\npcz_dispFunctionEnd(%s);\nclear TMP_*\n\n', var);
+ending = sprintf('\npcz_dispFunctionEnd(%s);\nclear TMP_*\n', var);
 
 %%
 if nargout == 1
