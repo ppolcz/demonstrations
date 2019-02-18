@@ -9,7 +9,7 @@ function [ret] = pcz_num2str_multiline(varargin)
 %%
 
 first_property = 1;
-while first_property < nargin && isnumeric(varargin{first_property})
+while first_property <= nargin && isnumeric(varargin{first_property})
     first_property = first_property+1;
 end
 
