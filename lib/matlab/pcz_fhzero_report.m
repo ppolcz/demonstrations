@@ -23,6 +23,21 @@ if nargin < 3 || isempty(prec) || ischar(prec)
     prec = 10;
 end
 
+if prec < 1
+    tol = prec;
+else
+    tol = 10^(-prec);
+end
+
+title = '';
+if ~isempty(varargin)
+    title = sprintf(varargin{:});
+end
+
+TMP_ZNEWEagSzRkCGbFsczkg =  pcz_dispFunctionName(title,'',struct('parent',1));
+
+pcz_info('Tolerance: %g.', tol)
+
 s = numel(w);
 
 w_dummy = zeros(s,1);
@@ -35,7 +50,7 @@ for i=1:N
     ZERO(:,i) = reshape(z_fh(rand(numel(w),1)), [p,1]);
 end
 
-greater = sum(abs(ZERO) > 10^(-prec),2);
+greater = sum(abs(ZERO) > tol,2);
 indices = find(greater);
 perc = numel(indices) / p;
 maxdiff = max(abs(ZERO(:)));
@@ -67,28 +82,19 @@ if p == 0
 end
 
 if nargout == 0
-    bool = perc == 0 && maxdiff < 10^(-prec);
+    bool = perc == 0 && maxdiff < tol;
     
-    if bool && maxdiff > 0
-        if ~isempty(varargin)
-            varargin{1} = [ varargin{1} ' Maximal difference: %g' ];
-        else
-            varargin{1} = 'Maximal difference: %g';
-        end
-        
-        varargin = [ varargin maxdiff ];
-    end
+    pcz_dispFunction('Maximal difference: %g', maxdiff)
+    pcz_dispFunctionSeparator
     
-    pcz_info_report(bool, varargin{:}, {'first', first+1})
+    pcz_info(bool, varargin{:}, {'first', first+1})
     
     if p == 0
         pcz_dispFunction('Variable is empty');
     end
     
     if ~bool
-        pcz_dispFunction('Maximal difference: %g', maxdiff)
         pcz_dispFunction('Equality percentage: %g%%', (1-perc)*100)
-        pcz_dispFunction('Precision: %g', 10^(-prec))
 
         if ~isempty(indices)
             pcz_dispFunction('Indices, where not equal: %s / %d', pcz_num2str(indices(:)', 'format', '%d'), p);
@@ -99,5 +105,7 @@ if nargout == 0
         % pcz_dispFunctionNeedNewLine
     end
 end
+
+pcz_dispFunctionEnd(TMP_ZNEWEagSzRkCGbFsczkg);
 
 end

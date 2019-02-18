@@ -1,4 +1,4 @@
-function start_time = pcz_dispFunctionName(subtitle, msg, depth_method)
+function start_time = pcz_dispFunctionName(subtitle, msg, opts_)
 %%
 %
 %  file:   pcz_dispFunctionName.m
@@ -7,6 +7,15 @@ function start_time = pcz_dispFunctionName(subtitle, msg, depth_method)
 %  Created on Tue Jan 05 10:26:32 CET 2016
 %  Modified on 2018. March 30.
 %
+
+if nargin > 2 && isstruct(opts_)
+    opts_ = pcz_struct2nvpair(opts_);
+else
+    opts_ = {};
+end
+
+opts.parent = 0;
+opts = parsepropval(opts,opts_{:});
 
 %% 
 
@@ -48,68 +57,45 @@ if pversion >= 2016 && contains(name,'LiveEditor') && ~isempty(active)
 end
 
 if nargin > 0 && ~isempty(subtitle)
-    name = pcz_dispHRefOpenToLine(name,line);
+    if opts.parent && ~isempty(caller) && ~isempty(caller.name)
+        name = [ pcz_dispHRefOpenToLine(caller.name, caller.line) ' (' pcz_dispHRefOpenToLine(name) ')' ];
+    else
+        name = pcz_dispHRefOpenToLine(name,line);
+    end
+    title = [' - [\b<strong>' subtitle '</strong>]\b'];
 else
     if ~isempty(caller) && ~isempty(caller.name)
         name = [ pcz_dispHRefEditFile(name) ' called from ' pcz_dispHRefOpenToLine(caller.name, caller.line) ];
     else
         name =  pcz_dispHRefEditFile(name);
     end
-end    
-
-if ~(nargin < 1 || isempty(subtitle))
-    title = [' - [\b<strong>' subtitle '</strong>]\b'];
-else
     title = '';
-end
+end    
 
 if nargin < 2
     msg = '';
 end
 
-if nargin < 3
-    depth_method = 1;
+
+
+SCOPE_DEPTH = SCOPE_DEPTH + 1;
+depth = SCOPE_DEPTH;
+
+for i = 2:depth
+    fprintf('│   ')
 end
 
-if depth_method == 1
-    
-    SCOPE_DEPTH = SCOPE_DEPTH + 1;
-    depth = SCOPE_DEPTH;
-    
-    for i = 2:depth
-        fprintf('│   ')
-    end
-    
-    msg_text = '';
-    if ~isempty(msg)
-        msg_text = [' [msg:' msg ']'];
-    end
-    
-    if numel(ST) > I
-        fprintf('%s', ['┌ ' name ])
-        fprintf([ title '%s\n' ], msg_text)
-    end
-    
-    start_time = tic;
-    
-else
-    
-    for i = I+2:numel(ST)
-        fprintf('│   ')
-    end
-    
-    msg_text = '';
-    if ~isempty(msg)
-        msg_text = [' [msg:' msg ']'];
-    end
-    
-    if numel(ST) > I
-        fprintf('%s', ['┌ ' name ])
-        fprintf([ title '%s\n' ], msg_text)
-    end
-    
-    start_time = tic;
-    
+msg_text = '';
+if ~isempty(msg)
+    msg_text = [' [msg:' msg ']'];
 end
+
+if numel(ST) > I
+    fprintf('%s', ['┌ ' name ])
+    fprintf([ title '%s\n' ], msg_text)
+end
+
+start_time = tic;
+
 
 end

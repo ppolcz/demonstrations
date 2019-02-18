@@ -16,7 +16,7 @@ opts.tolerance = 1e-10;
 opts.RandomPoints = 0;
 opts = parsepropval(opts, varargin{:});
 
-TMP_PwVjnhhTEChSGsAudmgj = pcz_dispFunctionName(opts.title);
+TMP_PwVjnhhTEChSGsAudmgj = pcz_dispFunctionName(opts.title,'',struct('parent',1));
 
 %%
 

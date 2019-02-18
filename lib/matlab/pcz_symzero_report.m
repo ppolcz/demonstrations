@@ -8,8 +8,6 @@ function [r_indices,r_maxdiff,r_perc] = pcz_symzero_report(z, prec, N, varargin)
 %
 %%
 
-% TMP_ZNEWEagSzRkCGbFsczkg = pcz_dispFunctionName;
-
 if nargin < 3 || isempty(N) || ischar(N)
     if nargin >= 3 && ischar(N)
         varargin = [N varargin];
@@ -24,11 +22,22 @@ if nargin < 2 || isempty(prec) || ischar(prec)
     prec = 10;
 end
 
+if prec < 1
+    tol = prec;
+else
+    tol = 10^(-prec);
+end
+
+title = '';
+if ~isempty(varargin)
+    title = sprintf(varargin{:});
+end
+
 s = symvar(sym(z));
 
 if isempty(s)
     ZERO = double(z);
-    indices = find(abs(ZERO(:)) > 10^(-prec));
+    indices = find(abs(ZERO(:)) > tol);
     perc = numel(indices) / numel(ZERO);
     maxdiff = max(abs(ZERO(:)));
     alldiff = abs(ZERO(:));
@@ -39,7 +48,7 @@ else
         ZERO(:,i) = z_fh(rand(numel(s),1));
     end
     
-    greater = sum(abs(ZERO) > 10^(-prec),2);
+    greater = sum(abs(ZERO) > tol,2);
     indices = find(greater);
     perc = numel(indices) / numel(z);
     maxdiff = max(abs(ZERO(:)));
@@ -74,36 +83,29 @@ if nargout > 0
 end
 
 if nargout == 0
-    bool = perc == 0 && maxdiff < 10^(-prec);
+    TMP_ZNEWEagSzRkCGbFsczkg =  pcz_dispFunctionName(title,'',struct('parent',1));
+    pcz_info('Tolerance: %g.', tol)
+
+    bool = perc == 0 && maxdiff < tol;
+    pcz_info('Maximal difference: %g', maxdiff);
     
-    if bool && maxdiff > 0
-        if ~isempty(varargin)
-            varargin{1} = [ varargin{1} ' Maximal difference: %g' ];
-        else
-            varargin{1} = 'Maximal difference: %g';
-        end
+    pcz_dispFunctionSeparator
+    pcz_info(bool, varargin{:}, {'first', first+1})
         
-        varargin = [ varargin maxdiff ];
-    end
-    
-    pcz_info_report(bool, varargin{:}, {'first', first+1})
-    
     if ~bool
-        pcz_dispFunction('Maximal difference: %g', maxdiff)
         pcz_dispFunction('Equality percentage: %g%%', (1-perc)*100)
-        pcz_dispFunction('Precision: %g', 10^(-prec))
 
         if ~isempty(indices)
             pcz_dispFunction('Indices, where not equal: %s / %d', pcz_num2str(indices(:)','format', '%d'), numel(z));
             pcz_dispFunction('nr of elements where not zero/all: %d/%d', numel(indices), numel(z));
-            pcz_dispFunction('differences: %s', pcz_num2str(alldiff(indices)))
+            pcz_dispFunction('differences: %s', pcz_num2str(alldiff(indices), 'format', '%g'))
         end
 
         % pcz_dispFunctionStackTrace
         % pcz_dispFunctionNeedNewLine
     end
+    
+    pcz_dispFunctionEnd(TMP_ZNEWEagSzRkCGbFsczkg);
 end
 %%
-
-% pcz_dispFunctionEnd(TMP_ZNEWEagSzRkCGbFsczkg);
 

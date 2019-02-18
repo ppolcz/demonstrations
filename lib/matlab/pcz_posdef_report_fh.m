@@ -21,7 +21,7 @@ else
     opts.RandomPoints = 0;
     opts = parsepropval(opts, varargin{:});
 
-    TMP_ZSOAjugbWppryHbRDSsx = pcz_dispFunctionName(opts.title);
+    TMP_ZSOAjugbWppryHbRDSsx = pcz_dispFunctionName(opts.title,'',struct('parent',1));
     CALLED_FROM_OTHER_REPORT = 0;
 
 end
