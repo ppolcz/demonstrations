@@ -19,6 +19,7 @@ else
     opts.postol = 1e-6;
     opts.tolerance = 1e-10;
     opts.RandomPoints = 0;
+    opts.VectorArg = 1;
     opts = parsepropval(opts, varargin{:});
 
     TMP_ZSOAjugbWppryHbRDSsx = pcz_dispFunctionName(opts.title,'',struct('parent',1));
@@ -43,7 +44,13 @@ PR_v = [
     RAND_v
     ];
 
-zero_value = fh(zeros(np,1));
+if opts.VectorArg
+    zero_value = fh(zeros(np,1));
+else
+    zeros_cell = num2cell(zeros(np,1));
+    zero_value = fh(zeros_cell{:});
+end
+    
 
 pcz_info('Mode: %s, nr. of corners: %d, nr. of random points: %d', Mode_str, P_Nr, N);
 pcz_info('Tolerance: %g, positive tolerance: %g.', opts.tolerance, opts.postol)
@@ -58,7 +65,14 @@ percentage = zeros(P_Nr+N,1);
 iszero = zeros(P_Nr+N,1);
 
 for i = 1:P_Nr+N
-    [eigvals,min_eig(i),percentage(i)] = pcz_posdef_report(fh(PR_v(i,:)'), opts.tolerance);
+    if opts.VectorArg
+        matrix = fh(PR_v(i,:)');
+    else
+        values_cell = num2cell(PR_v(i,:)');
+        matrix = fh(values_cell{:});
+    end
+    
+    [eigvals,min_eig(i),percentage(i)] = pcz_posdef_report(matrix, opts.tolerance);
     feasible(i) = min_eig(i) > -opts.tolerance;
     max_eig(i) = max(abs(eigvals));
 

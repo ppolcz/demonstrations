@@ -14,6 +14,7 @@ opts.title = 'PDLMI check';
 opts.postol = 1e-6;
 opts.tolerance = 1e-10;
 opts.RandomPoints = 0;
+opts.VectorArg = 1;
 opts = parsepropval(opts, varargin{:});
 
 TMP_PwVjnhhTEChSGsAudmgj = pcz_dispFunctionName(opts.title,'',struct('parent',1));
