@@ -85,9 +85,9 @@ bool = all(feasible) && ~any(iszero);
 
 for i = 1:P_Nr+N
     if min_eig(i) < 0 && feasible(i)
-        pcz_warning(false, 'Least eigv: %10.5f, in %s (%s)', min_eig(i), CorP(i), pcz_num2str(PR_v(i,:)','format', '%g'));
+        pcz_warning(false, 'Least eigv: %10.5d, in %s (%s)', min_eig(i), CorP(i), pcz_num2str(PR_v(i,:)','format', '%g'));
     elseif ~feasible(i)
-        pcz_info(false, 'Least eigv: %10.5f, in %s (%s)', min_eig(i), CorP(i), pcz_num2str(PR_v(i,:)','format', '%g'));
+        pcz_info(false, 'Least eigv: %10.5d, in %s (%s)', min_eig(i), CorP(i), pcz_num2str(PR_v(i,:)','format', '%g'));
     end
 
     if iszero(i)
