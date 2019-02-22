@@ -46,7 +46,7 @@ for i = 2:N
 end
 
 dp = diff(p,[],2);
-dp = [dp dp(:,end)];
+dp = [zeros(dim,1) dp];
 dp = dp ./ (ones(dim,1)*dt);
 
 t = t(:)';
