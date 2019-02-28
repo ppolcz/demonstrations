@@ -12,6 +12,8 @@ function [ret] = pcz_2basews(varargin)
 
 if nargin == 0
     vars = evalin('caller', 'who');
+    vars = vars(~strncmp(vars,'persist',7));
+
     n = numel(vars);
 else
     vars = varargin;

@@ -61,7 +61,7 @@ end
 minlen = numel(tnew);
 p_cell = cell(1,dim);
 for d = 1:dim
-    w = hamming(opts.wsize(d))
+    w = hamming(opts.wsize(d));
     w = w / sum(w);
     
     p_cell{d} = conv(p(:,d),w,'valid');
