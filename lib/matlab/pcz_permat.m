@@ -18,12 +18,10 @@ function [I_sigma] = pcz_permat(sigma, sigma_good)
 
 N = numel(sigma);
 
-
 I_sigma = eye(N);
 if nargin >= 2
     I_sigma = I_sigma(sigma_good,:);    
 end
-
 
 I_sigma = I_sigma(:,sigma);
 
