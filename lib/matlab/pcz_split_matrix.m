@@ -31,7 +31,7 @@ end
 
     % [3 2 Inf 4] es size(M) = [20,30] --> [3 2 *11* 4]
     sizes_i(inf_i) = ( size(M,1) - sum(sizes_i(~inf_i)) ) / sum(inf_i);
-    sizes_j(inf_j) = ( size(M,1) - sum(sizes_j(~inf_j)) ) / sum(inf_j);
+    sizes_j(inf_j) = ( size(M,2) - sum(sizes_j(~inf_j)) ) / sum(inf_j);
 
 % [1:END]
 
@@ -100,4 +100,3 @@ function test1
     pcz_OK_FAILED(A == 1 && B == 2 && C == 3 && D == 4, 'simple test, multiple Inf\n')
     
 end
-
