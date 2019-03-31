@@ -14,8 +14,8 @@ opts = parsepropval(opts,varargin{:});
 
 %%
 
-warning 'pcz_split_matrix: FIGYELEM változás történt! Régi működés: ''RowWise'', false'
-pcz_dispFunctionStackTrace('first',0,'last',0)
+% warning 'pcz_split_matrix: FIGYELEM változás történt! Régi működés: ''RowWise'', false'
+% pcz_dispFunctionStackTrace('first',0,'last',0)
 
 n = numel(sizes_i);
 m = numel(sizes_j);
