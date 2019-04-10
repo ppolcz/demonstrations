@@ -12,10 +12,10 @@ function [x,x_cell] = pcz_generateLFRStateVector(name,dim_bounds)
 
 if isscalar(dim_bounds)
     dim = dim_bounds;
-    bounds = [ ones(1,dim) -ones(1,dim) ]';
+    bounds = [ -ones(dim,1) ones(dim,1) ];
 else
     bounds = dim_bounds;
-    dim = size(bounds,2);
+    dim = size(bounds,1);
 end
 
 % % Delta interface for LFR Toolbox
@@ -45,5 +45,15 @@ end
 
 x_cell = cellfun(@(i) { lfr([name num2str(i)],'ltisr',1,bounds(i,:),'minmax') }, num2cell(1:dim));
 x = vertcat(x_cell{:});
+
+end
+
+function test1
+%%
+
+[p,p_cell] = pcz_generateLFRStateVector('x',[-1 1 ; -2 2 ; -3 3])
+
+[p,p_cell] = pcz_generateLFRStateVector('x',4)
+
 
 end
