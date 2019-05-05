@@ -1,4 +1,4 @@
-function [ret] = pcz_feasible_Finsler(P, L, N, plim, varargin)
+function [ret] = pcz_feasible_Finsler(P, L, N, x_lim, varargin)
 %% pcz_feasible_Finsler
 %  
 %  File: pcz_feasible_Finsler.m
@@ -19,26 +19,37 @@ TMP_PwVjnhhTEChSGsAudmgj = pcz_dispFunctionName(opts.title);
 
 %%
 
+Mode_xlim = 0;
+
 PisAffinMatrix = isa(P,'PAffineMatrix');
 
-[P_v,Mode_plim] = P_limvert_to_vert(plim,numel(PDLMI.subsvars));
 
-% Mode_plim = 0;
-% 
-% if size(plim,2) == 2 && all(plim * [-1 ; 1] > 0) && numel(PDLMI.subsvars) == size(plim,1)
-%     [P_v,~,~] = P_ndnorms_of_X(plim);
-%     Mode_plim = 1;
-% else
-%     P_v = plim;
-% end
+if size(x_lim,2) == 2 && all(x_lim * [-1 ; 1] > 0) && numel(N.subsvars) == size(x_lim,1)
+    [X_v,~,~] = P_ndnorms_of_X(x_lim);
+    Mode_xlim = 1;
+else
+    X_v = x_lim;
+end
+
+if Mode_xlim
+    try
+        Mode_xlim = size(L,2) == size(N(X_v(1,:)'),1);
+    catch
+        Mode_xlim = 0;
+    end
+    
+    if ~Mode_xlim
+        X_v = x_lim;
+    end
+end
 
 
-X_Nr = size(P_v,1);
+X_Nr = size(X_v,1);
 P = value(P);
 L = value(L);
 
 Mode_str = { 'vertices are given' 'rectangular region: limits are given' };
-pcz_info('Mode: %s, nr. of corners: %d', Mode_str{Mode_plim+1}, X_Nr);
+pcz_info('Mode: %s, nr. of corners: %d', Mode_str{Mode_xlim+1}, X_Nr);
 pcz_info('Tolerance: %g, positive tolerance: %g.', opts.tolerance, opts.postol)
 pcz_info('LMI size: (%dx%d), annihilator rows: %d. ', size(P), size(L,2));
 % pcz_dispFunction2('X_v = %s', pcz_num2str(X_v));
@@ -67,7 +78,7 @@ if Is_a_number
 
     for i = 1:X_Nr
         
-        x_num = P_v(i,:)';
+        x_num = X_v(i,:)';
         
         if PisAffinMatrix
             P_num = P(x_num);
@@ -92,13 +103,13 @@ if Is_a_number
 
     for i = 1:X_Nr
         if min_eig(i) < 0 && feasible(i)
-            pcz_warning(false, 'Least eigv: %g, in corner %s', min_eig(i), pcz_num2str(P_v(i,:)));
+            pcz_warning(false, 'Least eigv: %g, in corner %s', min_eig(i), pcz_num2str(X_v(i,:)));
         elseif ~feasible(i)
-            pcz_info(false, 'Least eigv: %g, in corner %s', min_eig(i), pcz_num2str(P_v(i,:)));
+            pcz_info(false, 'Least eigv: %g, in corner %s', min_eig(i), pcz_num2str(X_v(i,:)));
         end
         
         if iszero(i)
-            pcz_info(false, 'P+LN+N''L'' is almost zero (max eig: %d) in corner %s', max_eig(i), pcz_num2str(P_v(i,:)));
+            pcz_info(false, 'P+LN+N''L'' is almost zero (max eig: %d) in corner %s', max_eig(i), pcz_num2str(X_v(i,:)));
         end
     end
 
