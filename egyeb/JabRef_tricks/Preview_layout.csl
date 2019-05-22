@@ -40,3 +40,21 @@
 \begin{volume}\volume\end{volume}\begin{number}(\number)\end{number}\begin{pages}, \format[FormatPagesForHTML]{\pages} \end{pages}
 <BR>
 <p></p></font>
+
+
+
+UNSRT szeru:
+
+<font face="sans-serif">
+\begin{editor}\format[Authors(FirstFirs),HTMLChars]{\editor} (\format[IfPlural(Eds.,Ed.)]{\editor}),\end{editor}
+\begin{author}\format[Authors(LastName,FirstFirs),HTMLChars]{\author}\end{author} \begin{year}(\year)\end{year}.<BR>
+\begin{title} \format[HTMLChars]{\title}\end{title}.<BR>
+\begin{chapter} \format[HTMLChars]{\chapter}<BR>\end{chapter}
+\begin{journal}\format[HTMLChars]{\journal}, \end{journal}
+\begin{booktitle}\format[HTMLChars]{\booktitle}, \end{booktitle}
+\begin{school}\format[HTMLChars]{\school}\end{school}
+\begin{institution}\format[HTMLChars]{\institution}, \end{institution}
+\begin{publisher}\format[HTMLChars]{\publisher}, \end{publisher}
+\begin{volume}\volume\end{volume}\begin{number}(\number)\end{number}\begin{pages}:\format[FormatPagesForHTML]{\pages}\end{pages}, \begin{year}\year.\end{year}
+<BR>
+<p></p></font>
