@@ -14,6 +14,19 @@ if nargin > 0 && iscell(varargin{1})
     varargin = varargin{1};
 end
 
+%% handle symbolical variables
+
+try
+    if nargin == 1 && ~isempty(symvar(varargin{1}))
+        if ~isempty(inputname(1))
+            varargin{1} = evalc([ inputname(1) ' = varargin{1}' ]);
+        else
+            varargin{1} = evalc('display(varargin{1})');
+        end
+    end
+catch e
+end
+
 %%
 
 global SCOPE_DEPTH VERBOSE
