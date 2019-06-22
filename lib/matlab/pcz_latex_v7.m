@@ -14,7 +14,7 @@ label = inputname(1);
 
 str = '';
 
-if ~isnumeric(A) && ~isempty(symvar(A))
+if ~isnumeric(A)
     str = pcz_latex_v6(A, 'disp_mode', 2, 'label', [ label ' = '], varargin{:});
     
     if size(A,2) <= 10
