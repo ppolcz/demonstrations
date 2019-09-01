@@ -169,3 +169,75 @@ M = value(M);
 
 eig(M)';
 
+%% 6. kérdés
+% {x | x' P x < 1} subset {x | |xi| < sigma^{-1} minden i=1..n-re}
+% Vagyis, ha x' P x < 1 akkor -sigma^{-1} < ek' x < sigma^{-1} minden k-ra
+% Másképp: ha x' P x < 1 akkor x' ek ek' x < sigma^{-2} minden k-ra
+% 
+% Egy megoldását ennek megtaláltam itt: [El Ghaoui and Scorletti, 1996]
+% 
+% Ők ezt javasolják (és tényleg működik!):
+
+P_generate_symvars_v10(2,0,0,0);
+
+sigma = 1;
+
+nx = 2;
+
+I = eye(nx);
+
+e = num2cell(I,1);
+
+P = sdpvar(nx);
+
+CONS = [];
+
+for k = 1:nx
+   
+    CONS = [ CONS ; 
+        [
+            sigma^(-2) e{k}'
+            e{k}       P
+            ] >= 0
+        ];
+end
+
+sol = optimize(CONS);
+
+V = x' * double(P) * x;
+
+alpha = x' * x;
+
+V_fh = matlabFunction(V, 'vars', x);
+alpha_fh = matlabFunction(alpha, 'vars', x);
+
+resolution = {
+    300
+    300
+    };
+
+x_lim = [
+    -3 3
+    -3 3
+    ];
+
+x_lim_cell = num2cell(num2cell(x_lim),2);
+
+x_lspace = cellfun(@(res,lims) {linspace(lims{:},res)}, resolution, x_lim_cell);
+
+x_mesh = cell(size(x_lspace));
+
+[x_mesh{:}] = ndgrid(x_lspace{:});
+
+V_num = V_fh(x_mesh{:});
+alpha_num = alpha_fh(x_mesh{:});
+
+fig = figure; [pC,pH] = pcontour(x_mesh{:}, V_num, [1 1]);
+pC = [pC.contour'];
+close(fig);
+
+plot(pC(:,1),pC(:,2),'LineWidth',3)
+
+Persist.latexify_axis(gca,10)
+Persist.latexified_labels(gca,16,'$x_1$','$x_2$','$V(x_1,x_2)$')
+
