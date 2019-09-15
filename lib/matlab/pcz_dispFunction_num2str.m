@@ -16,6 +16,20 @@ if ~VERBOSE
     return
 end
 
+o.format = '%8.3f';
+o.del1 = ' , ';
+o.del2 = ' ; ';
+o.del2end = '';
+o.pref = '';
+o.beginning = '[ ';
+o.ending = ' ]';
+o.round = 4;
+o.inputname = '{inputname}';
+o.label = '';
+o.name = '';
+o = parsepropval(o,varargin{:});
+
+
 % [ST,I] = dbstack;
 % 
 % for i = 2:SCOPE_DEPTH
@@ -41,15 +55,19 @@ if depth >= 1
     prefix = repmat(tab,[1 depth]);
 end
 
-label = [inputname(1) ' = '];
+if isempty(o.label) && isempty(o.name)
+    name = inputname(1);
+else
+    name = [o.label o.name ];
+end
+label = [ name ' = ' ];
 
 pref2 = repmat(' ',[1 numel(label)+1]);
 
 str = [ prefix ...
-    pcz_num2str(A, 'name', inputname(1), 'del1', ' ', 'del2', [ '\n' prefix pref2 ], ...
-    'pref', '    ', 'beg', '[', ...
-    'label', label, ... '{inputname} = ', ...
-    'end', ' ]', varargin{:}) ];
+    pcz_num2str(A, 'name', name, 'del1', ' ', 'del2', [ '\n' prefix pref2 ], ...
+    'pref', '    ', 'beg', '[', ... '{inputname} = ', ...
+    'end', ' ]', varargin{:}, 'label', label) ];
 
 if nargout > 0
     ret = str;
