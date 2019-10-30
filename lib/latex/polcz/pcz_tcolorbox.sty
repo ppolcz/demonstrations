@@ -1,0 +1,35 @@
+% TCOLORBOX [BEGIN]
+\usepackage{amsmath}
+\usepackage[breakable,skins]{tcolorbox}% http://ctan.org/pkg/tcolorbox
+\colorlet{cImportantBaseColor}{red!50!black}
+\colorlet{cImportantTitleColor}{cImportantBaseColor!10}
+\colorlet{cImportantBackColor}{cImportantBaseColor!35!yellow!10}
+\def\pczTitleHelper(#1|#2|#3|#4){{\Large\color{#1} *}\!\!\!\!\normalfont#3\hfill\raisebox{-0.2cm}{\color{#1} *}\color{#2} \textit{#4}}
+\newtcolorbox{cImportant}[2][]{
+    oversize,colframe=cImportantBaseColor!50,colback=cImportantBackColor,
+    boxrule=1pt,arc=4pt,left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,
+    fonttitle=\bfseries,coltitle=black,colbacktitle=cImportantTitleColor,
+    subtitle style={boxrule=0.4pt,colback=cImportantTitleColor},
+    lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+    title=\pczTitleHelper(cImportantTitleColor|cImportantBaseColor|#2|),#1
+}
+\colorlet{clwordsTitleBack}{blue!80!red!70}
+\newtcolorbox{clwords}[2][]{
+    oversize,colframe=clwordsTitleBack,colback=blue!10,
+    boxrule=1pt,arc=4pt,left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,
+    fonttitle=\bfseries,coltitle=white,colbacktitle=clwordsTitleBack,
+    subtitle style={boxrule=0.4pt,colback=blue!40},
+    lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},
+    title=\pczTitleHelper(clwordsTitleBack|yellow!30|\bfseries #2|),#1
+}
+\newcommand\psubtitle[1]{ \tcbsubtitle{ \pczTitleHelper(#1|) } }
+\newtcolorbox{cImportantSub}{
+    colframe=cImportantBaseColor!80,colback=cImportantBaseColor!5,boxrule=1pt,arc=4pt,
+    left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt
+}
+\newenvironment{cExample}
+    { \begin{tcolorbox}[oversize,skin=bicolor,breakable, colframe=blue!30,colback=blue!10,boxrule=1pt,arc=4pt, left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt]\begin{example} }
+    { \end{example} \end{tcolorbox} }
+\newtcbox{\TODO}[1][red]{on line,arc=7pt,colback=#1!10!white,colframe=#1!50!black,
+    before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=2pt}
+% TCOLORBOX [END]

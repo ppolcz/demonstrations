@@ -1,0 +1,89 @@
+% math-mode
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\xd}{(x,\delta)}
+\newcommand{\xdd}{(x,\delta,\dot{\delta})}
+\newcommand{\dx}{\dot{x}}
+\newcommand{\ddelta}{\dot{\delta}}
+\newcommand{\XD}{\X\times\DD}
+\newcommand{\XDD}{\X\times\DD\times\DDd}
+% \newcommand{\NpT}{\aleph^T_{\pi_b}\xd}
+% \newcommand{\CbNpibT}{\begin{bmatrix}C_b^T\xd & \NpT \end{bmatrix}}
+
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\Co}{\mathrm{Co}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\DDd}{\check{\DD}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\domx}{\mathcal{X}}
+\newcommand{\domd}{\mathcal{D}}
+\newcommand{\domDd}{\check{\mathcal{D}}}
+
+% Definitions of variables
+% \newcommand\xd{(x,\delta)}
+% \newcommand\xdd{(x,\delta,\dd)}
+%
+% \newcommand\X{\mathcal{X}}
+% \newcommand\Y{\mathcal{Y}}
+% \newcommand\DD{\mathcal{D}}
+% \newcommand\DDd{\check{\DD}}
+% \newcommand\XD{\X\times\DD}
+% \newcommand\XDD{\X\times\DD\times\DDd}
+
+\let\E\varepsilon
+
+\newcommand{\f}[1]{\text{e#1}}
+\newcommand{\e}[1]{\text{{\sc e}#1}}
+
+\newcommand{\Rnn}[2]{\R^{#1 \times #2}}
+\newcommand{\amelyre}{\ | \ }
+\newcommand{\Amelyre}{\ \big| \ }
+\newcommand{\AMelyre}{\ \Big| \ }
+
+\newcommand{\bluesym}[1]{#1}
+\newcommand{\greensym}[1]{#1}
+\newcommand{\magentasym}[1]{#1}
+\newcommand{\redsym}[1]{#1}
+\newcommand{\sdpvar}[1]{#1}
+
+\newcommand{\sdpvarLb}{\sdpvar{L_b}}
+\newcommand{\sdpvarLa}{\sdpvar{L_a}}
+\newcommand{\sdpvarLck}{\sdpvar{L_{c_k}}}
+\newcommand{\sdpvarMck}{\sdpvar{M_{c_k}}}
+\newcommand{\sdpvarLckInner}{\sdpvar{\bar{L}_{c_l}}}
+\newcommand{\sdpvarMckInner}{\sdpvar{\bar{M}_{c_l}}}
+
+\newcommand{\FkX}{\mathcal{F}^{(\X)}_k}
+\newcommand{\NrX}{\bluesym{M_{\X}}}
+\newcommand{\NrY}{\bluesym{M_{\Y}}}
+
+\newcommand{\sX}{\bluesym{n}}
+\newcommand{\sPi}{\bluesym{p}}
+\newcommand{\sPib}{\bluesym{m}}
+\newcommand{\sPibP}{\bluesym{m}}
+\newcommand{\sPibDef}{\fsPi = \sX+\sPi}
+\newcommand{\sDelta}{\bluesym{d}}
+\newcommand{\sNPibB}{\sPib}
+\newcommand{\sNPibA}{\bluesym{q}}
+\newcommand{\sNPiaA}{2\sNPibA+\sX^2+\sX\sNPibA}
+\newcommand{\sNPiaB}{\sX+2\sPi+\sX^2+\sX\sPi}
+
+\newcommand{\annihilator}{\bluesym{\mathcal{N}}}
+\newcommand{\annihilatorV}{\annihilator_{\pi_b}}
+\newcommand{\dannihilatorV}{\dot{\annihilator}_{\pi_b}}
+\newcommand{\annihilatordV}{\annihilator_{\pi_a}}
+\newcommand{\annihilatorFacet}{\annihilator_{\pi_c}}
+\newcommand{\AB}{[A ~ B]}
+\newcommand{\NPia}{\annihilatordV\xdd}
+\newcommand{\NPiaT}{\annihilatordV^T\xdd}
+\newcommand{\NPib}{\annihilatorV\xd}
+\newcommand{\NPibT}{\annihilatorV^T\xd}
+\newcommand{\dNPib}{\dannihilatorV\xd}
+\newcommand{\NPibx}{\annihilatorV(x)}
+\newcommand{\NPic}{\annihilatorFacet(x)}
+\newcommand{\NPicT}{\annihilatorFacet^T(x)}
+
+% Finsler's lemma jelolesei
+\newcommand{\fpi}{\pi_b}
