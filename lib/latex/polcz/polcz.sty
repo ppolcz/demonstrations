@@ -1,8 +1,29 @@
 \ProvidesPackage{polcz}
 
+% Options
+\DeclareOption{tudomanyos}{\let\tudomanyos = 1}
+\DeclareOption{glossary}{\let\glossary = 1}
+\DeclareOption{nohref}{\let\hrefopt = 0}
+\DeclareOption{ownhref}{\let\hrefopt = 1}
+\DeclareOption{href}{\let\hrefopt = 2}
+\DeclareOption{nothm}{\let\thm = 0}
+\DeclareOption{thmhu}{\let\thm = 1}
+\DeclareOption{thmen}{\let\thm = 2}
+\DeclareOption{ccsgyak}{\let\ccsgyak = 1}
+\ExecuteOptions{nohref}
+\ProcessOptions\relax
+
+\ifx\tudomanyos\undefined\else
+\RequirePackage{graphicx}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{soul}
+\DeclareRobustCommand{\hlcyan}[1]{{\sethlcolor{cyan}\hl{#1}}}
+\fi
+
 \RequirePackage{physics}
 \RequirePackage{xparse}
 \RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{mathtools}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[normalem]{ulem} % \sout, \uwave{to be underlined in a squiggly way}
@@ -36,20 +57,16 @@
 %     pagebackref = false
 %     ]{hyperref}
 
-% Options
-\DeclareOption{glossary}{\let\glossary = 1}
-\DeclareOption{nohref}{\let\hrefopt = 0}
-\DeclareOption{ownhref}{\let\hrefopt = 1}
-\DeclareOption{href}{\let\hrefopt = 2}
-\DeclareOption{nothm}{\let\thm = 0}
-\DeclareOption{thmhu}{\let\thm = 1}
-\DeclareOption{thmen}{\let\thm = 2}
-\DeclareOption{ccsgyak}{\let\ccsgyak = 1}
-\ExecuteOptions{nohref}
-\ProcessOptions\relax
-
 \ifx\hrefopt 2
-    \RequirePackage{hyperref}
+\RequirePackage[
+    hyperfootnotes=false,
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue,
+    anchorcolor=blue,
+    pagebackref=false,
+    unicode=true]{hyperref}
     \let\hrefopt = 1
 \fi
 
@@ -138,6 +155,18 @@
 \DeclareDocumentCommand\Pmqty{ l m }{\left\lgroup\begin{matrix}#1 #2 \end{matrix}\right\rgroup}
 \DeclareDocumentCommand\bmqty{ l m }{\begin{bmatrix}#1 #2 \end{bmatrix}}
 \DeclareDocumentCommand\vmqty{ l m }{\begin{vmatrix}#1 #2 \end{vmatrix}}
+
+% Typical article definitions
+\ifx\tudomanyos\undefined\else
+\DeclareDocumentCommand\He{ l m }{\mathrm{He}\qty#1{#2}}
+\DeclareDocumentCommand{\Fu}{ s l >{\SplitArgument{4}{,}} m }{\IfBooleanTF{#1}{\sFimpl#2{u}#3}{\Fimpl#2{u}#3}}
+\DeclareDocumentCommand{\Fl}{ s l >{\SplitArgument{4}{,}} m }{\IfBooleanTF{#1}{\sFimpl#2{l}#3}{\Fimpl#2{l}#3}}
+\DeclareDocumentCommand{\Fimpl}{lmmmmmm}{\mathcal F_{#2}\qty#1{ \pmqty[c|c]{ #3 & #4 \\\hline #5 & #6 }, #7}}
+\DeclareDocumentCommand{\sFimpl}{lmmmmmm}{\mathcal F_{#2}\qty#1{ \spmqty{ #3 & #4 \\ #5 & #6 }, #7}}
+
+\let\oldintercal\intercal
+\def\intercal{{\protect\scalebox{0.7}{\protect\scalebox{0.8}[1]{$\top$}}}}
+\fi
 
 
 % MMP""MM""YMM   .g8""8q. `7MM"""Yb.     .g8""8q.             db      `7MN.   `7MF' .g8"""bgd    .g8""8q. `7MMF'
@@ -392,31 +421,6 @@
 %   MM
 % .JMML.
 
-\newlength{\pczoversizelength}
-\setlength{\pczoversizelength}{12pt}
-\DeclareDocumentEnvironment{pcb}{ s O{} O{red} d<> D(){10} D(){20} D(){50} }
-{
-
-    \begin{tcolorbox}[
-    enhanced,
-    breakable,
-    colback=\IfNoValueTF{#4}{#3}{#4}!#5,
-    colbacktitle=#3!#6,
-    colframe=#3!#7,
-    subtitle style={boxrule=0.4pt,colback=#3!20},
-    boxrule=1pt, arc=4pt, left=0.5\pczoversizelength, right=0.5\pczoversizelength, top=6pt, bottom=6pt,
-    boxsep=0pt,
-    toptitle=4pt,
-    bottomtitle=4pt,
-    fonttitle=\bfseries,
-    coltitle=black,
-    oversize=-\pczoversizelength,
-    #2]
-}
-{
-    \end{tcolorbox}
-}
-
 \DeclareDocumentCommand{\pcbtitle}{
 s
 o m % [#2 #3] [#2:info]{#3:Title}
@@ -431,6 +435,68 @@ o m % [#2 #3] [#2:info]{#3:Title}
         }\IfBooleanT{#1}{\newline}%
     }%
 }}
+
+\newlength{\pczoversizelength}
+\setlength{\pczoversizelength}{12pt}
+\DeclareDocumentEnvironment{pcbOld}{
+s               % #1
+O{}             % #2
+O{red}          % #3
+D<>{yellow}     % #4
+D(){10}         % #5
+D(){20}         % #6
+D(){50}         % #7
+}{\small%
+    \ifx\hfuzz#4\hfuzz%
+        \colorlet{colback}{#3!#5}
+    \else
+        \colorlet{colback}{#4!#5}
+    \fi
+    \begin{tcolorbox}[%
+        enhanced,%
+        breakable,%
+        colback=colback,%
+        colbacktitle=#3!#6,%
+        colframe=#3!#7,%
+        subtitle style={boxrule=0.4pt,colback=#3!20},%
+        boxrule=1pt, arc=4pt, left=0.5\pczoversizelength, right=0.5\pczoversizelength, top=6pt, bottom=6pt,%
+        boxsep=0pt,%
+        toptitle=4pt,%
+        bottomtitle=4pt,%
+        fonttitle=\bfseries,%
+        coltitle=black,%
+        oversize=-\pczoversizelength,%
+        #2]%
+}
+{%
+    \end{tcolorbox}%
+}
+
+\DeclareDocumentEnvironment{pcb}{
+s               % #1
+O{}             % #2
+O{red}          % #3
+D<>{yellow}     % #4
+D(){10}         % #5
+D(){20}         % #6
+D(){50}         % #7
+g               % #8 {title}
+G{}             % #9 {info}
+}{%
+    \IfValueTF{#8}{%
+        \IfBooleanTF{#1}{%
+            \begin{pcbOld}[#2][#3]<#4>(#5)(#6)(#7)%
+            \pcbtitle*[#9]{#8}%
+        }{%
+            \begin{pcbOld}[title={\pcbtitle[#9]{#8}}, #2][#3]<#4>(#5)(#6)(#7)%
+        }%
+    }{%
+        \begin{pcbOld}[#2][#3]<#4>(#5)(#6)(#7)%
+    }%
+}%
+{%
+    \end{pcbOld}%
+}
 
 \definecolor{markercolback}{HTML}{FEF4F2}
 \definecolor{markercolhead}{HTML}{F09D85}
@@ -502,7 +568,7 @@ o m % [#2 #3] [#2:info]{#3:Title}
     \DeclareDocumentCommand{\absthmtitle}{
     t\hun o D<>{Theorem} % [#1 #2 #3] \hun[#2:info]<#4:Name>
     m                    % {#4:Title of theorem}
-    s                    % #5
+    s                    % #5 (csillag: van-e a vegen sortores vagy sem)
     m                    % {#6:counter}
     O{}                  % [#7:label]
     }%

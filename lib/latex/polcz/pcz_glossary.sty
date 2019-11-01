@@ -1,0 +1,28 @@
+\ProvidesPackage{pcz_glossary}
+
+\RequirePackage{multicol}
+\RequirePackage{enumitem}
+
+\def\ibul{\raisebox{.4ex}{\scalebox{0.6}{$\bullet$}}~~}
+\def\n{ \\[5pt] }
+\def\h{ \\[-8pt] }
+
+\newenvironment{compactitem}
+    {\begin{itemize}[leftmargin=*]\setlength\itemsep{0pt}}
+    {\end{itemize}}
+
+\setlength\columnsep{40pt} % This is the default columnsep for all pages
+\newcommand{\wordlist}[2]
+{{
+    \renewcommand\labelitemi{}
+    \setlength\columnsep{0pt} % This is the default columnsep for all pages
+    \begin{multicols}{#1}
+        \begin{compactitem}
+            \setlength\itemsep{-5pt}
+            \foreach \s [count=\i] in {#2} { \item \s }
+        \end{compactitem}
+    \end{multicols}
+}}
+
+\newcommand\oald[1]{\href{http://www.oxfordlearnersdictionaries.com/definition/english/#1}{#1}}
+\newcommand\thes[1]{\href{http://www.thesaurus.com/browse//#1}{#1}}
