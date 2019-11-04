@@ -519,6 +519,24 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "polcz/polcz.sty",
+			"settings":
+			{
+				"buffer_size": 32512,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polcz/polcz.tex",
+			"settings":
+			{
+				"buffer_size": 6726,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -1258,6 +1276,7 @@
 	],
 	"file_history":
 	[
+		"/home/ppolcz/T/Dropbox/Dori/00_MKK/Bal/Karszalag/2019_Katalin/latex/karszalag_MINTA.tex",
 		"/home/ppolcz/_/7_ftools/workspace/07_DOA_positive_systems/local_Lotka_Volterra.m",
 		"/tmp/mozilla_ppolcz0/10.1007%2F978-3-642-12598-0_1.bib",
 		"/home/ppolcz/T/Dropbox/Peti/PhD/Tanulas/00_Angol/Hetkoznapi_szavak.tex",
@@ -1384,12 +1403,11 @@
 		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Introduction.tex",
 		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Illustrative_examples.tex",
 		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Diplomaterv_atirat.tex",
-		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Diplomaterv_atirat.tex",
-		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/07_Diplomaterv/PolczPeter_Diplomaterv.tex"
+		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Diplomaterv_atirat.tex"
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -1403,6 +1421,41 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"Tavasz",
+			"pcbtitle",
+			"pcbt",
+			"pcb",
+			"def",
+			"info",
+			"l   ",
+			"l ",
+			"abspcbthm",
+			"l ",
+			"l",
+			"pcbOld",
+			"pcb",
+			"tcolorbox",
+			"title",
+			" ",
+			"tcolorbox",
+			"pcbtitle",
+			"rcolor",
+			"usepackage",
+			"RequirePackage",
+			"amsmata",
+			"amsmat",
+			"xcolor",
+			"dvipsnames",
+			"unde",
+			"tudomanyos",
+			"glossary",
+			"els",
+			"fi",
+			"ifx",
+			"\\DeclareDocumentCommand\\pmqty{ l m }{\\begin{pmatrix}#1 #2 \\end{pmatrix}}",
+			"phys",
+			"hrefopt",
+			"href"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1426,8 +1479,77 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "polcz/polcz.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 32512,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16004,
+								16004
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 0,
+								"count": 1359,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"markdonw_live_preview_last_run": 1572620992.1,
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7885.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "polcz/polcz.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6726,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								332,
+								332
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1572620998.59,
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1635,7 +1757,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 360.0,
 	"status_bar_visible": true,
 	"template_settings":
