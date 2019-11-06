@@ -1495,8 +1495,8 @@
 						"selection":
 						[
 							[
-								16004,
-								16004
+								60,
+								60
 							]
 						],
 						"settings":
@@ -1510,12 +1510,12 @@
 								"status": -1,
 								"syntax": "plain text"
 							},
-							"markdonw_live_preview_last_run": 1572620992.1,
+							"markdonw_live_preview_last_run": 1572820257.71,
 							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7885.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1540,7 +1540,7 @@
 						],
 						"settings":
 						{
-							"markdonw_live_preview_last_run": 1572620998.59,
+							"markdonw_live_preview_last_run": 1572820257.71,
 							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
 						},
 						"translation.x": 0.0,
@@ -1720,7 +1720,7 @@
 		[
 			[
 				"",
-				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
+				"~/_/3_docs/24_Passivity_ujsag/24_Passivity_ujsag.sublime-project"
 			],
 			[
 				"okt",
