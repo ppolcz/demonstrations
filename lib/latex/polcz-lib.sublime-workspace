@@ -519,26 +519,8 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "polcz/polcz.sty",
-			"settings":
-			{
-				"buffer_size": 32512,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "polcz/polcz.tex",
-			"settings":
-			{
-				"buffer_size": 6726,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
-	"build_system": "",
+	"build_system": "Packages/ShellScript/ShellScript.sublime-build",
 	"build_system_choices":
 	[
 		[
@@ -1064,6 +1046,62 @@
 				"Packages/Python/Python.sublime-build",
 				""
 			]
+		],
+		[
+			[
+				[
+					"Packages/ShellScript/ShellScript.sublime-build",
+					""
+				],
+				[
+					"Packages/Polcz/run_script.sublime-build",
+					""
+				],
+				[
+					"Packages/Polcz/spring-boot-run.sublime-build",
+					""
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/glpsol.sublime-build",
+					""
+				],
+				[
+					"Packages/User/OpenInBrowser.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_eps.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_latex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUml_pdf.sublime-build",
+					""
+				],
+				[
+					"Packages/User/PlantUML_png.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Python3.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/ShellScript/ShellScript.sublime-build",
+				""
+			]
 		]
 	],
 	"build_varint": "",
@@ -1276,6 +1314,18 @@
 	],
 	"file_history":
 	[
+		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz/polcz.tex",
+		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz/pcz_glossary.sty",
+		"/home/ppolcz/_/users/public_html/files/targyak/ccs_2019/ccs_gyak_defs.tex",
+		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz/polcz.sty",
+		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz/pcz_tcolorbox.sty",
+		"/home/ppolcz/_/users/public_html/files/targyak/ccs_2019/sem_10_2018_matlab2.tex",
+		"/home/ppolcz/_/4_gyujtemegy/11_CCS/_1_ccs/matlabgyak/2017a_matlabgyak2/doc/sem_10_2018_matlab2.tex",
+		"/home/ppolcz/_/4_gyujtemegy/11_CCS/_1_ccs/matlabgyak/2017a_matlabgyak1/doc/sem_08_2018_matlab1.tex",
+		"/home/ppolcz/_/users/public_html/files/targyak/ccs_2019/sem_08_2018_matlab1.tex",
+		"/home/ppolcz/texmf/tex/latex/mystyles/polcz/polcz.sty",
+		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz/polcz_update.sh",
+		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz/polcz_update_all.sh",
 		"/home/ppolcz/T/Dropbox/Dori/00_MKK/Bal/Karszalag/2019_Katalin/latex/karszalag_MINTA.tex",
 		"/home/ppolcz/_/7_ftools/workspace/07_DOA_positive_systems/local_Lotka_Volterra.m",
 		"/tmp/mozilla_ppolcz0/10.1007%2F978-3-642-12598-0_1.bib",
@@ -1391,19 +1441,7 @@
 		"/home/ppolcz/All/Dropbox/Apps/ShareLaTeX/elsedoc/main.tex",
 		"/home/ppolcz/Repositories/Bitbucket/control-systems/projects/2_sta/algo_P_models/vdp_v5_results.csv",
 		"/home/ppolcz/Repositories/Bitbucket/control-systems/nbproject/.gitignore",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/Definitions.tex",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/Sec_Introduction.tex",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Annihilator.tex",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Annihilator.tex",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Conclusions.tex",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Illustrative_examples.tex",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Introduction.tex",
-		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Annihilator.tex",
-		"/home/ppolcz/Dropbox/PhD/Oktatas/04_Analizis/Funkanal/funkanal_2017/12/funkanal_17_12_mo.tex",
-		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Introduction.tex",
-		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Sec_Illustrative_examples.tex",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Diplomaterv_atirat.tex",
-		"/home/ppolcz/All/Dropbox/Peti/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-2017-05-22/Diplomaterv_atirat.tex"
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/Definitions.tex"
 	],
 	"find":
 	{
@@ -1421,6 +1459,11 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"pczmatlab",
+			"idiom",
+			"idi",
+			"idiom",
+			"idi",
 			"Tavasz",
 			"pcbtitle",
 			"pcbt",
@@ -1479,77 +1522,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "polcz/polcz.sty",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 32512,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								60,
-								60
-							]
-						],
-						"settings":
-						{
-							"WordCount":
-							{
-								"changes": 0,
-								"count": 1359,
-								"modified": false,
-								"selection": false,
-								"status": -1,
-								"syntax": "plain text"
-							},
-							"markdonw_live_preview_last_run": 1572820257.71,
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "polcz/polcz.tex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6726,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								332,
-								332
-							]
-						],
-						"settings":
-						{
-							"markdonw_live_preview_last_run": 1572820257.71,
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1715,19 +1689,19 @@
 	"select_project":
 	{
 		"height": 900.0,
-		"last_filter": "",
+		"last_filter": "ok",
 		"selected_items":
 		[
+			[
+				"ok",
+				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
+			],
 			[
 				"",
 				"~/_/3_docs/24_Passivity_ujsag/24_Passivity_ujsag.sublime-project"
 			],
 			[
 				"okt",
-				"~/All/Dropbox/Peti/PhD/Oktatas/Oktatas.sublime-project"
-			],
-			[
-				"ok",
 				"~/All/Dropbox/Peti/PhD/Oktatas/Oktatas.sublime-project"
 			],
 			[
@@ -1757,7 +1731,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 360.0,
 	"status_bar_visible": true,
 	"template_settings":

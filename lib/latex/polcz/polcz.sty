@@ -37,6 +37,13 @@
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,shapes}
 
+\newcommand{\PczIfNotExists}[2]{%
+    \ifcsname#1\endcsname%
+    \else%
+        #2%
+    \fi%
+}
+
 
 % \RequirePackage{enumitem}
 % \RequirePackage{enumerate}
@@ -82,8 +89,8 @@
 %                                                 MM
 %                                               .JMML.
 % mathtools
-\DeclarePairedDelimiterX\innerp[2]{\langle}{\rangle}{#1,#2}
-\DeclarePairedDelimiterX\dotprod[1]{\langle}{\rangle}{#1}
+\PczIfNotExists{innerp}{\DeclarePairedDelimiterX\innerp[2]{\langle}{\rangle}{#1,#2}}
+\PczIfNotExists{dotprod}{\DeclarePairedDelimiterX\dotprod[1]{\langle}{\rangle}{#1}}
 
 
 
@@ -563,7 +570,7 @@ G{}             % #9 {info}
 \else
 
     % Interface:
-    % \hun[#2:info]<#3:Name>{#4:Title of theorem}*{#6:counter}[#7:label]
+    % \hun[#2:info]<#3:Name>{#4:Title of theorem}*{#6:counter}[#7:label][#8:prefix][#9:suffix]
     % \hun[info]<Name>{Title of theorem}*{theorem}[ex:valami]
     \DeclareDocumentCommand{\absthmtitle}{
     t\hun o D<>{Theorem} % [#1 #2 #3] \hun[#2:info]<#4:Name>
@@ -571,6 +578,8 @@ G{}             % #9 {info}
     s                    % #5 (csillag: van-e a vegen sortores vagy sem)
     m                    % {#6:counter}
     O{}                  % [#7:label]
+    O{}                  % [#8:prefix]
+    O{.}                 % [#9:suffix]
     }%
     {%
         \refstepcounter{#6}%
@@ -583,11 +592,11 @@ G{}             % #9 {info}
             \IfBooleanTF{#1}% \hun
             {%
                 % If \hun: `1. #3:name.`
-                \arabic{#6}. #3%
+                #8\arabic{#6}#9 #3%
             }%
             {%
                 % If not \hun: `#3:Name 1.`
-                #3 \arabic{#6}.%
+                #3 #8\arabic{#6}#9%
             }%
         }%
         \normalfont\IfBooleanTF{#5}% *
@@ -723,8 +732,14 @@ G{}             % #9 {info}
     {\noindent\absthmtitle#1<Lemma>{#2}*{pcztheorem}}
     {}
 
+    % \ifcsname prop\endcsname
+    % \DeclareDocumentEnvironment{\ifdefined\prop proposition\else prop\fi}{ l m }
     \DeclareDocumentEnvironment{prop}{ l m }
     {\noindent\absthmtitle#1<Proposition>{#2}*{pcztheorem}}
+    {}
+
+    \DeclareDocumentEnvironment{definition}{ l m }
+    {\noindent\absthmtitle#1<Definition>{#2}*{pcztheorem}}
     {}
 
     \DeclareDocumentEnvironment{thm}{ l m }
@@ -741,6 +756,14 @@ G{}             % #9 {info}
 
     \DeclareDocumentEnvironment{fel}{ l m }
     {\noindent\absthmtitle\hun#1<feladat>{#2}*{pczexample}}
+    {}
+
+    \DeclareDocumentEnvironment{felD}{ l m }
+    {\noindent\absthmtitle\hun#1<>{#2}*{pczexample}[][D][*]}
+    {}
+
+    \DeclareDocumentEnvironment{felF}{ l m }
+    {\noindent\absthmtitle\hun#1<>{#2}*{pczexample}[][F][*]}
     {}
 
     \DeclareDocumentEnvironment{problem}{ l m }
@@ -836,20 +859,36 @@ G{}             % #9 {info}
 
     \DeclareDocumentCommand\example{s d[] m D<>{} d()}
     {%
-        \hfill \\%
-        \IfNoValueTF{#2}{\raisebox{1pt}{\scalebox{0.7}{$\bullet$}} }{\textbf{\blue #2} }%
+        \IfBooleanF{#1}{\hfill\\}%
+        % \IfNoValueTF{#2}{\raisebox{1pt}{\scalebox{0.7}{$\bullet$}} }{\textbf{\blue #2} }%
+        \raisebox{1pt}{\scalebox{0.7}{$\bullet$ }}\IfValueT{#2}{\textbf{\blue #2} }%
         \textit{#3}%
         \IfNoValueTF{#5}{}{ \normalsize (\textit{\textcolor{orange}{#5}})}
     }
 
-    \newcommand{\syn}[1]{\hfill\\\textcolor{scarlet}{\textbf{$\simeq$ #1}}}
+    \DeclareDocumentCommand\idiom{s d[] m D<>{} d()}
+    {%
+        \ITEM[\textcolor{orange}{[idiom]\hspace*{-15pt}}]
+        \hspace*{10pt}
+        \IfValueT{#2}{\textbf{\blue #2} }%
+        % \IfNoValueTF{#2}{\raisebox{1pt}{\scalebox{0.7}{$\bullet$}} }{\textbf{\blue #2} }%
+        {\normalfont\normalsize#3}%
+        \IfNoValueTF{#5}{}{ \normalsize ({\textcolor{orange}{#5}})}
+    }
+
+    \DeclareDocumentCommand{\syn}{s m}
+    {%
+        \IfBooleanF{#1}{\hfill\\}%
+        \textcolor{scarlet}{\textbf{$\simeq$ #2}}%
+    }
 
     \let\ITEM\item
-    \DeclareDocumentCommand\item{s d[] D<>{} d()}
+    \DeclareDocumentCommand\item{s d[] d[] D<>{} d()}
     {%
         \ITEM
-        \IfValueT{#2}{{\gray [#2]}}%
+        \IfValueT{#2}{\ifx\hfuzz#2\hfuzz\else{\gray [#2] }\fi}%
         \IfBooleanT{#1}{{\small\bfseries\red\sc formal }}%
+        \IfValueT{#3}{\textbf{\blue #3} }%
     }
 
     \DeclareDocumentCommand\form{s m D<>{} d[] d()}
@@ -860,6 +899,20 @@ G{}             % #9 {info}
         \IfNoValueTF{#5}{}{\normalsize (\textit{\textcolor{orange}{#5}}) }%
     }
 \fi
+
+% \ifx\ccsgyak\undefined\else
+%     \newcounter{pczmatlab}
+%     \DeclareDocumentEnvironment{matlab}
+%     {s o m}
+%     {
+%         \begin{pcolorbox}{\refstepcounter{pczmatlab}Matlab \thepczmatlab. %
+%         \IfNoValueF{#2}{\normalfont #2}}[\tt #3]\matlab
+%     }
+%     {
+%         \end{pcolorbox}
+%     }
+% \fi
+
 
 \usepackage{listings}
 %\usepackage[numbered,autolinebreaks]{mcode}
