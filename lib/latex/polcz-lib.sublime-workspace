@@ -519,6 +519,15 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "polcz/polcz.sty",
+			"settings":
+			{
+				"buffer_size": 34211,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/ShellScript/ShellScript.sublime-build",
 	"build_system_choices":
@@ -1459,6 +1468,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"tudomanyos",
 			"pczmatlab",
 			"idiom",
 			"idi",
@@ -1522,8 +1532,46 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "polcz/polcz.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 34211,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								55,
+								55
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 9,
+								"count": 1390,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1689,16 +1737,16 @@
 	"select_project":
 	{
 		"height": 900.0,
-		"last_filter": "ok",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"ok",
-				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
-			],
-			[
 				"",
 				"~/_/3_docs/24_Passivity_ujsag/24_Passivity_ujsag.sublime-project"
+			],
+			[
+				"ok",
+				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
 			],
 			[
 				"okt",
