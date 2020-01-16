@@ -523,16 +523,17 @@
 			"file": "polcz/polcz.sty",
 			"settings":
 			{
-				"buffer_size": 34211,
+				"buffer_size": 34977,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/ppolcz/_/3_docs/98_CubeSat/CubeSat_MPC/CubeSat_MPC.tex",
+			"file": "/home/ppolcz/_/7_ftools/workspace/07_DOA_positive_systems/local_Motzkin_system.m",
 			"settings":
 			{
-				"buffer_size": 9659,
+				"buffer_size": 10881,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -1331,6 +1332,10 @@
 	],
 	"file_history":
 	[
+		"/home/ppolcz/_/3_docs/28_MED20/actual/MED2020_poseq.tex",
+		"/home/ppolcz/_/3_docs/28_MED20/actual/MED2020_poseq.bbl",
+		"/home/ppolcz/_/3_docs/99_otletelgetesek/05_DOA_for_positive_systems/nontriv_eqp.tex",
+		"/home/ppolcz/_/3_docs/98_CubeSat/CubeSat_MPC/CubeSat_MPC.tex",
 		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz/polcz.tex",
 		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz/pcz_glossary.sty",
 		"/home/ppolcz/_/users/public_html/files/targyak/ccs_2019/ccs_gyak_defs.tex",
@@ -1454,11 +1459,7 @@
 		"/home/ppolcz/Downloads/elsarticle/elsarticle-template-harv.tex",
 		"/home/ppolcz/Downloads/elsarticle/elsarticle-template-num.tex",
 		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Manuscript.tex",
-		"/home/ppolcz/Downloads/elsarticle/doc/elsdoc.tex",
-		"/home/ppolcz/All/Dropbox/Apps/ShareLaTeX/elsedoc/main.tex",
-		"/home/ppolcz/Repositories/Bitbucket/control-systems/projects/2_sta/algo_P_models/vdp_v5_results.csv",
-		"/home/ppolcz/Repositories/Bitbucket/control-systems/nbproject/.gitignore",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/Definitions.tex"
+		"/home/ppolcz/Downloads/elsarticle/doc/elsdoc.tex"
 	],
 	"find":
 	{
@@ -1476,6 +1477,37 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"remark",
+			"note",
+			"sec:backround",
+			"section",
+			"backgroun",
+			"background",
+			"and",
+			"oversize",
+			"tcolorbo",
+			"overs",
+			"over",
+			"+1)",
+			"+1)'",
+			"(1,1)",
+			"theorem",
+			"1pt} }",
+			"1pt",
+			" O{1pt}",
+			"ProvidesPackage",
+			"enumerate",
+			"enumitem",
+			"enumerate",
+			"description",
+			"enumerate",
+			"citemize",
+			"DeclareDocumentEnvironment",
+			"ccsgyak",
+			"lemmac",
+			"lemma",
+			"Theorem",
+			"corol",
 			": ",
 			":  ",
 			" :",
@@ -1536,6 +1568,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"note"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -1552,7 +1585,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1561,15 +1594,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 34211,
+						"buffer_size": 34977,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16952,
-								16952
+								1831,
+								1831
 							]
 						],
 						"settings":
@@ -1577,56 +1610,59 @@
 							"WordCount":
 							{
 								"changes": 0,
-								"count": 1390,
+								"count": 1396,
 								"modified": false,
 								"selection": false,
 								"status": -1,
 								"syntax": "plain text"
 							},
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 8232.0,
+						"translation.y": 917.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/home/ppolcz/_/3_docs/98_CubeSat/CubeSat_MPC/CubeSat_MPC.tex",
+					"file": "/home/ppolcz/_/7_ftools/workspace/07_DOA_positive_systems/local_Motzkin_system.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9659,
+						"buffer_size": 10881,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7240,
-								7240
+								2541,
+								2541
 							]
 						],
 						"settings":
 						{
 							"WordCount":
 							{
-								"changes": 1,
-								"count": 0,
-								"modified": false,
-								"selection": false,
+								"changes": 0,
+								"count": 440,
+								"modified": true,
+								"selection": true,
 								"status": -1,
 								"syntax": "plain text"
 							},
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4038.0,
+						"translation.y": 1716.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1794,9 +1830,17 @@
 	"select_project":
 	{
 		"height": 900.0,
-		"last_filter": "",
+		"last_filter": "okt",
 		"selected_items":
 		[
+			[
+				"okt",
+				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
+			],
+			[
+				"otle",
+				"~/_/3_docs/99_otletelgetesek/99_otletelgetesek.sublime-project"
+			],
 			[
 				"",
 				"~/_/3_docs/24_Passivity_ujsag/24_Passivity_ujsag.sublime-project"
@@ -1804,10 +1848,6 @@
 			[
 				"ok",
 				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
-			],
-			[
-				"okt",
-				"~/All/Dropbox/Peti/PhD/Oktatas/Oktatas.sublime-project"
 			],
 			[
 				"\\",

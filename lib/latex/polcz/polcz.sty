@@ -11,6 +11,7 @@
 \DeclareOption{thmhu}{\let\thm = 1}
 \DeclareOption{thmen}{\let\thm = 2}
 \DeclareOption{ccsgyak}{\let\ccsgyak = 1}
+\DeclareOption{compact}{\let\compact = 1}
 \ExecuteOptions{nohref}
 \ProcessOptions\relax
 
@@ -733,6 +734,10 @@ G{}             % #9 {info}
     {\noindent\absthmtitle#1<Lemma>{#2}*{pcztheorem}}
     {}
 
+    \DeclareDocumentEnvironment{corollary}{ l m }
+    {\noindent\absthmtitle#1<Corollary>{#2}*{pcztheorem}}
+    {}
+
     % \ifcsname prop\endcsname
     % \DeclareDocumentEnvironment{\ifdefined\prop proposition\else prop\fi}{ l m }
     \DeclareDocumentEnvironment{prop}{ l m }
@@ -741,6 +746,10 @@ G{}             % #9 {info}
 
     \DeclareDocumentEnvironment{definition}{ l m }
     {\noindent\absthmtitle#1<Definition>{#2}*{pcztheorem}}
+    {}
+
+    \DeclareDocumentEnvironment{theorem}{ l m }
+    {\noindent\absthmtitle#1<Theorem>{#2}*{pcztheorem}}
     {}
 
     \DeclareDocumentEnvironment{thm}{ l m }
@@ -913,6 +922,23 @@ G{}             % #9 {info}
 %         \end{pcolorbox}
 %     }
 % \fi
+
+
+\ifx\compact\undefined\else
+    \RequirePackage{enumitem}
+
+    \DeclareDocumentEnvironment{citemize}{ O{1pt} O{7pt} }
+    {\begin{itemize}[noitemsep,topsep=#1, leftmargin=#2]}
+    {\end{itemize}}
+
+    \DeclareDocumentEnvironment{cenumerate}{ O{1pt} O{7pt} }
+    {\begin{enumerate}[noitemsep,topsep=#1, leftmargin=#2]}
+    {\end{enumerate}}
+
+    \DeclareDocumentEnvironment{cdescription}{ O{1pt} O{7pt} }
+    {\begin{description}[noitemsep,topsep=#1, leftmargin=#2]}
+    {\end{description}}
+\fi
 
 
 \usepackage{listings}
