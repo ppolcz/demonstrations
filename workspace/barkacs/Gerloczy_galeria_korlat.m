@@ -31,7 +31,7 @@ dh = 65;
 sarokvas_lyuk_pos = 3.2;
 
 % Milyen kozonkent legyenek a tiplik a 8 hosszanti lec vegein
-tiplikoz = w/3;
+tiplik_hosszanti = [ 1.6 3.2 w ];
 
 % Osszehuzo anya 9mm-es atmeroju reszenek hossza
 h_anya = 1.2;
@@ -102,8 +102,8 @@ tonk_bal = @(h) plot(...
         -h_illj+tonk_xoffset -h_illj+tonk_xoffset ...
         -h_illj+tonk_xoffset+w_tonk
     ],[
-        h-tiplikoz h+h_tonk/2 h+h_tonk/2 h-tiplikoz ...
-        h-tiplikoz h-h_tonk/2 h-h_tonk/2 
+        h-(w-tiplik_hosszanti(2)) h+h_tonk/2 h+h_tonk/2 h-(w-tiplik_hosszanti(2)) ...
+        h-(w-tiplik_hosszanti(2)) h-h_tonk/2 h-h_tonk/2 
     ],'-','Color',pcz_get_plot_colors([],2));
 
 
@@ -112,17 +112,17 @@ fig2 = figure(2);
 
 % ----------------------------------------------------------------------- %
 ax1 = kulso_fg_deszka(142,'fal',m,w);
-ax1.YTick = sort([ 0:10:90 l_h([2,osztas+1])-2*tiplikoz ]);
+ax1.YTick = sort([ 0:10:90 l_h([2,osztas+1])-tiplik_hosszanti(2) ]);
 
-ly15(m-2*tiplikoz)
-ly6(m-2*tiplikoz)
+ly15(m-tiplik_hosszanti(2))
+ly6(m-tiplik_hosszanti(2))
 
-label(m-2*tiplikoz,'illesztocsavar')
+label(m-tiplik_hosszanti(2),'illesztocsavar')
 
-ly15(l_h(2)-2*tiplikoz)
-ly6(l_h(2)-2*tiplikoz)
+ly15(l_h(2)-tiplik_hosszanti(2))
+ly6(l_h(2)-tiplik_hosszanti(2))
 
-label(l_h(2)-2*tiplikoz,'illesztocsavar')
+label(l_h(2)-tiplik_hosszanti(2),'illesztocsavar')
 
 for h = fafemmenetes
     ly6(h);
@@ -158,20 +158,20 @@ end
 
 for h = l_h(2:end)
     krsztb(h);
-    kly6jb(h-tiplikoz);
+    kly6jb(h-tiplik_hosszanti(1));
     
     if h == l_h(2) || h == l_h(osztas+1)
-        kly6jill(h-2*tiplikoz);
-        kly15j(h-2*tiplikoz);
-        kly6(h-2*tiplikoz);
-        tonk_bal(h-2*tiplikoz);
+        kly6jill(h-tiplik_hosszanti(2));
+        kly15j(h-tiplik_hosszanti(2));
+        kly6(h-tiplik_hosszanti(2));
+        tonk_bal(h-tiplik_hosszanti(2));
         
-        ax2.YTick = unique(sort([ ax2.YTick h-2*tiplikoz ]));
-        ax2.YTick = unique(sort([ ax2.YTick h-2*tiplikoz+w_tonk ]));
-        ax2.YTick = unique(sort([ ax2.YTick h-2*tiplikoz-w_tonk ]));
+        ax2.YTick = unique(sort([ ax2.YTick h-tiplik_hosszanti(2) ]));
+        ax2.YTick = unique(sort([ ax2.YTick h-tiplik_hosszanti(2)+w_tonk ]));
+        ax2.YTick = unique(sort([ ax2.YTick h-tiplik_hosszanti(2)-w_tonk ]));
     else
-        kly6jb(h-2*tiplikoz);
-        ax2.YTick = unique(sort([ ax2.YTick h h-tiplikoz h-2*tiplikoz ]));
+        kly6jb(h-tiplik_hosszanti(2));
+        ax2.YTick = unique(sort([ ax2.YTick h h-tiplik_hosszanti(1) h-tiplik_hosszanti(2) ]));
     end
     
 end
@@ -180,7 +180,7 @@ ax2.XTick = unique(sort([ ax2.XTick -h_illj -h_illj+tonk_xoffset+w_tonk/2 ]));
 
 h = l_h(2);
 dl = imdistline;
-dl.setPosition([-10 h-w ; -10 h-w+tiplikoz+h_tonk/2]);
+dl.setPosition([-10 h-w ; -10 h-w+tiplik_hosszanti(1)+h_tonk/2]);
 
 
 % ----------------------------------------------------------------------- %
@@ -189,17 +189,17 @@ ax3.YTick( ax3.YTick == 70 | ax3.YTick == 50 ) = [];
 
 for h = l_h(2:end)
     krszt(h);
-    ly6(h-tiplikoz);
-    ly6(h-2*tiplikoz);
+    ly6(h-tiplik_hosszanti(1));
+    ly6(h-tiplik_hosszanti(2));
     
-    label(h-tiplikoz,'tipli')
+    label(h-tiplik_hosszanti(1),'tipli')
     if (h ~= l_h(2)) && (h ~= l_h(end))
-        label(h-2*tiplikoz,'tipli')
+        label(h-tiplik_hosszanti(2),'tipli')
     else
-        label(h-2*tiplikoz,'illesztocsavar')
+        label(h-tiplik_hosszanti(2),'illesztocsavar')
     end
 
-    ax3.YTick = unique(sort([ ax3.YTick h h-tiplikoz h-2*tiplikoz h-3*tiplikoz ]));
+    ax3.YTick = unique(sort([ ax3.YTick h h-tiplik_hosszanti(1) h-tiplik_hosszanti(2) h-tiplik_hosszanti(3) ]));
 end
 
 for h = fafemmenetes
@@ -220,9 +220,9 @@ dl2 = imdistline;
 dl2.setPosition([-10 l_h(end-1)-w ; -10 l_h(end-2)]);
 
 labelx(l_h(end-1),num2str(w),-12)
-labelx(l_h(end-1)-tiplikoz,num2str(w-tiplikoz),-12)
-labelx(l_h(end-1)-2*tiplikoz,num2str(w-2*tiplikoz),-12)
-labelx(l_h(end-1)-3*tiplikoz,num2str(w-3*tiplikoz),-12)
+labelx(l_h(end-1)-tiplik_hosszanti(1),num2str(w-tiplik_hosszanti(1)),-12)
+labelx(l_h(end-1)-tiplik_hosszanti(2),num2str(w-tiplik_hosszanti(2)),-12)
+labelx(l_h(end-1)-tiplik_hosszanti(3),num2str(w-tiplik_hosszanti(3)),-12)
 
 
 % ----------------------------------------------------------------------- %
@@ -245,7 +245,8 @@ alpha = deg2rad(15);
 
 befogo = 15;
 atfogo = befogo/cos(alpha/2);
-felalap = round(befogo*tan(alpha/2),1);
+alap = 2*befogo*tan(alpha/2);
+felalap = round(alap/2,1);
 
 yy = 10 + [ 0 0:11 11 ] * felalap;
 xx = [ repmat([ 0 dsz ],[1 numel(yy)/2])];
@@ -256,6 +257,137 @@ for y = yy
 end
 % ax4.YTick = unique(sort([ ax4.YTick yy ]));
 
+
+%% Konzol vizszintes metszet
+
+figure(6), hold off, plot(0,0), hold on
+
+tessauer_sz = 0.8;
+tessauer = 1.3; % 1.6, 1.7, 2.5
+butorcsav = [ 70 70 60 40 ] / 10;
+
+butorcsav_rogz = 80 / 10;
+
+kormos = 0.9;
+
+illesztesek = round(2*[ 0.93 0.87 0.7 0.1 ]*dsz)/2;
+
+% Ahol a korlat illeszkedik
+korlillesztes = 3 + w/2;
+
+C = cos(alpha);
+S = sin(alpha);
+
+% Falra rogzitett oldal
+plot([0 -dsz -dsz 0 0], [0 0 dv dv 0])
+
+% Amire a korlat lesz rogzitve
+plot([0 -dsz*C -dsz*C+dv*S dv*S 0],...
+    [0 -dsz*S -dsz*S-dv*C -dv*C 0])
+
+for i = 1:numel(illesztesek)
+    
+    a = illesztesek(i);
+    da = tessauer_sz / 2;
+    
+    b = a * C;
+    
+    M = 6 / 10;
+        
+    % Tessauer anya helye
+    plot([
+        -da*C 
+        -da*C-tessauer*S
+        +da*C-tessauer*S
+        +da*C 
+        ]-a,...
+        [
+        -da*S 
+        -da*S+tessauer*C
+        da*S+tessauer*C
+        da*S 
+        ], 'Color', pcz_get_plot_colors([],7), 'LineWidth',2)
+    
+    h = butorcsav(i);
+    
+    % Csavar torzse
+    plot([
+        -M/2*C
+        -M/2*C-h*S
+        M/2*C-h*S
+        M/2*C
+        ]-b*C+dv*S,...
+        [
+        -M/2*S
+        -M/2*S+h*C
+        M/2*S+h*C
+        M/2*S
+        ]-b*S-dv*C, 'Color', pcz_get_plot_colors([],1), 'LineWidth',1)
+end
+
+plot([
+    -w/2*C
+    -w/2*C+w*S
+    w/2*C+w*S
+    w/2*C
+    -w/2*C
+    ]-korlillesztes*C+dv*S,...
+    [
+    -w/2*S
+    -w/2*S-w*C
+    w/2*S-w*C
+    w/2*S
+    -w/2*S
+    ]-korlillesztes*S-dv*C, 'Color', pcz_get_plot_colors([],2), 'LineWidth',1)
+
+h = butorcsav_rogz;
+plot([
+    -M/2*C
+    -M/2*C-h*S
+    M/2*C-h*S
+    M/2*C
+    ]-korlillesztes*C+dv*S+w*S,...
+    [
+    -M/2*S
+    -M/2*S+h*C
+    M/2*S+h*C
+    M/2*S
+    ]-korlillesztes*S-dv*C-w*C, 'Color', pcz_get_plot_colors([],1), 'LineWidth',1)
+
+% Kormos anya helye
+plot([
+    -da*C 
+    -da*C+kormos*S
+    ]-korlillesztes*C,...
+    [
+    -da*S 
+    -da*S-kormos*C
+    ]-korlillesztes*S,...
+    'Color', pcz_get_plot_colors([],5), 'LineWidth',2)
+plot([
+    +da*C+kormos*S
+    +da*C 
+    ]-korlillesztes*C,...
+    [
+    da*S-kormos*C
+    da*S 
+    ]-korlillesztes*S,...
+    'Color', pcz_get_plot_colors([],5), 'LineWidth',2)
+plot([
+    -da*C 
+    -da*C-tessauer*S
+    +da*C-tessauer*S
+    +da*C 
+    ]-korlillesztes*C,...
+    [
+    -da*S 
+    -da*S+tessauer*C
+    da*S+tessauer*C
+    da*S 
+    ]-korlillesztes*S, 'Color', pcz_get_plot_colors([],7), 'LineWidth',2)
+
+
+axis equal
 
 %% KORLAT LATKEP
 
@@ -280,10 +412,10 @@ axis tight, axis equal
 
 %% SORREND
 
-tiplik = sort([ l_h(2:end)-tiplikoz l_h(3:end-1)-2*tiplikoz ]);
+tiplik = sort([ l_h(2:end)-tiplik_hosszanti(1) l_h(3:end-1)-tiplik_hosszanti(2) ]);
 tiplik_str = strjoin(cellfun(@(n) {sprintf('%g',n)}, num2cell(tiplik)),', ');
 
-illesztocsavar = l_h([2 end])-2*tiplikoz;
+illesztocsavar = l_h([2 end])-tiplik_hosszanti(2);
 illesztocsavar_str = strjoin(cellfun(@(n) {sprintf('%g',n)}, num2cell(illesztocsavar)),', ');
 
 fafemmenetes_str = strjoin(cellfun(@(n) {sprintf('%g',n)}, num2cell(fafemmenetes)),', ');
