@@ -10,6 +10,9 @@
 %% 5. Optimize Frobenius norm
 % https://math.stackexchange.com/questions/2184430/minimization-of-frobenius-norm-and-schur-complement?answertab=votes
 % https://math.stackexchange.com/questions/252819/why-is-frobenius-norm-of-a-matrix-greater-than-or-equal-to-the-2-norm
+% 
+% 2020.03.27. (március 27, péntek), 22:33
+% https://math.stackexchange.com/questions/3067103/can-an-upperbound-constraint-on-the-squared-frobenius-norm-of-a-matrix-be-expres
 
 m = 5;
 n = 3;

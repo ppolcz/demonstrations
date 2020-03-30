@@ -18,7 +18,7 @@ end
 
 global SCOPE_DEPTH VERBOSE
 
-if ~VERBOSE
+if isempty(VERBOSE) || VERBOSE == 0
     return
 end
 

@@ -12,7 +12,7 @@ function [ret] = pcz_dispFunction_num2str(A, varargin)
 
 global SCOPE_DEPTH VERBOSE
 
-if ~VERBOSE
+if isempty(VERBOSE) || VERBOSE == 0
     return
 end
 

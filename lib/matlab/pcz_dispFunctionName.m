@@ -28,7 +28,7 @@ else
     disp(' ')
 end
 
-if ~VERBOSE
+if isempty(VERBOSE) || VERBOSE == 0
     start_time = tic;
     return
 end

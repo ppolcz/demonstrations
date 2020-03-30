@@ -13,7 +13,7 @@ elapsed = toc(start_time);
 global SCOPE_DEPTH
 global VERBOSE
 
-if ~VERBOSE
+if isempty(VERBOSE) || VERBOSE == 0
     return
 end
 
