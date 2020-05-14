@@ -1,0 +1,14 @@
+Thanks for quick response, and sorry if my documentation was confusing.
+I'm using the GUI, trying to set a custom export filter with a custom name formatter. Here's an example, slightly modified from that specified by HVGJoBa:
+
+    1. Create a layout file ("datacite.layout", say), whose content is \format[DCA]{\author}. [with a return at the end]
+    2. Define a custom export filter with the file (Options > Manage custom exports > Add new > {Export name: datacite, Main layout file: "..\datacite.layout", File extension: .txt})
+    3. Define a custom name formatter (Options > Preferences > Name formatter > {Formatter name: DCA, Format string: *@1@{ll}{, f.}@*@, {ll}{, f.}})
+    4. Export a database with the custom export filter just defined (File > Export > {File name: anything, Files of type: datacite (*.txt)})
+
+This procedure works in 2.7, and the exported file should contain a list of formatted author names (provided they exist). When running this in 3.8.2 or 4.3.1, the exported file contains strings "[Formatter not found: DCA]", and the author names are not formatted.
+
+Also, a custom name formatter specified as above could be used in entry preview (Options > Preferences > Entry preview) in 2.7, but cannot in the newer versions.
+
+I hope the above makes some sense. Thank you.
+(I know I don't need the feature for such a simple format, but I often work with more complex cases, such as Jr., III., or the like.)

@@ -1,0 +1,45 @@
+AuthorLastFirstAbbrCommas:
+Bemporad, A., Ricker, N. L. and Morari, M.
+
+AuthorAbbreviator:
+Bemporad, A. and Ricker, N. L. and Morari, M.
+
+AuthorAndsCommaReplacer:
+Bemporad, Alberto, Ricker, N. Lawrence & Morari, Manfred
+
+AuthorAndsReplacer:
+Bemporad, Alberto; Ricker, N. Lawrence & Morari, Manfred
+
+AuthorFirstFirst:
+Alberto Bemporad and N. Lawrence Ricker and Manfred Morari
+
+AuthorFirstLastOxfordCommas:
+Alberto Bemporad, N. Lawrence Ricker, and Manfred Morari
+
+AuthorLF_FF:
+Bemporad, Alberto and N. Lawrence Ricker and Manfred Morari
+
+AuthorLF_FFAbbr:
+Bemporad, A. and N. L. Ricker and M. Morari
+
+AuthorLastFirst:
+Bemporad, Alberto and Ricker, N. Lawrence and Morari, Manfred
+
+AuthorLastFirstAbbrCommas:
+Bemporad, A., Ricker, N. L. and Morari, M.
+
+AuthorLastFirstAbbreviator:
+Bemporad, A. and Ricker, N. L. and Morari, M.
+
+AuthorLastFirstOxfordCommas:
+Bemporad, Alberto, Ricker, N. Lawrence, and Morari, Manfred
+
+AuthorNatBib:
+Bemporad et al.
+
+AuthorOrgSci:
+Bemporad, A., N. L. Ricker, M. Morari
+
+Authors:
+A. Bemporad, N. L. Ricker and M. Morari
+
