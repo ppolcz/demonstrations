@@ -51,13 +51,13 @@ arg_index = 1;
 while arg_index <= length(varargin)
 	arg = varargin{arg_index};
 	if ischar(arg)
-		prop_index = match_property(arg,properties);
+		[prop_index,properties] = match_property(arg,properties);
 		prop.(properties{prop_index}) = varargin{arg_index + 1};
 		arg_index = arg_index + 2;
 	elseif isstruct(arg)
 		arg_fn = fieldnames(arg);
 		for i = 1:length(arg_fn)
-			prop_index = match_property(arg_fn{i},properties);
+			[prop_index,properties] = match_property(arg_fn{i},properties);
 			prop.(properties{prop_index}) = arg.(arg_fn{i});
 		end
 		arg_index = arg_index + 1;
@@ -68,11 +68,13 @@ while arg_index <= length(varargin)
 end
 
 
-function prop_index = match_property(arg,properties)
+function [prop_index,properties] = match_property(arg,properties)
 prop_index = find(strcmpi(arg,properties));
 if isempty(prop_index)
 	prop_index = find(strncmpi(arg,properties,length(arg)));
 end
 if length(prop_index) ~= 1
-	error('Property ''%s'' does not exist or is ambiguous.',arg)
+    properties = [properties ; {arg}];
+    prop_index = numel(properties);
+	% error('Property ''%s'' does not exist or is ambiguous.',arg)
 end
