@@ -36,7 +36,7 @@ else
         value = values{end};
         
         % Set variable
-        if isnumeric(value) && isscalar(value)
+        if (isnumeric(value) || islogical(value)) && isscalar(value)
             eval([name ' = ' num2str(value) ';']);
             Old_Values.(name) = values(1:end-1);
         end
