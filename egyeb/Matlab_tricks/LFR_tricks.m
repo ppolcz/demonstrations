@@ -63,4 +63,21 @@ diA_test = plfr(...
     blkdiag(Delta,Delta),p_lim);
 pcz_lfrzero_report(diA_test - diA_check,'Test 5: diff(A,pi)')
 
+%% Monomials
+% 2020.06.25. (június 25, csütörtök), 14:52
 
+pcz_generateSymStateVector(3,'p')
+r = [ 3 4 2 ];
+
+Deltai = cellfun(@(i) { p(i) * eye(r(i)) }, num2cell(1:p_n)); 
+Delta = blkdiag(Deltai{:});
+
+m = sum(r);
+[B,D,A,C] = pcz_split_matrix(eye(m+1), [1 m], [m 1], 'RowWise', false);
+
+display(Delta*D,'Delta*D')
+display(eye(m) - Delta*D, 'I - Delta*D')
+display(inv(eye(m) - Delta*D), 'inv(I - Delta*D)')
+display(Delta*C, 'Delta*C')
+display((eye(m) - Delta*D) \ Delta*C, 'inv(I - Delta*D) * Delta*C')
+display(B / (eye(m) - Delta*D) * Delta*C, 'B * inv(I - Delta*D) * Delta*C')
