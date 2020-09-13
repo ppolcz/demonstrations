@@ -1715,6 +1715,10 @@
 	{
 		"height": 283.0
 	},
+	"output.project_environment_log":
+	{
+		"height": 0.0
+	},
 	"output.scopehunter.results":
 	{
 		"height": 88.0
@@ -1830,9 +1834,17 @@
 	"select_project":
 	{
 		"height": 900.0,
-		"last_filter": "okt",
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
+			],
+			[
+				"ok",
+				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
+			],
 			[
 				"okt",
 				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
@@ -1840,14 +1852,6 @@
 			[
 				"otle",
 				"~/_/3_docs/99_otletelgetesek/99_otletelgetesek.sublime-project"
-			],
-			[
-				"",
-				"~/_/3_docs/24_Passivity_ujsag/24_Passivity_ujsag.sublime-project"
-			],
-			[
-				"ok",
-				"~/_/users/public_html/files/targyak/Oktatas-LaTeX.sublime-project"
 			],
 			[
 				"\\",
