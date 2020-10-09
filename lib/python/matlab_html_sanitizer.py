@@ -75,8 +75,8 @@ def a_href_img(href):
 def a_href_br(href):
     return href and re.compile("br").search(href)
 
-def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/oktatas/anal3/html/anal3_vekanal_1.html",
-         opath = "/home/ppolcz/Repositories/Bitbucket/control-systems/html/publish_demo2_output.html",
+def main(ipath,
+         opath,
          scriptpath = None,
          livepath = None,
          livepublished = None):
@@ -210,7 +210,7 @@ def main(ipath = "/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrat
         # print(a)
 
         scriptname = a.string
-        src = "/home/ppolcz/Repositories/Bitbucket/control-systems/" + scriptname
+        src = "/home/ppolcz/_/" + scriptname
 
         if os.path.isfile(src) and os.path.isdir(targetdir):
             targetpath = targetdir + "/" + os.path.dirname(scriptname)
@@ -452,8 +452,8 @@ if __name__ == "__main__":
     elif len(sys.argv) >= 3:
         main(sys.argv[1], sys.argv[2])
     else:
-        main("/home/ppolcz/Repositories/Bitbucket/control-systems/oktatas/anal3/4_pde/html/hullamegyenlet_gyenge_megoldasok_v1.html",
-            "/home/ppolcz/Repositories/Bitbucket/control-systems/oktatas/anal3/4_pde/html/hullamegyenlet_gyenge_megoldasok_v1_output.html")
+        main("/home/ppolcz/_/4_gyujtemegy/01_matek/anal3/4_pde/html/hullamegyenlet_gyenge_megoldasok_v1.html",
+            "/home/ppolcz/_/4_gyujtemegy/01_matek/anal3/4_pde/html/hullamegyenlet_gyenge_megoldasok_v1_output.html")
 
     # demo()
 

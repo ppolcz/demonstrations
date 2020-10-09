@@ -65,7 +65,7 @@ command = [
     php_file ' ' ...
     script_path_WWW ' ' ...
     logger.dir
-    ];
+    ]
 
 system(command)
 
@@ -92,19 +92,22 @@ logger.pub_html = sprintf('<a class="" href="<?php echo base_url(''index.php/mai
 clipboard('copy', logger.pub_html);
 
 % Update persist object of the base workspace
-logger.pub_output = rawhtml_file;
+persist.pub_output = rawhtml_file;
+assignin('base', 'persist', persist)
 
 if (G.PUB_SUBL)
     subl(php_file)
 end
 
 if (G.PUB_WEBVIEW)
-   web(sprintf('http://localhost/index.php/main/view/%s.php', logger.logname)) 
+   web(sprintf('http://localhost/index.php/main/view/%s.php', persist.pub_dirname)) 
 end
 
 if (G.PUB_EDIT)
     edit(php_file)
 end
+
+% open(pub_output)
 
 %%% END
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
