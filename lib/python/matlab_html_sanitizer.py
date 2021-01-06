@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import sys, re, os, shutil
 
@@ -435,7 +435,13 @@ def main(ipath,
     # html = content.prettify('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
     # html = content.encode('utf8').replace('&lt;?php', '<?php').replace('?&gt;','?>')
 
-    html = "\n\n".join([ e.encode("utf8") for e in content ]).replace('&lt;?php', '<?php').replace('?&gt;','?>')
+    for e in content:
+        e = e.encode("utf8")
+        print(e)
+        print(type(e))
+        print("\n")
+
+    html = "\n\n".join([ str(e.encode("utf8")) for e in content ]).replace('&lt;?php', '<?php').replace('?&gt;','?>')
     #print(html)
 
     f.write(html)
