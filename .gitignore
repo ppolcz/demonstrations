@@ -1,33 +1,133 @@
-*.aux
-*.fdb_latexmk
-*.fls
-*.out
-*.pdf
-*.log
-*.nav
-*.snm
-*.toc
-*.synctex.gz
-*.autosave
 
-*~
-*/*~
-*/*/*~
-*/*/*/*~
-*/*/*/*/*~
-*/*/*/*/*/*~
-*/*/*/*/*/*/*~
-
-html/*.html
-*/html/*.html
-*/*/html/*.html
-*/*/*/html/*.html
-*/*/*/*/html/*.html
-*/*/*/*/*/html/*.html
-
+# Amiket nem szabad kitorolni (ezeket a GIT-hez is hozzaadom)
+# .tikz
+# .sty
+# .bib
+# .tex
+#
+# Amiket nem szabad kitorolni amugy, de a GIT-hez nem adom hozza
+*.asv
+*.ldf
+*.bbx
+*.cbx
+*.def
+*.ins
+*.css
+*.dtx
+*.dvi
+*.fdd
+*.map
+*.html
+# *.sublime-project
+*.sublime-workspace
+*.eps
+*.vf
+*.jpg
+*.cls
+*.fd
+*.bst
+*.txt
+*.pfb
+*.tfm
 *.png
-*/*.png
-*/*/*.png
-*/*/*/*.png
-*/*/*/*/*.png
-*/*/*/*/*/*.png
+*.tsv
+*.odg
+*.odt
+*.ods
+*.doc
+*.docx
+*.xls
+*.xlsx
+
+
+# LaTeX temporary files
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.thm
+*.upa
+
+# PDF output - usually a bad idea to keep this in Git
+*.pdf
+*.djvu
+
+# Other
+*.fdb_latexmk
+*.soc
+*.fls
+*.spl
+*.auxlock
+*.xwm
+*.ilg
+*.idx
+*.drv
+*.clo
+*.pag
+*.loa
+*.ind
+*.pl
+*.enc
+
+
+# SyncTeX
+*.synctex.gz*
+
+# LaTeX Beamer
+*.snm
+*.vrb
+*.nav
+*.out
+
+
+# BibTeX
+*.bbl
+*.blg
+*.brf
+*.bcf
+*.run.xml
+*-blx.bib
+
+# Other automatically generated files
+*.sav
+
+# documentclass elsarticle (Elsevier journals)
+*.spl
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Binaries #
+############
+*.mat
+
+# Databases #
+######################
+*.sqlite
+*.db
+.*
+!.gitignore
+
+*.mp4
+*.mp3
+*.avi
+
+
+*conflict*
+*Conflict*
+*.~*
+*.bak
+*.exe
+
+**/slprj/**
