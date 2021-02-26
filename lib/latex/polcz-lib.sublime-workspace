@@ -529,10 +529,10 @@
 			}
 		},
 		{
-			"file": "/home/ppolcz/T/Dropbox/Peti/PhD/Biralatok/2020b_L-CSS_Poonawala/Review.tex",
+			"file": "polcz-lib.sublime-workspace",
 			"settings":
 			{
-				"buffer_size": 15747,
+				"buffer_size": 41451,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -549,7 +549,7 @@
 			"file": "/home/ppolcz/_/7_ftools/workspace/07_DOA_positive_systems/local_Motzkin_system.m",
 			"settings":
 			{
-				"buffer_size": 10881,
+				"buffer_size": 10906,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -1345,10 +1345,12 @@
 	"expanded_folders":
 	[
 		"/home/ppolcz/_/2_demonstrations/lib/latex",
-		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz"
+		"/home/ppolcz/_/2_demonstrations/lib/latex/polcz",
+		"/home/ppolcz/texmf/bibtex/bib"
 	],
 	"file_history":
 	[
+		"/home/ppolcz/T/Dropbox/Peti/PhD/Biralatok/2020b_L-CSS_Poonawala/Review.tex",
 		"/home/ppolcz/_/3_docs/28_MED20/actual/MED2020_poseq.tex",
 		"/home/ppolcz/_/3_docs/28_MED20/actual/MED2020_poseq.bbl",
 		"/home/ppolcz/_/3_docs/99_otletelgetesek/05_DOA_for_positive_systems/nontriv_eqp.tex",
@@ -1475,8 +1477,7 @@
 		"/home/ppolcz/Repositories/Bitbucket/control-systems/demonstrations/lib/matlab/eliduenisch-latexTable-5212622/runExamples.m",
 		"/home/ppolcz/Downloads/elsarticle/elsarticle-template-harv.tex",
 		"/home/ppolcz/Downloads/elsarticle/elsarticle-template-num.tex",
-		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Manuscript.tex",
-		"/home/ppolcz/Downloads/elsarticle/doc/elsdoc.tex"
+		"/home/ppolcz/Dropbox/PhD/Dokumentaciok/12_Manuscripts_2016_osz/KIADOTT-EJC-2017-05-22/Manuscript.tex"
 	],
 	"find":
 	{
@@ -1641,6 +1642,9 @@
 	[
 		{
 			"path": "/home/ppolcz/_/2_demonstrations/lib/latex"
+		},
+		{
+			"path": "/home/ppolcz/texmf/bibtex/bib"
 		}
 	],
 	"groups":
@@ -1662,8 +1666,8 @@
 						"selection":
 						[
 							[
-								536,
-								536
+								1058,
+								1058
 							]
 						],
 						"settings":
@@ -1673,7 +1677,7 @@
 								"changes": 0,
 								"count": 1396,
 								"modified": false,
-								"selection": true,
+								"selection": false,
 								"status": -1,
 								"syntax": "plain text"
 							},
@@ -1684,43 +1688,42 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/home/ppolcz/T/Dropbox/Peti/PhD/Biralatok/2020b_L-CSS_Poonawala/Review.tex",
+					"file": "polcz-lib.sublime-workspace",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15747,
+						"buffer_size": 41451,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9863,
-								9863
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"WordCount":
 							{
-								"changes": 14971,
-								"count": 2095,
+								"changes": 0,
+								"count": 1149,
 								"modified": false,
 								"selection": false,
 								"status": -1,
 								"syntax": "plain text"
 							},
-							"spell_check": true,
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
-							"word_wrap": true
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2227.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1762,7 +1765,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1771,15 +1774,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10881,
+						"buffer_size": 10906,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2541,
-								2541
+								0,
+								0
 							]
 						],
 						"settings":
@@ -2023,7 +2026,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 360.0,
 	"status_bar_visible": true,
 	"template_settings":
