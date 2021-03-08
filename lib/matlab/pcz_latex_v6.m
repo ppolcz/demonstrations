@@ -11,7 +11,7 @@ function [ret] = pcz_latex_v6(A, varargin)
 
 o.label = '';
 o.sed_user = {};
-o.disp_mode = 0;
+o.disp_mode = 2;
 o.prec = 0;
 o.vline = [];
 o.hline = [];
