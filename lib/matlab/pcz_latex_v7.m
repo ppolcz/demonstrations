@@ -10,12 +10,13 @@ function [ret] = pcz_latex_v7(A, varargin)
 
 %%
 
-label = inputname(1);
+s.label = inputname(1);
+s = parsepropval(s,varargin{:});
 
 str = '';
 
 if ~isnumeric(A)
-    str = pcz_latex_v6(A, 'disp_mode', 2, 'label', [ label ' = '], varargin{:});
+    str = pcz_latex_v6(A, 'disp_mode', 2, 'label', [ s.label ' = ' ], varargin{:});
 
     % 2021.03.08. (március  8, hétfő), 12:26
     % if size(A,2) > 10
@@ -25,7 +26,8 @@ if ~isnumeric(A)
     % end
     
 elseif isnumeric(A)
-    str = pcz_num2str_latex([A], varargin{:});
+    tmp.A = A;
+    str = pcz_num2str_latex(tmp.A,'beg',[s.label ' = \\spmqty{ '],'end',' }');    
 end
 
 disp(str)
