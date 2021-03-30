@@ -5,7 +5,7 @@ from datetime import datetime
 
 HOME = "/home/ppolcz/"
 ROOT = HOME + "_/"
-PATH = ROOT + "5_Sztaki20_Main/Models/01_QArm"
+PATH = ROOT + "5_Sztaki20_Main/"
 
 BACKUP_DIR = HOME + "/Templates/Backup_" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 
