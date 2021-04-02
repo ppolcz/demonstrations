@@ -6,6 +6,7 @@ from datetime import datetime
 HOME = "/home/ppolcz/"
 ROOT = HOME + "_/"
 PATH = ROOT + "5_Sztaki20_Main/"
+# PATH = ROOT + "4_gyujtemegy/11_CCS/2021_COVID19_analizis/study7_trackin/"
 
 BACKUP_DIR = HOME + "/Templates/Backup_" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 
