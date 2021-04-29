@@ -57,5 +57,10 @@ Function_arguments_1()
 % Az elvart mukodest produkalja
 Function_arguments_1('Kutya',1)
 
+s.Kutya = 1;
+s.Buta = 2;
+
+Function_arguments_1(s)
+
 
 end
