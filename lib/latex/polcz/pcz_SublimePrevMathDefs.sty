@@ -1,0 +1,178 @@
+\ProvidesPackage{pcz_SublimePrevMathDefs}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{physics,amssymb,amsfonts,mathtools,empheq,xparse}
+% \usepackage{fdsymbol}
+% \usepackage{mathabx}
+% \usepackage{latexsym}
+
+\usepackage{soul}
+\DeclareRobustCommand{\hlcyan}[1]{{\sethlcolor{cyan}\hl{#1}}}
+
+% [1] The following makes possible to create verticales lines inside matrix environments using the optional parameter [cc|c]
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
+\makeatother
+
+% \usepackage{kbordermatrix}% http://www.hss.caltech.edu/~kcb/TeX/kbordermatrix.sty
+% \usepackage{blkarray}
+
+% [1] \pqty should be adopt to the new matrix rules: \pmqty[]
+\DeclareDocumentCommand\pmqty{ l m }{\begin{pmatrix}#1 #2 \end{pmatrix}}
+%
+% [2] Operators
+\DeclareDocumentCommand\He{ l m }{\mathrm{He}\qty#1{#2}}
+\DeclareDocumentCommand\Ve{ l m }{\mathbf{Ve}\pqty#1{#2}}
+\DeclareDocumentCommand\Co{ l m }{\mathbf{Co}\pqty#1{#2}}
+\DeclareDocumentCommand\Gr{ l m }{\mathbf{Gr}\pqty#1{#2}}
+\DeclareDocumentCommand\ls{ l m }{\mathrm{Ls}\qty#1{#2}}
+
+\usepackage[breakable,skins]{tcolorbox}
+\newtcbox{\TODOt}[1][red]{on line,arc=1pt,colback=#1!10!white,colframe=#1!50!black,
+    boxrule=0.5pt, boxsep=1pt,left=0pt,right=0pt,top=0pt,bottom=0pt}
+\newtcbox{\TODO}[1][red]{on line,arc=5pt,colback=#1!10!white,colframe=#1!50!black,
+    before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=4pt,right=4pt,top=2pt,bottom=2pt}
+\newtcbox{\TODOx}[1][red]{on line,arc=5pt,colback=#1!10!white,colframe=#1!50!black,
+    before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt}
+
+
+% 2021.04.01. (április  1, csütörtök), 15:48
+\providecommand{\Var}{\mathrm{Var}}
+\providecommand{\Cov}{\mathrm{Cov}}
+\def\GP{\mathcal G \! \mathcal P}
+
+% 2021.05.11. (május 11, kedd), 17:33
+\providecommand{\vv}[1]{{\color{red} #1}}
+\providecommand{\sdp}[1]{{\color{blue} #1}}
+\providecommand{\hyp}[1]{{\color{green!50!black} #1}}
+\providecommand{\data}[1]{{\color{orange} #1}}
+\providecommand{\elh}[1]{{\color{gray!50} #1}}
+\providecommand{\kerd}[1]{{\color{gray!50} #1}}
+\providecommand{\simap}{\stackrel{\diamond}{\sim}}
+
+\providecommand{\cA}{{\color{green!50!black}\mathbf{A}}}
+\providecommand{\cB}{{\color{green!50!black}\mathbf{B}}}
+\providecommand{\cC}{{\color{green!50!black}\mathbf{C}}}
+\providecommand{\cD}{{\color{green!50!black}\mathbf{D}}}
+\providecommand{\cE}{{\color{green!50!black}\mathbf{E}}}
+\providecommand{\cF}{{\color{green!50!black}\mathbf{F}}}
+\providecommand{\cG}{{\color{green!50!black}\mathbf{G}}}
+\providecommand{\cH}{{\color{green!50!black}\mathbf{H}}}
+\providecommand{\cI}{{\color{green!50!black}\mathbf{I}}}
+\providecommand{\cJ}{{\color{green!50!black}\mathbf{J}}}
+\providecommand{\cK}{{\color{green!50!black}\mathbf{K}}}
+\providecommand{\cL}{{\color{green!50!black}\mathbf{L}}}
+\providecommand{\cM}{{\color{green!50!black}\mathbf{M}}}
+\providecommand{\cN}{{\color{green!50!black}\mathbf{N}}}
+\providecommand{\cO}{{\color{green!50!black}\mathbf{O}}}
+\providecommand{\cP}{{\color{green!50!black}\mathbf{P}}}
+\providecommand{\cQ}{{\color{green!50!black}\mathbf{Q}}}
+\providecommand{\cR}{{\color{green!50!black}\mathbf{R}}}
+\providecommand{\cS}{{\color{green!50!black}\mathbf{S}}}
+\providecommand{\cT}{{\color{green!50!black}\mathbf{T}}}
+\providecommand{\cU}{{\color{green!50!black}\mathbf{U}}}
+\providecommand{\cV}{{\color{green!50!black}\mathbf{V}}}
+\providecommand{\cW}{{\color{green!50!black}\mathbf{W}}}
+\providecommand{\cX}{{\color{green!50!black}\mathbf{X}}}
+\providecommand{\cY}{{\color{green!50!black}\mathbf{Y}}}
+
+% 2022.05.27. (május 27, péntek), 15:44
+\NewDocumentCommand\NotCov{
+    s       % 1: optional star (as a modifier)
+    t\tilde % 2: \tilde accented symbol
+    t\hat   % 3: \hat accented symbol
+    t\bar   % 4: \bar accented symbol
+    m       % 5: symbol
+    g     % 6: compartment
+    o       % 7: superscript
+    o       % 8: subscript
+    }{%
+    {\color{green!50!black}%
+        \IfBooleanTF{#2}{\tilde#5}{%
+        \IfBooleanTF{#3}{\hat  #5}{%
+        \IfBooleanTF{#4}{\bar  #5}{%
+                               #5}}%
+        }\IfNoValueF{#7}{^{#7}}_{\IfNoValueF{#6}{\textsc{#6}}\IfNoValueF{#8}{\IfNoValueF{#6}{,}#8}}%
+    }%
+}
+\NewDocumentCommand{\Sigmawz}{o}{\NotCov\Sigma{wz}[#1]}
+
+\providecommand{\vect}{{\color{green!50!black}\mathrm{vec}}}
+\providecommand{\row}{{\color{green!50!black}\mathrm{row}}}
+\providecommand{\diag}{{\color{green!50!black}\mathrm{diag}}}
+
+\NewDocumentCommand{\TrRate}     {} {\NotCov{\beta}}
+\NewDocumentCommand{\tauL}       {} {\NotCov{\tau}{l}}
+\NewDocumentCommand{\tauP}       {} {\NotCov{\tau}{p}}
+\NewDocumentCommand{\tauA}       {} {\NotCov{\tau}{a}}
+\NewDocumentCommand{\tauI}       {} {\NotCov{\tau}{i}}
+\NewDocumentCommand{\tauH}       {} {\NotCov{\tau}{h}}
+\NewDocumentCommand{\tauAny}     {} {{\color{green!50!black} {\tau}_\bullet}}
+\NewDocumentCommand{\pI}         {} {\NotCov{p}{i}}
+\NewDocumentCommand{\pH}         {} {\NotCov{p}{h}}
+\NewDocumentCommand{\pD}         {} {\NotCov{p}{d}}
+\NewDocumentCommand{\pAny}       {} {{\color{green!50!black} {p}_\bullet}}
+\NewDocumentCommand{\relA}       {} {\NotCov{q}{a}}
+\NewDocumentCommand{\ImLossRate} {} {\NotCov{\omega}{r}}
+\NewDocumentCommand{\ImGainRate} {} {\NotCov{\omega}{s}}
+
+\NewDocumentCommand{\xPIH}       {} {\NotCov{x}{pih}}
+\NewDocumentCommand{\dxPIH}      {} {\NotCov{\dot{x}}{pih}}
+
+\NewDocumentCommand{\APIH}       {} {\NotCov{A}}
+\NewDocumentCommand{\BPIH}       {} {\NotCov{B}}
+\NewDocumentCommand{\CPIH}       {} {\NotCov{C}}
+\NewDocumentCommand{\OPIH}       {} {\NotCov{\mathcal{O}}{pih}}
+\NewDocumentCommand{\YPIH}       {} {\NotCov{Y}}
+
+\NewDocumentCommand{\xuio}       {} {\NotCov{x}{uio}}
+\NewDocumentCommand{\dxuio}      {} {\NotCov{\dot{x}}{uio}}
+\NewDocumentCommand{\Auio}       {} {\NotCov{A}{uio}}
+\NewDocumentCommand{\Buio}       {} {\NotCov{B}{uio}}
+\NewDocumentCommand{\Cuio}       {} {\NotCov{C}{uio}}
+\NewDocumentCommand{\Duio}       {} {\NotCov{D}{uio}}
+
+\RenewDocumentCommand{\nu}{}{{\color{green!50!black}n_\mathrm{u}}}
+\NewDocumentCommand{\nx}  {}{{\color{green!50!black}n_\mathrm{x}}}
+\NewDocumentCommand{\np}  {}{{\color{green!50!black}n_\mathrm{p}}}
+\NewDocumentCommand{\ny}  {}{{\color{green!50!black}n_\mathrm{y}}}
+
+\DeclareDocumentCommand{\dqty}{ l m }{\braces#1{<}{>}{#2}},
+\DeclareDocumentCommand{\dotprod}{ l m }{\braces#1{<}{>}{#2}},
+\DeclareDocumentCommand\pmqty{ l m }{\begin{pmatrix}#1 #2 \end{pmatrix}},
+\DeclareDocumentCommand\He{ l m }{\mathrm{He}\qty#1{#2}},
+\DeclareDocumentCommand\Ve{ l m }{\mathbf{Ve}\pqty#1{#2}},
+\DeclareDocumentCommand\Co{ l m }{\mathbf{Co}\pqty#1{#2}},
+\DeclareDocumentCommand\Gr{ l m }{\mathbf{Co}\pqty#1{#2}},
+\DeclareMathOperator{\Var}{Var},
+\DeclareMathOperator{\Cov}{Cov},
+
+
+\def\LtwoSubs{{\color{orange} \ell}},
+\def\lengthOfRod{{\color{orange} \ell}},
+\def\frictionCoeff{{\color{orange} b}},
+\def\vr{{\color{orange} \varrho}},
+\providecommand{\vv}[1]{{\color{red} #1}},
+\providecommand{\sdp}[1]{{\color{blue} #1}},
+\providecommand{\hyp}[1]{{\color{green!50!black} #1}},
+\providecommand{\data}[1]{{\color{orange!70!black} #1}},
+\providecommand{\itr}[1]{{\color{orange} #1}},
+\providecommand{\brm}[1]{{\color{orange!30!black} #1}},
+\providecommand{\elh}[1]{{\color{gray!50} #1}},
+
+\usepackage{calrsfs},
+\DeclareMathAlphabet{\tmpcal}{OMS}{zplm}{m}{n},
+\let\mathcall\mathcal,
+\let\mathcal\tmpcal,
+
+\DeclareDocumentCommand{\F}{ s l >{\SplitArgument{4}{,}} m }{\IfBooleanTF{#1}{\sFimpl#2{}#3}{\Fimpl#2{}#3}},
+\DeclareDocumentCommand{\Fimpl}{slmmmmmm}{\qty#2{ \IfNoValueTF{#6}{#4,#5}{\pmqty[c|c]{ #4 & #5 \\\\ \hline #6 & #7 }, #8}} },
+\DeclareDocumentCommand{\sFimpl}{slmmmmmm}{\qty#2{ \spmqty{ #4 & #5 \\\\ #6 & #7 }, #8}},
+\DeclareDocumentCommand{\Fu}{ s l >{\SplitArgument{4}{,}} m }{\IfBooleanTF{#1}{\sFluImpl#2{u}#3}{\FluImpl#2{u}#3}},
+\DeclareDocumentCommand{\Fl}{ s l >{\SplitArgument{4}{,}} m }{\IfBooleanTF{#1}{\sFluImpl#2{l}#3}{\FluImpl#2{l}#3}},
+\DeclareDocumentCommand{\FluImpl}{slmmmmmm}{\mathcal F_{#3}\qty#2{ \IfNoValueTF{#6}{#4,#5}{\pmqty[c|c]{ #4 & #5 \\\\ \hline #6 & #7 }, #8}} },
+\DeclareDocumentCommand{\sFluImpl}{slmmmmmm}{\mathcal F_{#3}\qty#2{ \spmqty{ #4 & #5 \\\\ #6 & #7 }, #8}},
