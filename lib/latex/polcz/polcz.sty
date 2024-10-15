@@ -4,6 +4,7 @@
 \DeclareOption{basic}{\let\tudomanyos = 1}
 \DeclareOption{tudomanyos}{\let\tudomanyos = 1}
 \DeclareOption{glossary}{\let\glossary = 1}
+\DeclareOption{glossaryNew}{\let\glossaryNew = 1}
 \DeclareOption{nohref}{\let\hrefopt = 0}
 \DeclareOption{ownhref}{\let\hrefopt = 1}
 \DeclareOption{href}{\let\hrefopt = 2}
@@ -915,6 +916,96 @@ G{}             % #9 {info}
     \DeclareDocumentCommand\form{s m D<>{} d[] d()}
     {
         \ITEM[\blue \large $\boldsymbol{\triangleright}$] {\blue \bfseries \large #2 }%
+        \IfBooleanTF{#1}{\small[{\bfseries \red formal}] }{}%
+        \textcolor{darkgreen}{\textit{\normalsize \mdseries #3} }%
+        \IfNoValueTF{#5}{}{\normalsize (\textit{\textcolor{orange}{#5}}) }%
+    }
+\fi
+
+\ifx\glossaryNew 1
+    \RequirePackage{pstricks}
+    \definecolor{orange}{rgb}{1,0.5,0}
+    \definecolor{mygreen}{rgb}{0.2,0.5,0.1}
+    \definecolor{darkgreen}{HTML}{789130}
+    \definecolor{scarlet}{HTML}{95081F}
+    \definecolor{mygreen}{HTML}{058714}
+    \definecolor{purple}{HTML}{A9006B}
+    \newcommand{\til}{$\sim$ }
+
+    %\DeclareDocumentEnvironment{word}
+    %{s m D<>{} d[] d()}
+    %{
+    %    \noindent {\LARGE \bfseries \blue #2 }%
+    %    \IfBooleanTF{#1}{\small[{\bfseries \red formal}] }{}%
+    %    \textcolor{darkgreen}{\textit{\normalsize \mdseries #3} }%
+    %    \IfNoValueTF{#5}{}{\normalsize (\textit{\textcolor{orange}{#5}}) }%
+    %    \begin{enumerate}%
+    %}
+    %{
+    %    \end{enumerate}
+    %}
+
+    \DeclareDocumentEnvironment{word}
+    {s m d[] d<> d()}
+    {
+        % \noindent {\LARGE \bfseries \IfBooleanTF{#1}{\red #2}{\blue #2} }%
+        \noindent {\LARGE \bfseries \blue #2 }%
+        \IfBooleanT{#1}{{\small\bfseries\red\sc formal }}%
+        \IfValueT{#3}{{\gray [#3] }}%
+        \IfValueT{#4}{{\color{darkgreen}\itshape\normalsize #4 }}%
+        \IfValueT{#5}{{\normalsize\color{orange} (#5) }}%
+    }{}
+
+    \DeclareDocumentEnvironment{worden}
+    {s m d[] d<> d()}
+    {
+        % \noindent {\LARGE \bfseries \IfBooleanTF{#1}{\red #2}{\blue #2} }%
+        \noindent {\LARGE \bfseries \blue #2 }%
+        \IfBooleanT{#1}{{\small\bfseries\red\sc formal }}%
+        \IfValueT{#3}{{\gray [#3] }}%
+        \IfValueT{#4}{{\color{darkgreen}\itshape\normalsize #4 }}%
+        \IfValueT{#5}{{\normalsize\color{orange} (#5) }}%
+        \vspace*{-20pt}
+        \begin{enumerate}%
+            \item[]%
+    }{\end{enumerate}}
+
+    \DeclareDocumentCommand\example{s d[] m D<>{} d()}
+    {%
+        \IfBooleanF{#1}{\hfill\\}%
+        % \IfNoValueTF{#2}{\raisebox{1pt}{\scalebox{0.7}{$\bullet$}} }{\textbf{\blue #2} }%
+        \raisebox{1pt}{\scalebox{0.7}{$\bullet$ }}\IfValueT{#2}{\textbf{\blue #2} }%
+        \textit{#3}%
+        \IfNoValueTF{#5}{}{ \normalsize (\textit{\textcolor{orange}{#5}})}
+    }
+
+    \DeclareDocumentCommand\idiom{s d[] m D<>{} d()}
+    {%
+        \item[\textcolor{orange}{[idiom]\hspace*{-15pt}}]
+        \hspace*{10pt}
+        \IfValueT{#2}{\textbf{\blue #2} }%
+        % \IfNoValueTF{#2}{\raisebox{1pt}{\scalebox{0.7}{$\bullet$}} }{\textbf{\blue #2} }%
+        {\normalfont\normalsize#3}%
+        \IfNoValueTF{#5}{}{ \normalsize ({\textcolor{orange}{#5}})}
+    }
+
+    \DeclareDocumentCommand{\syn}{s m}
+    {%
+        \IfBooleanF{#1}{\hfill\\}%
+        \textcolor{scarlet}{\textbf{$\simeq$ #2}}%
+    }
+
+    \DeclareDocumentCommand\Item{s d[] d[] D<>{} d()}
+    {%
+        \item
+        \IfValueT{#2}{\ifx\hfuzz#2\hfuzz\else{\gray [#2] }\fi}%
+        \IfBooleanT{#1}{{\small\bfseries\red\sc formal }}%
+        \IfValueT{#3}{\textbf{\blue #3} }%
+    }
+
+    \DeclareDocumentCommand\form{s m D<>{} d[] d()}
+    {
+        \item[\blue \large $\boldsymbol{\triangleright}$] {\blue \bfseries \large #2 }%
         \IfBooleanTF{#1}{\small[{\bfseries \red formal}] }{}%
         \textcolor{darkgreen}{\textit{\normalsize \mdseries #3} }%
         \IfNoValueTF{#5}{}{\normalsize (\textit{\textcolor{orange}{#5}}) }%
