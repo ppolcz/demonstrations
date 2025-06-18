@@ -27,8 +27,8 @@ ret = {
     '\\\\mathrm\{([a-zA-Z0-9]*)\}' '\1'
     
     % erase the \, \! placeholder macros
-    '\\\\,' ''
-    '\\\\!' ''
+    % '\\\\,' ''
+    % '\\\\!' ''
     
     % in case of [a,b,c \\ c,d,e] --> .. a & b & c \\ c & d & e ..
     '([^\\\\]),' '\1 \& '
