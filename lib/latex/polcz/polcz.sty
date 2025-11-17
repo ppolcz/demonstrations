@@ -548,6 +548,19 @@ G{}             % #9 {info}
     %\path[draw=tcbcol@frame,shorten <=-0.05mm,shorten >=-0.05mm] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
     \path[fill=markercolhead,draw=none] (interior.south west) rectangle node[white]{} ([xshift=1mm]interior.north west);
     },#1}
+% qboxrs define on 2025.11.04. (November  4, Tuesday), 22:56
+\newtcolorbox{qboxrs}[1][]{enhanced,
+  breakable,
+  before skip=2mm,after skip=3mm,
+  boxrule=0.5pt,left=1mm,right=1mm,top=0.5mm,bottom=0.5mm,
+  %shadow={0mm}{0mm}{1mm}{white},
+  colback=white,
+  colbacktitle=red!10,
+  coltitle=black,
+  fonttitle=\small\bfseries,
+  colframe=red,
+  sharp corners,sharp corners=all,%arc is angular,arc=3mm,
+  #1}
 \newtcolorbox{qbox}[1][]{enhanced,
   breakable,
   before skip=2mm,after skip=3mm,
